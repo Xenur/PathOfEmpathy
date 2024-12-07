@@ -1,4 +1,7 @@
 # **Caminos de Empatía**
+07/12/2024 2
+* Prueba segundo commit con carpeta release y -gitignore listo
+
 07/12/2024
 * Cambio de github para tener correcto las releases
 * Cambio a carlos.alcarazb@gmail.com
