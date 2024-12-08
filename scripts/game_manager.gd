@@ -221,6 +221,7 @@ var countdown_sound_playing = false
 @onready var ci_ia_score_token_label = $"../UI/GameOver/GameResultTextureRect/ScoreTokenIA/CiberbullyingToken/Panel2/ScoreTokenLabel"
 
 
+
 # Diccionario con las nuevas texturas para los tokens
 var token_textures: Dictionary = {
 	"exclusión_social": preload("res://assets/ui/tokens/token_exclusión_social.png"),

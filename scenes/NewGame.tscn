@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://dq4v62olhary3"]
+[gd_scene load_steps=107 format=3 uid="uid://dq4v62olhary3"]
 
 [ext_resource type="Script" path="res://scripts/new_game.gd" id="1_eh8bj"]
 [ext_resource type="Texture2D" uid="uid://dukyjdb258r8x" path="res://assets/images/backgrounds/bg_12.webp" id="2_hikk8"]
@@ -54,20 +54,31 @@
 [ext_resource type="Texture2D" uid="uid://up7rceiha7li" path="res://assets/ui/score/boy_1.png" id="37_a0yc1"]
 [ext_resource type="Texture2D" uid="uid://cvu6jcmbylna3" path="res://assets/ui/backgrounds/victory_2.png" id="38_a25bx"]
 [ext_resource type="FontFile" uid="uid://bo8csdsex1d3i" path="res://assets/fonts/AmaticSC-Bold.ttf" id="38_apwvo"]
-[ext_resource type="Texture2D" uid="uid://u3dyfk1mrqwm" path="res://assets/ui/score/girl_2.png" id="38_ll7f6"]
+[ext_resource type="Texture2D" uid="uid://c2y2o3qd3ue1u" path="res://assets/images/cards/roles/soporte_solidario.webp" id="38_qhx2a"]
 [ext_resource type="Script" path="res://scenes/new_game_option_window.gd" id="39_7n31t"]
 [ext_resource type="Texture2D" uid="uid://c8mmq4leduvn5" path="res://assets/ui/tokens/token_exclusión_social_bn.png" id="40_hppje"]
 [ext_resource type="Texture2D" uid="uid://bboks5ajispvd" path="res://assets/ui/tokens/token_físico_bn.png" id="41_xbhwa"]
 [ext_resource type="Texture2D" uid="uid://c87nfvohsxccb" path="res://assets/ui/tokens/token_psicologico_bn.png" id="42_fpm0a"]
 [ext_resource type="Texture2D" uid="uid://byqyx0dqaha8r" path="res://assets/ui/tokens/token_sexual_bn.png" id="43_jtpoo"]
+[ext_resource type="Texture2D" uid="uid://blaf5505ocxqy" path="res://assets/ui/icons/intervención.png" id="44_8l21x"]
 [ext_resource type="Texture2D" uid="uid://cexk6hajb1bwf" path="res://assets/ui/tokens/token_verbal_bn.png" id="44_f5h2d"]
 [ext_resource type="Texture2D" uid="uid://8coj62fmtlkw" path="res://assets/ui/tokens/token_ciberbullying_bn.png" id="45_87ql6"]
+[ext_resource type="Texture2D" uid="uid://dux6uxrudyog2" path="res://assets/ui/icons/comunicacion.png" id="45_uvnxj"]
+[ext_resource type="Texture2D" uid="uid://opi4i0tkqmrf" path="res://assets/ui/icons/empathy.png" id="46_5kncj"]
+[ext_resource type="Texture2D" uid="uid://cdbwe65a23jq4" path="res://assets/ui/icons/apoyo_emocional.png" id="47_bgvx8"]
 [ext_resource type="Texture2D" uid="uid://dpdi8jch6q4je" path="res://assets/ui/icons/empathy_gradient_blue_red_20_4.png" id="49_p55k3"]
 [ext_resource type="Texture2D" uid="uid://wbnpnr5yjdyq" path="res://assets/ui/icons/apoyo_emocional_gradient_blue_red_20_6.png" id="50_m81ou"]
 [ext_resource type="Script" path="res://scripts/ic_card.gd" id="50_qhjjh"]
 [ext_resource type="Texture2D" uid="uid://h5amphcnjm71" path="res://assets/ui/icons/intervención_gradient_blue_red_20_8.png" id="51_je1lb"]
 [ext_resource type="Texture2D" uid="uid://0dbtgq37xr1x" path="res://assets/ui/icons/comunicacion_gradient_blue_red_20_3.png" id="52_ra073"]
 [ext_resource type="Texture2D" uid="uid://bitq56chkqbw6" path="res://assets/ui/icons/resolución_de_conflictos_gradient_blue_red_20_9.png" id="53_dmsja"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5i3kt"]
+bg_color = Color(0.427451, 0.384314, 0.32549, 0.792157)
+corner_radius_top_left = 70
+corner_radius_top_right = 70
+corner_radius_bottom_right = 70
+corner_radius_bottom_left = 70
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ax13"]
 bg_color = Color(0.6, 0.6, 0.6, 0.694118)
@@ -113,6 +124,9 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="ImageTexture" id="ImageTexture_vnptg"]
+resource_local_to_scene = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x88fj"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -300,6 +314,138 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("2_q5ib0")
 
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IntervencionPanel" type="Panel" parent="UI/Control"]
+offset_left = 1596.0
+offset_top = 816.0
+offset_right = 3086.0
+offset_bottom = 1116.0
+scale = Vector2(0.2, 0.2)
+tooltip_text = "Intervención"
+theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
+
+[node name="IntervencionTextureRect" type="TextureRect" parent="UI/Control/IntervencionPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("44_8l21x")
+
+[node name="IntervencionLabel" type="Label" parent="UI/Control/IntervencionPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 225
+text = "+4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ComunicacionPanel" type="Panel" parent="UI/Control"]
+offset_left = 1596.0
+offset_top = 881.0
+offset_right = 3086.0
+offset_bottom = 1181.0
+scale = Vector2(0.2, 0.2)
+tooltip_text = "Comunicación"
+theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
+
+[node name="ComunicacionTextureRect" type="TextureRect" parent="UI/Control/ComunicacionPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("45_uvnxj")
+
+[node name="ComunicacionLabel" type="Label" parent="UI/Control/ComunicacionPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 225
+text = "+2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmpatiaPanel" type="Panel" parent="UI/Control"]
+offset_left = 1596.0
+offset_top = 946.0
+offset_right = 3086.0
+offset_bottom = 1246.0
+scale = Vector2(0.2, 0.2)
+tooltip_text = "Empatía"
+theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
+
+[node name="EmpatiaTextureRect" type="TextureRect" parent="UI/Control/EmpatiaPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("46_5kncj")
+
+[node name="EmpatiaLabel" type="Label" parent="UI/Control/EmpatiaPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 225
+text = "-3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ApoyoPanel" type="Panel" parent="UI/Control"]
+offset_left = 1596.0
+offset_top = 1011.0
+offset_right = 3086.0
+offset_bottom = 1311.0
+scale = Vector2(0.2, 0.2)
+tooltip_text = "Apoyo Emocional"
+theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
+
+[node name="ApoyoTextureRect" type="TextureRect" parent="UI/Control/ApoyoPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("47_bgvx8")
+
+[node name="ApoyoLabel" type="Label" parent="UI/Control/ApoyoPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 225
+text = "-2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="DestinyRETextureRectPlayer" type="TextureRect" parent="UI"]
 layout_mode = 0
 offset_left = 601.0
@@ -457,6 +603,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3l5xk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0l5c2")
 theme_override_styles/normal = SubResource("StyleBoxFlat_6tfdl")
 text = "Reverso"
+icon = SubResource("ImageTexture_vnptg")
 
 [node name="EndTurnPopup" type="Window" parent="UI"]
 process_mode = 3
@@ -1356,10 +1503,12 @@ stretch_mode = 2
 [node name="PlayerTextureRect" type="TextureRect" parent="UI/ScoreTokenPlayer"]
 layout_mode = 0
 offset_left = 9.0
-offset_top = -18.0
-offset_right = 215.0
-offset_bottom = 217.0
-texture = ExtResource("38_ll7f6")
+offset_top = -33.0
+offset_right = 1039.0
+offset_bottom = 1218.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("38_qhx2a")
+stretch_mode = 6
 
 [node name="ScoreTokenIA" type="Control" parent="UI"]
 layout_mode = 3
