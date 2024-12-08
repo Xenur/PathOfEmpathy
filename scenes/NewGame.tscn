@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://dq4v62olhary3"]
+[gd_scene load_steps=108 format=3 uid="uid://dq4v62olhary3"]
 
 [ext_resource type="Script" path="res://scripts/new_game.gd" id="1_eh8bj"]
 [ext_resource type="Texture2D" uid="uid://dukyjdb258r8x" path="res://assets/images/backgrounds/bg_12.webp" id="2_hikk8"]
@@ -291,6 +291,13 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76wj6"]
+bg_color = Color(0.0431373, 0.270588, 0.415686, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="NewGame" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -323,6 +330,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="IntervencionPanel" type="Panel" parent="UI/Control"]
+layout_mode = 0
 offset_left = 1596.0
 offset_top = 816.0
 offset_right = 3086.0
@@ -354,6 +362,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ComunicacionPanel" type="Panel" parent="UI/Control"]
+layout_mode = 0
 offset_left = 1596.0
 offset_top = 881.0
 offset_right = 3086.0
@@ -385,6 +394,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EmpatiaPanel" type="Panel" parent="UI/Control"]
+layout_mode = 0
 offset_left = 1596.0
 offset_top = 946.0
 offset_right = 3086.0
@@ -416,6 +426,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ApoyoPanel" type="Panel" parent="UI/Control"]
+layout_mode = 0
 offset_left = 1596.0
 offset_top = 1011.0
 offset_right = 3086.0
@@ -465,6 +476,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("16_22v05")
 
 [node name="DestinyRETextureRectIA" type="TextureRect" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 601.0
 offset_top = 240.0
@@ -483,6 +495,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("17_kqvgd")
 
 [node name="DestinyHSTextureRectIA" type="TextureRect" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 1167.0
 offset_top = 240.0
@@ -509,9 +522,9 @@ texture_focused = ExtResource("8_oxljk")
 
 [node name="CountdownTotal" type="Control" parent="UI"]
 anchors_preset = 0
-offset_left = 1421.0
+offset_left = 5.0
 offset_top = 18.0
-offset_right = 1461.0
+offset_right = 45.0
 offset_bottom = 58.0
 
 [node name="Panel" type="Panel" parent="UI/CountdownTotal"]
@@ -530,9 +543,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -87.5
+offset_left = -82.5
 offset_top = -30.5
-offset_right = 87.5
+offset_right = 92.5
 offset_bottom = 30.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -609,7 +622,7 @@ icon = SubResource("ImageTexture_vnptg")
 process_mode = 3
 transparent_bg = true
 initial_position = 1
-size = Vector2i(750, 415)
+size = Vector2i(750, 500)
 visible = false
 transient = true
 exclusive = true
@@ -624,12 +637,12 @@ script = ExtResource("11_uph4r")
 
 [node name="Panel" type="Panel" parent="UI/EndTurnPopup"]
 offset_right = 750.0
-offset_bottom = 415.0
+offset_bottom = 500.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_fdknx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/EndTurnPopup"]
 offset_right = 750.0
-offset_bottom = 415.0
+offset_bottom = 500.0
 size_flags_horizontal = 3
 
 [node name="ResultadoLabel" type="Label" parent="UI/EndTurnPopup/VBoxContainer"]
@@ -742,11 +755,9 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="HSeparator4" type="HSeparator" parent="UI/EndTurnPopup/VBoxContainer"]
-visible = false
 layout_mode = 2
 
-[node name="IALabel" type="Label" parent="UI/EndTurnPopup/VBoxContainer"]
-visible = false
+[node name="EstrellasLabel" type="Label" parent="UI/EndTurnPopup/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.226707, 0.226707, 0.226707, 1)
@@ -755,25 +766,22 @@ theme_override_font_sizes/font_size = 20
 text = "IA"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="UI/EndTurnPopup/VBoxContainer"]
-visible = false
 layout_mode = 2
 
-[node name="RELabel" type="Label" parent="UI/EndTurnPopup/VBoxContainer/HBoxContainer3"]
+[node name="FeedbackLabel" type="Label" parent="UI/EndTurnPopup/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.226707, 0.226707, 0.226707, 1)
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 10
+
+[node name="FeedbackLabel2" type="Label" parent="UI/EndTurnPopup/VBoxContainer/HBoxContainer3"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.226707, 0.226707, 0.226707, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
-theme_override_font_sizes/font_size = 18
-text = "Respuesta Empática: "
-
-[node name="IANameRELabel" type="Label" parent="UI/EndTurnPopup/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0.226707, 0.226707, 0.226707, 1)
-theme_override_fonts/font = ExtResource("7_tilu5")
-theme_override_font_sizes/font_size = 18
-text = "Educación sobre bullying"
+theme_override_font_sizes/font_size = 10
 
 [node name="IAPointsRELabel" type="Label" parent="UI/EndTurnPopup/VBoxContainer/HBoxContainer3"]
 visible = false
@@ -922,7 +930,7 @@ grow_vertical = 2
 theme_override_colors/font_hover_color = Color(0.74902, 0.74902, 0.74902, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("11_d1wdg")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxFlat_27bwm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8eyt8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2vcrx")
@@ -1025,6 +1033,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("26_xmiw3")
 
 [node name="EmptyFrame7" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1040,6 +1049,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("21_7m3oo")
 
 [node name="EmptyFrame8" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1055,6 +1065,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("21_7m3oo")
 
 [node name="EmptyFrame9" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1070,6 +1081,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("21_7m3oo")
 
 [node name="EmptyFrame10" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1085,6 +1097,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("21_7m3oo")
 
 [node name="EmptyFrame11" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1100,6 +1113,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("21_7m3oo")
 
 [node name="EmptyFrame12" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1511,6 +1525,7 @@ texture = ExtResource("38_qhx2a")
 stretch_mode = 6
 
 [node name="ScoreTokenIA" type="Control" parent="UI"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 100.0
@@ -3164,9 +3179,9 @@ anchors_preset = 0
 [node name="BullyingCard" type="Control" parent="DeckManager/DeckBullying"]
 anchors_preset = 0
 offset_left = 772.0
-offset_top = 210.0
+offset_top = 50.0
 offset_right = 2272.0
-offset_bottom = 2310.0
+offset_bottom = 2150.0
 scale = Vector2(0.25, 0.25)
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckBullying/BullyingCard"]
@@ -3289,6 +3304,145 @@ texture = ExtResource("52_ra073")
 stretch_mode = 2
 
 [node name="ConflictResolutionTextureRect" type="TextureRect" parent="DeckManager/DeckBullying/BullyingCard/StatsBu"]
+z_index = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 444.0
+offset_right = 5620.0
+offset_bottom = 956.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("53_dmsja")
+stretch_mode = 2
+
+[node name="BullyingCardNext" type="Control" parent="DeckManager/DeckBullying"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 343.0
+offset_top = 53.0
+offset_right = 1843.0
+offset_bottom = 2153.0
+scale = Vector2(0.15, 0.15)
+
+[node name="CardFrame" type="TextureRect" parent="DeckManager/DeckBullying/BullyingCardNext"]
+z_index = 1
+layout_mode = 0
+offset_right = 1500.0
+offset_bottom = 2100.0
+texture = ExtResource("16_22v05")
+
+[node name="CardImage" type="TextureRect" parent="DeckManager/DeckBullying/BullyingCardNext"]
+layout_mode = 0
+offset_left = 30.7692
+offset_top = 192.308
+offset_right = 1469.77
+offset_bottom = 1259.31
+texture = ExtResource("7_ajnv4")
+stretch_mode = 6
+
+[node name="TitleCardLabel" type="Label" parent="DeckManager/DeckBullying/BullyingCardNext"]
+z_index = 2
+layout_mode = 0
+offset_left = 73.0
+offset_top = 68.0
+offset_right = 1428.0
+offset_bottom = 189.0
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 72
+text = "Diálogo Abierto"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumberCardLabel" type="Label" parent="DeckManager/DeckBullying/BullyingCardNext"]
+z_index = 2
+layout_mode = 0
+offset_left = 1217.0
+offset_top = 1875.0
+offset_right = 1385.0
+offset_bottom = 1966.0
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 72
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TypeCardLabel" type="Label" parent="DeckManager/DeckBullying/BullyingCardNext"]
+z_index = 2
+layout_mode = 0
+offset_left = 114.0
+offset_top = 1886.0
+offset_right = 1387.0
+offset_bottom = 1981.0
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 72
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionCardLabel" type="Label" parent="DeckManager/DeckBullying/BullyingCardNext"]
+z_index = 2
+layout_mode = 0
+offset_left = 124.0
+offset_top = 1261.0
+offset_right = 1375.0
+offset_bottom = 1839.0
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 70
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="StatsBu" type="Control" parent="DeckManager/DeckBullying/BullyingCardNext"]
+visible = false
+anchors_preset = 0
+offset_left = 124.0
+offset_top = 1261.0
+offset_right = 164.0
+offset_bottom = 1301.0
+
+[node name="EmpathyTextureRect" type="TextureRect" parent="DeckManager/DeckBullying/BullyingCardNext/StatsBu"]
+z_index = 1
+layout_mode = 1
+offset_left = 72.0
+offset_top = 28.0
+offset_right = 5620.0
+offset_bottom = 540.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("49_p55k3")
+stretch_mode = 2
+
+[node name="EmotionalSupportTextureRect" type="TextureRect" parent="DeckManager/DeckBullying/BullyingCardNext/StatsBu"]
+z_index = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 131.0
+offset_right = 5620.0
+offset_bottom = 648.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("50_m81ou")
+stretch_mode = 2
+
+[node name="InterventionTextureRect" type="TextureRect" parent="DeckManager/DeckBullying/BullyingCardNext/StatsBu"]
+z_index = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 236.0
+offset_right = 5636.0
+offset_bottom = 748.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("51_je1lb")
+stretch_mode = 2
+
+[node name="ComunicationTextureRect" type="TextureRect" parent="DeckManager/DeckBullying/BullyingCardNext/StatsBu"]
+z_index = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 340.0
+offset_right = 5620.0
+offset_bottom = 852.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("52_ra073")
+stretch_mode = 2
+
+[node name="ConflictResolutionTextureRect" type="TextureRect" parent="DeckManager/DeckBullying/BullyingCardNext/StatsBu"]
 z_index = 1
 layout_mode = 0
 offset_left = 72.0
@@ -4264,6 +4418,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="DeckIA" type="Control" parent="DeckManager"]
+visible = false
 anchors_preset = 0
 
 [node name="AICard1" type="TextureRect" parent="DeckManager/DeckIA"]
@@ -4473,6 +4628,21 @@ text = "La inteligencia emocional es la capacidad de reconocer, comprender y ges
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="Label" type="Label" parent="DeckManager"]
+layout_mode = 0
+offset_left = 343.0
+offset_top = 13.0
+offset_right = 568.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_76wj6")
+text = "Siguiente Situación"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GameManager" type="Control" parent="."]
 anchors_preset = 0

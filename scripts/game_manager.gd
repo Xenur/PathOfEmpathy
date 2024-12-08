@@ -74,11 +74,13 @@ var current_state = GameState.PREPARE
 @onready var hs_card_3 = $"../DeckManager/DeckPlayer/HSCard3"
 @onready var deck_bullying = $"../DeckManager/DeckBullying"
 @onready var bullying_card = $"../DeckManager/DeckBullying/BullyingCard"
+@onready var bullying_card_next = $"../DeckManager/DeckBullying/BullyingCardNext"
+
 @onready var ready_texture_button = $"../UI/ReadyTextureButton"
 
 # Constantes para los tiempos de cuenta atrás
 const COUNTDOWN_TURN = 5 * 60  # En segundos (5 minutos) 
-const COUNTDOWN_GAME = 2 * 60  # En segundos (25 minutos)
+const COUNTDOWN_GAME = 25 * 60  # En segundos (25 minutos)
 
 # Variables de tiempo
 var countdown_turn = COUNTDOWN_TURN # Temporizador de turno
@@ -220,6 +222,9 @@ var countdown_sound_playing = false
 @onready var ve_ia_score_token_label = $"../UI/GameOver/GameResultTextureRect/ScoreTokenIA/VerbalToken/Panel2/ScoreTokenLabel"
 @onready var ci_ia_score_token_label = $"../UI/GameOver/GameResultTextureRect/ScoreTokenIA/CiberbullyingToken/Panel2/ScoreTokenLabel"
 
+@onready var estrellas_label = $"../UI/EndTurnPopup/VBoxContainer/EstrellasLabel"
+@onready var feedback_label = $"../UI/EndTurnPopup/VBoxContainer/HBoxContainer3/FeedbackLabel"
+@onready var feedback_label_2 = $"../UI/EndTurnPopup/VBoxContainer/HBoxContainer3/FeedbackLabel2"
 
 
 # Diccionario con las nuevas texturas para los tokens
@@ -477,6 +482,7 @@ func prepare_game():
 	deck_manager.load_cards_hs_from_json()
 	deck_manager.load_cards_re_from_json()
 	deck_manager.shuffle_deck_bu()
+	
 	deck_manager.shuffle_deck_re()
 	deck_manager.shuffle_deck_hs()
 	print("tamaño del_manager_cartas_re", deck_manager.deck_re.size())
@@ -503,7 +509,7 @@ func prepare_game():
 
 	# Actualizar la carta de bullying inicial
 	update_bullying_card()
-	display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
+	#display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
 		
 	# Inicializar las cartas de la IA
 	ai_cards_re = [
@@ -529,9 +535,9 @@ func start_turn():
 	# Actualizar la carta de bullying
 	update_bullying_card() 
 	# La IA selecciona automaticamente sus cartas 
-	choose_ia_cards()
+	#choose_ia_cards()
 	
-# Función para manejar el turno del jugador
+# Función para manejar el turno del jugador DEPRECATED
 func loading():
 	update_token_textures()
 	print("Turno del jugador y la IA.")
@@ -565,48 +571,48 @@ func check_game_result():
 	# Obtiene las cartas seleccionadas
 	var player_re_card = get_player_card_re()
 	var player_hs_card = get_player_card_hs()
-	var ia_re_card = deck_manager.get_card_re_by_id(int(ia_selected_card_re))
-	var ia_hs_card = deck_manager.get_card_hs_by_id(int(ia_selected_card_hs))
+	#var ia_re_card = deck_manager.get_card_re_by_id(int(ia_selected_card_re))
+	#var ia_hs_card = deck_manager.get_card_hs_by_id(int(ia_selected_card_hs))
 	var player_bullying_card = deck_manager.get_card_bu_by_id(card_bullying.id_carta)
 	
 	# Verifica combinación válida
 	var combination_result = check_valid_combination(player_bullying_card, player_re_card, player_hs_card)
 	var valid_combination = combination_result[0]
 	var raw_match = combination_result[1]
-	var combination_result_ia = check_valid_combination(player_bullying_card, ia_re_card, ia_hs_card)
-	var valid_combination_ia = combination_result_ia[0]
+	#var combination_result_ia = check_valid_combination(player_bullying_card, ia_re_card, ia_hs_card)
+	#var valid_combination_ia = combination_result_ia[0]
 	
 	
 	# Calcula puntuaciones
 	# Actualiza las etiquetas del jugador y la IA
 	var player_score = calculate_player_score(player_bullying_card, player_re_card, player_hs_card, valid_combination)
 	update_player_labels(player_score, valid_combination, raw_match, player_re_card, player_hs_card)
-	var ia_score = calculate_ia_score(player_bullying_card, ia_re_card, ia_hs_card, valid_combination_ia)
+	#var ia_score = calculate_ia_score(player_bullying_card, ia_re_card, ia_hs_card, valid_combination_ia)
 	#var ia_score = calculate_score(player_bullying_card, ia_re_card, ia_hs_card)
 	print("total score: player_score: ", player_score)
-	print("total score: ia_score: ", ia_score)
+	#print("total score: ia_score: ", ia_score)
 	#var ia_score =100
 	#update_ia_labels(ia_score, ia_re_card, ia_hs_card)
-	if !valid_combination:
-		correct_strategy_why_label.text = str(player_score) + " puntos total turno"
+	#if !valid_combination:
+		#correct_strategy_why_label.text = str(player_score) + " puntos total turno"
 	
 	# Actualizar las puntuaciones totales y el combo
-	update_total_scores(player_score, ia_score)
+	#update_total_scores(player_score, ia_score)
 	update_combo(player_score, valid_combination)
-	update_combo_ia(ia_score, valid_combination_ia)
+	#update_combo_ia(ia_score, valid_combination_ia)
 	# Incrementar el turno
 	turn += 1
 
    
 	# Preparar los datos necesarios
 	var carta_bu = {"id": player_bullying_card.id_carta, "nombre": player_bullying_card.nombre}
-	var cartas_ia = {
-		"re": ia_re_card.nombre,
-		"hs": ia_hs_card.nombre,
-		"combo": GlobalData.combo_ia,
-		"perfecta": valid_combination_ia
-	}
-	#var cartas_jugador = {
+	#var cartas_ia = {
+		#"re": ia_re_card.nombre,
+		#"hs": ia_hs_card.nombre,
+		#"combo": GlobalData.combo_ia,
+		#"perfecta": valid_combination_ia
+	#}
+	##var cartas_jugador = {
 		#"re": player_re_card.nombre,
 		#"hs": player_hs_card.nombre,
 		#"tiempo_turno": COUNTDOWN_TURN-countdown_turn,
@@ -620,7 +626,10 @@ func check_game_result():
 		"combo": GlobalData.combo_player if GlobalData.combo_player else -1,
 		"perfecta": valid_combination if valid_combination else -1
 	}
+	var cartas_ia = cartas_jugador
 	# Determina el ganador de la tirada
+	# auxiliar para quitar IA mientras compruebo
+	var ia_score = 0
 	var ganador_tirada = ""
 	if player_score > ia_score:
 		ganador_tirada = "Jugador"
@@ -628,9 +637,9 @@ func check_game_result():
 		ganador_tirada = "IA"
 	else:
 		ganador_tirada = "Empate"
-	var combos_ia = GlobalData.combo_ia
+	var combos_ia = 0
 	var combos_jugador = GlobalData.combo_player
-	var token_ia = GlobalData.token_earned_ia
+	var token_ia = GlobalData.token_earned_player
 	var token_jugador = GlobalData.token_earned_player
 
 	# Crear la nueva tirada
@@ -715,32 +724,100 @@ func calculate_ia_score(player_bullying_card, ia_re_card, ia_hs_card, valid_comb
 
 # Actualiza las etiquetas del jugador
 func update_player_labels(player_score, valid_combination, raw_match, player_re_card, player_hs_card):
-	
+	var player_bullying_card
 	player_label.text = GlobalData.user
 	if player_re_card:
-		var player_bullying_card = deck_manager.get_card_bu_by_id(card_bullying.id_carta)
+		player_bullying_card = deck_manager.get_card_bu_by_id(card_bullying.id_carta)
 		#name_re_label.text = player_re_card.nombre #+ " Multiplicador " + str(get_affinity_multiplier(player_re_card.afinidad, player_bullying_card.tipo))
-		name_re_label.text = player_re_card.nombre + " - Factor Afinidad x" + str(GlobalData.re_multiplier) + " - Puntuación: " + str(GlobalData.re_total_score)
+		name_re_label.text = player_re_card.nombre + " - Factor Afinidad x" + str(GlobalData.re_multiplier) #+ " - Puntuación: " + str(GlobalData.re_total_score)
 	else:
 		name_re_label.text = "NO HAS ELEGIDO CARTA DE RESPUESTA EMPÁTICA"
 	if player_hs_card:
-		var player_bullying_card = deck_manager.get_card_bu_by_id(card_bullying.id_carta)
+		player_bullying_card = deck_manager.get_card_bu_by_id(card_bullying.id_carta)
 		#name_hs_label.text = player_hs_card.nombre # + " Multiplicador " + str(get_affinity_multiplier(player_hs_card.afinidad, player_bullying_card.tipo))
-		name_hs_label.text = player_hs_card.nombre + " - Factor Afinidad x" + str(GlobalData.hs_multiplier) + " - Puntuación: " + str(GlobalData.hs_total_score)
+		name_hs_label.text = player_hs_card.nombre + " - Factor Afinidad x" + str(GlobalData.hs_multiplier) # + " - Puntuación: " + str(GlobalData.hs_total_score)
 	else:
 		name_hs_label.text = "NO HAS ELEGIDO CARTA DE HABILIDAD SOCIAL"
 	if valid_combination:
-		player_label.text = GlobalData.user + " ¡COMBINACIÓN PERFECTA! +1500 PUNTOS"
+		player_label.text = GlobalData.user + " ¡COMBINACIÓN PERFECTA! 5 ESTRELLAS"
 		name_re_label.text = player_re_card.nombre
 		name_hs_label.text = player_hs_card.nombre
 		correct_strategy_why_label.text = raw_match["por_que"]
 		#points_hs_label.text = str(200) + " puntos"
 	elif player_score >= 600:
-		player_label.text = GlobalData.user + " ¡PUNTUACIÓN SUPERIOR A 600 +1 COMBO!"
+		player_label.text = GlobalData.user + " ¡PUNTUACIÓN SUPERIOR +1 COMBO!"
 		#points_hs_label.text = str(player_score) + " puntos"
+	var stars = 0
+	# Calcular estrellas
+	if player_bullying_card and player_bullying_card.thresholds:
+		stars = calculate_stars(player_score, player_bullying_card.thresholds)
+		estrellas_label.text = "⭐".repeat(stars) + " (" + str(stars) + " estrellas)"
+	else:
+		estrellas_label.text = "No se pueden calcular estrellas."
+			# Generar feedback
+	if player_bullying_card:
+		var feedback = generate_feedback(player_score, stars, player_re_card, player_hs_card, player_bullying_card)
+		feedback_label.text = feedback
+	else:
+		feedback_label.text = "No se pudo generar feedback."
+
+# Función para calcular las estrellas
+func calculate_stars(score: int, thresholds: Array) -> int:
+	var stars = 0
+	for threshold in thresholds:
+		if score >= threshold:
+			stars += 1
+	return stars
 		
-	
-		
+func generate_feedback(player_score, stars: int, player_re_card, player_hs_card, bullying_card) -> String:
+	var feedback = []
+	var player_stats = GlobalData.player_stats  # Atributos del jugador según el rol seleccionado
+	print("Atributos del jugador:", player_stats)
+
+	# Almacena los atributos que están por debajo de lo requerido
+	var missing_attributes = []
+
+	# Comparar atributos de la carta RE
+	if player_re_card:
+		var empatia_total = player_re_card.empatia + player_stats.get("empatia", 0)
+		var apoyo_emocional_total = player_re_card.apoyo_emocional + player_stats.get("apoyo_emocional", 0)
+		var intervencion_total = player_re_card.intervencion + player_stats.get("intervencion", 0)
+
+		if empatia_total < bullying_card.empatia:
+			missing_attributes.append("empatía")
+		if apoyo_emocional_total < bullying_card.apoyo_emocional:
+			missing_attributes.append("apoyo emocional")
+		if intervencion_total < bullying_card.intervencion:
+			missing_attributes.append("intervención")
+	else:
+		feedback.append("No se jugó una carta de respuesta empática. Esto puede haber afectado la empatía en la situación.")
+
+	# Comparar atributos de la carta HS
+	if player_hs_card:
+		var comunicacion_total = player_hs_card.comunicacion + player_stats.get("comunicacion", 0)
+		var resolucion_total = player_hs_card.resolucion_de_conflictos + player_stats.get("resolucion_conflictos", 0)
+
+		if comunicacion_total < bullying_card.comunicacion:
+			missing_attributes.append("comunicación")
+		if resolucion_total < bullying_card.resolucion_de_conflictos:
+			missing_attributes.append("resolución de conflictos")
+	else:
+		feedback.append("No se jugó una carta de habilidad social. Esto pudo haber reducido la efectividad en la resolución del conflicto.")
+
+	# Generar feedback según las estrellas obtenidas
+	if stars >= 4:
+		feedback.append("¡Lo has hecho muy bien! Tu estrategia fue excelente y demostró un gran manejo de la situación.")
+	elif stars >= 2:
+		feedback.append("Buen trabajo, pero podrías mejorar. Algunos atributos estuvieron por debajo de lo necesario:")
+		feedback.append(", ".join(missing_attributes.slice(0, 2)))  # Muestra hasta 2 atributos faltantes
+	else:
+		feedback.append("Fue un intento difícil. Aquí hay algunas áreas clave en las que podrías enfocarte:")
+		feedback.append(", ".join(missing_attributes.slice(0, 3)))  # Muestra hasta 3 atributos faltantes
+
+	return " ".join(feedback)
+
+
+
 
 # Actualiza las etiquetas de la IA
 func update_ia_labels(ia_score, ia_re_card, ia_hs_card):
@@ -831,6 +908,23 @@ func end_turn_actions():
 	
 #Función para calcular la puntuación total de un jugador o la IA
 func calculate_score(bullying_card, re_card, hs_card) -> float:
+	#recoge los datos del rol que ha elegido el jugador	
+	var role_attributes = GlobalData.player_stats
+	# Modificar atributos de RE según el rol
+	if re_card != null:
+		print("Atributos 12 iniciales RE antes de la modificación:", re_card.empatia, "  ", re_card.apoyo_emocional, " ", re_card.intervencion)
+		re_card.empatia += role_attributes.get("empatia", 0)
+		re_card.apoyo_emocional += role_attributes.get("apoyo_emocional", 0)
+		re_card.intervencion += role_attributes.get("intervencion", 0)
+		print("Atributos 12 iniciales RE despues de la modificación:", re_card.empatia, "  ", re_card.apoyo_emocional, " ", re_card.intervencion)
+
+	# Modificar atributos de HS según el rol
+	if hs_card != null:
+		print("Atributos 12 iniciales HS antes de la modificación:", hs_card.comunicacion, "  ", hs_card.resolucion_de_conflictos)
+		hs_card.comunicacion += role_attributes.get("comunicacion", 0)
+		hs_card.resolucion_de_conflictos += role_attributes.get("resolucion_conflictos", 0)
+		print("Atributos 12 iniciales HS despues de la modificación:", hs_card.comunicacion, "  ", hs_card.resolucion_de_conflictos)
+	
 	#Inicializamos las puntuaciones individuales
 	var total_score: float = 0.0
 	var attributes_count: float = 0
@@ -1621,7 +1715,24 @@ func update_bullying_card():
 		card_bullying = deck_manager.deck_bu.pop_back()
 		# Actualizar la interfaz para mostrar la nueva carta de bullying
 		display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
+		# Verificar la siguiente carta sin sacarla del mazo
+		var next_card_bullying = null
+		if deck_manager.deck_bu.size() > 0:
+			next_card_bullying = deck_manager.deck_bu.back()
+
+		# Actualizar la interfaz para mostrar la nueva carta de bullying
+		display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
+
+		# Mostrar la próxima carta si existe
+		if next_card_bullying:
+			display_next_card_bu(next_card_bullying, bullying_card_next, GlobalData.showing_reverses)
+		else:
+			# Si no hay próxima carta, limpia o maneja la interfaz
+			bullying_card_next.hide()
+
 		print("Carta de bullying actualizada:", card_bullying.id_carta)
+		if next_card_bullying:
+			print("Siguiente carta de bullying:", next_card_bullying.id_carta)
 	else:
 		# Si no hay cartas de bullying, finalizar el juego
 		print("No quedan cartas de bullying. Terminando el juego.")
@@ -2195,6 +2306,128 @@ func display_card_bu(card: CardsBU, card_node: Control, is_reverse: bool):
 	else:
 		print("Error: No se pudo cargar la textura del marco en la ruta: ", frame_path)
 		
+# Función para actualizar la interfaz con los datos de la carta de bullying
+func display_next_card_bu(card: CardsBU, card_node: Control, is_reverse: bool):
+
+	# Obtener la referencia al nodo de la imagen de la carta
+	var card_image_node = bullying_card_next.get_node("CardImage")
+	# Construir la ruta a la imagen basándonos en el id de la carta
+	var image_path = "res://assets/images/cards/bu/" + str(card.id_carta) + "_BU.webp"
+	# Cargar la imagen
+	var texture = load(image_path)
+	var icon_path = ""  # Crear la ruta completa del icono
+	var texture_icon
+	# Verificar si la textura fue cargada correctamente
+	if texture:
+		# Establecer la textura en el nodo `CardImage`
+		card_image_node.texture = texture
+	else:
+		# Mostrar un mensaje de error si la imagen no se encuentra
+		print("Error: No se pudo cargar la imagen en la ruta: ", image_path)
+	# Actualiza los elementos de la UI en el nodo de la carta especificada
+	bullying_card_next.get_node("TitleCardLabel").text = card.nombre
+	bullying_card_next.get_node("NumberCardLabel").text = str(card.id_carta) 
+	bullying_card_next.get_node("TypeCardLabel").text = card.tipo
+	# Verifica el modo de juego
+	if GameConfig.game_mode == "Intuición":
+
+		#card_node.get_node("TypeCardLabel").text = card.tipo
+		if is_reverse:
+			print("is_reverse ", is_reverse)
+			print("updatebu_necesidadclave", card.necesidades_clave)
+			
+			bullying_card_next.get_node("DescriptionCardLabel").text = "Enfoque principal: \n" + card.enfoque_principal
+			
+		else:
+			print("is_reverse ", is_reverse)
+			bullying_card_next.get_node("DescriptionCardLabel").text = card.descripcion
+			
+	elif GameConfig.game_mode == "Estrategia":
+		# Modo Estrategia:
+				# Actualiza los elementos de la UI en el nodo de la carta especificada
+		#card_node.get_node("TitleCardLabel").text = card.nombre
+		#card_node.get_node("NumberCardLabel").text = str(card.id_carta) 
+		#card_node.get_node("TypeCardLabel").text = card.tipo
+		if is_reverse:
+			stats_bu.visible = false
+			print("is_reverse ", is_reverse)
+			print("updatebu_necesidadclave", card.necesidades_clave)
+			#card_node.get_node("TypeCardLabel").text = card.tipo
+			bullying_card_next.get_node("DescriptionCardLabel").text = card.descripcion
+			#card_node.get_node("DescriptionCardLabel").text = "Enfoque principal: \n" + card.enfoque_principal
+			
+		else:
+			stats_bu.visible = true
+			var stats_node = card_node.get_node("StatsBu")
+			bullying_card_next.get_node("DescriptionCardLabel").text = ""
+			icon_path = "res://assets/ui/icons/empathy_gradient_blue_red_20_" + str(clamp(card.empatia, 1, 10)) + ".png"  # Crear la ruta completa del icono
+			texture_icon = load(icon_path)
+			if texture_icon:
+				empathy_texture_rect.texture = texture_icon
+				empathy_texture_rect.tooltip_text = "Empatía: " + str(card.empatia)
+			else:
+				print("Error: No se pudo cargar la imagen para la estadística Empatía")	
+						
+			icon_path = "res://assets/ui/icons/apoyo_emocional_gradient_blue_red_20_" + str(clamp(card.apoyo_emocional, 1, 10)) + ".png"  # Crear la ruta completa del icono
+			texture_icon = load(icon_path)
+			if texture_icon:
+				emotional_support_texture_rect.texture = texture_icon
+				emotional_support_texture_rect.tooltip_text = "Apoyo Emocional: " + str(card.apoyo_emocional)
+			else:
+				print("Error: No se pudo cargar la imagen para la estadística Apoyo Emocional")			
+
+			icon_path = "res://assets/ui/icons/intervención_gradient_blue_red_20_" + str(clamp(card.intervencion, 1, 10)) + ".png"  # Crear la ruta completa del icono
+			texture_icon = load(icon_path)
+			if texture_icon:
+				intervention_texture_rect.texture = texture_icon
+				intervention_texture_rect.tooltip_text = "Intervención: " + str(card.intervencion)
+			else:
+				print("Error: No se pudo cargar la imagen para la estadística Intervencion")			
+
+			icon_path = "res://assets/ui/icons/comunicacion_gradient_blue_red_20_" + str(clamp(card.comunicacion, 1, 10)) + ".png"  # Crear la ruta completa del icono
+			texture_icon = load(icon_path)
+			if texture_icon:
+				comunication_texture_rect.texture = texture_icon
+				comunication_texture_rect.tooltip_text = "Comunicación: " + str(card.comunicacion)
+			else:
+				print("Error: No se pudo cargar la imagen para la estadística Comunicacion")			
+
+			icon_path = "res://assets/ui/icons/resolución_de_conflictos_gradient_blue_red_20_" + str(clamp(card.resolucion_de_conflictos, 1, 10)) + ".png"  # Crear la ruta completa del icono
+			texture_icon = load(icon_path)
+			if texture_icon:
+				conflict_resolution_texture_rect.texture = texture_icon
+				conflict_resolution_texture_rect.tooltip_text = "Resolución de Conflictos: " + str(card.resolucion_de_conflictos)
+			else:
+				print("Error: No se pudo cargar la imagen para la estadística Resolucion de Conflictos")			
+
+
+
+	# Cambiar el marco de la carta según su tipo
+	var card_frame_node = bullying_card_next.get_node("CardFrame")  # Nodo `CardFrame` que cambia dependiendo del tipo
+	var frame_path = "res://assets/images/frames/"
+	
+	# Definir el marco según el tipo de carta
+	match card.tipo.to_lower():
+		"verbal":
+			frame_path = "res://assets/images/frames/black frame stat right.png"
+		"físico":
+			frame_path = "res://assets/images/frames/blue frame stat right.png"
+		"ciberbullying":
+			frame_path = "res://assets/images/frames/gray frame stat right.png"
+		"exclusión social":
+			frame_path = "res://assets/images/frames/green frame stat right.png"
+		"psicológico":
+			frame_path = "res://assets/images/frames/purple frame stat right.png"
+		"sexual":
+			frame_path = "res://assets/images/frames/yellow frame stat right.png"
+	# Cargar la textura del marco
+	var frame_texture = load(frame_path)
+	if frame_texture:
+		# Establecer la textura en el nodo `CardFrame`
+		card_frame_node.texture = frame_texture
+	else:
+		print("Error: No se pudo cargar la textura del marco en la ruta: ", frame_path)
+		
 
 ###############################################################################
 ###############################################################################
@@ -2242,6 +2475,7 @@ func _on_reverse_anverse_toggled(showing_reverses: bool):
 	display_card_hs(player_cards_hs[2], hs_card_3, showing_reverses)
 	#Actualiza la carta de bullyin
 	display_card_bu(card_bullying, bullying_card, showing_reverses)
+	display_next_card_bu(card_bullying, bullying_card_next, showing_reverses)
 
 
 func _on_options_button_pressed():
@@ -2963,6 +3197,8 @@ func create_cards_bu(cards_data: Array, stats_bu_data: Dictionary) -> Array:
 			var resolucion_de_conflictos = tipo_stats.get("Resolución de Conflictos", 0)
 			var enfoque_principal = tipo_stats.get("Enfoque principal", "Sin datos")
 			var necesidades_clave = tipo_stats.get("Necesidades clave", "Sin datos")
+			# Obtener thresholds desde el card_data o establecer un valor por defecto
+			var thresholds = card_data.get("thresholds", [200, 400, 600, 800, 1000])
 
 			# Crear la instancia de la carta
 			var card_instance = CardsBU.new(
@@ -2976,7 +3212,8 @@ func create_cards_bu(cards_data: Array, stats_bu_data: Dictionary) -> Array:
 				apoyo_emocional,
 				intervencion,
 				comunicacion,
-				resolucion_de_conflictos
+				resolucion_de_conflictos,
+				thresholds
 			)
 
 			# Agregar la carta al mazo
