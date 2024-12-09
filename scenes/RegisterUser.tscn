@@ -84,6 +84,7 @@ text = " "
 
 [node name="UsernameInput" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 0
 theme_override_fonts/font = ExtResource("1_k2bfx")
 theme_override_font_sizes/font_size = 20
 placeholder_text = " Nombre de usuario"
@@ -97,6 +98,7 @@ text = " "
 
 [node name="PasswordInput" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 0
 theme_override_fonts/font = ExtResource("1_k2bfx")
 theme_override_font_sizes/font_size = 20
 placeholder_text = " Password"
@@ -111,6 +113,7 @@ text = " "
 
 [node name="EmailInput" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 0
 theme_override_fonts/font = ExtResource("1_k2bfx")
 theme_override_font_sizes/font_size = 20
 placeholder_text = " Email"

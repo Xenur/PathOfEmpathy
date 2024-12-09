@@ -226,6 +226,15 @@ var countdown_sound_playing = false
 @onready var feedback_label = $"../UI/EndTurnPopup/VBoxContainer/HBoxContainer3/FeedbackLabel"
 @onready var feedback_label_2 = $"../UI/EndTurnPopup/VBoxContainer/HBoxContainer3/FeedbackLabel2"
 
+@onready var dialogue_texture_rect = $"../UI/DialogueTextureRect"
+@onready var line_1_dialogue_label = $"../UI/DialogueTextureRect/Line1DialogueLabel"
+@onready var line_2_dialogue_label = $"../UI/DialogueTextureRect/Line2DialogueLabel"
+@onready var line_3_dialogue_label = $"../UI/DialogueTextureRect/Line3DialogueLabel"
+@onready var line_4_dialogue_label = $"../UI/DialogueTextureRect/Line4DialogueLabel"
+@onready var line_5_dialogue_label = $"../UI/DialogueTextureRect/Line5DialogueLabel"
+
+@onready var duelo_label = $"../DeckManager/DueloLabel"
+@onready var total_label = $"../DeckManager/TotalLabel/TotalLabel"
 
 # Diccionario con las nuevas texturas para los tokens
 var token_textures: Dictionary = {
@@ -270,6 +279,7 @@ signal card_chosen_hs(card_id)
 var combo_player = 0
 var combo_ia = 0
 
+
 # Diccionario con reglas de tokens
 var token_rules: Dictionary = {
 	"sexual": {"max_tokens": 2, "combos_per_token": 1},
@@ -300,7 +310,8 @@ var combo_health_textures: Dictionary = {
 
 var sync_timer = Timer.new()
 
-var turn:int = 0
+var turn:int = 1
+var total_stars: int = 0
 var nueva_partida
 const JSON_CORRECT_STRATEGY_PATH = "res://data/correct_strategy.json"
 
@@ -318,7 +329,8 @@ const SAVE_DATA_FILE := "user://save.json"
 # Función que se ejecuta al inicializar el nodo game_manager
 func _ready():
 	nueva_partida = Game.new(GlobalData.user, GlobalData.id, GameConfig.game_mode, GameConfig.ia_difficulty)
-	turn = 0
+	turn = 1
+	duelo_label.text = "Situación " + str(turn)
 	randomize()
 	 # Si hay datos de partida guardados, cárgalos
 	if GlobalData.saved_game_data:
@@ -528,6 +540,10 @@ func prepare_game():
 
 # Función para manejar el turno del jugador
 func start_turn():
+	dialogue_texture_rect.visible = false
+	
+	duelo_label.text = "Situación " + str(turn)
+	total_label.text = str(total_stars)
 	update_token_textures()
 	print("Turno del jugador y la IA.")
 	# Reiniciar los estados del turno
@@ -565,6 +581,7 @@ func choose_ia_cards():
 # Función para verificar el resultado del turno
 # Refactorización de la función `check_game_result` 22/11/2024
 func check_game_result():
+	dialogue_texture_rect.visible = true
 	# Actualiza la información del bullying en las etiquetas
 	update_bullying_info()
 	
@@ -603,7 +620,6 @@ func check_game_result():
 	# Incrementar el turno
 	turn += 1
 
-   
 	# Preparar los datos necesarios
 	var carta_bu = {"id": player_bullying_card.id_carta, "nombre": player_bullying_card.nombre}
 	#var cartas_ia = {
@@ -731,35 +747,41 @@ func update_player_labels(player_score, valid_combination, raw_match, player_re_
 		#name_re_label.text = player_re_card.nombre #+ " Multiplicador " + str(get_affinity_multiplier(player_re_card.afinidad, player_bullying_card.tipo))
 		name_re_label.text = player_re_card.nombre + " - Factor Afinidad x" + str(GlobalData.re_multiplier) #+ " - Puntuación: " + str(GlobalData.re_total_score)
 	else:
+		line_1_dialogue_label.text = "NO HAS ELEGIDO CARTA DE RESPUESTA EMPÁTICA"
 		name_re_label.text = "NO HAS ELEGIDO CARTA DE RESPUESTA EMPÁTICA"
 	if player_hs_card:
 		player_bullying_card = deck_manager.get_card_bu_by_id(card_bullying.id_carta)
 		#name_hs_label.text = player_hs_card.nombre # + " Multiplicador " + str(get_affinity_multiplier(player_hs_card.afinidad, player_bullying_card.tipo))
 		name_hs_label.text = player_hs_card.nombre + " - Factor Afinidad x" + str(GlobalData.hs_multiplier) # + " - Puntuación: " + str(GlobalData.hs_total_score)
 	else:
+		line_2_dialogue_label.text = "NO HAS ELEGIDO CARTA DE HABILIDAD SOCIAL"
 		name_hs_label.text = "NO HAS ELEGIDO CARTA DE HABILIDAD SOCIAL"
 	if valid_combination:
+		line_1_dialogue_label.text = "¡COMBINACIÓN PERFECTA! 5 ESTRELLAS"
 		player_label.text = GlobalData.user + " ¡COMBINACIÓN PERFECTA! 5 ESTRELLAS"
 		name_re_label.text = player_re_card.nombre
 		name_hs_label.text = player_hs_card.nombre
+		line_2_dialogue_label.text = raw_match["por_que"]
 		correct_strategy_why_label.text = raw_match["por_que"]
 		#points_hs_label.text = str(200) + " puntos"
-	elif player_score >= 600:
+	elif GlobalData.stars <= 4:
+		line_2_dialogue_label.text = "¡PUNTUACIÓN SUPERIOR +1 COMBO!"
 		player_label.text = GlobalData.user + " ¡PUNTUACIÓN SUPERIOR +1 COMBO!"
 		#points_hs_label.text = str(player_score) + " puntos"
 	var stars = 0
 	# Calcular estrellas
 	if player_bullying_card and player_bullying_card.thresholds:
 		stars = calculate_stars(player_score, player_bullying_card.thresholds)
-		estrellas_label.text = "⭐".repeat(stars) + " (" + str(stars) + " estrellas)"
+		line_3_dialogue_label.text = "Has conseguido " + str(stars) + " puntos de empatía"
+		estrellas_label.text = "⭐".repeat(stars) + " (" + str(stars) + " corazones)"
 	else:
 		estrellas_label.text = "No se pueden calcular estrellas."
 			# Generar feedback
 	if player_bullying_card:
 		var feedback = generate_feedback(player_score, stars, player_re_card, player_hs_card, player_bullying_card)
-		feedback_label.text = feedback
+		line_5_dialogue_label.text = feedback
 	else:
-		feedback_label.text = "No se pudo generar feedback."
+		line_5_dialogue_label.text = "No se pudo generar feedback."
 
 # Función para calcular las estrellas
 func calculate_stars(score: int, thresholds: Array) -> int:
@@ -767,6 +789,8 @@ func calculate_stars(score: int, thresholds: Array) -> int:
 	for threshold in thresholds:
 		if score >= threshold:
 			stars += 1
+	total_stars = total_stars+stars
+	GlobalData.stars = stars
 	return stars
 		
 func generate_feedback(player_score, stars: int, player_re_card, player_hs_card, bullying_card) -> String:
@@ -808,10 +832,10 @@ func generate_feedback(player_score, stars: int, player_re_card, player_hs_card,
 	if stars >= 4:
 		feedback.append("¡Lo has hecho muy bien! Tu estrategia fue excelente y demostró un gran manejo de la situación.")
 	elif stars >= 2:
-		feedback.append("Buen trabajo, pero podrías mejorar. Algunos atributos estuvieron por debajo de lo necesario:")
+		feedback.append("Buen trabajo, pero podrías mejorar. Algunos atributos estuvieron por debajo de lo necesario como ")
 		feedback.append(", ".join(missing_attributes.slice(0, 2)))  # Muestra hasta 2 atributos faltantes
 	else:
-		feedback.append("Fue un intento difícil. Aquí hay algunas áreas clave en las que podrías enfocarte:")
+		feedback.append("Fue un intento difícil. Deberías haber tenido en cuenta más ")
 		feedback.append(", ".join(missing_attributes.slice(0, 3)))  # Muestra hasta 3 atributos faltantes
 
 	return " ".join(feedback)
@@ -838,7 +862,7 @@ func update_total_scores(player_score, ia_score):
 # Actualiza el combo según las reglas
 func update_combo(player_score, valid_combination):
 	print("normalice: ", normalize_bullying_type(card_bullying.tipo))
-	if valid_combination or player_score >= 600:
+	if valid_combination or GlobalData.stars >= 4:
 		GlobalData.combo_player += 1
 		# Incrementar en token_combos según el tipo de bullying
 		var bullying_type = normalize_bullying_type(card_bullying.tipo)  # Obtener el tipo de bullying de la carta actual
@@ -902,8 +926,9 @@ func end_turn_actions():
 	#ready_button.disabled = true
 	#disable_card_interaction()
 	blur_overlay.visible = true
-	end_turn_popup.visible = true
-
+	
+	#end_turn_popup.visible = true
+	dialogue_texture_rect.visible = true
 	
 	
 #Función para calcular la puntuación total de un jugador o la IA
@@ -994,10 +1019,11 @@ func calculate_score(bullying_card, re_card, hs_card) -> float:
 	# Agregar las puntuaciones de RE y HS al total general
 	GlobalData.re_total_score = re_total_score
 	GlobalData.hs_total_score = hs_total_score
-	
+	print("GlobalData.11re_tota", re_total_score)
+	print("GlobalData.11hs_tota", hs_total_score)
 	total_score += re_total_score
 	total_score += hs_total_score
-	print("total_score: "+  str(total_score))
+	print("GlobalData.11total_score: "+  str(total_score))
 	
 	return total_score 
 	
@@ -1778,6 +1804,9 @@ func _on_ready_texture_button_pressed():
 
 # Función para manejar el evento del botón "aceptar"
 func _on_ready_button_pressed():
+	
+	
+	
 	play_beep_sound("res://assets/audio/sfx/traimory-whoosh-hit-the-box-cinematic-trailer-sound-effects-193411.ogg")
 	if (player_selected_card_re == null or player_selected_card_hs == null):
 		# Si el jugador no seleccionó cartas, asignarlas automáticamente
@@ -3450,3 +3479,30 @@ func load_saved_games_persistence() -> Dictionary:
 
 	print("Error al cargar los datos guardados.")
 	return {"partidas": []}
+
+
+func _on_accept_button_pressed():
+	line_1_dialogue_label.text = ""
+	line_2_dialogue_label.text = ""
+	line_3_dialogue_label.text = ""
+	line_4_dialogue_label.text = ""
+	line_5_dialogue_label.text = ""
+	
+	play_beep_sound("res://assets/audio/sfx/click.ogg")
+	print("Iniciando el siguiente turno.")
+	#Ocultar el modal y permitir interacción nuevamente
+	ready_texture_button.disabled = false
+	ready_texture_button.release_focus()  
+	blur_overlay.visible = false
+	#end_turn_popup.visible = false
+	enable_card_interaction()
+	dialogue_texture_rect.visible = false
+	
+	# Verifica si el juego debe terminar (tiempo finalizado o no hay más cartas en el mazo bu) o iniciar el siguiente turno
+	if countdown_game <= 0 or deck_manager.deck_bu.size() == 0:
+		GlobalData.game_over_time_or_bu = true
+		change_state(GameState.GAME_OVER)
+	else:
+		replenish_cards()
+		reset_turn_state()
+		change_state(GameState.TURN)

@@ -232,8 +232,6 @@ func _on_options_button_pressed():
 func _on_new_game_button_mouse_entered():
 	play_beep_sound()
 
-func _on_load_game_button_mouse_entered():
-	play_beep_sound()
 
 func _on_options_button_mouse_entered():
 	play_beep_sound()
@@ -260,6 +258,11 @@ func play_beep_sound():
 	beep_audio_stream_player.play()
 
 
-func _on_load_game_button_pressed():
-	await get_tree().create_timer(0.3).timeout
-	get_tree().change_scene_to_file("res://scenes/LoadGame.tscn")
+
+func _on_statistics_button_pressed():
+	await get_tree().create_timer(0.2).timeout
+	get_tree().change_scene_to_file("res://scenes/StatisticsScreen.tscn")
+
+
+func _on_statistics_button_mouse_entered():
+	play_beep_sound()

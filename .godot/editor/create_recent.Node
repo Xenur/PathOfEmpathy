@@ -1,14 +1,14 @@
+Button
 Label
+TextureRect
 Control
 Panel
 AudioStreamPlayer
 CPUParticles2D
 GPUParticles2D
-TextureRect
 HBoxContainer
 ColorRect
 Node2D
 VBoxContainer
-Button
 ItemList
 AnimationPlayer
