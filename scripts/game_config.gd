@@ -19,7 +19,7 @@ var game_mode: String = "Estrategia"
 
 # Opciones
 var music_volume: int
-var sfx_volume: int
+var sfx_volume = 80
 var antialiasing_selected: int
 var temp_antialiasing_selected: int
 var ia_difficulty: int = 0

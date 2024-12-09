@@ -110,6 +110,8 @@ func create_cards_bu(cards_data: Array, stats_bu_data: Dictionary):
 			var resolucion_de_conflictos = tipo_stats.get("Resolución de Conflictos", 0)
 			var enfoque_principal = tipo_stats.get("Enfoque principal", "Sin datos")
 			var necesidades_clave = tipo_stats.get("Necesidades clave", "Sin datos")
+			# Obtener thresholds desde el card_data o establecer un valor por defecto
+			var thresholds = card_data.get("thresholds", [200, 400, 600, 800, 1000])
 
 			# Crear la instancia de la carta
 			var card_instance = CardsBU.new(
@@ -123,7 +125,8 @@ func create_cards_bu(cards_data: Array, stats_bu_data: Dictionary):
 				apoyo_emocional,
 				intervencion,
 				comunicacion,
-				resolucion_de_conflictos
+				resolucion_de_conflictos,
+				thresholds #se añade threshold al constructor
 			)
 
 			# Verificar que los datos se están pasando correctamente

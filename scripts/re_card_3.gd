@@ -39,7 +39,6 @@ const ORIGINAL_POSITION = Vector2(759.9, 804)
 # Bandera para verificar si la carta ha sido movida
 var is_moved = false  
 
-# Función para conectar las señales de entrar y salir el mouse y doble click, define escala, posicion e indice
 func _ready():
 	connect("mouse_entered", Callable(self, "_on_mouse_entered"))
 	connect("mouse_exited", Callable(self, "_on_mouse_exited"))
@@ -47,7 +46,7 @@ func _ready():
 
 	scale = NORMAL_SCALE
 	position = ORIGINAL_POSITION
-	# Almacena el z_index original para restaurarlo después del arrastre
+	_position = position
 	original_z_index = z_index
 
 # Señal mouse ha entrado. Escala la imagen y la coloca encima de la actual
@@ -64,40 +63,54 @@ func _on_mouse_exited():
 		position = ORIGINAL_POSITION
 		z_index = original_z_index
 
-# Señal doble click izquierdo raton
+# Señal doble click izquierdo ratón
 func on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.double_click:
 		# Si hay una carta en TARGET_POSITION, restáurala a su posición original
 		if GlobalData.current_card_in_target_positionRE != null and GlobalData.current_card_in_target_positionRE != self:
 			GlobalData.current_card_in_target_positionRE.move_to_original_position()
-		play_beep_sound()	
-		# Mueve esta carta a TARGET_POSITION
-		is_moved = true  # Marca la carta como movida para que no vuelva al estado original
-		position = TARGET_POSITION
-		scale = TARGET_SCALE
-		z_index = 4
-		GlobalData.current_card_in_target_positionRE = self  # Actualiza la carta actual como la que está en TARGET_POSITION
-		print("Carta movida a TARGET_POSITION: ", self)
-		GlobalData.id_current_card_in_target_positionRE = number_card_label.text
-		# Emitir la señal indicando que la carta ha sido seleccionada y envia id de la cartavia id de la carta
-		emit_signal("card_chosen_re", number_card_label.text)
-		
-# Función para mover la carta de vuelta a su posición original
+		play_beep_sound()
+		move_to_target_position()
+func move_to_target_position():
+	is_moved = true
+	z_index = 4
+	var tween = create_tween()
+
+	# Animación de posición hacia el origen
+	tween.tween_property(self, "position", TARGET_POSITION, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+	# Animación de escala hacia el destino
+	tween.tween_property(self, "scale", TARGET_SCALE, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+
+	GlobalData.current_card_in_target_positionRE = self
+	GlobalData.id_current_card_in_target_positionRE = number_card_label.text
+	emit_signal("card_chosen_re", number_card_label.text)
+
 func move_to_original_position():
-	position = ORIGINAL_POSITION
-	scale = NORMAL_SCALE
-	z_index = original_z_index
 	is_moved = false
-	# Limpia current_card_in_target_position si esta carta está en la posición objetivo
+	var tween = create_tween()
+	# Asegúrate de que la posición actual sea consistente con su estado inicial
+	self.position = position  # Sincroniza con la posición actual si hubo algún cambio previo
+
+   # Animación de posición hacia el origen
+	tween.tween_property(self, "position", ORIGINAL_POSITION, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+	# Animación de escala hacia el origen
+	tween.tween_property(self, "scale", NORMAL_SCALE, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+	z_index = original_z_index
 	if GlobalData.current_card_in_target_positionRE == self:
 		GlobalData.current_card_in_target_positionRE = null
-	print("Carta devuelta a la posición original: ", self)
+
+
+	z_index = original_z_index
+	if GlobalData.current_card_in_target_positionRE == self:
+		GlobalData.current_card_in_target_positionRE = null
 
 # Función para reproducir el sonido
 func play_beep_sound():
-	# Cargar el archivo de audio en tiempo de ejecución
 	var audio_stream = load("res://assets/audio/sfx/seleccionar_carta.ogg")
-	# Asignar el audio al AudioStreamPlayer
 	beep_audio_stream_player.stream = audio_stream
 	if beep_audio_stream_player.playing:
 		beep_audio_stream_player.stop()
