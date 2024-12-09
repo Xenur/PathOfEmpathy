@@ -737,46 +737,114 @@ func calculate_ia_score(player_bullying_card, ia_re_card, ia_hs_card, valid_comb
 
 	return score
 
-
-# Actualiza las etiquetas del jugador
+#
+## Actualiza las etiquetas del jugador
+#func update_player_labels(player_score, valid_combination, raw_match, player_re_card, player_hs_card):
+	#if player_re_card:
+		#print("updateplayerlabels playerre", player_re_card.nombre)
+	#else:
+		#print("updateplayerlabels playerre NO SELECCIONADA")
+	#if player_hs_card:
+		#print("updateplayerlabels playerhs", player_hs_card.nombre)
+	#else:
+		#print("updateplayerlabels playerhs NO SELECCIONADA")		
+	#var player_bullying_card
+	#player_label.text = GlobalData.user
+	#if player_re_card:
+		#player_bullying_card = deck_manager.get_card_bu_by_id(card_bullying.id_carta)
+		##name_re_label.text = player_re_card.nombre #+ " Multiplicador " + str(get_affinity_multiplier(player_re_card.afinidad, player_bullying_card.tipo))
+		#name_re_label.text = player_re_card.nombre + " - Factor Afinidad x" + str(GlobalData.re_multiplier) #+ " - Puntuación: " + str(GlobalData.re_total_score)
+	#else:
+		#line_1_dialogue_label.text = "NO HAS ELEGIDO CARTA DE RESPUESTA EMPÁTICA"
+		#name_re_label.text = "NO HAS ELEGIDO CARTA DE RESPUESTA EMPÁTICA"
+	#if player_hs_card:
+		#player_bullying_card = deck_manager.get_card_bu_by_id(card_bullying.id_carta)
+		##name_hs_label.text = player_hs_card.nombre # + " Multiplicador " + str(get_affinity_multiplier(player_hs_card.afinidad, player_bullying_card.tipo))
+		#name_hs_label.text = player_hs_card.nombre + " - Factor Afinidad x" + str(GlobalData.hs_multiplier) # + " - Puntuación: " + str(GlobalData.hs_total_score)
+	#else:
+		#line_2_dialogue_label.text = "NO HAS ELEGIDO CARTA DE HABILIDAD SOCIAL"
+		#name_hs_label.text = "NO HAS ELEGIDO CARTA DE HABILIDAD SOCIAL"
+	#if valid_combination:
+		#line_1_dialogue_label.text = "¡COMBINACIÓN PERFECTA! 5 PUNTOS DE EMPATÍA"
+		#player_label.text = GlobalData.user + " ¡COMBINACIÓN PERFECTA! 5 ESTRELLAS"
+		#name_re_label.text = player_re_card.nombre
+		#name_hs_label.text = player_hs_card.nombre
+		#line_2_dialogue_label.text = raw_match["por_que"]
+		#correct_strategy_why_label.text = raw_match["por_que"]
+		##points_hs_label.text = str(200) + " puntos"
+	#elif GlobalData.stars >= 4:
+		#line_2_dialogue_label.text = "¡PUNTUACIÓN SUPERIOR +1 COMBO!"
+		#player_label.text = GlobalData.user + " ¡PUNTUACIÓN SUPERIOR +1 COMBO!"
+		##points_hs_label.text = str(player_score) + " puntos"
+	#var stars = 0
+	## Calcular estrellas
+	#if player_bullying_card and player_bullying_card.thresholds:
+		#stars = calculate_stars(player_score, player_bullying_card.thresholds)
+		#line_3_dialogue_label.text = "Has conseguido " + str(stars) + " puntos de empatía"
+		#estrellas_label.text = "⭐".repeat(stars) + " (" + str(stars) + " corazones)"
+	#else:
+		#estrellas_label.text = "No se pueden calcular estrellas."
+			## Generar feedback
+	#if player_bullying_card:
+		#var feedback = generate_feedback(player_score, stars, player_re_card, player_hs_card, player_bullying_card)
+		#line_5_dialogue_label.text = feedback
+	#else:
+		#line_5_dialogue_label.text = "No se pudo generar feedback."
 func update_player_labels(player_score, valid_combination, raw_match, player_re_card, player_hs_card):
-	var player_bullying_card
+	# Debug inicial para verificar el estado de las cartas
+	if player_re_card:
+		print("updateplayerlabels playerre:", player_re_card.nombre)
+	else:
+		print("updateplayerlabels playerre: NO SELECCIONADA")
+	
+	if player_hs_card:
+		print("updateplayerlabels playerhs:", player_hs_card.nombre)
+	else:
+		print("updateplayerlabels playerhs: NO SELECCIONADA")
+
+	# Actualización del nombre del jugador
 	player_label.text = GlobalData.user
+	var player_bullying_card
+	# Actualización de la carta de Respuesta Empática (RE)
 	if player_re_card:
 		player_bullying_card = deck_manager.get_card_bu_by_id(card_bullying.id_carta)
-		#name_re_label.text = player_re_card.nombre #+ " Multiplicador " + str(get_affinity_multiplier(player_re_card.afinidad, player_bullying_card.tipo))
-		name_re_label.text = player_re_card.nombre + " - Factor Afinidad x" + str(GlobalData.re_multiplier) #+ " - Puntuación: " + str(GlobalData.re_total_score)
+		name_re_label.text = player_re_card.nombre + " - Factor Afinidad x" + str(GlobalData.re_multiplier)
 	else:
-		line_1_dialogue_label.text = "NO HAS ELEGIDO CARTA DE RESPUESTA EMPÁTICA"
 		name_re_label.text = "NO HAS ELEGIDO CARTA DE RESPUESTA EMPÁTICA"
+		line_3_dialogue_label.text = "NO HAS ELEGIDO CARTA DE RESPUESTA EMPÁTICA"
+
+	# Actualización de la carta de Habilidad Social (HS)
 	if player_hs_card:
 		player_bullying_card = deck_manager.get_card_bu_by_id(card_bullying.id_carta)
-		#name_hs_label.text = player_hs_card.nombre # + " Multiplicador " + str(get_affinity_multiplier(player_hs_card.afinidad, player_bullying_card.tipo))
-		name_hs_label.text = player_hs_card.nombre + " - Factor Afinidad x" + str(GlobalData.hs_multiplier) # + " - Puntuación: " + str(GlobalData.hs_total_score)
+		name_hs_label.text = player_hs_card.nombre + " - Factor Afinidad x" + str(GlobalData.hs_multiplier)
 	else:
-		line_2_dialogue_label.text = "NO HAS ELEGIDO CARTA DE HABILIDAD SOCIAL"
 		name_hs_label.text = "NO HAS ELEGIDO CARTA DE HABILIDAD SOCIAL"
+		line_4_dialogue_label.text = "NO HAS ELEGIDO CARTA DE HABILIDAD SOCIAL"
+
+	# Verificar combinación válida
 	if valid_combination:
-		line_1_dialogue_label.text = "¡COMBINACIÓN PERFECTA! 5 ESTRELLAS"
+		line_1_dialogue_label.text = "¡COMBINACIÓN PERFECTA! 5 PUNTOS DE EMPATÍA"
 		player_label.text = GlobalData.user + " ¡COMBINACIÓN PERFECTA! 5 ESTRELLAS"
-		name_re_label.text = player_re_card.nombre
-		name_hs_label.text = player_hs_card.nombre
-		line_2_dialogue_label.text = raw_match["por_que"]
+		name_re_label.text = player_re_card.nombre if player_re_card else "NO SELECCIONADA"
+		name_hs_label.text = player_hs_card.nombre if player_hs_card else "NO SELECCIONADA"
+		line_5_dialogue_label.text = raw_match["por_que"]
 		correct_strategy_why_label.text = raw_match["por_que"]
-		#points_hs_label.text = str(200) + " puntos"
-	elif GlobalData.stars <= 4:
-		line_2_dialogue_label.text = "¡PUNTUACIÓN SUPERIOR +1 COMBO!"
+
+	# Verificar puntuación superior
+	elif GlobalData.stars >= 4:
+		line_1_dialogue_label.text = "¡PUNTUACIÓN SUPERIOR +1 COMBO!"
 		player_label.text = GlobalData.user + " ¡PUNTUACIÓN SUPERIOR +1 COMBO!"
-		#points_hs_label.text = str(player_score) + " puntos"
+
+	# Calcular estrellas si hay carta de bullying
 	var stars = 0
-	# Calcular estrellas
-	if player_bullying_card and player_bullying_card.thresholds:
+	if player_bullying_card and player_bullying_card.thresholds :
 		stars = calculate_stars(player_score, player_bullying_card.thresholds)
-		line_3_dialogue_label.text = "Has conseguido " + str(stars) + " puntos de empatía"
+		line_1_dialogue_label.text = "HAS CONSEGUIDO " + str(stars) + " PUNTOS EMPATÍA"
 		estrellas_label.text = "⭐".repeat(stars) + " (" + str(stars) + " corazones)"
 	else:
 		estrellas_label.text = "No se pueden calcular estrellas."
-			# Generar feedback
+
+	# Generar feedback basado en las cartas y el puntaje
 	if player_bullying_card:
 		var feedback = generate_feedback(player_score, stars, player_re_card, player_hs_card, player_bullying_card)
 		line_5_dialogue_label.text = feedback

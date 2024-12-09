@@ -1,4 +1,16 @@
 # **Caminos de Empatía**
+09/12/2024
+En la pantalla de selección de rol no me gusta que las cartas tengan borde negro (creo que debería quitarlo).
+En  la pantalla de selección de rol cuando se elige un rol salta un audio (debería implementar que al clicar una vez salte). 
+En la pantalla de selección de rol cuando eliges un rol se oscurecen los demás (creéis que está bien?)
+Pantalla in-game
+Stats de rol debo actualizarlo según el estado que elija el jugador.
+Cuando se hace visible cuadro de dialogo (al clicar en aceptar o cuando se acaba el tiempo para elegir carta) NO se debería poder clicar en otros botones (como por ejemplo en el de opciones).
+ARREGLADO -- En el cuadro de diálogo, si no se juega la carta de habilidad social no avisa de ello. -- 
+ARREGLADO -- En el cuadro de diálogo, si se consigue una combinación perfecta de cartas no se muestra bien el campo “porqué”, se sale del cuadro de diálogos.
+Si juegas todas las cartas, ¿¿¿por que solo hay 49????
+TODO ESTADÍSTICAS DEBE CAMBIAR.
+ 
 07/12/2024 2
 * Prueba segundo commit con carpeta release y -gitignore listo
 
