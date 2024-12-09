@@ -149,7 +149,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_7qmmk")
 text = "Nueva Partida"
 flat = true
 
-[node name="LoadGameButton" type="Button" parent="VBoxContainer"]
+[node name="StatisticsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_hover_color = Color(0.117647, 0.564706, 1, 1)
@@ -158,7 +158,7 @@ theme_override_colors/font_color = Color(0.827451, 0.827451, 0.827451, 1)
 theme_override_fonts/font = ExtResource("2_ne65k")
 theme_override_font_sizes/font_size = 45
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7qmmk")
-text = "Cargar Partida"
+text = "Estadísticas"
 flat = true
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
@@ -508,6 +508,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_nyjw5")
 flat = true
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="Overlay/OptionWindow/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -539,6 +540,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_63l8y")
 text = "Créditos"
 
 [node name="StatisticsButton" type="Button" parent="Overlay/OptionWindow/VBoxContainer/CreditsHBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_dav8f")
@@ -599,8 +601,8 @@ stream = ExtResource("11_1oieo")
 
 [connection signal="mouse_entered" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer/LoadGameButton" to="." method="_on_load_game_button_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/LoadGameButton" to="." method="_on_load_game_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/StatisticsButton" to="." method="_on_statistics_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/StatisticsButton" to="." method="_on_statistics_button_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_mouse_entered"]

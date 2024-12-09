@@ -147,3 +147,10 @@ func set_average_data(data: Dictionary):
 # Método para obtener los datos
 func get_average_data() -> Dictionary:
 	return average_data
+
+#Roles
+var selected_role = ""  # Nombre del rol seleccionado
+var player_stats = {}   # Atributos del jugador según el rol
+
+#stars
+var stars:int = 0

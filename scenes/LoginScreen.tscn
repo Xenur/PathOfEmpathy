@@ -92,6 +92,7 @@ text = " "
 
 [node name="UsernameInput" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 0
 theme_override_fonts/font = ExtResource("3_y3fwr")
 theme_override_font_sizes/font_size = 20
 placeholder_text = " Nombre de usuario"
@@ -105,6 +106,7 @@ text = " "
 
 [node name="PasswordInput" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 0
 theme_override_fonts/font = ExtResource("3_y3fwr")
 theme_override_font_sizes/font_size = 20
 placeholder_text = " Password"
@@ -127,7 +129,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
-mouse_default_cursor_shape = 2
 theme = SubResource("Theme_hkrcc")
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
@@ -158,7 +159,6 @@ offset_right = 193.48
 offset_bottom = 44.8799
 size_flags_horizontal = 3
 mouse_filter = 1
-mouse_default_cursor_shape = 2
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
@@ -188,7 +188,7 @@ grow_vertical = 0
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_y3fwr")
 theme_override_font_sizes/font_size = 15
-text = "Version: 0.2.0.0"
+text = "Version: 0.3.0.1"
 
 [node name="FooterLabel" type="Label" parent="HBoxContainer2"]
 layout_mode = 2
@@ -204,7 +204,6 @@ offset_left = 191.0
 offset_top = 779.0
 offset_right = 437.0
 offset_bottom = 806.0
-mouse_default_cursor_shape = 2
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)

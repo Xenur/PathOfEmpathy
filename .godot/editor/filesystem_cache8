@@ -1,11 +1,11 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1733611064
-export_presets.cfg::TextFile::-1::1733609923::0::1::::<><>::
+::res://::1733733905
+export_presets.cfg::TextFile::-1::1733612793::0::1::::<><>::
 icon.svg::CompressedTexture2D::904424829989718102::1730889615::1730905712::1::::<><>::
 popup_theme.tres::Theme::1217635940121008487::1731452843::0::1::::<><>::uid://bceo6mdndisde::::res://assets/fonts/Roboto-Bold.ttf
 README.md::TextFile::-1::1733610526::0::1::::<><>::
 save_1.json::JSON::-1::1733127889::0::1::::<><>::
-::res://assets/::1733605521
+::res://assets/::1733733564
 ::res://assets/animations/::1733605520
 credits_scroll.res::Animation::8710586602819653987::1731452841::0::1::::<><>::
 ::res://assets/audio/::1733605520
@@ -36,7 +36,7 @@ Sakura Beats at Midnight.mp3::AudioStreamMP3::4391336291095536349::1731452841::1
 Shadow Chase (1).mp3::AudioStreamMP3::8010732380268152885::1731452841::1731453194::1::::<><>::
 Shadow Chase.mp3::AudioStreamMP3::5014600962900143729::1731452841::1731453194::1::::<><>::
 Stand Strong.mp3::AudioStreamMP3::8829673951558666684::1731452841::1731453194::1::::<><>::
-::res://assets/audio/sfx/::1733605520
+::res://assets/audio/sfx/::1733668567
 107341__thompsonman__beeps.wav::AudioStreamWAV::6873650532986291576::1731800419::1732358031::1::::<><>::
 146721__leszek_szary__menu-click.wav::AudioStreamWAV::8170341576573252080::1731452841::1731453204::1::::<><>::
 611451__eminyildirim__ui-click-menu-hover.mp3::AudioStreamMP3::1358486130697880585::1730889615::1730905712::1::::<><>::
@@ -44,17 +44,22 @@ ciberbullying_1.ogg::AudioStreamOggVorbis::4703740644706906644::1732745252::1732
 ciberbullying_2.ogg::AudioStreamOggVorbis::5236014456719435261::1732745252::1732745253::1::::<><>::
 cinematic-braam-tension-sfx-238939.mp3::AudioStreamMP3::1737581423061804389::1732658948::1732658949::1::::<><>::
 click.ogg::AudioStreamOggVorbis::7638532194876438983::1732635790::1732635824::1::::<><>::
+escucha_activa.ogg::AudioStreamOggVorbis::99375435437618435::1733668436::1733668567::1::::<><>::
 exclusión_social.ogg::AudioStreamOggVorbis::4118305597174987214::1732745252::1732745253::1::::<><>::
 exclusión_social_2.ogg::AudioStreamOggVorbis::5864360039051287873::1732745252::1732745253::1::::<><>::
 flipcard-91468.mp3::AudioStreamMP3::6326068506780777589::1732659719::1732659720::1::::<><>::
 físico_1.ogg::AudioStreamOggVorbis::4803403486319168065::1732745252::1732745253::1::::<><>::
 físico_2.ogg::AudioStreamOggVorbis::7141076230030811153::1732745252::1732745253::1::::<><>::
+increible.ogg::AudioStreamOggVorbis::228292017792981698::1733668436::1733668567::1::::<><>::
+lider.ogg::AudioStreamOggVorbis::7526043089115236210::1733668436::1733668567::1::::<><>::
+mediador.ogg::AudioStreamOggVorbis::6601846196393709562::1733668436::1733668567::1::::<><>::
 mega-horn-gloomiest-signer-cinematic-trailer-sound-effects-124762.ogg::AudioStreamOggVorbis::3566224901538549996::1732708536::1732708559::1::::<><>::
 psicológico_1.ogg::AudioStreamOggVorbis::4838909888423699574::1732745252::1732745253::1::::<><>::
 psicológico_2.ogg::AudioStreamOggVorbis::1909686992578464451::1732745252::1732745253::1::::<><>::
 seleccionar_carta.ogg::AudioStreamOggVorbis::5519181678490821020::1732635790::1732635845::1::::<><>::
 sexual_1.ogg::AudioStreamOggVorbis::5295593229354980705::1732745252::1732745253::1::::<><>::
 sexual_2.ogg::AudioStreamOggVorbis::8441388339256789340::1732745252::1732745253::1::::<><>::
+soporte_solidario.ogg::AudioStreamOggVorbis::8221340724603076894::1733668436::1733668567::1::::<><>::
 token_ciberbullying.mp3::AudioStreamMP3::8196239036312351610::1732660828::1732660828::1::::<><>::
 token_exclusión_social.mp3::AudioStreamMP3::7651433358192670409::1732660828::1732660828::1::::<><>::
 token_físico.mp3::AudioStreamMP3::5981519257216005845::1732660828::1732660828::1::::<><>::
@@ -66,6 +71,9 @@ traimory-hit-low-gun-shot-cinematic-trailer-sound-effects-161154.mp3::AudioStrea
 traimory-whoosh-hit-the-box-cinematic-trailer-sound-effects-193411.ogg::AudioStreamOggVorbis::8488259635478405487::1732659191::1732659191::1::::<><>::
 verbal_1.ogg::AudioStreamOggVorbis::209970829011640674::1732745252::1732745253::1::::<><>::
 verbal_2.ogg::AudioStreamOggVorbis::2278935138222662112::1732745252::1732745253::1::::<><>::
+::res://assets/cursors/::1733733922
+1.png::CompressedTexture2D::484028353931738417::1733733780::1733733922::1::::<><>::
+2.png::CompressedTexture2D::598928457749630568::1733733803::1733733922::1::::<><>::
 ::res://assets/fonts/::1733605520
 AmaticSC-Bold.ttf::FontFile::3437342724375381772::1730889615::1732958545::1::::<><>::
 AmaticSC-Regular.ttf::FontFile::4055412093295606319::1730889615::1732958545::1::::<><>::
@@ -87,7 +95,7 @@ bg_11.webp::CompressedTexture2D::8488585281245076656::1732358013::1732358030::1:
 bg_12.webp::CompressedTexture2D::8585156141735107013::1732358013::1732358031::1::::<><>::
 bg_card_intuition_info.png::CompressedTexture2D::3263162900267713793::1731452841::1731453202::1::::<><>::
 bg_card_strategy_stats.png::CompressedTexture2D::6694982652393729824::1731452841::1731453202::1::::<><>::
-::res://assets/images/cards/::1733605521
+::res://assets/images/cards/::1733668436
 ::res://assets/images/cards/bu/::1733605521
 1_BU.webp::CompressedTexture2D::8866464869456536885::1731452842::1731453202::1::::<><>::
 2_BU.webp::CompressedTexture2D::1725571159545427603::1731452842::1731453202::1::::<><>::
@@ -204,18 +212,27 @@ bg_card_strategy_stats.png::CompressedTexture2D::6694982652393729824::1731452841
 40_RE.webp::CompressedTexture2D::7345510083092539567::1731452842::1731453198::1::::<><>::
 ::res://assets/images/cards/reverses/::1733605521
 reverse_ai.png::CompressedTexture2D::8893420580176309021::1731452842::1731453198::1::::<><>::
-::res://assets/images/frames/::1733605521
+::res://assets/images/cards/roles/::1733668568
+escucha.webp::CompressedTexture2D::5563734678093804367::1733668436::1733668568::1::::<><>::
+lider.webp::CompressedTexture2D::4110790629796336318::1733668436::1733668568::1::::<><>::
+mediador.webp::CompressedTexture2D::9038408194502047092::1733668436::1733668568::1::::<><>::
+soporte_solidario.webp::CompressedTexture2D::6719151067175064152::1733668436::1733668568::1::::<><>::
+::res://assets/images/frames/::1733668568
 black frame stat right.png::CompressedTexture2D::1600934569407709458::1731452842::1731453199::1::::<><>::
 blue frame stat right.png::CompressedTexture2D::5202404440025477436::1731452842::1731453199::1::::<><>::
 empty_frame.png::CompressedTexture2D::1868610272485615831::1732358013::1732358031::1::::<><>::
 empty_frame_IA.png::CompressedTexture2D::7566830800914361913::1732358013::1732358030::1::::<><>::
+frame_blue_role.png::CompressedTexture2D::7860161527063787494::1733668436::1733668568::1::::<><>::
+frame_gold_role.png::CompressedTexture2D::7430602027510278646::1733668436::1733668568::1::::<><>::
+frame_green_role.png::CompressedTexture2D::3782743074173651235::1733668436::1733668568::1::::<><>::
+frame_white_role.png::CompressedTexture2D::9057564961915260456::1733668436::1733668568::1::::<><>::
 gray frame stat right.png::CompressedTexture2D::9047537364415609801::1731452842::1731453198::1::::<><>::
 green frame stat right.png::CompressedTexture2D::2577077716552949723::1731452842::1731453198::1::::<><>::
 purple frame stat right.png::CompressedTexture2D::5474761466926145435::1731452842::1731453198::1::::<><>::
 red frame stat right.png::CompressedTexture2D::1814829695254839179::1731452842::1731453198::1::::<><>::
 white frame stat right.png::CompressedTexture2D::4278151648867056876::1731452842::1731453198::1::::<><>::
 yellow frame stat right.png::CompressedTexture2D::6160351586769735051::1731452842::1731453198::1::::<><>::
-::res://assets/ui/::1733605522
+::res://assets/ui/::1733668436
 ::res://assets/ui/backgrounds/::1733605521
 defeat_1.png::CompressedTexture2D::4034536771304049753::1732553611::1732567372::1::::<><>::
 defeat_1.webp::CompressedTexture2D::2294730409182648390::1732552520::1732552520::1::::<><>::
@@ -230,7 +247,9 @@ login_bg_4.png::CompressedTexture2D::3182301854997895449::1730889615::1730905712
 victory_1.webp::CompressedTexture2D::2233089089184132586::1732552520::1732552520::1::::<><>::
 victory_2.png::CompressedTexture2D::6289993061449290312::1732707467::1732707473::1::::<><>::
 victory_2.webp::CompressedTexture2D::7428778002809784645::1732552520::1732552520::1::::<><>::
-::res://assets/ui/icons/::1733605521
+::res://assets/ui/icons/::1733743544
+actualizar.png::CompressedTexture2D::6622288085833520004::1733669814::1733669815::1::::<><>::
+apoyo_emocional.png::CompressedTexture2D::4986816867676020337::1733668436::1733668567::1::::<><>::
 apoyo_emocional_gradient_blue_red_20_1.png::CompressedTexture2D::3340819420779808636::1732825859::1732826105::1::::<><>::
 apoyo_emocional_gradient_blue_red_20_2.png::CompressedTexture2D::1989711576897790025::1732825850::1732826105::1::::<><>::
 apoyo_emocional_gradient_blue_red_20_3.png::CompressedTexture2D::1817270343745583957::1732825840::1732826105::1::::<><>::
@@ -257,6 +276,7 @@ combo_health_7.png::CompressedTexture2D::1137712017721475460::1732876733::173287
 combo_health_8.png::CompressedTexture2D::4430460611985929281::1732876723::1732876813::1::::<><>::
 combo_health_9.png::CompressedTexture2D::8903279468187715207::1732876711::1732876813::1::::<><>::
 combo_health_10.png::CompressedTexture2D::2452837969953319026::1732873113::1732873314::1::::<><>::
+comunicacion.png::CompressedTexture2D::8612438790049589583::1733668436::1733668567::1::::<><>::
 comunicacion_gradient_blue_red_20_1.png::CompressedTexture2D::2347450539258651546::1732825645::1732826107::1::::<><>::
 comunicacion_gradient_blue_red_20_2.png::CompressedTexture2D::6180519693571294093::1732825634::1732826107::1::::<><>::
 comunicacion_gradient_blue_red_20_3.png::CompressedTexture2D::1761009212462799111::1732825623::1732826107::1::::<><>::
@@ -267,6 +287,8 @@ comunicacion_gradient_blue_red_20_7.png::CompressedTexture2D::584236174113551515
 comunicacion_gradient_blue_red_20_8.png::CompressedTexture2D::8466630758974783110::1732837712::1732837730::1::::<><>::
 comunicacion_gradient_blue_red_20_9.png::CompressedTexture2D::24256024807036746::1732825549::1732826107::1::::<><>::
 comunicacion_gradient_blue_red_20_10.png::CompressedTexture2D::3177687998228294127::1732818634::1732826107::1::::<><>::
+cuadro_dialogo.png::CompressedTexture2D::510944678586574192::1733743800::1733743891::1::::<><>::
+empathy.png::CompressedTexture2D::1014147460892914999::1733668436::1733668567::1::::<><>::
 empathy_gradient_blue_red_20_1.png::CompressedTexture2D::2980897164112165258::1732826001::1732826106::1::::<><>::
 empathy_gradient_blue_red_20_2.png::CompressedTexture2D::6945133148156127980::1732825990::1732826106::1::::<><>::
 empathy_gradient_blue_red_20_3.png::CompressedTexture2D::5908140116344292662::1732825979::1732826106::1::::<><>::
@@ -282,6 +304,7 @@ green_icon-removebg-preview.png::CompressedTexture2D::8763229544563287075::17323
 green_icon.png::CompressedTexture2D::7714409777496703664::1732358013::1732826104::1::::<><>::
 green_icon_base-removebg-preview.png::CompressedTexture2D::7421860309413340182::1732358013::1732826104::1::::<><>::
 icono_hamburguesa.png::CompressedTexture2D::7348944988863501672::1732358013::1732826104::1::::<><>::
+intervención.png::CompressedTexture2D::3158856738194928388::1733668436::1733668567::1::::<><>::
 intervención_gradient_blue_red_20_1.png::CompressedTexture2D::6809482074845483146::1732825007::1732826104::1::::<><>::
 intervención_gradient_blue_red_20_2.png::CompressedTexture2D::4721177412482760840::1732824997::1732826104::1::::<><>::
 intervención_gradient_blue_red_20_3.png::CompressedTexture2D::402171633590102271::1732824984::1732826104::1::::<><>::
@@ -294,6 +317,7 @@ intervención_gradient_blue_red_20_9.png::CompressedTexture2D::97054523239947515
 intervención_gradient_blue_red_20_10.png::CompressedTexture2D::5361644322190707687::1732818694::1732826105::1::::<><>::
 options_button.png::CompressedTexture2D::2945203321415976283::1731800419::1732826104::1::::<><>::
 options_button_hover.png::CompressedTexture2D::2348569939820718441::1731800419::1732826104::1::::<><>::
+resolución_de_conflictos.png::CompressedTexture2D::5205110601512587671::1733668436::1733668567::1::::<><>::
 resolución_de_conflictos_gradient_blue_red_20_1.png::CompressedTexture2D::2310088638915120796::1732825517::1732826105::1::::<><>::
 resolución_de_conflictos_gradient_blue_red_20_2.png::CompressedTexture2D::940262361190871696::1732825509::1732826105::1::::<><>::
 resolución_de_conflictos_gradient_blue_red_20_3.png::CompressedTexture2D::3642209963801854433::1732825500::1732826105::1::::<><>::
@@ -306,6 +330,7 @@ resolución_de_conflictos_gradient_blue_red_20_9.png::CompressedTexture2D::29881
 resolución_de_conflictos_gradient_blue_red_20_10.png::CompressedTexture2D::469911322870779160::1732818668::1732826106::1::::<><>::
 time_button.png::CompressedTexture2D::565675280654393504::1731800419::1732826105::1::::<><>::
 time_button_hoover.png::CompressedTexture2D::2258419593321221681::1731800419::1732826105::1::::<><>::
+total_empathy.png::CompressedTexture2D::1390962827209291903::1733742943::1733742952::1::::<><>::
 ::res://assets/ui/score/::1733605521
 boy_1.png::CompressedTexture2D::1436715952935247470::1732358013::1732358031::1::::<><>::
 boy_2.png::CompressedTexture2D::3574409003837951361::1732358013::1732358031::1::::<><>::
@@ -370,6 +395,9 @@ token_frame-vertical.png::CompressedTexture2D::1417839810391322215::1732358013::
 token_frame.png::CompressedTexture2D::5967693306354254211::1732358013::1732540681::1::::<><>::
 token_frame_2-removebg-preview.png::CompressedTexture2D::5095077930294961464::1732358013::1732540680::1::::<><>::
 token_frame_2.png::CompressedTexture2D::3264031814444117371::1732358013::1732540680::1::::<><>::
+::res://assets/ui/textures/::1733668568
+particula.png::CompressedTexture2D::587340588056714924::1733668436::1733668567::1::::<><>::
+—Pngtree—layered green particle style fog_5437448.png::CompressedTexture2D::8427612699138168006::1733668436::1733668568::1::::<><>::
 ::res://assets/ui/tokens/::1733605522
 token_ciberbullying.png::CompressedTexture2D::6586587256239275037::1732358013::1732719950::1::::<><>::
 token_ciberbullying_bn.png::CompressedTexture2D::2321228375784609486::1732719758::1732719949::1::::<><>::
@@ -383,40 +411,42 @@ token_sexual.png::CompressedTexture2D::7298575106424512472::1732358013::17327199
 token_sexual_bn.png::CompressedTexture2D::4105482574602452331::1732719882::1732719950::1::::<><>::
 token_verbal.png::CompressedTexture2D::5312859703343149550::1732358013::1732719950::1::::<><>::
 token_verbal_bn.png::CompressedTexture2D::5101740327895152885::1732719932::1732719950::1::::<><>::
-::res://data/::1733605522
+::res://data/::1733676944
 correct_strategy.json::JSON::-1::1731800419::0::1::::<><>::
-deck_bu.json::JSON::-1::1732838827::0::1::::<><>::
+deck_bu.json::JSON::-1::1733676944::0::1::::<><>::
 deck_hs.json::JSON::-1::1732838596::0::1::::<><>::
 deck_hs_updated.json::JSON::-1::1732363739::0::1::::<><>::
 deck_ic.json::JSON::-1::1731800420::0::1::::<><>::
 deck_re.json::JSON::-1::1731800420::0::1::::<><>::
 deck_re_updated.json::JSON::-1::1732531104::0::1::::<><>::
 stats_tipos_bullying.json::JSON::-1::1732837149::0::1::::<><>::
-::res://Release/::1733609924
-::res://scenes/::1733610526
+::res://Release/::1733612795
+::res://scenes/::1733742134
 card.tscn::PackedScene::48501062942208053::1731801714::0::1::::<><>::uid://w2rfngcbggle::::res://assets/images/frames/black frame stat right.png<>res://scripts/card.gd<>uid://dyk8m7os7qjrp::::res://assets/images/cards/bu/1_BU.webp<>uid://dvxsg8fyqxya6::::res://assets/fonts/Roboto-Medium.ttf
 chart_general.gd::GDScript::-1::1733352974::0::1::::<>Control<>::
 chart_mode_ia.gd::GDScript::-1::1733353038::0::1::::<>Control<>::
-CreditsScreen.tscn::PackedScene::1759830202223811529::1733606556::0::1::::<><>::res://scripts/credits_screen.gd<>uid://dwdqdas5epdkl::::res://assets/animations/credits_scroll.res<>uid://dvxsg8fyqxya6::::res://assets/fonts/Roboto-Medium.ttf<>uid://0ei5ks106f0x::::res://assets/images/backgrounds/bg_2.png<>uid://d221dmqsad5h3::::res://assets/audio/music/Sakura Beats at Midnight (1).mp3<>uid://bceo6mdndisde::::res://assets/fonts/Roboto-Bold.ttf
+choosecontainer.gd::GDScript::-1::1733668436::0::1::::<>HBoxContainer<>::
+ChooseRole.tscn::PackedScene::2160631374127138758::1733742134::0::1::::<><>::uid://do3aiifcnlh4i::::res://assets/images/backgrounds/bg_9.webp<>res://scripts/MainMenu.gdshader<>uid://dvxsg8fyqxya6::::res://assets/fonts/Roboto-Medium.ttf<>uid://bo8csdsex1d3i::::res://assets/fonts/AmaticSC-Bold.ttf<>res://scenes/choosecontainer.gd<>uid://d2bs1h72o1rn1::::res://assets/images/frames/frame_white_role.png<>uid://bytked7435tqc::::res://assets/images/cards/roles/lider.webp<>uid://blaf5505ocxqy::::res://assets/ui/icons/intervención.png<>uid://bt5nhw8rgeow6::::res://assets/images/frames/frame_green_role.png<>uid://d11ji6m08sjl1::::res://assets/images/cards/roles/mediador.webp<>uid://dd4o6u2vgmf7c::::res://assets/images/frames/frame_gold_role.png<>uid://dux6uxrudyog2::::res://assets/ui/icons/comunicacion.png<>uid://opi4i0tkqmrf::::res://assets/ui/icons/empathy.png<>uid://cljd5ris0p8hv::::res://assets/images/cards/roles/escucha.webp<>uid://cdbwe65a23jq4::::res://assets/ui/icons/apoyo_emocional.png<>uid://dj8ryhbe3bqp7::::res://assets/images/frames/frame_blue_role.png<>uid://c2y2o3qd3ue1u::::res://assets/images/cards/roles/soporte_solidario.webp<>uid://cgfnn8jc2kv3l::::res://assets/ui/icons/resolución_de_conflictos.png
+CreditsScreen.tscn::PackedScene::1759830202223811529::1733742133::0::1::::<><>::res://scripts/credits_screen.gd<>uid://dwdqdas5epdkl::::res://assets/animations/credits_scroll.res<>uid://dvxsg8fyqxya6::::res://assets/fonts/Roboto-Medium.ttf<>uid://0ei5ks106f0x::::res://assets/images/backgrounds/bg_2.png<>uid://d221dmqsad5h3::::res://assets/audio/music/Sakura Beats at Midnight (1).mp3<>uid://bceo6mdndisde::::res://assets/fonts/Roboto-Bold.ttf
 draw_control.gd::GDScript::-1::1733359511::0::1::::<>Control<>::
 end_turn_popup.gd::GDScript::-1::1732838597::0::1::::<>Window<>::
 game_over.gd::GDScript::-1::1732838598::0::1::::<>Window<>::
-LoadGame.tscn::PackedScene::7952412965715791150::1733606556::0::1::::<><>::res://scenes/load_game.gd<>uid://dvxsg8fyqxya6::::res://assets/fonts/Roboto-Medium.ttf<>uid://h3u68tj4tqy::::res://assets/images/backgrounds/bg_7.webp
-LoadingGame.tscn::PackedScene::4874074947096835083::1733606556::0::1::::<><>::res://scenes/loading_game.gd<>uid://c4iscvj7tp1jh::::res://assets/images/backgrounds/bg_10.webp<>uid://c0kkb05pt2l0v::::res://assets/ui/icons/apoyo_emocional_gradient_blue_red_20_10.png<>uid://bo8csdsex1d3i::::res://assets/fonts/AmaticSC-Bold.ttf<>uid://dbvmpervmnuj4::::res://assets/audio/sfx/traimory-hit-low-gun-shot-cinematic-trailer-sound-effects-161154.mp3
+LoadGame.tscn::PackedScene::7952412965715791150::1733742134::0::1::::<><>::res://scenes/load_game.gd<>uid://dvxsg8fyqxya6::::res://assets/fonts/Roboto-Medium.ttf<>uid://h3u68tj4tqy::::res://assets/images/backgrounds/bg_7.webp
+LoadingGame.tscn::PackedScene::4874074947096835083::1733742133::0::1::::<><>::res://scenes/loading_game.gd<>uid://c4iscvj7tp1jh::::res://assets/images/backgrounds/bg_10.webp<>uid://c0kkb05pt2l0v::::res://assets/ui/icons/apoyo_emocional_gradient_blue_red_20_10.png<>uid://bo8csdsex1d3i::::res://assets/fonts/AmaticSC-Bold.ttf<>uid://dbvmpervmnuj4::::res://assets/audio/sfx/traimory-hit-low-gun-shot-cinematic-trailer-sound-effects-161154.mp3
 loading_game.gd::GDScript::-1::1732963939::0::1::::<>Control<>::
 load_game.gd::GDScript::-1::1733151572::0::1::::<>Control<>::
-LoginScreen.tscn::PackedScene::1313656412464842337::1733606555::0::1::::<><>::uid://bo8csdsex1d3i::::res://assets/fonts/AmaticSC-Bold.ttf<>res://scripts/login_screen.gd<>uid://bceo6mdndisde::::res://assets/fonts/Roboto-Bold.ttf<>uid://tmcckyoghhtp::::res://assets/audio/sfx/611451__eminyildirim__ui-click-menu-hover.mp3
-MainMenu.tscn::PackedScene::375375461929223059::1733606556::0::1::::<><>::res://scripts/main_menu.gd<>uid://bceo6mdndisde::::res://assets/fonts/Roboto-Bold.ttf<>uid://bo8csdsex1d3i::::res://assets/fonts/AmaticSC-Bold.ttf<>uid://dx2fo7t2540dk::::res://assets/audio/music/Stand Strong.mp3<>res://scripts/MainMenu.gdshader<>uid://bmqx20spjktk8::::res://assets/images/backgrounds/bg_card_intuition_info.png<>res://scripts/bg_card_1_texture_button.gd<>uid://c2ndnemxcb3qi::::res://assets/images/backgrounds/bg_card_strategy_stats.png<>res://scripts/bg_card_2_texture_button.gd<>res://scripts/option_window.gd<>uid://don1lj4prc0rk::::res://assets/audio/sfx/146721__leszek_szary__menu-click.wav
+LoginScreen.tscn::PackedScene::1313656412464842337::1733742132::0::1::::<><>::uid://bo8csdsex1d3i::::res://assets/fonts/AmaticSC-Bold.ttf<>res://scripts/login_screen.gd<>uid://bceo6mdndisde::::res://assets/fonts/Roboto-Bold.ttf<>uid://tmcckyoghhtp::::res://assets/audio/sfx/611451__eminyildirim__ui-click-menu-hover.mp3
+MainMenu.tscn::PackedScene::375375461929223059::1733742133::0::1::::<><>::res://scripts/main_menu.gd<>uid://bceo6mdndisde::::res://assets/fonts/Roboto-Bold.ttf<>uid://bo8csdsex1d3i::::res://assets/fonts/AmaticSC-Bold.ttf<>uid://dx2fo7t2540dk::::res://assets/audio/music/Stand Strong.mp3<>res://scripts/MainMenu.gdshader<>uid://bmqx20spjktk8::::res://assets/images/backgrounds/bg_card_intuition_info.png<>res://scripts/bg_card_1_texture_button.gd<>uid://c2ndnemxcb3qi::::res://assets/images/backgrounds/bg_card_strategy_stats.png<>res://scripts/bg_card_2_texture_button.gd<>res://scripts/option_window.gd<>uid://don1lj4prc0rk::::res://assets/audio/sfx/146721__leszek_szary__menu-click.wav
 NEW2.TXT::TextFile::-1::1733163784::0::1::::<><>::
-NewGame.tscn::PackedScene::8343482360881582560::1733610526::0::1::::<><>::res://scripts/new_game.gd<>uid://dukyjdb258r8x::::res://assets/images/backgrounds/bg_12.webp<>res://scripts/ui.gd<>res://scripts/re_card_1.gd<>uid://dyyblqjpcax5f::::res://assets/images/cards/reverses/reverse_ai.png<>uid://dyk8m7os7qjrp::::res://assets/images/cards/bu/1_BU.webp<>uid://dky62xh2pa87a::::res://assets/images/cards/re/1_RE.webp<>uid://dvxsg8fyqxya6::::res://assets/fonts/Roboto-Medium.ttf<>uid://7f83t5s3fqy0::::res://assets/ui/icons/time_button_hoover.png<>res://scripts/re_card_2.gd<>uid://c46waxfcvk3ku::::res://assets/audio/sfx/107341__thompsonman__beeps.wav<>res://scripts/re_card_3.gd<>uid://c2vq2cdq2jk8s::::res://assets/images/cards/re/2_RE.webp<>uid://bceo6mdndisde::::res://assets/fonts/Roboto-Bold.ttf<>res://scripts/hs_card_1.gd<>res://scenes/end_turn_popup.gd<>res://scripts/MainMenu.gdshader<>uid://yc8hhxfvl7s3::::res://assets/images/cards/re/3_RE.webp<>res://scripts/hs_card_2.gd<>res://scripts/hs_card_3.gd<>res://scripts/empty_frame_1.gd<>uid://2lpri815ef21::::res://assets/images/cards/hs/8_HS.webp<>res://scripts/empty_frame_2.gd<>res://scripts/empty_frame_3.gd<>uid://b17msdx0loyam::::res://assets/images/frames/white frame stat right.png<>res://scripts/empty_frame_4.gd<>uid://djwiktfjhat8t::::res://assets/images/cards/hs/11_HS.webp<>uid://04d8k2g7nynj::::res://assets/images/frames/red frame stat right.png<>res://scripts/empty_frame_5.gd<>res://scripts/empty_frame_6.gd<>res://scripts/empty_frame_7.gd<>uid://df2oulaqso2q4::::res://assets/images/frames/empty_frame_IA.png<>res://scripts/empty_frame_8.gd<>uid://icaube7fsw4o::::res://assets/ui/icons/time_button.png<>res://scripts/empty_frame_9.gd<>res://scripts/empty_frame_10.gd<>res://scripts/empty_frame_11.gd<>res://scripts/game_manager.gd<>res://scripts/empty_frame_12.gd<>uid://1vf0dlpehlid::::res://assets/images/frames/empty_frame.png<>res://scripts/deck_manager.gd<>uid://bmreek6wff1et::::res://assets/ui/score/token_frame_2.png<>uid://c03ueobtq7tfh::::res://assets/ui/tokens/token_ciberbullying.png<>uid://7qe3of5u2ij1::::res://assets/ui/tokens/token_exclusión_social.png<>uid://dla8767vymhyx::::res://assets/ui/tokens/token_físico.png<>uid://lgvchbwtyqv6::::res://assets/ui/tokens/token_psicologico.png<>uid://ba7f5a0qbxhj3::::res://assets/ui/icons/combo_health_10.png<>uid://d0bhyauxi414w::::res://assets/ui/score/score_frame.png<>res://scripts/control_token.gd<>uid://3iggth5vserg::::res://assets/ui/icons/combo_health_1.png<>res://scenes/game_over.gd<>uid://up7rceiha7li::::res://assets/ui/score/boy_1.png<>uid://cvu6jcmbylna3::::res://assets/ui/backgrounds/victory_2.png<>uid://bo8csdsex1d3i::::res://assets/fonts/AmaticSC-Bold.ttf<>uid://u3dyfk1mrqwm::::res://assets/ui/score/girl_2.png<>res://scenes/new_game_option_window.gd<>uid://c8mmq4leduvn5::::res://assets/ui/tokens/token_exclusión_social_bn.png<>uid://bboks5ajispvd::::res://assets/ui/tokens/token_físico_bn.png<>uid://c87nfvohsxccb::::res://assets/ui/tokens/token_psicologico_bn.png<>uid://byqyx0dqaha8r::::res://assets/ui/tokens/token_sexual_bn.png<>uid://cexk6hajb1bwf::::res://assets/ui/tokens/token_verbal_bn.png<>uid://8coj62fmtlkw::::res://assets/ui/tokens/token_ciberbullying_bn.png<>uid://dpdi8jch6q4je::::res://assets/ui/icons/empathy_gradient_blue_red_20_4.png<>uid://wbnpnr5yjdyq::::res://assets/ui/icons/apoyo_emocional_gradient_blue_red_20_6.png<>res://scripts/ic_card.gd<>uid://h5amphcnjm71::::res://assets/ui/icons/intervención_gradient_blue_red_20_8.png<>uid://0dbtgq37xr1x::::res://assets/ui/icons/comunicacion_gradient_blue_red_20_3.png<>uid://bitq56chkqbw6::::res://assets/ui/icons/resolución_de_conflictos_gradient_blue_red_20_9.png
+NewGame.tscn::PackedScene::8343482360881582560::1733742133::0::1::::<><>::res://scripts/new_game.gd<>uid://dukyjdb258r8x::::res://assets/images/backgrounds/bg_12.webp<>res://scripts/ui.gd<>res://scripts/re_card_1.gd<>uid://dyyblqjpcax5f::::res://assets/images/cards/reverses/reverse_ai.png<>uid://dyk8m7os7qjrp::::res://assets/images/cards/bu/1_BU.webp<>uid://dky62xh2pa87a::::res://assets/images/cards/re/1_RE.webp<>uid://dvxsg8fyqxya6::::res://assets/fonts/Roboto-Medium.ttf<>uid://7f83t5s3fqy0::::res://assets/ui/icons/time_button_hoover.png<>res://scripts/re_card_2.gd<>uid://c46waxfcvk3ku::::res://assets/audio/sfx/107341__thompsonman__beeps.wav<>res://scripts/re_card_3.gd<>uid://c2vq2cdq2jk8s::::res://assets/images/cards/re/2_RE.webp<>uid://bceo6mdndisde::::res://assets/fonts/Roboto-Bold.ttf<>res://scripts/hs_card_1.gd<>res://scenes/end_turn_popup.gd<>res://scripts/MainMenu.gdshader<>uid://yc8hhxfvl7s3::::res://assets/images/cards/re/3_RE.webp<>res://scripts/hs_card_2.gd<>res://scripts/hs_card_3.gd<>res://scripts/empty_frame_1.gd<>uid://2lpri815ef21::::res://assets/images/cards/hs/8_HS.webp<>res://scripts/empty_frame_2.gd<>res://scripts/empty_frame_3.gd<>uid://b17msdx0loyam::::res://assets/images/frames/white frame stat right.png<>res://scripts/empty_frame_4.gd<>uid://djwiktfjhat8t::::res://assets/images/cards/hs/11_HS.webp<>uid://04d8k2g7nynj::::res://assets/images/frames/red frame stat right.png<>res://scripts/empty_frame_5.gd<>res://scripts/empty_frame_6.gd<>res://scripts/empty_frame_7.gd<>uid://df2oulaqso2q4::::res://assets/images/frames/empty_frame_IA.png<>res://scripts/empty_frame_8.gd<>uid://icaube7fsw4o::::res://assets/ui/icons/time_button.png<>res://scripts/empty_frame_9.gd<>res://scripts/empty_frame_10.gd<>res://scripts/empty_frame_11.gd<>res://scripts/game_manager.gd<>res://scripts/empty_frame_12.gd<>uid://1vf0dlpehlid::::res://assets/images/frames/empty_frame.png<>res://scripts/deck_manager.gd<>uid://bmreek6wff1et::::res://assets/ui/score/token_frame_2.png<>uid://c03ueobtq7tfh::::res://assets/ui/tokens/token_ciberbullying.png<>uid://7qe3of5u2ij1::::res://assets/ui/tokens/token_exclusión_social.png<>uid://dla8767vymhyx::::res://assets/ui/tokens/token_físico.png<>uid://lgvchbwtyqv6::::res://assets/ui/tokens/token_psicologico.png<>uid://ba7f5a0qbxhj3::::res://assets/ui/icons/combo_health_10.png<>uid://d0bhyauxi414w::::res://assets/ui/score/score_frame.png<>res://scripts/control_token.gd<>uid://3iggth5vserg::::res://assets/ui/icons/combo_health_1.png<>res://scenes/game_over.gd<>uid://up7rceiha7li::::res://assets/ui/score/boy_1.png<>uid://cvu6jcmbylna3::::res://assets/ui/backgrounds/victory_2.png<>uid://bo8csdsex1d3i::::res://assets/fonts/AmaticSC-Bold.ttf<>uid://c2y2o3qd3ue1u::::res://assets/images/cards/roles/soporte_solidario.webp<>res://scenes/new_game_option_window.gd<>uid://c8mmq4leduvn5::::res://assets/ui/tokens/token_exclusión_social_bn.png<>uid://bboks5ajispvd::::res://assets/ui/tokens/token_físico_bn.png<>uid://c87nfvohsxccb::::res://assets/ui/tokens/token_psicologico_bn.png<>uid://byqyx0dqaha8r::::res://assets/ui/tokens/token_sexual_bn.png<>uid://blaf5505ocxqy::::res://assets/ui/icons/intervención.png<>uid://cexk6hajb1bwf::::res://assets/ui/tokens/token_verbal_bn.png<>uid://8coj62fmtlkw::::res://assets/ui/tokens/token_ciberbullying_bn.png<>uid://dux6uxrudyog2::::res://assets/ui/icons/comunicacion.png<>uid://opi4i0tkqmrf::::res://assets/ui/icons/empathy.png<>uid://cdbwe65a23jq4::::res://assets/ui/icons/apoyo_emocional.png<>uid://dpdi8jch6q4je::::res://assets/ui/icons/empathy_gradient_blue_red_20_4.png<>uid://wbnpnr5yjdyq::::res://assets/ui/icons/apoyo_emocional_gradient_blue_red_20_6.png<>res://scripts/ic_card.gd<>uid://h5amphcnjm71::::res://assets/ui/icons/intervención_gradient_blue_red_20_8.png<>uid://0dbtgq37xr1x::::res://assets/ui/icons/comunicacion_gradient_blue_red_20_3.png<>uid://bitq56chkqbw6::::res://assets/ui/icons/resolución_de_conflictos_gradient_blue_red_20_9.png
 new_game_option_window.gd::GDScript::-1::1733127561::0::1::::<>Window<>::
-RegisterUser.tscn::PackedScene::6858974625120363631::1733606556::0::1::::<><>::uid://bceo6mdndisde::::res://assets/fonts/Roboto-Bold.ttf<>res://scripts/register_user.gd<>uid://dkg7a2xmpg4dg::::res://assets/ui/backgrounds/login_bg_3.png
-StatisticsScreen.tscn::PackedScene::5665065429576043442::1733606556::0::1::::<><>::res://scripts/statistics_screen.gd<>uid://bceo6mdndisde::::res://assets/fonts/Roboto-Bold.ttf<>res://scenes/draw_control.gd<>uid://dvxsg8fyqxya6::::res://assets/fonts/Roboto-Medium.ttf<>res://scenes/chart_general.gd<>res://scenes/chart_mode_ia.gd
-::res://scripts/::1733610527
+RegisterUser.tscn::PackedScene::6858974625120363631::1733742133::0::1::::<><>::uid://bceo6mdndisde::::res://assets/fonts/Roboto-Bold.ttf<>res://scripts/register_user.gd<>uid://dkg7a2xmpg4dg::::res://assets/ui/backgrounds/login_bg_3.png
+StatisticsScreen.tscn::PackedScene::5665065429576043442::1733742134::0::1::::<><>::res://scripts/statistics_screen.gd<>uid://bceo6mdndisde::::res://assets/fonts/Roboto-Bold.ttf<>res://scenes/draw_control.gd<>uid://dvxsg8fyqxya6::::res://assets/fonts/Roboto-Medium.ttf<>res://scenes/chart_general.gd<>res://scenes/chart_mode_ia.gd
+::res://scripts/::1733742134
 bg_card_1_texture_button.gd::GDScript::-1::1731799875::0::1::::<>TextureButton<>::
 bg_card_2_texture_button.gd::GDScript::-1::1731799875::0::1::::<>TextureButton<>::
 card.gd::GDScript::-1::1731805476::0::1::::<>Control<>::
-CardsBU.gd::GDScript::-1::1732838596::0::1::::CardsBU<>Resource<>::
+CardsBU.gd::GDScript::-1::1733678104::0::1::::CardsBU<>Resource<>::
 CardsHS.gd::GDScript::-1::1732838596::0::1::::CardsHS<>Resource<>::
 CardsRE.gd::GDScript::-1::1732838596::0::1::::CardsRE<>Resource<>::
 ciberbullying_token.gd::GDScript::-1::1732838596::0::1::::<>Control<>::
@@ -424,7 +454,7 @@ control_token.gd::GDScript::-1::1732838596::0::1::::<>Control<>::
 control_token_ia.gd::GDScript::-1::1732838596::0::1::::<>Control<>::
 credits_screen.gd::GDScript::-1::1732838596::0::1::::<>Control<>::
 deck_bullying.gd::GDScript::-1::1731805476::0::1::::<>Control<>::
-deck_manager.gd::GDScript::-1::1732838596::0::1::::<>Control<>::
+deck_manager.gd::GDScript::-1::1733678104::0::1::::<>Control<>::
 deck_player.gd::GDScript::-1::1731805476::0::1::::<>Control<>::
 empty_frame_1.gd::GDScript::-1::1732838597::0::1::::<>Control<>::
 empty_frame_2.gd::GDScript::-1::1732838597::0::1::::<>Control<>::
@@ -441,28 +471,28 @@ empty_frame_12.gd::GDScript::-1::1733093285::0::1::::<>Control<>::
 exclusion_social_token.gd::GDScript::-1::1732838597::0::1::::<>Control<>::
 fisico_token.gd::GDScript::-1::1732838597::0::1::::<>Control<>::
 game.gd::GDScript::-1::1733322129::0::1::::Game<>Resource<>::
-game_config.gd::GDScript::-1::1732838597::0::1::::<>Node<>::
-game_manager.gd::GDScript::-1::1733309281::0::1::::<>Control<>::
-global_data.gd::GDScript::-1::1733351513::0::1::::<>Node<>::
-hs_card_1.gd::GDScript::-1::1732838598::0::1::::<>Control<>::
-hs_card_2.gd::GDScript::-1::1732838598::0::1::::<>Control<>::
-hs_card_3.gd::GDScript::-1::1732838598::0::1::::<>Control<>::
+game_config.gd::GDScript::-1::1733668436::0::1::::<>Node<>::
+game_manager.gd::GDScript::-1::1733740104::0::1::::<>Control<>::
+global_data.gd::GDScript::-1::1733668436::0::1::::<>Node<>::
+hs_card_1.gd::GDScript::-1::1733738807::0::1::::<>Control<>::
+hs_card_2.gd::GDScript::-1::1733738807::0::1::::<>Control<>::
+hs_card_3.gd::GDScript::-1::1733738807::0::1::::<>Control<>::
 ic_card.gd::GDScript::-1::1733093286::0::1::::<>Control<>::
 login_screen.gd::GDScript::-1::1732838598::0::1::::<>Control<>::
-MainMenu.gdshader::Shader::-1::1733610527::0::1::::<><>::
-main_menu.gd::GDScript::-1::1733136983::0::1::::<>Control<>::
+MainMenu.gdshader::Shader::-1::1733742134::0::1::::<><>::
+main_menu.gd::GDScript::-1::1733732357::0::1::::<>Control<>::
 new_game.gd::GDScript::-1::1732897925::0::1::::<>Control<>::
 option_window.gd::GDScript::-1::1732838598::0::1::::<>Window<>::
 psicologico_token.gd::GDScript::-1::1732838598::0::1::::<>Control<>::
 register_user.gd::GDScript::-1::1731805476::0::1::::<>Control<>::
-re_card_1.gd::GDScript::-1::1732660107::0::1::::<>Control<>::
-re_card_2.gd::GDScript::-1::1732660107::0::1::::<>Control<>::
-re_card_3.gd::GDScript::-1::1732660107::0::1::::<>Control<>::
+re_card_1.gd::GDScript::-1::1733742132::0::1::::<>Control<>::
+re_card_2.gd::GDScript::-1::1733738626::0::1::::<>Control<>::
+re_card_3.gd::GDScript::-1::1733738626::0::1::::<>Control<>::
 sexual_token.gd::GDScript::-1::1732358013::0::1::::<>Control<>::
 show_score_player.gd::GDScript::-1::1732358013::0::1::::<>RefCounted<>::
 statistics_screen.gd::GDScript::-1::1733359425::0::1::::<>Control<>::
 strategy_button.gd::GDScript::-1::1731452843::0::1::::<>Button<>::
 tirada.gd::GDScript::-1::1733180138::0::1::::Tirada<>Resource<>::
 tokens_control.gd::GDScript::-1::1732358013::0::1::::<>Control<>::
-ui.gd::GDScript::-1::1732703423::0::1::::<>Control<>::
+ui.gd::GDScript::-1::1733669893::0::1::::<>Control<>::
 verbal_token.gd::GDScript::-1::1732358013::0::1::::<>Control<>::

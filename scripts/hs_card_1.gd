@@ -63,39 +63,55 @@ func _on_mouse_exited():
 		position = ORIGINAL_POSITION
 		z_index = original_z_index
 
-# Señal doble click izquierdo raton
+# Señal doble click izquierdo ratón
 func on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.double_click:
 		# Si hay una carta en TARGET_POSITION, restáurala a su posición original
 		if GlobalData.current_card_in_target_positionHS != null and GlobalData.current_card_in_target_positionHS != self:
 			GlobalData.current_card_in_target_positionHS.move_to_original_position()
 		play_beep_sound()
-		# Mueve esta carta a TARGET_POSITION
-		is_moved = true  # Marca la carta como movida para que no vuelva al estado original
-		position = TARGET_POSITION
-		scale = TARGET_SCALE
-		z_index = 4
-		GlobalData.current_card_in_target_positionHS = self  # Actualiza la carta actual como la que está en TARGET_POSITION
-		print("Carta movida a TARGET_POSITION: ", self)
-		# Emitir la señal indicando que la carta ha sido seleccionada y envia id de la carta
-		emit_signal("card_chosen_hs", number_card_label.text)
+		move_to_target_position()
+func move_to_target_position():
+	is_moved = true
+	z_index = 4
+	var tween = create_tween()
 
-# Función para mover la carta de vuelta a su posición original
+	# Animación de posición hacia el origen
+	# Animación de posición hacia el destino
+	# Animación de posición hacia el destino
+	tween.tween_property(self, "position", TARGET_POSITION, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+	# Animación de escala hacia el destino
+	tween.tween_property(self, "scale", TARGET_SCALE, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+
+	GlobalData.current_card_in_target_positionHS = self
+	GlobalData.id_current_card_in_target_positionHS = number_card_label.text
+	emit_signal("card_chosen_hs", number_card_label.text)
+
 func move_to_original_position():
-	position = ORIGINAL_POSITION
-	scale = NORMAL_SCALE
-	z_index = original_z_index
 	is_moved = false
-	# Limpia current_card_in_target_position si esta carta está en la posición objetivo
+	var tween = create_tween()
+	# Asegúrate de que la posición actual sea consistente con su estado inicial
+	self.position = position  # Sincroniza con la posición actual si hubo algún cambio previo
+
+   # Animación de posición hacia el origen
+	tween.tween_property(self, "position", ORIGINAL_POSITION, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+	# Animación de escala hacia el origen
+	tween.tween_property(self, "scale", NORMAL_SCALE, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+	z_index = original_z_index
 	if GlobalData.current_card_in_target_positionHS == self:
 		GlobalData.current_card_in_target_positionHS = null
-	print("Carta devuelta a la posición original: ", self)
+
+
+
+
 
 # Función para reproducir el sonido
 func play_beep_sound():
-	# Cargar el archivo de audio en tiempo de ejecución
 	var audio_stream = load("res://assets/audio/sfx/seleccionar_carta.ogg")
-	# Asignar el audio al AudioStreamPlayer
 	beep_audio_stream_player.stream = audio_stream
 	if beep_audio_stream_player.playing:
 		beep_audio_stream_player.stop()

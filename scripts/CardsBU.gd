@@ -21,9 +21,11 @@ class_name CardsBU
 @export var resolucion_de_conflictos: int
 @export var enfoque_principal: String
 @export var necesidades_clave: String
+@export var thresholds: Array = []  # Nueva propiedad para almacenar thresholds
+
 
 # Constructor para inicializar la clase con valores específicos
-func _init(_id_carta: int, _nombre: String, _descripcion: String, _enfoque_principal: String, _necesidades_clave: String, _tipo: String, _empatia: int, _apoyo_emocional: int, _intervencion: int, _comunicacion: int, _resolucion_de_conflictos: int):
+func _init(_id_carta: int, _nombre: String, _descripcion: String, _enfoque_principal: String, _necesidades_clave: String, _tipo: String, _empatia: int, _apoyo_emocional: int, _intervencion: int, _comunicacion: int, _resolucion_de_conflictos: int, _thresholds: Array):
 	self.id_carta = _id_carta
 	self.nombre = _nombre
 	self.descripcion = _descripcion
@@ -35,4 +37,5 @@ func _init(_id_carta: int, _nombre: String, _descripcion: String, _enfoque_princ
 	self.intervencion = _intervencion
 	self.comunicacion = _comunicacion
 	self.resolucion_de_conflictos = _resolucion_de_conflictos
+	self.thresholds = _thresholds
 	

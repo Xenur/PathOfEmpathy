@@ -29,6 +29,7 @@ extends Control
 
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var beep_audio_stream_player = $BeepAudioStreamPlayer
+@onready var player_texture_rect = $"../UI/ScoreTokenPlayer/PlayerTextureRect"
 
 
 # Definimos la señal personalizada
@@ -40,11 +41,19 @@ var showing_reverses = false  # Indica si las cartas están mostrando el reverso
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	if GlobalData.selected_role == "Líder":
+		player_texture_rect.texture = load("res://assets/images/cards/roles/lider.webp")
+	if GlobalData.selected_role == "Mediador":
+		player_texture_rect.texture = load("res://assets/images/cards/roles/mediador.webp")
+	if GlobalData.selected_role == "Escucha Activa":
+		player_texture_rect.texture = load("res://assets/images/cards/roles/escucha.webp")
+	if GlobalData.selected_role == "Solidario":
+		player_texture_rect.texture = load("res://assets/images/cards/roles/soporte_solidario.webp")
+
 	print("dificultad ia: ", GameConfig.ia_difficulty)
 	update_ia_texture()
 	ia_name_label.text = get_difficulty_text(GameConfig.ia_difficulty)
-	player_name_label.text = GlobalData.user
+	player_name_label.text = GlobalData.selected_role
 	update_button_text()
 
 # Asigna una imagen dependiendo de la dificultad
@@ -93,8 +102,8 @@ func _on_reverse_anverse_toggle_button_pressed():
 # Actualiza el texto del botón
 func update_button_text():
 	if GlobalData.showing_reverses:
-		reverse_anverse_toggle_button.text = "Anverso"  # Cambia el texto a "Anverso"
+		reverse_anverse_toggle_button.text = "Girar Carta"  # Cambia el texto a "Anverso"
 		showing_reverses = true
 	else:
-		reverse_anverse_toggle_button.text = "Reverso"  # Cambia el texto a "Reverso"texto a "Reverso"
+		reverse_anverse_toggle_button.text = "Girar Carta"  # Cambia el texto a "Reverso"texto a "Reverso"
 		showing_reverses = false
