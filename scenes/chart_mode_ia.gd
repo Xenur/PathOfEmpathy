@@ -26,7 +26,7 @@ func _draw():
 
 	# Categorías para las etiquetas
 	var modes = ["Intuición", "Estrategia"]
-	var ias = ["IA Alumno", "IA Profesor", "IA Psicólogo"]
+	var ias = ["Alumno", "Profesor", "Psicólogo"]
 	# Calcular ángulos
 	var angles = [
 		(float(average_data["average_intuition"])/100) * 360,

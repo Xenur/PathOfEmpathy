@@ -603,6 +603,7 @@ func check_game_result():
 	# Calcula puntuaciones
 	# Actualiza las etiquetas del jugador y la IA
 	var player_score = calculate_player_score(player_bullying_card, player_re_card, player_hs_card, valid_combination)
+	player_score = adjust_player_score(player_score)
 	update_player_labels(player_score, valid_combination, raw_match, player_re_card, player_hs_card)
 	#var ia_score = calculate_ia_score(player_bullying_card, ia_re_card, ia_hs_card, valid_combination_ia)
 	#var ia_score = calculate_score(player_bullying_card, ia_re_card, ia_hs_card)
@@ -657,6 +658,7 @@ func check_game_result():
 	var combos_jugador = GlobalData.combo_player
 	var token_ia = GlobalData.token_earned_player
 	var token_jugador = GlobalData.token_earned_player
+	var stars = GlobalData.stars
 
 	# Crear la nueva tirada
 	var nueva_tirada = Tirada.new(
@@ -668,7 +670,8 @@ func check_game_result():
 		combos_ia,
 		combos_jugador,
 		token_ia,
-		token_jugador
+		token_jugador,
+		stars
 	)
 
 	# Depuración
@@ -681,6 +684,16 @@ func check_game_result():
 	# Finalizar el turno
 	end_turn_actions()
 
+func adjust_player_score(player_score: float) -> float:
+	match GameConfig.ia_difficulty:
+		0:  # Dificultad Alumno
+			return player_score * 1.5
+		1:  # Dificultad Profesor
+			return player_score * 1.0  # Sin cambio
+		2:  # Dificultad Psicólogo
+			return player_score * 0.8
+		_:
+			return player_score  # Valor por defecto si ia_dificulty no es válido
 
 # Actualiza información sobre el bullying
 func update_bullying_info():
@@ -791,6 +804,7 @@ func calculate_ia_score(player_bullying_card, ia_re_card, ia_hs_card, valid_comb
 	#else:
 		#line_5_dialogue_label.text = "No se pudo generar feedback."
 func update_player_labels(player_score, valid_combination, raw_match, player_re_card, player_hs_card):
+	
 	# Debug inicial para verificar el estado de las cartas
 	if player_re_card:
 		print("updateplayerlabels playerre:", player_re_card.nombre)
@@ -850,7 +864,7 @@ func update_player_labels(player_score, valid_combination, raw_match, player_re_
 		line_5_dialogue_label.text = feedback
 	else:
 		line_5_dialogue_label.text = "No se pudo generar feedback."
-
+	
 # Función para calcular las estrellas
 func calculate_stars(score: int, thresholds: Array) -> int:
 	var stars = 0
@@ -1690,7 +1704,7 @@ func reset_turn_state():
 	player_selected_card_re = null
 	ia_selected_card_re = null
 	ia_selected_card_hs = null
-
+	GlobalData.stars = 0
 
 ###############################################################################
 ###############################################################################
@@ -1808,7 +1822,7 @@ func update_bullying_card():
 		# Extraer la última carta del mazo y asignarla como la carta actual de bullying
 		card_bullying = deck_manager.deck_bu.pop_back()
 		# Actualizar la interfaz para mostrar la nueva carta de bullying
-		display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
+		#display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
 		# Verificar la siguiente carta sin sacarla del mazo
 		var next_card_bullying = null
 		if deck_manager.deck_bu.size() > 0:
@@ -1816,6 +1830,7 @@ func update_bullying_card():
 
 		# Actualizar la interfaz para mostrar la nueva carta de bullying
 		display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
+		display_next_card_bu(next_card_bullying, bullying_card_next, GlobalData.showing_reverses)
 
 		# Mostrar la próxima carta si existe
 		if next_card_bullying:
@@ -2560,7 +2575,7 @@ func has_ia_chosen() -> bool:
 
 # Maneja la señal y actualiza la visualización de las cartas
 func _on_reverse_anverse_toggled(showing_reverses: bool):
-	play_beep_sound("res://assets/audio/sfx/flipcard-91468.mp3")
+	play_beep_sound("res://assets/audio/sfx/flipcard-91468.ogg")
 	# Actualizar las cartas RE
 	display_card_re(player_cards_re[0], re_card_1, showing_reverses)
 	display_card_re(player_cards_re[1], re_card_2, showing_reverses)
@@ -2572,7 +2587,11 @@ func _on_reverse_anverse_toggled(showing_reverses: bool):
 	display_card_hs(player_cards_hs[2], hs_card_3, showing_reverses)
 	#Actualiza la carta de bullyin
 	display_card_bu(card_bullying, bullying_card, showing_reverses)
-	display_next_card_bu(card_bullying, bullying_card_next, showing_reverses)
+	var next_card_bullying = null
+	if deck_manager.deck_bu.size() > 0:
+		next_card_bullying = deck_manager.deck_bu.back()
+
+	display_next_card_bu(next_card_bullying, bullying_card_next, showing_reverses)
 
 
 func _on_options_button_pressed():
@@ -3491,7 +3510,8 @@ func save_game_persistence(current_game: Game):
 				"combos_ia": tirada.combos_ia,
 				"combos_jugador": tirada.combos_jugador,
 				"token_ia": tirada.token_ia,
-				"token_jugador": tirada.token_jugador
+				"token_jugador": tirada.token_jugador,
+				"stars": tirada.stars
 			})
 			# Actualizar otros campos relevantes
 			partida["ganador"] = current_game.ganador

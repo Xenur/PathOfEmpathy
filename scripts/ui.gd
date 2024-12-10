@@ -31,6 +31,7 @@ extends Control
 @onready var beep_audio_stream_player = $BeepAudioStreamPlayer
 @onready var player_texture_rect = $"../UI/ScoreTokenPlayer/PlayerTextureRect"
 
+@onready var dificultad_label = $Dificultad/Panel/DificultadLabel
 
 # Definimos la señal personalizada
 signal reverse_anverse_toggled(showing_reverses: bool)
@@ -41,6 +42,17 @@ var showing_reverses = false  # Indica si las cartas están mostrando el reverso
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	match GameConfig.ia_difficulty:
+		0:
+			dificultad_label.text = "Alumno"
+		1:
+			dificultad_label.text = "Profesor"
+		2:
+			dificultad_label.text = "Psicólogo"
+		_:
+			dificultad_label.text = "Alumno"  # Dificultad por defecto
+	
 	if GlobalData.selected_role == "Líder":
 		player_texture_rect.texture = load("res://assets/images/cards/roles/lider.webp")
 	if GlobalData.selected_role == "Mediador":

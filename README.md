@@ -1,4 +1,28 @@
 # **Caminos de Empatía**
+10/12/2024
+-Arreglado las cartas de siguiente situción que al girarlas se mostraba la carta en curso.
+-Arreglado las estadísticas. Ahora incluyen datos de las estrellas.
+-Modificado pantalla estadísticias, mostrando información relevante de las estrellas, así como
+-solucionado el gráfico de mostrar partidas. Ahora tan solo están las jugadas y las abandonadas
+-Arreglado gráfico dificultad
+-Añadido dificultad al juego, cada nivel de dificultad aporta un multiplicador diferente, desde facil, medio, dificil.
+-Así, las puntuaciones que son las que generan los threshold ocultos tendrán un multiplicador diferente
+dependiendo del nivel de dificultad con el que se juegue.
+-Deberé poner en estadisticas el nº de estrellas ganadas segun el tipo de dificultad y mostrarlas.
+-Añadido cuadro de subtitulos para las canciones. Cuando suena una nueva canción aparece un mensaje con el
+nombre de la canción que se desvanece a los 5 segundos.
+-Arreglado estrellas cuando no se seleccionan cartas.
+-Añadido label a la parte superior/izquierda de la GUI que identifica el nivel de dificultad.
+*****PRÓXIMO******
+-Acabar de arreglar estadísticas
+-Implantar cheet cuando se consigan los tokens mendiante los combos (idea principal mostrar durante n
+segundos los atributos de las cartas o durante la siguiente tirada, para que conseguir tokens signifique
+algo, ya que hasta ahora nos servia para la puntuación final, que ahora no tenemos).
+-Desarrollar/Arreglar pantalla de finalización de partida al acabarse el tiempo o acabarse las cartas
+de bullying. Idea 1: Mostrar todo el desempeño del jugador, mostrando las cartas de bullying que ha jugado
+y su desempeño específico. Ides 2: Mostrar el desempeño global stars/tiradas porcentaje de estrellas ganadas.
+
+
 09/12/2024
 En la pantalla de selección de rol no me gusta que las cartas tengan borde negro (creo que debería quitarlo).
 En  la pantalla de selección de rol cuando se elige un rol salta un audio (debería implementar que al clicar una vez salte). 

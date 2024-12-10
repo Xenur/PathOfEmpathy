@@ -45,6 +45,8 @@ extends Control
 @onready var player_win_tiradas_label = $VBoxContainer/DateHBoxContainer14/PlayerWinTiradasLabel
 @onready var ratio_player_win_tiradas_label = $VBoxContainer/DateHBoxContainer15/RatioPlayerWinTiradasLabel
 
+@onready var total_estrellas_player_label = $VBoxContainer/DateHBoxContainer20/TotalEstrellasPlayerLabel
+@onready var average_estrellas_player_label = $VBoxContainer/DateHBoxContainer21/PromedioEstrellasPlayerLabel
 
 @onready var token_analysis_player_label = $VBoxContainer3/DateHBoxContainer2/TokenAnalysisPlayerLabel
 @onready var token_psicologico_player_label = $VBoxContainer3/DateHBoxContainer3/TokenPsicologicoPlayerLabel
@@ -110,6 +112,7 @@ func _ready():
 		print("\n--- General Statistics for Player ---")
 		var general_stats = calculate_general_statistics(user_data)
 		total_games_player_label.text = str(general_stats["total_games"])
+		GlobalData.total_games = (general_stats["total_games"])
 		abandoned_games_player_label.text = str(general_stats["abandoned_games"])
 		completed_games_player_label.text = str(general_stats["completed_games"])
 		var average_duration_seconds = general_stats["average_duration"]
@@ -153,6 +156,8 @@ func _ready():
 			total_tiradas_player_label.text = str(tirada_stats["total_tiradas"])
 			player_win_tiradas_label.text = str(tirada_stats["player_win"])
 			ratio_player_win_tiradas_label.text = str("%.2f" % tirada_stats["player_win_rate"]) + (" %")
+			total_estrellas_player_label.text = str(tirada_stats["total_stars"])  # Total de estrellas
+			average_estrellas_player_label.text = str("%.2f" % tirada_stats["average_stars"]) + (" %")  # Media de estrellas
 		print("\n--- Card Analysis ---") 
 		var card_stats = analyze_cards(saved_data)
 		print("Card Effectiveness:")
@@ -332,6 +337,7 @@ func calculate_player_statistics(data: Dictionary) -> Dictionary:
 
 func calculate_tirada_statistics(data: Dictionary) -> Dictionary:
 	var total_tiradas = 0
+	var total_stars = 0
 	var player_wins = 0
 	var ia_wins = 0
 	var draws = 0
@@ -346,6 +352,7 @@ func calculate_tirada_statistics(data: Dictionary) -> Dictionary:
 			for partida in player["partidas"]:
 				for tirada in partida["tiradas"]:
 					total_tiradas += 1
+					total_stars += tirada.get("stars", 0)  # Sumar las estrellas obtenidas en la tirada
 					if tirada["ganador_tirada"] == "Jugador":
 						player_wins += 1
 					elif tirada["ganador_tirada"] == "IA":
@@ -364,6 +371,8 @@ func calculate_tirada_statistics(data: Dictionary) -> Dictionary:
 		"ia_win": ia_wins,
 		"player_win_rate": (player_wins * 1.0 / total_tiradas) * 100 if total_tiradas > 0 else 0,
 		"ia_win_rate": (ia_wins * 1.0 / total_tiradas) * 100 if total_tiradas > 0 else 0,
+		"total_stars": total_stars,  # Total de estrellas ganadas
+		"average_stars": total_stars / total_tiradas if total_tiradas > 0 else 0,  # Media de estrellas
 		"DEPRECATED most_used_cards": card_usage
 	}
 

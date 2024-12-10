@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://dq4v62olhary3"]
+[gd_scene load_steps=112 format=3 uid="uid://dq4v62olhary3"]
 
 [ext_resource type="Script" path="res://scripts/new_game.gd" id="1_eh8bj"]
 [ext_resource type="Texture2D" uid="uid://dukyjdb258r8x" path="res://assets/images/backgrounds/bg_12.webp" id="2_hikk8"]
@@ -231,7 +231,7 @@ corner_radius_bottom_right = 200
 corner_radius_bottom_left = 200
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uxtb"]
-bg_color = Color(0.6, 0.6, 0.6, 0.556863)
+bg_color = Color(0.6, 0.6, 0.6, 0.431373)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
@@ -288,6 +288,13 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cum15"]
 bg_color = Color(0.0431373, 0.270588, 0.415686, 0.556863)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbh5u"]
+bg_color = Color(0.6, 0.6, 0.6, 0.45098)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -463,6 +470,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DestinyRETextureRectPlayer" type="TextureRect" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 601.0
 offset_top = 494.0
@@ -472,6 +480,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("16_22v05")
 
 [node name="DestinyRETextureRectPlayer2" type="TextureRect" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 601.0
 offset_top = 494.0
@@ -491,6 +500,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("16_22v05")
 
 [node name="DestinyHSTextureRectPlayer" type="TextureRect" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 1167.0
 offset_top = 494.0
@@ -527,10 +537,10 @@ texture_focused = ExtResource("8_oxljk")
 
 [node name="CountdownTotal" type="Control" parent="UI"]
 anchors_preset = 0
-offset_left = 5.0
-offset_top = 18.0
-offset_right = 45.0
-offset_bottom = 58.0
+offset_left = 14.0
+offset_top = 64.0
+offset_right = 54.0
+offset_bottom = 104.0
 
 [node name="Panel" type="Panel" parent="UI/CountdownTotal"]
 layout_mode = 0
@@ -559,6 +569,45 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 35
 text = "25:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dificultad" type="Control" parent="UI"]
+anchors_preset = 0
+offset_left = 14.0
+offset_top = 7.0
+offset_right = 54.0
+offset_bottom = 49.0
+
+[node name="Panel" type="Panel" parent="UI/Dificultad"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 180.0
+offset_bottom = 43.0
+tooltip_text = "Tiempo restante de la partida"
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ax13")
+
+[node name="DificultadLabel" type="Label" parent="UI/Dificultad/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -21.0
+offset_right = 87.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Dificultad"
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 35
+text = "Alumno"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1972,6 +2021,7 @@ text = "VICTORIA"
 horizontal_alignment = 1
 
 [node name="VSLabel" type="Label" parent="UI/GameOver/GameResultTextureRect"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -2000,6 +2050,7 @@ theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 18
 
 [node name="ScoreTokenIA" type="Control" parent="UI/GameOver/GameResultTextureRect"]
+visible = false
 anchors_preset = 0
 offset_left = 700.0
 offset_top = 500.0
@@ -2496,6 +2547,7 @@ offset_bottom = 217.0
 texture = ExtResource("37_a0yc1")
 
 [node name="ScoreTokenPlayer" type="Control" parent="UI/GameOver/GameResultTextureRect"]
+visible = false
 layout_mode = 1
 anchors_preset = 0
 offset_left = 150.0
@@ -2504,6 +2556,7 @@ offset_right = 190.0
 offset_bottom = 540.0
 
 [node name="Panel" type="Panel" parent="UI/GameOver/GameResultTextureRect/ScoreTokenPlayer"]
+visible = false
 layout_mode = 0
 offset_left = 8.0
 offset_top = -34.0
@@ -2527,6 +2580,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ShowScorePlayer" type="TextureRect" parent="UI/GameOver/GameResultTextureRect/ScoreTokenPlayer"]
+visible = false
 layout_mode = 0
 offset_left = -7.0
 offset_top = -49.0
@@ -3242,6 +3296,21 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_8eyt8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2vcrx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gerkl")
 text = "Aceptar"
+
+[node name="SongsLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 502.0
+offset_right = 506.0
+offset_bottom = 546.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_bbh5u")
+text = "cancionesnn"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ReadyButton" type="Button" parent="."]
 layout_mode = 2

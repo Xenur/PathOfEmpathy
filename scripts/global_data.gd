@@ -154,3 +154,5 @@ var player_stats = {}   # Atributos del jugador según el rol
 
 #stars
 var stars:int = 0
+
+var total_games: int = 0
