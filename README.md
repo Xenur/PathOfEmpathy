@@ -1,4 +1,14 @@
 # **Caminos de Empatía**
+11/12/2024
+v.0.3.0.3-alpha
+Estadísticas listas con el nuevo feedback (incluido puntos de empatía y gráfico).
+Listo pantallas finalización.
+**** PROXIMO ****
+Cheets en la obtención de tokens. +1 en el atributo que se defina segun el token
+Mostrar correctamente imagen con trait de los roles in-game
+Botón volver en seleccion rol
+*FALTARÁ EL TUTORIAL*
+
 10/12/2024
 -Arreglado las cartas de siguiente situción que al girarlas se mostraba la carta en curso.
 -Arreglado las estadísticas. Ahora incluyen datos de las estrellas.
@@ -8,19 +18,15 @@
 -Añadido dificultad al juego, cada nivel de dificultad aporta un multiplicador diferente, desde facil, medio, dificil.
 -Así, las puntuaciones que son las que generan los threshold ocultos tendrán un multiplicador diferente
 dependiendo del nivel de dificultad con el que se juegue.
--Deberé poner en estadisticas el nº de estrellas ganadas segun el tipo de dificultad y mostrarlas.
 -Añadido cuadro de subtitulos para las canciones. Cuando suena una nueva canción aparece un mensaje con el
 nombre de la canción que se desvanece a los 5 segundos.
 -Arreglado estrellas cuando no se seleccionan cartas.
 -Añadido label a la parte superior/izquierda de la GUI que identifica el nivel de dificultad.
 *****PRÓXIMO******
--Acabar de arreglar estadísticas
+
 -Implantar cheet cuando se consigan los tokens mendiante los combos (idea principal mostrar durante n
 segundos los atributos de las cartas o durante la siguiente tirada, para que conseguir tokens signifique
 algo, ya que hasta ahora nos servia para la puntuación final, que ahora no tenemos).
--Desarrollar/Arreglar pantalla de finalización de partida al acabarse el tiempo o acabarse las cartas
-de bullying. Idea 1: Mostrar todo el desempeño del jugador, mostrando las cartas de bullying que ha jugado
-y su desempeño específico. Ides 2: Mostrar el desempeño global stars/tiradas porcentaje de estrellas ganadas.
 
 
 09/12/2024

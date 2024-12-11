@@ -12,6 +12,7 @@ class_name Game
 @export var partida_abandonada: bool
 @export var token_ia: Dictionary               # Tokens ganados por la IA
 @export var token_jugador: Dictionary          # Tokens ganados por el jugador
+@export var rol: String
 
 
 
@@ -23,7 +24,8 @@ func _init(
 	_ia_dificultad: int,
 	_ganador := "",
 	_tiempo_total_partida := 0,
-	_partida_abandonada := false
+	_partida_abandonada := false,
+	_rol := ""
 	
 ):
 	print("Inicializando la partida...")
@@ -37,6 +39,7 @@ func _init(
 	self.ganador = _ganador
 	self.tiempo_total_partida = _tiempo_total_partida
 	self.partida_abandonada = _partida_abandonada
+	self.rol = _rol
 
 	# Comprobar el estado inicial
 	print("Datos iniciales de la partida:")
@@ -49,6 +52,7 @@ func _init(
 	print("Ganador inicial:", ganador)
 	print("Tiempo total partida:", tiempo_total_partida)
 	print("Partida abandonada:", partida_abandonada)
+	print("Rol: ", rol)
 
 # Método para añadir una tirada a la partida
 func add_tirada(tirada: Tirada):
@@ -86,6 +90,7 @@ func mostrar_datos():
 	print("Ganador:", ganador)
 	print("Tiempo total partida:", tiempo_total_partida)
 	print("Partida abandonada:", partida_abandonada)
+	print("Rol: ", rol)
 	print("Tiradas:")
 	for tirada in tiradas:
 		tirada._print_properties()
