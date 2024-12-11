@@ -20,17 +20,21 @@ func _draw():
 	]
 	# Colores para cada categoría (debes definir estos previamente)
 	var colors = [
-		Color(0.0, 0.4, 0.8),  # Verde: Ganadas
-		Color(0.8, 0.0, 0.2),  # Rojo: Perdidas
+		Color(0.2, 0.8, 0.2),  # Verde: Lider
+		Color(0.8, 0.2, 0.2),  # Rojo: solidario
+		Color(0.2, 0.2, 0.8),  # Azul: escucha
+		Color(0.9, 0.9, 0.2)   # Amarillo: mediador
 	]
 
 	# Categorías para las etiquetas
-	var modes = ["Intuición", "Estrategia"]
-	var ias = ["IA Alumno", "IA Profesor", "IA Psicólogo"]
+	var roles = ["Líder", "Mediador","Solidario", "Escucha"]
+	var ias = ["Alumno", "Profesor", "Psicólogo"]
 	# Calcular ángulos
 	var angles = [
-		(float(average_data["average_intuition"])/100) * 360,
-		(float(average_data["average_strategy"])/100) * 360
+		(float(average_data["average_lider"])/100) * 360,
+		(float(average_data["average_mediador"])/100) * 360,
+		(float(average_data["average_solidario"])/100) * 360,
+		(float(average_data["average_escucha"])/100) * 360
 	]
 	var angles2 = [
 		(float(average_data["average_alumno"])/100) * 360,
@@ -46,11 +50,11 @@ func _draw():
 		draw_circle_arc_poly(center, radius, start_angle, end_angle, colors[i])
 
 		# Calcular la posición del texto a la izquierda
-		var text_position = Vector2(110, 80 + i * 25)  # Ajusta las posiciones verticales
+		var text_position = Vector2(40, 60 + i * 25)  # Ajusta las posiciones verticales
 		draw_string(
 			font_resource,
 			text_position,
-			"%s: %.1f%%" % [modes[i], (angles[i] / 360) * 100],HORIZONTAL_ALIGNMENT_LEFT,-1,14,colors[i]
+			"%s: %.1f%%" % [roles[i], (angles[i] / 360) * 100],HORIZONTAL_ALIGNMENT_LEFT,-1,14,colors[i]
 		)
 
 		# Actualizar el ángulo inicial para el siguiente trozo

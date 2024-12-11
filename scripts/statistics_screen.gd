@@ -45,6 +45,8 @@ extends Control
 @onready var player_win_tiradas_label = $VBoxContainer/DateHBoxContainer14/PlayerWinTiradasLabel
 @onready var ratio_player_win_tiradas_label = $VBoxContainer/DateHBoxContainer15/RatioPlayerWinTiradasLabel
 
+@onready var total_estrellas_player_label = $VBoxContainer/DateHBoxContainer20/TotalEstrellasPlayerLabel
+@onready var average_estrellas_player_label = $VBoxContainer/DateHBoxContainer21/PromedioEstrellasPlayerLabel
 
 @onready var token_analysis_player_label = $VBoxContainer3/DateHBoxContainer2/TokenAnalysisPlayerLabel
 @onready var token_psicologico_player_label = $VBoxContainer3/DateHBoxContainer3/TokenPsicologicoPlayerLabel
@@ -54,6 +56,12 @@ extends Control
 @onready var token_fisico_player_label = $VBoxContainer3/DateHBoxContainer7/TokenFisicoPlayerLabel
 @onready var token_sexual_player_label = $VBoxContainer3/DateHBoxContainer8/TokenSexualPlayerLabel
 @onready var feedback_label = $FeedbackLabel
+
+@onready var average_lider_player_label = $VBoxContainer/DateHBoxContainer22/AverageLiderPlayerLabel
+@onready var average_mediador_player_label = $VBoxContainer/DateHBoxContainer23/AverageMediadorPlayerLabel
+@onready var average_solidario_player_label = $VBoxContainer/DateHBoxContainer24/AverageSolidarioPlayerLabel
+@onready var average_escucha_player_label = $VBoxContainer/DateHBoxContainer25/AverageEscuchaPlayerLabel
+
 
 # Variable para almacenar la fuente personalizada
 var font_resource: Font = preload("res://assets/fonts/Roboto-Medium.ttf")
@@ -110,6 +118,7 @@ func _ready():
 		print("\n--- General Statistics for Player ---")
 		var general_stats = calculate_general_statistics(user_data)
 		total_games_player_label.text = str(general_stats["total_games"])
+		GlobalData.total_games = (general_stats["total_games"])
 		abandoned_games_player_label.text = str(general_stats["abandoned_games"])
 		completed_games_player_label.text = str(general_stats["completed_games"])
 		var average_duration_seconds = general_stats["average_duration"]
@@ -140,7 +149,10 @@ func _ready():
 		average_ia_alumno_player_label.text = str("%.2f" % player_stats["average_alumno"]) + (" %")
 		average_ia_profesor_player_label.text = str("%.2f" % player_stats["average_profesor"]) + (" %")
 		average_ia_psicologo_player_label.text = str("%.2f" % player_stats["average_psicologo"]) + (" %")
-				
+		average_lider_player_label.text = str("%.2f" % player_stats["average_lider"]) + (" %")
+		average_mediador_player_label.text = str("%.2f" % player_stats["average_mediador"]) + (" %")
+		average_solidario_player_label.text = str("%.2f" % player_stats["average_solidario"]) + (" %")
+		average_escucha_player_label.text = str("%.2f" % player_stats["average_escucha"]) + (" %")
 		print("\n--- Tirada Statistics ---")
 		var tirada_stats = calculate_tirada_statistics(saved_data)
 		for key in tirada_stats.keys():
@@ -153,6 +165,8 @@ func _ready():
 			total_tiradas_player_label.text = str(tirada_stats["total_tiradas"])
 			player_win_tiradas_label.text = str(tirada_stats["player_win"])
 			ratio_player_win_tiradas_label.text = str("%.2f" % tirada_stats["player_win_rate"]) + (" %")
+			total_estrellas_player_label.text = str(tirada_stats["total_stars"])  # Total de estrellas
+			average_estrellas_player_label.text = str("%.2f" % tirada_stats["average_stars"])  # Media de estrellas por partida
 		print("\n--- Card Analysis ---") 
 		var card_stats = analyze_cards(saved_data)
 		print("Card Effectiveness:")
@@ -261,6 +275,10 @@ func calculate_player_statistics(data: Dictionary) -> Dictionary:
 	var dificultad_ia_profesor = 0
 	var dificultad_ia_psicologo = 0
 	var total_games = player["partidas"].size()
+	var rol_lider = 0
+	var rol_mediador = 0
+	var rol_solidario = 0
+	var rol_escucha = 0
 
 	for partida in player["partidas"]:
 		if partida["ganador"] == "VICTORIA":
@@ -281,6 +299,15 @@ func calculate_player_statistics(data: Dictionary) -> Dictionary:
 			dificultad_ia_profesor += 1
 		if partida["nivel_dificultad"] == 2:
 			dificultad_ia_psicologo += 1
+		if partida["rol"] == "Líder":
+			rol_lider += 1
+		if partida["rol"] == "Mediador":
+			rol_mediador += 1
+		if partida["rol"] == "Solidario":
+			rol_solidario += 1
+		if partida["rol"] == "Escucha":
+			rol_escucha += 1
+		
 		
 
 		for tirada in partida["tiradas"]:
@@ -306,7 +333,11 @@ func calculate_player_statistics(data: Dictionary) -> Dictionary:
 		"average_intuition": (intuicion *1.0/ total_games) * 100,
 		"average_alumno": (dificultad_ia_alumno *1.0/ total_games) * 100,
 		"average_profesor": (dificultad_ia_profesor *1.0 / total_games) * 100,
-		"average_psicologo": (dificultad_ia_psicologo *1.0/ total_games) * 100
+		"average_psicologo": (dificultad_ia_psicologo *1.0/ total_games) * 100,
+		"average_lider": (rol_lider * 1.0 / total_games) * 100,
+		"average_mediador": (rol_mediador * 1.0 / total_games) * 100,
+		"average_solidario": (rol_solidario * 1.0 / total_games) * 100,
+		"average_escucha": (rol_escucha * 1.0 / total_games) * 100
 	}
 
 	# Enviar los datos al singleton global
@@ -327,11 +358,15 @@ func calculate_player_statistics(data: Dictionary) -> Dictionary:
 		"average_alumno": (dificultad_ia_alumno *1.0/ total_games) * 100,
 		"average_profesor": (dificultad_ia_profesor *1.0 / total_games) * 100,
 		"average_psicologo": (dificultad_ia_psicologo *1.0/ total_games) * 100,
-		
+		"average_lider": (rol_lider * 1.0 / total_games) * 100,
+		"average_mediador": (rol_mediador * 1.0 / total_games) * 100,
+		"average_solidario": (rol_solidario * 1.0 / total_games) * 100,
+		"average_escucha": (rol_escucha * 1.0 / total_games) * 100
 	}
 
 func calculate_tirada_statistics(data: Dictionary) -> Dictionary:
 	var total_tiradas = 0
+	var total_stars = 0
 	var player_wins = 0
 	var ia_wins = 0
 	var draws = 0
@@ -346,6 +381,7 @@ func calculate_tirada_statistics(data: Dictionary) -> Dictionary:
 			for partida in player["partidas"]:
 				for tirada in partida["tiradas"]:
 					total_tiradas += 1
+					total_stars += tirada.get("stars", 0)  # Sumar las estrellas obtenidas en la tirada
 					if tirada["ganador_tirada"] == "Jugador":
 						player_wins += 1
 					elif tirada["ganador_tirada"] == "IA":
@@ -364,6 +400,8 @@ func calculate_tirada_statistics(data: Dictionary) -> Dictionary:
 		"ia_win": ia_wins,
 		"player_win_rate": (player_wins * 1.0 / total_tiradas) * 100 if total_tiradas > 0 else 0,
 		"ia_win_rate": (ia_wins * 1.0 / total_tiradas) * 100 if total_tiradas > 0 else 0,
+		"total_stars": total_stars,  # Total de estrellas ganadas
+		"average_stars": total_stars / total_tiradas if total_tiradas > 0 else 0,  # Media de estrellas
 		"DEPRECATED most_used_cards": card_usage
 	}
 
@@ -489,30 +527,43 @@ func generate_feedback() -> String:
 	# Asegúrate de que la división sea entre floats
 	var win_rate = float(wins) / float(total_games) *100.0
 
-	print("Wins:", wins, "Total Games:", total_games, "Win Rate:", win_rate)
+	#print("Wins:", wins, "Total Games:", total_games, "Win Rate:", win_rate)
+#
+	#if win_rate > 70:
+		#feedback += "¡Increíble! Has ganado más del 70% de tus partidas. Considera probar un nivel de dificultad más alto.\n"
+	#elif win_rate > 50:
+		#feedback += "Tienes un buen porcentaje de victorias %d%%. Analiza tus derrotas para identificar mejoras estratégicas.\n" % win_rate
+	#else:
+		#feedback += "Tu porcentaje de victorias es bajo. Intenta analizar mejor tus movimientos y combina cartas estratégicamente.\n"
+#
+	#if losses / total_games > 0.5:
+		#feedback += "Estás perdiendo muchas partidas. Esto puede indicar que necesitas comprender mejor las reglas o elegir mejor las cartas.\n"
+#
+	#if draws / total_games > 0.3:
+		#feedback += "Tienes un alto porcentaje de partidas empatadas. Trata de usar realizar combos para cerrar las partidas.\n"
+#
+	#if abandons / total_games > 0.2:
+		#feedback += "Abandonas muchas partidas. Esto puede ser un signo de frustración. Considera jugar en un nivel más cómodo o practicar estrategias básicas.\n"
+	#puntos empatia
+	
 
-	if win_rate > 70:
-		feedback += "¡Increíble! Has ganado más del 70% de tus partidas. Considera probar un nivel de dificultad más alto.\n"
-	elif win_rate > 50:
-		feedback += "Tienes un buen porcentaje de victorias %d%%. Analiza tus derrotas para identificar mejoras estratégicas.\n" % win_rate
-	else:
-		feedback += "Tu porcentaje de victorias es bajo. Intenta analizar mejor tus movimientos y combina cartas estratégicamente.\n"
-
-	if losses / total_games > 0.5:
-		feedback += "Estás perdiendo muchas partidas. Esto puede indicar que necesitas comprender mejor las reglas o elegir mejor las cartas.\n"
-
-	if draws / total_games > 0.3:
-		feedback += "Tienes un alto porcentaje de partidas empatadas. Trata de usar realizar combos para cerrar las partidas.\n"
-
-	if abandons / total_games > 0.2:
-		feedback += "Abandonas muchas partidas. Esto puede ser un signo de frustración. Considera jugar en un nivel más cómodo o practicar estrategias básicas.\n"
+	# Clasificar el desempeño según el promedio de estrellas
+	var average_stars = tirada_statistics["average_stars"]
+	if average_stars < 2:
+		feedback = "Desempeño bajo: %.2f Puntos de Empatía. Es un inicio, pero puedes mejorar. Intenta realizar más combinaciones y aprovechar tus cartas estratégicamente.\n" % average_stars
+	elif average_stars < 3:
+		feedback = "Desempeño bueno: %.2f Puntos de Empatía.¡Vas bien! Estás en el camino correcto. Aprovecha las oportunidades para maximizar las puntos de empatía obtenidos.\n" % average_stars
+	elif average_stars < 4:
+		feedback = "Desempeño excelente: %.2f Puntos de Empatía. ¡Muy bien hecho! Tu estrategia está dando resultados. Con un poco más de práctica, podrías alcanzar la perfección.\n" % average_stars
+	elif average_stars <= 5:
+		feedback = "Desempeño increíble: %.2f Puntos de Empatía. ¡Asombroso! Has dominado esta partida con maestría. Sigue así y serás imparable.\n" % average_stars
 
 	# Combos
 	var average_combos = player_statistics["average_combos"]
 	if average_combos < 2:
-		feedback += "Tu promedio de combos es bajo [%d]. Intenta combinar cartas con mejor afinidad para ganar ventaja.\n" % average_combos
+		feedback += "Tu promedio de combos es bajo %.2f por partida. Intenta combinar cartas con mejor afinidad para ganar ventaja.\n" % average_combos
 	elif average_combos > 2:
-		feedback += "¡Impresionante! Tienes un alto promedio de combos [%d]. Esta estrategia es la correcta para conseguir más Tokens.\n" % average_combos
+		feedback += "¡Impresionante! Tienes un alto promedio de combos %.2f por partida. Esta estrategia es la correcta para conseguir más Tokens.\n" % average_combos
 #
 	## Tokens
 	
@@ -524,11 +575,11 @@ func generate_feedback() -> String:
 	print (average_tokens)
 	## Generar feedback
 	if average_tokens < 3:
-		feedback += "Estás obteniendo pocos tokens [%d] de promedio en tus partidas. Trata de realizar más combos.\n" % average_tokens
+		feedback += "Estás obteniendo pocos tokens %.2f de promedio en tus partidas. Trata de realizar más combos.\n" % average_tokens
 	elif average_tokens <= 5:
-		feedback += "Tienes un rendimiento promedio con %d tokens. .\n" % average_tokens
+		feedback += "Tienes un rendimiento promedio con %.2f tokens. .\n" % average_tokens
 	else:
-		feedback += "¡Buen trabajo! Lograste %d tokens de promedio, lo cual indica que estás maximizando tus recursos.\n" % average_tokens
+		feedback += "¡Buen trabajo! Lograste %.2f tokens de promedio, lo cual indica que estás maximizando tus recursos.\n" % average_tokens
 	#
 	#
 	# Modos de juego
@@ -541,16 +592,63 @@ func generate_feedback() -> String:
 	else:
 		feedback += "Tienes un balance entre los modos de juego. Esto es excelente para adaptarte a diferentes desafíos.\n"
 
-	# Dificultad
-	var average_alumno = player_statistics["average_alumno"]
-	var average_profesor = player_statistics["average_profesor"]
-	var average_psicologo = player_statistics["average_psicologo"]
-	if average_psicologo > 50:
-		feedback += "Estás jugando principalmente en el nivel Psicólogo. ¡Eso es un gran desafío!\n"
-	elif average_profesor > 50:
-		feedback += "Estás jugando principalmente en el nivel Profesor. Esto es ideal para equilibrar dificultad y aprendizaje.\n"
-	elif average_alumno > 50:
-		feedback += "Estás jugando principalmente en el nivel Alumno. Considera aumentar la dificultad para poner a prueba tus habilidades.\n"
+
+	# Obtener los promedios de los niveles de dificultad
+	var average_difficulties = {
+		"Alumno": player_statistics["average_alumno"],
+		"Profesor": player_statistics["average_profesor"],
+		"Psicólogo": player_statistics["average_psicologo"]
+	}
+
+	# Determinar el nivel de dificultad más jugado
+	var max_difficulty = ""
+	var max_percentage_d = 0
+
+	for difficulty in average_difficulties.keys():
+		if average_difficulties[difficulty] > max_percentage_d:
+			max_difficulty = difficulty
+			max_percentage_d = average_difficulties[difficulty]
+
+	# Generar feedback según el nivel de dificultad más jugado
+	match max_difficulty:
+		"Alumno":
+			feedback += "Estás jugando principalmente en el nivel de dificultad Alumno, con un %.2f %% de tus partidas en este nivel. Considera aumentar la dificultad para poner a prueba tus habilidades y aprender más.\n" % max_percentage_d
+		"Profesor":
+			feedback += "Estás jugando principalmente en el nivel de dificultad Profesor, con un %.2f %% de tus partidas en este nivel. Esto es ideal para equilibrar el aprendizaje y el desafío. ¡Buen trabajo!\n" % max_percentage_d
+		"Psicólogo":
+			feedback += "Estás jugando principalmente en el nivel de dificultad Psicólogo, con un %.2f %% de tus partidas en este nivel. ¡Eso es un gran desafío! Sigue perfeccionando tus estrategias para dominar este nivel tan exigente.\n" % max_percentage_d
+
+
+	# Obtener los promedios de los roles
+	var average_roles = {
+		"Líder": player_statistics["average_lider"],
+		"Solidario": player_statistics["average_solidario"],
+		"Mediador": player_statistics["average_mediador"],
+		"Escucha": player_statistics["average_escucha"]
+	}
+
+	# Determinar el rol más jugado
+	var max_role = ""
+	var max_percentage = 0
+
+	for role in average_roles.keys():
+		if average_roles[role] > max_percentage:
+			max_role = role
+			max_percentage = average_roles[role]
+
+	# Generar feedback según el rol más jugado
+	match max_role:
+		"Líder":
+			feedback += "Has jugado principalmente como Líder, con un %.2f %% de las partidas en este rol. Esto demuestra que disfrutas tomar decisiones importantes hacia el éxito.\n"% max_percentage
+		"Solidario":
+			feedback += "Has jugado principalmente como Solidario, con un %.2f %% de las partidas en este rol. Esto refleja tu disposición a apoyar y colaborar con los demás.\n"% max_percentage
+		"Mediador":
+			feedback += "Has jugado principalmente como Mediador, con un %.2f %% de las partidas en este rol. Esto indica que prefieres resolver conflictos y fomentar la armonía.\n"% max_percentage
+		"Escucha":
+			feedback += "Has jugado principalmente como Escucha, con un %.2f %% de las partidas en este rol. Esto demuestra que valoras comprender a los demás y actuar con empatía.\n"% max_percentage
+
+	# Agregar una nota motivacional
+	feedback += "Continúa explorando diferentes roles para desarrollar una experiencia más versátil y completa en el juego."
 
 	return feedback
 	

@@ -233,7 +233,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_l5hmj")
 theme_override_font_sizes/font_size = 20
-text = "Promedio IA Alumno"
+text = "Promedio Dificultad Alumno"
 
 [node name="AverageIaAlumnoPlayerLabel" type="Label" parent="VBoxContainer/DateHBoxContainer16"]
 layout_mode = 2
@@ -249,7 +249,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_l5hmj")
 theme_override_font_sizes/font_size = 20
-text = "Promedio IA Profesor"
+text = "Promedio Dificultad Profesor"
 
 [node name="AverageIAProfesorPlayerLabel" type="Label" parent="VBoxContainer/DateHBoxContainer17"]
 layout_mode = 2
@@ -265,7 +265,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_l5hmj")
 theme_override_font_sizes/font_size = 20
-text = "Promedio IA Psicólogo"
+text = "Promedio Dificultad Psicólogo"
 
 [node name="AverageIAPsicologoPlayerLabel" type="Label" parent="VBoxContainer/DateHBoxContainer18"]
 layout_mode = 2
@@ -288,6 +288,7 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="DateHBoxContainer6" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="WinLabel" type="Label" parent="VBoxContainer/DateHBoxContainer6"]
@@ -304,6 +305,7 @@ theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
 [node name="DateHBoxContainer9" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="LossesLabel" type="Label" parent="VBoxContainer/DateHBoxContainer9"]
@@ -320,6 +322,7 @@ theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
 [node name="DateHBoxContainer19" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="DrawLabel" type="Label" parent="VBoxContainer/DateHBoxContainer19"]
@@ -336,6 +339,7 @@ theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
 [node name="DateHBoxContainer10" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="AbandonsLabel" type="Label" parent="VBoxContainer/DateHBoxContainer10"]
@@ -399,6 +403,70 @@ theme_override_fonts/font = ExtResource("2_l5hmj")
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
+[node name="DateHBoxContainer22" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AverageLiderLabel" type="Label" parent="VBoxContainer/DateHBoxContainer22"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_l5hmj")
+theme_override_font_sizes/font_size = 20
+text = "Promedio partidas Rol Líder"
+
+[node name="AverageLiderPlayerLabel" type="Label" parent="VBoxContainer/DateHBoxContainer22"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_l5hmj")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="DateHBoxContainer23" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AverageMediadorLabel" type="Label" parent="VBoxContainer/DateHBoxContainer23"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_l5hmj")
+theme_override_font_sizes/font_size = 20
+text = "Promedio partidas Rol Mediador"
+
+[node name="AverageMediadorPlayerLabel" type="Label" parent="VBoxContainer/DateHBoxContainer23"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_l5hmj")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="DateHBoxContainer24" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AverageSolidarioLabel" type="Label" parent="VBoxContainer/DateHBoxContainer24"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_l5hmj")
+theme_override_font_sizes/font_size = 20
+text = "Promedio partidas Rol Solidario"
+
+[node name="AverageSolidarioPlayerLabel" type="Label" parent="VBoxContainer/DateHBoxContainer24"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_l5hmj")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="DateHBoxContainer25" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AverageEscuchaLabel" type="Label" parent="VBoxContainer/DateHBoxContainer25"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_l5hmj")
+theme_override_font_sizes/font_size = 20
+text = "Promedio partidas Rol Escucha"
+
+[node name="AverageEscuchaPlayerLabel" type="Label" parent="VBoxContainer/DateHBoxContainer25"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_l5hmj")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
 [node name="HSeparator6" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
@@ -428,7 +496,41 @@ theme_override_fonts/font = ExtResource("2_l5hmj")
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
+[node name="DateHBoxContainer20" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TotalEstrellasLabel" type="Label" parent="VBoxContainer/DateHBoxContainer20"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_l5hmj")
+theme_override_font_sizes/font_size = 20
+text = "Total de puntos Empatía ganados
+"
+
+[node name="TotalEstrellasPlayerLabel" type="Label" parent="VBoxContainer/DateHBoxContainer20"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_l5hmj")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="DateHBoxContainer21" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="PromedioEstrellasLabel" type="Label" parent="VBoxContainer/DateHBoxContainer21"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_l5hmj")
+theme_override_font_sizes/font_size = 20
+text = "Promedio Puntos Empatía por tirada"
+
+[node name="PromedioEstrellasPlayerLabel" type="Label" parent="VBoxContainer/DateHBoxContainer21"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_l5hmj")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
 [node name="DateHBoxContainer14" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="PlayerWinLabel" type="Label" parent="VBoxContainer/DateHBoxContainer14"]
@@ -445,6 +547,7 @@ theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
 [node name="DateHBoxContainer15" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="RatioPlayerWinLabel" type="Label" parent="VBoxContainer/DateHBoxContainer15"]
@@ -644,7 +747,7 @@ offset_right = 606.0
 offset_bottom = 40.0
 theme_override_fonts/font = ExtResource("4_bnrhr")
 theme_override_font_sizes/font_size = 25
-text = "ESTADÍSTICAS IA's Y MODOS"
+text = "ESTADÍSTICAS DIFICULTAD Y MODOS"
 horizontal_alignment = 1
 
 [node name="ChartGeneral" type="Control" parent="."]

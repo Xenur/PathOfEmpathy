@@ -11,6 +11,7 @@ extends Control
 @onready var beep_audio_stream_player = $UI/BeepAudioStreamPlayer
 @onready var beep_countdown_audio_stream_player = $UI/BeepCountdownAudioStreamPlayer
 @onready var audio_stream_token = $UI/AudioStreamToken
+@onready var songs_label = $UI/SongsLabel
 
 # Controlador de canciones
 var current_song_index = -1
@@ -23,9 +24,16 @@ var song_list = [
 		"res://assets/audio/music/epic_orchestral_6.mp3"
 ]
 
-
+#Variables para manejar el tiempo y la interpolación
+@onready var fade_timer = Timer.new()  # Crea un temporizador
+var fade_duration = 1.0  # Duración del desvanecimiento en segundos
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Agregar y configurar el temporizador
+	add_child(fade_timer)
+	fade_timer.one_shot = true
+	fade_timer.connect("timeout", Callable(self, "_on_fade_timer_timeout"))
+
 	# Reinicia combos y scores
 	GlobalData.combo_ia = 0
 	GlobalData.combo_player = 0
@@ -84,22 +92,60 @@ func start_playlist():
 	# Baraja la lista de canciones para reproducirlas aleatoriamente
 	song_list.shuffle()
 	play_next_song()
+#
+#func play_next_song():
+	#print("repro Cambiando a la siguiente canción...")
+	#current_song_index += 1
+	#if current_song_index >= song_list.size():
+		#current_song_index = 0  # Reinicia la lista si llegamos al final
+		#song_list.shuffle()
+	#var song_path = song_list[current_song_index]
+	#print("repro Cargando canción:", song_path)
+	#var song = load(song_path) as AudioStream
+	#if song:
+		#audio_stream_player.stream = song
+		#audio_stream_player.play()
+		#print("repro Reproduciendo:", song_path)
+		#songs_label.visible = true
+		#songs_label.text = 
+#func _on_audio_stream_player_finished():
+	## Cuando termine la canción, pasa a la siguiente
+	#print("repro cancion ha llegado a su fin")
+	#play_next_song()
 
 func play_next_song():
-	print("repro Cambiando a la siguiente canción...")
+	print("Cambiando a la siguiente canción...")
 	current_song_index += 1
 	if current_song_index >= song_list.size():
 		current_song_index = 0  # Reinicia la lista si llegamos al final
 		song_list.shuffle()
+
 	var song_path = song_list[current_song_index]
-	print("repro Cargando canción:", song_path)
+	print("Cargando canción:", song_path)
 	var song = load(song_path) as AudioStream
 	if song:
 		audio_stream_player.stream = song
 		audio_stream_player.play()
-		print("repro Reproduciendo:", song_path)
+		print("Reproduciendo:", song_path)
+
+		# Mostrar el nombre de la canción en el label
+		songs_label.text = "Reproduciendo: " + song_path.get_file().get_basename()
+		songs_label.visible = true
+		songs_label.modulate = Color(1, 1, 1, 1)  # Reinicia la visibilidad del label
+
+		# Inicia el temporizador para que el texto se desvanezca
+		fade_timer.start(5.0)
 
 func _on_audio_stream_player_finished():
-	# Cuando termine la canción, pasa a la siguiente
-	print("repro cancion ha llegado a su fin")
+	print("Canción ha llegado a su fin")
 	play_next_song()
+
+func _on_fade_timer_timeout():
+	# Desvanece el texto usando interpolación
+	var tween = create_tween()
+	tween.tween_property(songs_label, "modulate", Color(1, 1, 1, 0), fade_duration)
+	tween.connect("finished", Callable(self, "_on_fade_complete"))
+
+func _on_fade_complete():
+	# Oculta el label al finalizar el desvanecimiento
+	songs_label.visible = false

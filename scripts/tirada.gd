@@ -9,7 +9,8 @@ class_name Tirada
 @export var combos_ia: int              # Combos logrados por la IA
 @export var combos_jugador: int         # Combos logrados por el jugador
 @export var token_ia: Dictionary               # Tokens ganados por la IA
-@export var token_jugador: Dictionary          # Tokens ganados por el jugador
+@export var token_jugador: Dictionary   
+@export var stars: int  # estrellas ganadas en la tirada
 
 # Constructor para inicializar la tirada
 func _init(
@@ -21,7 +22,8 @@ func _init(
 	_combos_ia: int,
 	_combos_jugador: int,
 	_token_ia: Dictionary,
-	_token_jugador: Dictionary
+	_token_jugador: Dictionary,
+	_stars: int
 ):
 	self.numero_tirada = _numero_tirada
 	self.carta_bu = _carta_bu
@@ -32,6 +34,7 @@ func _init(
 	self.combos_jugador = _combos_jugador
 	self.token_ia = _token_ia
 	self.token_jugador = _token_jugador
+	self.stars = _stars
 
 	# Depuración
 	print("Tirada creada:")
@@ -44,3 +47,4 @@ func _init(
 	print("Combos Jugador:", combos_jugador)
 	print("Tokens IA:", token_ia)
 	print("Tokens Jugador:", token_jugador)
+	print("Stars:", stars)

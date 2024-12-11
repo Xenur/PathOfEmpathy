@@ -508,7 +508,6 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_nyjw5")
 flat = true
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="Overlay/OptionWindow/VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 

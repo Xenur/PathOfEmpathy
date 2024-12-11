@@ -80,7 +80,7 @@ var current_state = GameState.PREPARE
 
 # Constantes para los tiempos de cuenta atrás
 const COUNTDOWN_TURN = 5 * 60  # En segundos (5 minutos) 
-const COUNTDOWN_GAME = 25 * 60  # En segundos (25 minutos)
+const COUNTDOWN_GAME = 1 * 60  # En segundos (25 minutos)
 
 # Variables de tiempo
 var countdown_turn = COUNTDOWN_TURN # Temporizador de turno
@@ -110,8 +110,8 @@ var countdown_sound_playing = false
 
 @onready var name_hs_label = $"../UI/EndTurnPopup/VBoxContainer/HBoxContainer2/NameHSLabel"
 @onready var points_hs_label = $"../UI/EndTurnPopup/VBoxContainer/HBoxContainer2/PointsHSLabel"
-@onready var ia_label = $"../UI/EndTurnPopup/VBoxContainer/IALabel"
-@onready var ia_name_re_label = $"../UI/EndTurnPopup/VBoxContainer/HBoxContainer3/IANameRELabel"
+#@onready var ia_label = $"../UI/EndTurnPopup/VBoxContainer/IALabel"
+#@onready var ia_name_re_label = $"../UI/EndTurnPopup/VBoxContainer/HBoxContainer3/IANameRELabel"
 @onready var ia_points_re_label = $"../UI/EndTurnPopup/VBoxContainer/HBoxContainer3/IAPointsRELabel"
 @onready var ia_name_hs_label = $"../UI/EndTurnPopup/VBoxContainer/HBoxContainer4/IANameHSLabel"
 @onready var ia_points_hs_label = $"../UI/EndTurnPopup/VBoxContainer/HBoxContainer4/IAPointsHSLabel"
@@ -157,7 +157,7 @@ var countdown_sound_playing = false
 
 @onready var score_token_ia = $"../UI/GameOver/GameResultTextureRect/ScoreTokenIA"
 @onready var score_token_player = $"../UI/GameOver/GameResultTextureRect/ScoreTokenPlayer"
-@onready var vs_label = $"../UI/GameOver/GameResultTextureRect/VSLabel"
+
 
 @onready var game_over_player_scorelabel = $"../UI/GameOver/GameResultTextureRect/ScoreTokenPlayer/ShowScorePlayer/PlayerScorelabel"
 @onready var game_over_ia_score_label = $"../UI/GameOver/GameResultTextureRect/ScoreTokenIA/ShowScoreIA/IAScoreLabel"
@@ -235,6 +235,10 @@ var countdown_sound_playing = false
 
 @onready var duelo_label = $"../DeckManager/DueloLabel"
 @onready var total_label = $"../DeckManager/TotalLabel/TotalLabel"
+
+@onready var situaciones_aboradadas_label = $"../UI/GameOver/GameResultTextureRect/SituacionesAboradadasLabel"
+@onready var puntos_empatia_totales_label = $"../UI/GameOver/GameResultTextureRect/PuntosEmpatiaTotalesLabel"
+@onready var performance_mensaje_label = $"../UI/GameOver/GameResultTextureRect/PerformanceMensajeLabel"
 
 # Diccionario con las nuevas texturas para los tokens
 var token_textures: Dictionary = {
@@ -534,7 +538,7 @@ func prepare_game():
 		deck_manager.deck_hs.pop_back() as CardsHS,
 		deck_manager.deck_hs.pop_back() as CardsHS
 	]
-	
+	GlobalData.current_game_data.clear()
 	# Cambiar al estado de turno
 	change_state(GameState.TURN)
 
@@ -603,6 +607,7 @@ func check_game_result():
 	# Calcula puntuaciones
 	# Actualiza las etiquetas del jugador y la IA
 	var player_score = calculate_player_score(player_bullying_card, player_re_card, player_hs_card, valid_combination)
+	player_score = adjust_player_score(player_score)
 	update_player_labels(player_score, valid_combination, raw_match, player_re_card, player_hs_card)
 	#var ia_score = calculate_ia_score(player_bullying_card, ia_re_card, ia_hs_card, valid_combination_ia)
 	#var ia_score = calculate_score(player_bullying_card, ia_re_card, ia_hs_card)
@@ -657,6 +662,7 @@ func check_game_result():
 	var combos_jugador = GlobalData.combo_player
 	var token_ia = GlobalData.token_earned_player
 	var token_jugador = GlobalData.token_earned_player
+	var stars = GlobalData.stars
 
 	# Crear la nueva tirada
 	var nueva_tirada = Tirada.new(
@@ -668,7 +674,8 @@ func check_game_result():
 		combos_ia,
 		combos_jugador,
 		token_ia,
-		token_jugador
+		token_jugador,
+		stars
 	)
 
 	# Depuración
@@ -676,11 +683,21 @@ func check_game_result():
 
 	nueva_partida.add_tirada(nueva_tirada)
 	save_game_persistence(nueva_partida)
-	
+	add_card_to_current_game(player_bullying_card.nombre, stars)
 	
 	# Finalizar el turno
 	end_turn_actions()
 
+func adjust_player_score(player_score: float) -> float:
+	match GameConfig.ia_difficulty:
+		0:  # Dificultad Alumno
+			return player_score * 1.5
+		1:  # Dificultad Profesor
+			return player_score * 1.0  # Sin cambio
+		2:  # Dificultad Psicólogo
+			return player_score * 0.8
+		_:
+			return player_score  # Valor por defecto si ia_dificulty no es válido
 
 # Actualiza información sobre el bullying
 func update_bullying_info():
@@ -737,52 +754,121 @@ func calculate_ia_score(player_bullying_card, ia_re_card, ia_hs_card, valid_comb
 
 	return score
 
-
-# Actualiza las etiquetas del jugador
+#
+## Actualiza las etiquetas del jugador
+#func update_player_labels(player_score, valid_combination, raw_match, player_re_card, player_hs_card):
+	#if player_re_card:
+		#print("updateplayerlabels playerre", player_re_card.nombre)
+	#else:
+		#print("updateplayerlabels playerre NO SELECCIONADA")
+	#if player_hs_card:
+		#print("updateplayerlabels playerhs", player_hs_card.nombre)
+	#else:
+		#print("updateplayerlabels playerhs NO SELECCIONADA")		
+	#var player_bullying_card
+	#player_label.text = GlobalData.user
+	#if player_re_card:
+		#player_bullying_card = deck_manager.get_card_bu_by_id(card_bullying.id_carta)
+		##name_re_label.text = player_re_card.nombre #+ " Multiplicador " + str(get_affinity_multiplier(player_re_card.afinidad, player_bullying_card.tipo))
+		#name_re_label.text = player_re_card.nombre + " - Factor Afinidad x" + str(GlobalData.re_multiplier) #+ " - Puntuación: " + str(GlobalData.re_total_score)
+	#else:
+		#line_1_dialogue_label.text = "NO HAS ELEGIDO CARTA DE RESPUESTA EMPÁTICA"
+		#name_re_label.text = "NO HAS ELEGIDO CARTA DE RESPUESTA EMPÁTICA"
+	#if player_hs_card:
+		#player_bullying_card = deck_manager.get_card_bu_by_id(card_bullying.id_carta)
+		##name_hs_label.text = player_hs_card.nombre # + " Multiplicador " + str(get_affinity_multiplier(player_hs_card.afinidad, player_bullying_card.tipo))
+		#name_hs_label.text = player_hs_card.nombre + " - Factor Afinidad x" + str(GlobalData.hs_multiplier) # + " - Puntuación: " + str(GlobalData.hs_total_score)
+	#else:
+		#line_2_dialogue_label.text = "NO HAS ELEGIDO CARTA DE HABILIDAD SOCIAL"
+		#name_hs_label.text = "NO HAS ELEGIDO CARTA DE HABILIDAD SOCIAL"
+	#if valid_combination:
+		#line_1_dialogue_label.text = "¡COMBINACIÓN PERFECTA! 5 PUNTOS DE EMPATÍA"
+		#player_label.text = GlobalData.user + " ¡COMBINACIÓN PERFECTA! 5 ESTRELLAS"
+		#name_re_label.text = player_re_card.nombre
+		#name_hs_label.text = player_hs_card.nombre
+		#line_2_dialogue_label.text = raw_match["por_que"]
+		#correct_strategy_why_label.text = raw_match["por_que"]
+		##points_hs_label.text = str(200) + " puntos"
+	#elif GlobalData.stars >= 4:
+		#line_2_dialogue_label.text = "¡PUNTUACIÓN SUPERIOR +1 COMBO!"
+		#player_label.text = GlobalData.user + " ¡PUNTUACIÓN SUPERIOR +1 COMBO!"
+		##points_hs_label.text = str(player_score) + " puntos"
+	#var stars = 0
+	## Calcular estrellas
+	#if player_bullying_card and player_bullying_card.thresholds:
+		#stars = calculate_stars(player_score, player_bullying_card.thresholds)
+		#line_3_dialogue_label.text = "Has conseguido " + str(stars) + " puntos de empatía"
+		#estrellas_label.text = "⭐".repeat(stars) + " (" + str(stars) + " corazones)"
+	#else:
+		#estrellas_label.text = "No se pueden calcular estrellas."
+			## Generar feedback
+	#if player_bullying_card:
+		#var feedback = generate_feedback(player_score, stars, player_re_card, player_hs_card, player_bullying_card)
+		#line_5_dialogue_label.text = feedback
+	#else:
+		#line_5_dialogue_label.text = "No se pudo generar feedback."
 func update_player_labels(player_score, valid_combination, raw_match, player_re_card, player_hs_card):
-	var player_bullying_card
+	
+	# Debug inicial para verificar el estado de las cartas
+	if player_re_card:
+		print("updateplayerlabels playerre:", player_re_card.nombre)
+	else:
+		print("updateplayerlabels playerre: NO SELECCIONADA")
+	
+	if player_hs_card:
+		print("updateplayerlabels playerhs:", player_hs_card.nombre)
+	else:
+		print("updateplayerlabels playerhs: NO SELECCIONADA")
+
+	# Actualización del nombre del jugador
 	player_label.text = GlobalData.user
+	var player_bullying_card
+	# Actualización de la carta de Respuesta Empática (RE)
 	if player_re_card:
 		player_bullying_card = deck_manager.get_card_bu_by_id(card_bullying.id_carta)
-		#name_re_label.text = player_re_card.nombre #+ " Multiplicador " + str(get_affinity_multiplier(player_re_card.afinidad, player_bullying_card.tipo))
-		name_re_label.text = player_re_card.nombre + " - Factor Afinidad x" + str(GlobalData.re_multiplier) #+ " - Puntuación: " + str(GlobalData.re_total_score)
+		name_re_label.text = player_re_card.nombre + " - Factor Afinidad x" + str(GlobalData.re_multiplier)
 	else:
-		line_1_dialogue_label.text = "NO HAS ELEGIDO CARTA DE RESPUESTA EMPÁTICA"
 		name_re_label.text = "NO HAS ELEGIDO CARTA DE RESPUESTA EMPÁTICA"
+		line_3_dialogue_label.text = "NO HAS ELEGIDO CARTA DE RESPUESTA EMPÁTICA"
+
+	# Actualización de la carta de Habilidad Social (HS)
 	if player_hs_card:
 		player_bullying_card = deck_manager.get_card_bu_by_id(card_bullying.id_carta)
-		#name_hs_label.text = player_hs_card.nombre # + " Multiplicador " + str(get_affinity_multiplier(player_hs_card.afinidad, player_bullying_card.tipo))
-		name_hs_label.text = player_hs_card.nombre + " - Factor Afinidad x" + str(GlobalData.hs_multiplier) # + " - Puntuación: " + str(GlobalData.hs_total_score)
+		name_hs_label.text = player_hs_card.nombre + " - Factor Afinidad x" + str(GlobalData.hs_multiplier)
 	else:
-		line_2_dialogue_label.text = "NO HAS ELEGIDO CARTA DE HABILIDAD SOCIAL"
 		name_hs_label.text = "NO HAS ELEGIDO CARTA DE HABILIDAD SOCIAL"
+		line_4_dialogue_label.text = "NO HAS ELEGIDO CARTA DE HABILIDAD SOCIAL"
+
+	# Verificar combinación válida
 	if valid_combination:
-		line_1_dialogue_label.text = "¡COMBINACIÓN PERFECTA! 5 ESTRELLAS"
+		line_1_dialogue_label.text = "¡COMBINACIÓN PERFECTA! 5 PUNTOS DE EMPATÍA"
 		player_label.text = GlobalData.user + " ¡COMBINACIÓN PERFECTA! 5 ESTRELLAS"
-		name_re_label.text = player_re_card.nombre
-		name_hs_label.text = player_hs_card.nombre
-		line_2_dialogue_label.text = raw_match["por_que"]
+		name_re_label.text = player_re_card.nombre if player_re_card else "NO SELECCIONADA"
+		name_hs_label.text = player_hs_card.nombre if player_hs_card else "NO SELECCIONADA"
+		line_5_dialogue_label.text = raw_match["por_que"]
 		correct_strategy_why_label.text = raw_match["por_que"]
-		#points_hs_label.text = str(200) + " puntos"
-	elif GlobalData.stars <= 4:
-		line_2_dialogue_label.text = "¡PUNTUACIÓN SUPERIOR +1 COMBO!"
+
+	# Verificar puntuación superior
+	elif GlobalData.stars >= 4:
+		line_1_dialogue_label.text = "¡PUNTUACIÓN SUPERIOR +1 COMBO!"
 		player_label.text = GlobalData.user + " ¡PUNTUACIÓN SUPERIOR +1 COMBO!"
-		#points_hs_label.text = str(player_score) + " puntos"
+
+	# Calcular estrellas si hay carta de bullying
 	var stars = 0
-	# Calcular estrellas
-	if player_bullying_card and player_bullying_card.thresholds:
+	if player_bullying_card and player_bullying_card.thresholds :
 		stars = calculate_stars(player_score, player_bullying_card.thresholds)
-		line_3_dialogue_label.text = "Has conseguido " + str(stars) + " puntos de empatía"
+		line_1_dialogue_label.text = "HAS CONSEGUIDO " + str(stars) + " PUNTOS EMPATÍA"
 		estrellas_label.text = "⭐".repeat(stars) + " (" + str(stars) + " corazones)"
 	else:
 		estrellas_label.text = "No se pueden calcular estrellas."
-			# Generar feedback
+
+	# Generar feedback basado en las cartas y el puntaje
 	if player_bullying_card:
 		var feedback = generate_feedback(player_score, stars, player_re_card, player_hs_card, player_bullying_card)
 		line_5_dialogue_label.text = feedback
 	else:
 		line_5_dialogue_label.text = "No se pudo generar feedback."
-
+	
 # Función para calcular las estrellas
 func calculate_stars(score: int, thresholds: Array) -> int:
 	var stars = 0
@@ -845,7 +931,7 @@ func generate_feedback(player_score, stars: int, player_re_card, player_hs_card,
 
 # Actualiza las etiquetas de la IA
 func update_ia_labels(ia_score, ia_re_card, ia_hs_card):
-	ia_name_re_label.text = ia_re_card.nombre
+	#ia_name_re_label.text = ia_re_card.nombre
 	ia_name_hs_label.text = ia_hs_card.nombre
 	ia_points_hs_label.text = str(ia_score) + " puntos"
 
@@ -1061,118 +1147,14 @@ func game_over():
 	print("Juego Terminado.")
 	# Verifica si el juego terminó por tiempo o condición especial
 	if GlobalData.game_over_time_or_bu == true:
-		var texture_path = ""
 		beep_audio_stream_player.stop()
 		beep_countdown_audio_stream_player.stop()
-		score_token_ia.visible = true
-		score_token_player.visible = true
-
-		score_token_player.get_node("ExclusionSocialToken/Panel/Label").text = str(GlobalData.token_earned_player["exclusión_social"])
-		score_token_player.get_node("FisicoToken/Panel/Label").text = str(GlobalData.token_earned_player["físico"])
-		score_token_player.get_node("PsicologicoToken/Panel/Label").text = str(GlobalData.token_earned_player["psicológico"])
-		score_token_player.get_node("SexualToken/Panel/Label").text = str(GlobalData.token_earned_player["sexual"])
-		score_token_player.get_node("VerbalToken/Panel/Label").text = str(GlobalData.token_earned_player["verbal"])
-		score_token_player.get_node("CiberbullyingToken/Panel/Label").text = str(GlobalData.token_earned_player["ciberbullying"])
-		
-		score_token_ia.get_node("ExclusionSocialToken/Panel/Label").text = str(GlobalData.token_earned_ia["exclusión_social"])
-		score_token_ia.get_node("FisicoToken/Panel/Label").text = str(GlobalData.token_earned_ia["físico"])
-		score_token_ia.get_node("PsicologicoToken/Panel/Label").text = str(GlobalData.token_earned_ia["psicológico"])
-		score_token_ia.get_node("SexualToken/Panel/Label").text = str(GlobalData.token_earned_ia["sexual"])
-		score_token_ia.get_node("VerbalToken/Panel/Label").text = str(GlobalData.token_earned_ia["verbal"])
-		score_token_ia.get_node("CiberbullyingToken/Panel/Label").text = str(GlobalData.token_earned_ia["ciberbullying"])
-		
-
-		
-		update_token_textures_game_over()
-
-		var total_token_player: int = 0
-		var total_token_ia: int = 0
-
-		if GlobalData.token_earned_player["verbal"] > 0:
-			ve_score_token_label.text = "+ " + str(GlobalData.token_earned_player["verbal"] * 1000)
-			total_token_player += GlobalData.token_earned_player["verbal"] * 1000
-
-		if GlobalData.token_earned_player["exclusión_social"] > 0:
-			ex_score_token_label.text = "+ " + str(GlobalData.token_earned_player["exclusión_social"] * 1000)
-			total_token_player += GlobalData.token_earned_player["exclusión_social"] * 1000
-
-		if GlobalData.token_earned_player["físico"] > 0:
-			fi_score_token_label.text = "+ " + str(GlobalData.token_earned_player["físico"] * 1000)
-			total_token_player += GlobalData.token_earned_player["físico"] * 1000
-
-		if GlobalData.token_earned_player["sexual"] > 0:
-			se_score_token_label.text = "+ " + str(GlobalData.token_earned_player["sexual"] * 1000)
-			total_token_player += GlobalData.token_earned_player["sexual"] * 1000
-
-		if GlobalData.token_earned_player["ciberbullying"] > 0:
-			ci_score_token_label.text = "+ " + str(GlobalData.token_earned_player["ciberbullying"] * 1000)
-			total_token_player += GlobalData.token_earned_player["ciberbullying"] * 1000
-
-		if GlobalData.token_earned_player["psicológico"] > 0:
-			ps_score_token_label.text = "+ " + str(GlobalData.token_earned_player["psicológico"] * 1000)
-			total_token_player += GlobalData.token_earned_player["psicológico"] * 1000
-
-		# Actualiza el puntaje total del jugador
-		GlobalData.total_player_score += total_token_player
-		
-		if GlobalData.token_earned_ia["verbal"] > 0:
-			ve_ia_score_token_label.text = "+ " + str(GlobalData.token_earned_ia["verbal"] * 1000)
-			total_token_ia += GlobalData.token_earned_ia["verbal"] * 1000
-
-		if GlobalData.token_earned_ia["exclusión_social"] > 0:
-			ex_ia_score_token_label.text = "+ " + str(GlobalData.token_earned_ia["exclusión_social"] * 1000)
-			total_token_ia += GlobalData.token_earned_ia["exclusión_social"] * 1000
-
-		if GlobalData.token_earned_ia["físico"] > 0:
-			fi_ia_score_token_label.text = "+ " + str(GlobalData.token_earned_ia["físico"] * 1000)
-			total_token_ia += GlobalData.token_earned_ia["físico"] * 1000
-
-		if GlobalData.token_earned_ia["sexual"] > 0:
-			se_ia_score_token_label.text = "+ " + str(GlobalData.token_earned_ia["sexual"] * 1000)
-			total_token_ia += GlobalData.token_earned_ia["sexual"] * 1000
-
-		if GlobalData.token_earned_ia["ciberbullying"] > 0:
-			ci_ia_score_token_label.text = "+ " + str(GlobalData.token_earned_ia["ciberbullying"] * 1000)
-			total_token_ia += GlobalData.token_earned_ia["ciberbullying"] * 1000
-
-		if GlobalData.token_earned_ia["psicológico"] > 0:
-			ps_ia_score_token_label.text = "+ " + str(GlobalData.token_earned_ia["psicológico"] * 1000)
-			total_token_ia += GlobalData.token_earned_ia["psicológico"] * 1000
-
-		# Actualiza el puntaje total del jugador
-		GlobalData.total_ia_score += total_token_ia
-
-		# Asignación de valores finales a las etiquetas de texto
-		game_over_ia_name_label.text = GlobalData.get_difficulty_text(GameConfig.ia_difficulty)
-		game_over_ia_combo_label.text = str(GlobalData.combo_ia)
-		game_over_player_name_label.text = GlobalData.user
-		game_over_player_combo_label.text = str(GlobalData.combo_player)
-		game_over_player_scorelabel.text = str(GlobalData.total_player_score)
-		game_over_ia_score_label.text = str(GlobalData.total_ia_score)
-
-		if GlobalData.total_player_score > GlobalData.total_ia_score:
-			# Victoria
-			print("time out: victoria")
-			game_result_label.text = "VICTORIA"
-			texture_path = "res://assets/ui/backgrounds/victory_2.png"
-			score_token_ia.visible = true
-			score_token_player.visible = true
-			vs_label.visible = true
-		elif GlobalData.total_player_score < GlobalData.total_ia_score:
-			# Derrota
-			print("time out: derrota")
-			game_result_label.text = "DERROTA"
-			texture_path = "res://assets/ui/backgrounds/defeat_1_borderless.png"
-			score_token_ia.visible = true
-			score_token_player.visible = true
-			vs_label.visible = true
-		else:
-			# Empate
-			print("time out: empate")
-			game_result_label.text = "EMPATE"
-			texture_path = "res://assets/ui/backgrounds/draw_1.png"  # Ruta a la textura de empate
-
-		# Aplicar efectos visuales
+		var texture_path = "res://assets/ui/backgrounds/victory_2.png"
+		#print("Juego terminado por abandono")
+		game_result_label.text = "¡Tu aventura en números!"
+		score_token_ia.visible = false
+		score_token_player.visible = false
+		#vs_label.visible = false
 		blur_overlay.visible = true
 		var material = blur_overlay.material
 		if material is ShaderMaterial:
@@ -1180,11 +1162,72 @@ func game_over():
 		audio_stream_player.stop()
 		play_beep_sound("res://assets/audio/sfx/traimory-hit-low-gun-shot-cinematic-trailer-sound-effects-161154.mp3")
 		game_over_control.visible = true
-
-		# Asignar la textura al TextureRect dinámicamente
+			# Asignar la textura al TextureRect dinámicamente
 		var result_texture = load(texture_path)
 		game_result_texture_rect.texture = result_texture
 		game_result_texture_rect.visible = true
+		#var texture_path = ""
+		#beep_audio_stream_player.stop()
+		#beep_countdown_audio_stream_player.stop()
+		#score_token_ia.visible = true
+		#score_token_player.visible = true
+		#game_result_label.text = "JUGADO"
+		score_token_player.get_node("ExclusionSocialToken/Panel/Label").text = str(GlobalData.token_earned_player["exclusión_social"])
+		score_token_player.get_node("FisicoToken/Panel/Label").text = str(GlobalData.token_earned_player["físico"])
+		score_token_player.get_node("PsicologicoToken/Panel/Label").text = str(GlobalData.token_earned_player["psicológico"])
+		score_token_player.get_node("SexualToken/Panel/Label").text = str(GlobalData.token_earned_player["sexual"])
+		score_token_player.get_node("VerbalToken/Panel/Label").text = str(GlobalData.token_earned_player["verbal"])
+		score_token_player.get_node("CiberbullyingToken/Panel/Label").text = str(GlobalData.token_earned_player["ciberbullying"])
+#
+#
+		#
+		#update_token_textures_game_over()
+#
+		#var total_token_player: int = 0
+		#var total_token_ia: int = 0
+#
+		#if GlobalData.token_earned_player["verbal"] > 0:
+			#ve_score_token_label.text = "+ " + str(GlobalData.token_earned_player["verbal"] * 1000)
+			#total_token_player += GlobalData.token_earned_player["verbal"] * 1000
+#
+		#if GlobalData.token_earned_player["exclusión_social"] > 0:
+			#ex_score_token_label.text = "+ " + str(GlobalData.token_earned_player["exclusión_social"] * 1000)
+			#total_token_player += GlobalData.token_earned_player["exclusión_social"] * 1000
+#
+		#if GlobalData.token_earned_player["físico"] > 0:
+			#fi_score_token_label.text = "+ " + str(GlobalData.token_earned_player["físico"] * 1000)
+			#total_token_player += GlobalData.token_earned_player["físico"] * 1000
+#
+		#if GlobalData.token_earned_player["sexual"] > 0:
+			#se_score_token_label.text = "+ " + str(GlobalData.token_earned_player["sexual"] * 1000)
+			#total_token_player += GlobalData.token_earned_player["sexual"] * 1000
+#
+		#if GlobalData.token_earned_player["ciberbullying"] > 0:
+			#ci_score_token_label.text = "+ " + str(GlobalData.token_earned_player["ciberbullying"] * 1000)
+			#total_token_player += GlobalData.token_earned_player["ciberbullying"] * 1000
+#
+		#if GlobalData.token_earned_player["psicológico"] > 0:
+			#ps_score_token_label.text = "+ " + str(GlobalData.token_earned_player["psicológico"] * 1000)
+			#total_token_player += GlobalData.token_earned_player["psicológico"] * 1000
+#
+		## Actualiza el puntaje total del jugador
+		#GlobalData.total_player_score += total_token_player
+		##
+		#
+		#beep_audio_stream_player.stop()
+		#beep_countdown_audio_stream_player.stop()
+		#texture_path = "res://assets/ui/backgrounds/victory_2.png"
+		#blur_overlay.visible = true
+		#var material = blur_overlay.material
+		#if material is ShaderMaterial:
+			#material.set_shader_parameter("darkness_factor", 0.05)
+		#audio_stream_player.stop()
+		#play_beep_sound("res://assets/audio/sfx/traimory-hit-low-gun-shot-cinematic-trailer-sound-effects-161154.mp3")
+#
+		## Asignar la textura al TextureRect dinámicamente
+		#var result_texture = load(texture_path)
+		#game_result_texture_rect.texture = result_texture
+		#game_result_texture_rect.visible = true
 
 	else:
 		# Si el juego terminó por abortar
@@ -1196,7 +1239,7 @@ func game_over():
 			game_result_label.text = "ABANDONO"
 			score_token_ia.visible = false
 			score_token_player.visible = false
-			vs_label.visible = false
+			#vs_label.visible = false
 			blur_overlay.visible = true
 			var material = blur_overlay.material
 			if material is ShaderMaterial:
@@ -1209,11 +1252,187 @@ func game_over():
 			var result_texture = load(texture_path)
 			game_result_texture_rect.texture = result_texture
 			game_result_texture_rect.visible = true
-	
+			
+
 	nueva_partida.ganador = game_result_label.text
 	nueva_partida.tiempo_total_partida = COUNTDOWN_GAME - countdown_game
 	nueva_partida.partida_abandonada = GlobalData.game_over_abort
 	save_game_persistence(nueva_partida)
+	#var saved_data = load_saved_games()
+	populate_bu_cards_tree_from_array()
+	var average_stars = calculate_average_stars()
+	var performance_message = get_performance_message(average_stars)
+	print(performance_message)  # Muestra el mensaje correspondiente
+	situaciones_aboradadas_label.text = "Situaciones Abordadas " + str(GlobalData.current_game_data.size())
+	puntos_empatia_totales_label.text = "Promedio Puntos Empatía " + str(average_stars)
+	performance_mensaje_label.text = performance_message
+	
+	
+#func game_over():
+	#print("GlobalData.tokens_earned")
+	#print(GlobalData.token_combos_player)
+## {"verbal": 2, "exclusión_social": 1, "psicológico": 0, "físico": 3, "sexual": 0, "ciberbullying": 1}
+	#print("GlobalData.tokens_earned")
+	#print(GlobalData.token_combos_ia)
+##	 {"verbal": 1, "exclusión_social": 0, "psicológico": 2, "físico": 2, "sexual": 1, "ciberbullying": 0}
+#
+	#print("GlobalData.token_earned")
+	#print(GlobalData.token_earned_player)
+	#print("Juego Terminado.")
+	## Verifica si el juego terminó por tiempo o condición especial
+	#if GlobalData.game_over_time_or_bu == true:
+		#var texture_path = ""
+		#beep_audio_stream_player.stop()
+		#beep_countdown_audio_stream_player.stop()
+		#score_token_ia.visible = true
+		#score_token_player.visible = true
+		#game_result_label.text = "JUGADO"
+		#score_token_player.get_node("ExclusionSocialToken/Panel/Label").text = str(GlobalData.token_earned_player["exclusión_social"])
+		#score_token_player.get_node("FisicoToken/Panel/Label").text = str(GlobalData.token_earned_player["físico"])
+		#score_token_player.get_node("PsicologicoToken/Panel/Label").text = str(GlobalData.token_earned_player["psicológico"])
+		#score_token_player.get_node("SexualToken/Panel/Label").text = str(GlobalData.token_earned_player["sexual"])
+		#score_token_player.get_node("VerbalToken/Panel/Label").text = str(GlobalData.token_earned_player["verbal"])
+		#score_token_player.get_node("CiberbullyingToken/Panel/Label").text = str(GlobalData.token_earned_player["ciberbullying"])
+		##
+		##score_token_ia.get_node("ExclusionSocialToken/Panel/Label").text = str(GlobalData.token_earned_ia["exclusión_social"])
+		##score_token_ia.get_node("FisicoToken/Panel/Label").text = str(GlobalData.token_earned_ia["físico"])
+		##score_token_ia.get_node("PsicologicoToken/Panel/Label").text = str(GlobalData.token_earned_ia["psicológico"])
+		##score_token_ia.get_node("SexualToken/Panel/Label").text = str(GlobalData.token_earned_ia["sexual"])
+		##score_token_ia.get_node("VerbalToken/Panel/Label").text = str(GlobalData.token_earned_ia["verbal"])
+		##score_token_ia.get_node("CiberbullyingToken/Panel/Label").text = str(GlobalData.token_earned_ia["ciberbullying"])
+		##
+#
+		#
+		#update_token_textures_game_over()
+#
+		#var total_token_player: int = 0
+		#var total_token_ia: int = 0
+#
+		#if GlobalData.token_earned_player["verbal"] > 0:
+			#ve_score_token_label.text = "+ " + str(GlobalData.token_earned_player["verbal"] * 1000)
+			#total_token_player += GlobalData.token_earned_player["verbal"] * 1000
+#
+		#if GlobalData.token_earned_player["exclusión_social"] > 0:
+			#ex_score_token_label.text = "+ " + str(GlobalData.token_earned_player["exclusión_social"] * 1000)
+			#total_token_player += GlobalData.token_earned_player["exclusión_social"] * 1000
+#
+		#if GlobalData.token_earned_player["físico"] > 0:
+			#fi_score_token_label.text = "+ " + str(GlobalData.token_earned_player["físico"] * 1000)
+			#total_token_player += GlobalData.token_earned_player["físico"] * 1000
+#
+		#if GlobalData.token_earned_player["sexual"] > 0:
+			#se_score_token_label.text = "+ " + str(GlobalData.token_earned_player["sexual"] * 1000)
+			#total_token_player += GlobalData.token_earned_player["sexual"] * 1000
+#
+		#if GlobalData.token_earned_player["ciberbullying"] > 0:
+			#ci_score_token_label.text = "+ " + str(GlobalData.token_earned_player["ciberbullying"] * 1000)
+			#total_token_player += GlobalData.token_earned_player["ciberbullying"] * 1000
+#
+		#if GlobalData.token_earned_player["psicológico"] > 0:
+			#ps_score_token_label.text = "+ " + str(GlobalData.token_earned_player["psicológico"] * 1000)
+			#total_token_player += GlobalData.token_earned_player["psicológico"] * 1000
+#
+		## Actualiza el puntaje total del jugador
+		#GlobalData.total_player_score += total_token_player
+		##
+		##if GlobalData.token_earned_ia["verbal"] > 0:
+			##ve_ia_score_token_label.text = "+ " + str(GlobalData.token_earned_ia["verbal"] * 1000)
+			##total_token_ia += GlobalData.token_earned_ia["verbal"] * 1000
+##
+		##if GlobalData.token_earned_ia["exclusión_social"] > 0:
+			##ex_ia_score_token_label.text = "+ " + str(GlobalData.token_earned_ia["exclusión_social"] * 1000)
+			##total_token_ia += GlobalData.token_earned_ia["exclusión_social"] * 1000
+##
+		##if GlobalData.token_earned_ia["físico"] > 0:
+			##fi_ia_score_token_label.text = "+ " + str(GlobalData.token_earned_ia["físico"] * 1000)
+			##total_token_ia += GlobalData.token_earned_ia["físico"] * 1000
+##
+		##if GlobalData.token_earned_ia["sexual"] > 0:
+			##se_ia_score_token_label.text = "+ " + str(GlobalData.token_earned_ia["sexual"] * 1000)
+			##total_token_ia += GlobalData.token_earned_ia["sexual"] * 1000
+##
+		##if GlobalData.token_earned_ia["ciberbullying"] > 0:
+			##ci_ia_score_token_label.text = "+ " + str(GlobalData.token_earned_ia["ciberbullying"] * 1000)
+			##total_token_ia += GlobalData.token_earned_ia["ciberbullying"] * 1000
+##
+		##if GlobalData.token_earned_ia["psicológico"] > 0:
+			##ps_ia_score_token_label.text = "+ " + str(GlobalData.token_earned_ia["psicológico"] * 1000)
+			##total_token_ia += GlobalData.token_earned_ia["psicológico"] * 1000
+##
+		### Actualiza el puntaje total del jugador
+		##GlobalData.total_ia_score += total_token_ia
+#
+		### Asignación de valores finales a las etiquetas de texto
+		##game_over_ia_name_label.text = GlobalData.get_difficulty_text(GameConfig.ia_difficulty)
+		##game_over_ia_combo_label.text = str(GlobalData.combo_ia)
+		##game_over_player_name_label.text = GlobalData.user
+		##game_over_player_combo_label.text = str(GlobalData.combo_player)
+		##game_over_player_scorelabel.text = str(GlobalData.total_player_score)
+		##game_over_ia_score_label.text = str(GlobalData.total_ia_score)
+##
+		## Aplicar efectos visuales
+		#blur_overlay.visible = true
+		#var material = blur_overlay.material
+		#if material is ShaderMaterial:
+			#material.set_shader_parameter("darkness_factor", 0.05)
+		#audio_stream_player.stop()
+		#play_beep_sound("res://assets/audio/sfx/traimory-hit-low-gun-shot-cinematic-trailer-sound-effects-161154.mp3")
+		#game_over_control.visible = true
+#
+		## Asignar la textura al TextureRect dinámicamente
+		#var result_texture = load(texture_path)
+		#game_result_texture_rect.texture = result_texture
+		#game_result_texture_rect.visible = true
+#
+	#else:
+		## Si el juego terminó por abortar
+		#if GlobalData.game_over_abort == true:
+			#beep_audio_stream_player.stop()
+			#beep_countdown_audio_stream_player.stop()
+			#var texture_path = "res://assets/ui/backgrounds/defeat_1_borderless.png"
+			#print("Juego terminado por abandono")
+			#game_result_label.text = "ABANDONO"
+			#score_token_ia.visible = false
+			#score_token_player.visible = false
+			##vs_label.visible = false
+			#blur_overlay.visible = true
+			#var material = blur_overlay.material
+			#if material is ShaderMaterial:
+				#material.set_shader_parameter("darkness_factor", 0.05)
+			#audio_stream_player.stop()
+			#play_beep_sound("res://assets/audio/sfx/traimory-hit-low-gun-shot-cinematic-trailer-sound-effects-161154.mp3")
+			#game_over_control.visible = true
+#
+			## Asignar la textura al TextureRect dinámicamente
+			#var result_texture = load(texture_path)
+			#game_result_texture_rect.texture = result_texture
+			#game_result_texture_rect.visible = true
+			#
+	#var texture_path = ""
+	#beep_audio_stream_player.stop()
+	#beep_countdown_audio_stream_player.stop()
+	#texture_path = "res://assets/ui/backgrounds/victory_2.png"
+	#blur_overlay.visible = true
+	#var material = blur_overlay.material
+	#if material is ShaderMaterial:
+		#material.set_shader_parameter("darkness_factor", 0.05)
+	#audio_stream_player.stop()
+	#play_beep_sound("res://assets/audio/sfx/traimory-hit-low-gun-shot-cinematic-trailer-sound-effects-161154.mp3")
+#
+	#nueva_partida.ganador = game_result_label.text
+	#nueva_partida.tiempo_total_partida = COUNTDOWN_GAME - countdown_game
+	#nueva_partida.partida_abandonada = GlobalData.game_over_abort
+	#save_game_persistence(nueva_partida)
+	##var saved_data = load_saved_games()
+	#populate_bu_cards_tree_from_array()
+	#var average_stars = calculate_average_stars()
+	#var performance_message = get_performance_message(average_stars)
+	#print(performance_message)  # Muestra el mensaje correspondiente
+	#situaciones_aboradadas_label.text = "Situaciones Abordadas " + str(GlobalData.current_game_data.size())
+	#puntos_empatia_totales_label.text = "Promedio Puntos Empatía " + str(average_stars)
+	#performance_mensaje_label.text = performance_message
+	#
+	#
 ###############################################################################
 ###############################################################################
 #                           TURNO DEL JUGADOR E IA                            #
@@ -1622,7 +1841,7 @@ func reset_turn_state():
 	player_selected_card_re = null
 	ia_selected_card_re = null
 	ia_selected_card_hs = null
-
+	GlobalData.stars = 0
 
 ###############################################################################
 ###############################################################################
@@ -1740,7 +1959,7 @@ func update_bullying_card():
 		# Extraer la última carta del mazo y asignarla como la carta actual de bullying
 		card_bullying = deck_manager.deck_bu.pop_back()
 		# Actualizar la interfaz para mostrar la nueva carta de bullying
-		display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
+		#display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
 		# Verificar la siguiente carta sin sacarla del mazo
 		var next_card_bullying = null
 		if deck_manager.deck_bu.size() > 0:
@@ -1748,6 +1967,7 @@ func update_bullying_card():
 
 		# Actualizar la interfaz para mostrar la nueva carta de bullying
 		display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
+		display_next_card_bu(next_card_bullying, bullying_card_next, GlobalData.showing_reverses)
 
 		# Mostrar la próxima carta si existe
 		if next_card_bullying:
@@ -2492,7 +2712,7 @@ func has_ia_chosen() -> bool:
 
 # Maneja la señal y actualiza la visualización de las cartas
 func _on_reverse_anverse_toggled(showing_reverses: bool):
-	play_beep_sound("res://assets/audio/sfx/flipcard-91468.mp3")
+	play_beep_sound("res://assets/audio/sfx/flipcard-91468.ogg")
 	# Actualizar las cartas RE
 	display_card_re(player_cards_re[0], re_card_1, showing_reverses)
 	display_card_re(player_cards_re[1], re_card_2, showing_reverses)
@@ -2504,7 +2724,11 @@ func _on_reverse_anverse_toggled(showing_reverses: bool):
 	display_card_hs(player_cards_hs[2], hs_card_3, showing_reverses)
 	#Actualiza la carta de bullyin
 	display_card_bu(card_bullying, bullying_card, showing_reverses)
-	display_next_card_bu(card_bullying, bullying_card_next, showing_reverses)
+	var next_card_bullying = null
+	if deck_manager.deck_bu.size() > 0:
+		next_card_bullying = deck_manager.deck_bu.back()
+
+	display_next_card_bu(next_card_bullying, bullying_card_next, showing_reverses)
 
 
 func _on_options_button_pressed():
@@ -3423,7 +3647,8 @@ func save_game_persistence(current_game: Game):
 				"combos_ia": tirada.combos_ia,
 				"combos_jugador": tirada.combos_jugador,
 				"token_ia": tirada.token_ia,
-				"token_jugador": tirada.token_jugador
+				"token_jugador": tirada.token_jugador,
+				"stars": tirada.stars
 			})
 			# Actualizar otros campos relevantes
 			partida["ganador"] = current_game.ganador
@@ -3439,6 +3664,7 @@ func save_game_persistence(current_game: Game):
 			"numero_partida": nuevo_numero_partida,
 			"modo_juego": current_game.modo_juego,
 			"nivel_dificultad": current_game.ia_dificultad,
+			"rol": GlobalData.selected_role,
 			"tiradas": current_game.tiradas.map(func(tirada: Tirada): return {
 				"numero_tirada": tirada.numero_tirada,
 				"carta_bu": tirada.carta_bu,
@@ -3479,7 +3705,21 @@ func load_saved_games_persistence() -> Dictionary:
 
 	print("Error al cargar los datos guardados.")
 	return {"partidas": []}
-
+	
+func load_saved_games() -> Dictionary:
+	const SAVE_FILE_PATH = "user://game.json"
+	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
+	if not file:
+		print("Archivo de partidas no encontrado, creando un nuevo registro...")
+		return {}
+	if file:
+		var data = file.get_as_text()
+		var json = JSON.new()
+		var parse_result = json.parse_string(data)
+		return parse_result
+	print("Error al cargar los datos guardados.")
+	return {}
+	
 
 func _on_accept_button_pressed():
 	line_1_dialogue_label.text = ""
@@ -3506,3 +3746,157 @@ func _on_accept_button_pressed():
 		replenish_cards()
 		reset_turn_state()
 		change_state(GameState.TURN)
+
+
+func add_card_to_current_game(carta: String, estrellas: int):
+	# Agregar la carta y las estrellas al array temporal
+	GlobalData.current_game_data.append({"carta": carta, "stars": estrellas})
+	
+func populate_bu_cards_tree_from_array():
+	var bu_cards_tree = $"../UI/GameOver/GameResultTextureRect/BuCardsTree"
+
+	# Verifica si el nodo del Tree existe
+	if bu_cards_tree == null:
+		print("Error: El nodo BuCardsTree no se encuentra.")
+		return
+
+	# Limpiar contenido existente
+	bu_cards_tree.clear()
+
+	# Crear un elemento raíz vacío
+	var root_item = bu_cards_tree.create_item()  # Raíz explícita
+
+	# Ocultar los títulos de las columnas
+	bu_cards_tree.set_column_titles_visible(false)
+	# Ajustar las proporciones de las columnas
+
+ 	# Configurar el ancho mínimo de las columnas
+	bu_cards_tree.set_column_custom_minimum_width(0, 320)  # Ancho mínimo para la primera columna
+	bu_cards_tree.set_column_custom_minimum_width(1, 30)   # Ancho mínimo para la columna de estrellas
+
+	# Verificar el contenido del array
+	print("Contenido de GlobalData.current_game_data:", GlobalData.current_game_data)
+
+	# Añadir datos al árbol desde el array como hijos del elemento raíz
+	for item in GlobalData.current_game_data:
+		print("Procesando elemento:", item)
+		var tree_item = bu_cards_tree.create_item(root_item)  # Hijo del elemento raíz
+		tree_item.set_text(0, item["carta"])
+
+		# Crear la representación de las estrellas como texto (por ejemplo, "❤️ ❤️ ❤️")
+		var stars_text = ""
+		for i in range(item["stars"]):
+			stars_text += "❤️ "
+		tree_item.set_text(1, stars_text.strip_edges())
+
+	print("Población del Tree completada con estrellas representadas como texto.")
+	if GlobalData.current_game_data.size() == 0:
+		bu_cards_tree.visible = false
+
+
+func _on_accept_button_pressed_over():
+	await get_tree().create_timer(0.1).timeout
+	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+#
+# Función para calcular el promedio de estrellas
+func calculate_average_stars() -> float:
+	var total_stars = 0
+	var situations_array = GlobalData.current_game_data  # Obtenemos el array global
+	for situation in situations_array:
+		total_stars += situation["stars"]
+	return total_stars / situations_array.size() if situations_array.size() > 0 else 0
+func get_performance_message(average_stars: float) -> String:
+	# Determinar el nivel de desempeño basado en el promedio de estrellas
+	var performance_level = 0
+	if average_stars == 0:
+		performance_level = 0
+	elif average_stars <= 1:
+		performance_level = 1
+	elif average_stars <= 2:
+		performance_level = 2
+	elif average_stars <= 3:
+		performance_level = 3
+	elif average_stars <= 4:
+		performance_level = 4
+	else:
+		performance_level = 5
+
+	# Determinar el nivel de dificultad (0 = Bajo, 1 = Medio, 2 = Duro)
+	var difficulty_level = GameConfig.ia_difficulty  # Nivel de dificultad desde la variable global
+
+	# Mensajes según el nivel de desempeño y dificultad
+	var messages = {
+		0: {
+			0: ["¡Ánimo! Incluso en nivel fácil, puedes mejorar. ¡No te rindas!",
+				"El camino al éxito comienza con un primer paso. ¡Sigue intentándolo!",
+				"Es normal tropezar al inicio. Practica y pronto dominarás el juego."],
+			1: ["¡No te preocupes! Este nivel puede ser desafiante al principio.",
+				"La práctica te ayudará a superar estos desafíos. ¡Adelante!",
+				"Un inicio difícil, pero no imposible. Ajusta tu estrategia."],
+			2: ["El nivel difícil no es para cualquiera. ¡Ánimo y sigue adelante!",
+				"Un comienzo complicado, pero el esfuerzo vale la pena.",
+				"El desafío es duro, pero puedes mejorarlo con perseverancia."]
+		},
+		1: {
+			0: ["Buen inicio. Incluso en nivel fácil, ¡puedes mejorar aún más!",
+				"Es un pequeño paso, pero estás avanzando. ¡Continúa practicando!",
+				"Un desempeño prometedor. Cada estrella cuenta."],
+			1: ["Este nivel requiere estrategia. ¡Estás progresando!",
+				"No fue tu mejor juego, pero estás en el camino correcto.",
+				"Cada estrella cuenta. ¡Analiza tu estrategia y sigue adelante!"],
+			2: ["Un pequeño progreso en un nivel tan desafiante. ¡Sigue mejorando!",
+				"Incluso en nivel difícil, cada paso es un logro.",
+				"¡No te detengas! Dominar este nivel requiere paciencia."]
+		},
+		2: {
+			0: ["Buen trabajo. Nivel fácil dominado, pero puedes hacerlo mejor.",
+				"¡Estás en buen camino! Practica para alcanzar un nivel superior.",
+				"Desempeño aceptable. Cada partida es una lección."],
+			1: ["¡Vas bien! Un poco más de esfuerzo y estarás alcanzando la cima.",
+				"Un desempeño decente. Ajusta algunos detalles y llegarás lejos.",
+				"Este nivel exige más, pero estás progresando bien."],
+			2: ["Un avance notable en un nivel desafiante. ¡Sigue así!",
+				"Superar el nivel difícil requiere dedicación. ¡Buen progreso!",
+				"¡Bien hecho! Cada partida te lleva más cerca del dominio."]
+		},
+		3: {
+			0: ["Nivel fácil casi dominado. ¡Buen trabajo!",
+				"Tu estrategia es sólida. Continúa practicando.",
+				"¡Muy bien jugado! Sigue mejorando para subir de nivel."],
+			1: ["Un desempeño admirable en este nivel. ¡Sigue así!",
+				"Tu estrategia está dando resultados. ¡Buen progreso!",
+				"Cada partida te acerca más al dominio. ¡Sigue así!"],
+			2: ["¡Impresionante! Estás dominando un nivel difícil.",
+				"Tu habilidad brilla incluso en un nivel tan desafiante.",
+				"Un gran desempeño en nivel difícil. ¡Sigue destacando!"]
+		},
+		4: {
+			0: ["Has jugado como un verdadero profesional. ¡Impresionante!",
+				"Casi perfecto. Sigue practicando para ser imbatible.",
+				"Tu habilidad en este nivel fácil es notable. ¡Sigue así!"],
+			1: ["Tu habilidad y estrategia brillaron en este nivel. ¡Felicidades!",
+				"Un desempeño excelente. ¡Continúa dominando el juego!",
+				"Estás muy cerca de ser imbatible. ¡Sigue esforzándote!"],
+			2: ["¡Sobresaliente! Este nivel difícil no tiene secretos para ti.",
+				"Tu dominio en nivel difícil es impresionante. ¡Eres imparable!",
+				"Tu habilidad en este nivel es digna de admiración. ¡Increíble!"]
+		},
+		5: {
+			0: ["¡Increíble! Has dominado este nivel con maestría.",
+				"Tu desempeño es perfecto. ¡Felicidades!",
+				"Has demostrado ser un verdadero maestro. ¡Bravo!"],
+			1: ["¡Imbatible! Este nivel está bajo tu control total.",
+				"Un desempeño brutal. Nadie puede igualarte.",
+				"Tu habilidad en este nivel es insuperable. ¡Felicidades!"],
+			2: ["¡Brutal desempeño! Incluso en nivel difícil eres imparable.",
+				"Eres un maestro absoluto en el nivel más desafiante.",
+				"Tu dominio en este nivel es impresionante. ¡Eres legendario!"]
+		}
+	}
+
+	# Seleccionar un mensaje basado en el nivel de desempeño y dificultad
+	if messages.has(performance_level) and messages[performance_level].has(difficulty_level):
+		var selected_messages = messages[performance_level][difficulty_level]
+		return selected_messages[randi() % selected_messages.size()]
+	else:
+		return "¡Sigue jugando y mejorando tu desempeño!"

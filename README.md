@@ -1,4 +1,46 @@
 # **Caminos de Empatía**
+11/12/2024
+v.0.3.0.3-alpha
+Estadísticas listas con el nuevo feedback (incluido puntos de empatía y gráfico).
+Listo pantallas finalización.
+**** PROXIMO ****
+Cheets en la obtención de tokens. +1 en el atributo que se defina segun el token
+Mostrar correctamente imagen con trait de los roles in-game
+Botón volver en seleccion rol
+*FALTARÁ EL TUTORIAL*
+
+10/12/2024
+-Arreglado las cartas de siguiente situción que al girarlas se mostraba la carta en curso.
+-Arreglado las estadísticas. Ahora incluyen datos de las estrellas.
+-Modificado pantalla estadísticias, mostrando información relevante de las estrellas, así como
+-solucionado el gráfico de mostrar partidas. Ahora tan solo están las jugadas y las abandonadas
+-Arreglado gráfico dificultad
+-Añadido dificultad al juego, cada nivel de dificultad aporta un multiplicador diferente, desde facil, medio, dificil.
+-Así, las puntuaciones que son las que generan los threshold ocultos tendrán un multiplicador diferente
+dependiendo del nivel de dificultad con el que se juegue.
+-Añadido cuadro de subtitulos para las canciones. Cuando suena una nueva canción aparece un mensaje con el
+nombre de la canción que se desvanece a los 5 segundos.
+-Arreglado estrellas cuando no se seleccionan cartas.
+-Añadido label a la parte superior/izquierda de la GUI que identifica el nivel de dificultad.
+*****PRÓXIMO******
+
+-Implantar cheet cuando se consigan los tokens mendiante los combos (idea principal mostrar durante n
+segundos los atributos de las cartas o durante la siguiente tirada, para que conseguir tokens signifique
+algo, ya que hasta ahora nos servia para la puntuación final, que ahora no tenemos).
+
+
+09/12/2024
+En la pantalla de selección de rol no me gusta que las cartas tengan borde negro (creo que debería quitarlo).
+En  la pantalla de selección de rol cuando se elige un rol salta un audio (debería implementar que al clicar una vez salte). 
+En la pantalla de selección de rol cuando eliges un rol se oscurecen los demás (creéis que está bien?)
+Pantalla in-game
+Stats de rol debo actualizarlo según el estado que elija el jugador.
+Cuando se hace visible cuadro de dialogo (al clicar en aceptar o cuando se acaba el tiempo para elegir carta) NO se debería poder clicar en otros botones (como por ejemplo en el de opciones).
+ARREGLADO -- En el cuadro de diálogo, si no se juega la carta de habilidad social no avisa de ello. -- 
+ARREGLADO -- En el cuadro de diálogo, si se consigue una combinación perfecta de cartas no se muestra bien el campo “porqué”, se sale del cuadro de diálogos.
+Si juegas todas las cartas, ¿¿¿por que solo hay 49????
+TODO ESTADÍSTICAS DEBE CAMBIAR.
+ 
 07/12/2024 2
 * Prueba segundo commit con carpeta release y -gitignore listo
 
