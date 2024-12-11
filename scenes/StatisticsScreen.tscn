@@ -771,7 +771,7 @@ offset_right = 606.0
 offset_bottom = 40.0
 theme_override_fonts/font = ExtResource("4_bnrhr")
 theme_override_font_sizes/font_size = 25
-text = "ESTADÍSTICAS DIFICULTAD Y MODOS"
+text = "ESTADÍSTICAS ROLES Y DIFICULTAD"
 horizontal_alignment = 1
 
 [node name="ChartGeneral" type="Control" parent="."]

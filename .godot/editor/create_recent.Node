@@ -1,3 +1,6 @@
+WorldEnvironment
+GPUParticles2D
+Node2D
 Label
 Panel
 Tree
@@ -6,9 +9,7 @@ TextureRect
 Control
 AudioStreamPlayer
 CPUParticles2D
-GPUParticles2D
 HBoxContainer
 ColorRect
-Node2D
 VBoxContainer
 ItemList

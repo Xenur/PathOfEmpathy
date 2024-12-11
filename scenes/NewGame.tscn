@@ -1,7 +1,7 @@
-[gd_scene load_steps=113 format=3 uid="uid://dq4v62olhary3"]
+[gd_scene load_steps=118 format=3 uid="uid://dq4v62olhary3"]
 
 [ext_resource type="Script" path="res://scripts/new_game.gd" id="1_eh8bj"]
-[ext_resource type="Texture2D" uid="uid://dukyjdb258r8x" path="res://assets/images/backgrounds/bg_12.webp" id="2_hikk8"]
+[ext_resource type="Texture2D" uid="uid://0ei5ks106f0x" path="res://assets/images/backgrounds/bg_2.png" id="2_2m7pv"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="2_q5ib0"]
 [ext_resource type="Script" path="res://scripts/re_card_1.gd" id="5_goa0y"]
 [ext_resource type="Texture2D" uid="uid://dyyblqjpcax5f" path="res://assets/images/cards/reverses/reverse_ai.png" id="6_p02oi"]
@@ -306,6 +306,34 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="Gradient" id="Gradient_4rhur"]
+offsets = PackedFloat32Array(0, 0.544218, 1)
+colors = PackedColorArray(0.994445, 0.805316, 1.54018e-06, 1, 0.997695, 0.336473, 6.39124e-07, 1, 1, 0.00392157, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j5mia"]
+gradient = SubResource("Gradient_4rhur")
+
+[sub_resource type="Curve" id="Curve_7kkuc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.230769), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hnimx"]
+curve = SubResource("Curve_7kkuc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ic1o"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 36.733
+initial_velocity_min = 120.0
+initial_velocity_max = 240.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_hnimx")
+color_ramp = SubResource("GradientTexture1D_j5mia")
+turbulence_enabled = true
+turbulence_noise_scale = 5.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76wj6"]
 bg_color = Color(0.0431373, 0.270588, 0.415686, 0.458824)
 corner_radius_top_left = 15
@@ -330,7 +358,7 @@ z_index = -1
 layout_mode = 1
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("2_hikk8")
+texture = ExtResource("2_2m7pv")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 1
@@ -3426,6 +3454,84 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_bbh5u")
 text = "cancionesnn"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FlamesRE" type="Node2D" parent="UI"]
+z_index = 5
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="UI/FlamesRE"]
+position = Vector2(690, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="UI/FlamesRE"]
+position = Vector2(660, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="UI/FlamesRE"]
+position = Vector2(630, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="UI/FlamesRE"]
+position = Vector2(600, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="UI/FlamesRE"]
+position = Vector2(750, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="UI/FlamesRE"]
+position = Vector2(720, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="FlamesHS" type="Node2D" parent="UI"]
+z_index = 5
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="UI/FlamesHS"]
+position = Vector2(1260, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="UI/FlamesHS"]
+position = Vector2(1290, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="UI/FlamesHS"]
+position = Vector2(1170, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="UI/FlamesHS"]
+position = Vector2(1320, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="UI/FlamesHS"]
+position = Vector2(1230, 504)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="UI/FlamesHS"]
+position = Vector2(1201, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
 
 [node name="ReadyButton" type="Button" parent="."]
 layout_mode = 2
