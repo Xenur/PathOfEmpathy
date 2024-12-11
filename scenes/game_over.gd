@@ -11,7 +11,8 @@ func _unhandled_input(event):
 
 
 func _on_defeat_texture_rect_gui_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == 1 and event.pressed:
-			print("Clic izquierdo detectado en TextureRect")
-			get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+	#if event is InputEventMouseButton:
+		#if event.button_index == 1 and event.pressed:
+			#print("Clic izquierdo detectado en TextureRect")
+			#get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+	pass

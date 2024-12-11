@@ -5,8 +5,8 @@ var font_resource: Font = preload("res://assets/fonts/Roboto-Medium.ttf")
 func _draw():
 	var games_data = GlobalData.get_games_data()
 	# Calcular el total sumando las categorías
-	var total = games_data["wins"] + games_data["losses"] + games_data["draws"] + games_data["abandons"]
-
+	#var total = games_data["wins"] + games_data["losses"] + games_data["draws"] + games_data["abandons"]
+	var total = GlobalData.total_games
 	# Centro y radio del gráfico
 	var center = Vector2(300, 165)
 	var radius = 100
@@ -20,14 +20,13 @@ func _draw():
 	]
 
 	# Categorías para las etiquetas
-	var categories = ["Ganadas", "Perdidas", "Empatadas", "Abandonadas"]
+	var categories = ["Completadas", "Abandonadas"]
 
 	# Calcular ángulos
 	var angles = [
-		(float(games_data["wins"]) / total) * 360,
-		(float(games_data["losses"]) / total) * 360,
-		(float(games_data["draws"]) / total) * 360,
-		(float(games_data["abandons"]) / total) * 360
+		(float(total-(games_data["abandons"])) / total) * 360,
+		(float(games_data["abandons"])/total) * 360,
+
 	]
 
 	# Dibujar cada trozo

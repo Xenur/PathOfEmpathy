@@ -154,3 +154,7 @@ var player_stats = {}   # Atributos del jugador según el rol
 
 #stars
 var stars:int = 0
+
+var total_games: int = 0
+
+var current_game_data = []  # Array para almacenar cartas y estrellas durante el juego
