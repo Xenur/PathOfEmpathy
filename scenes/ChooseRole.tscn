@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://51vjvhm3tabm"]
+[gd_scene load_steps=29 format=3 uid="uid://51vjvhm3tabm"]
 
 [ext_resource type="Texture2D" uid="uid://do3aiifcnlh4i" path="res://assets/images/backgrounds/bg_9.webp" id="1_hev0c"]
 [ext_resource type="Shader" path="res://scripts/MainMenu.gdshader" id="2_lgp3m"]
@@ -24,13 +24,6 @@ shader = ExtResource("2_lgp3m")
 shader_parameter/blur_size = 6.364
 shader_parameter/darkness_factor = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a071l"]
-bg_color = Color(0.0431373, 0.270588, 0.415686, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5s5rv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7acmt"]
@@ -49,6 +42,37 @@ corner_radius_bottom_left = 68
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q67dp"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lp2p"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pd17v"]
+bg_color = Color(0.0784314, 0.388235, 0.580392, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c357w"]
+bg_color = Color(0.0784314, 0.388235, 0.580392, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4faje"]
+bg_color = Color(0.0431373, 0.270588, 0.415686, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7t5bt"]
+bg_color = Color(0.0431373, 0.270588, 0.415686, 0.619608)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="ChooseRole" type="Control"]
 layout_mode = 3
@@ -82,14 +106,14 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -371.5
-offset_top = 100.0
+offset_top = 50.0
 offset_right = 371.5
-offset_bottom = 225.0
+offset_bottom = 208.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_yhlko")
 theme_override_font_sizes/font_size = 125
-theme_override_styles/normal = SubResource("StyleBoxFlat_a071l")
 text = "ELIGE TU ROL"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -207,7 +231,7 @@ offset_left = 345.0
 offset_right = 873.0
 offset_bottom = 512.0
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("9_8dweh")
+texture = ExtResource("10_83osw")
 
 [node name="EmpatiaLabel" type="Label" parent="HBoxContainer/FrameLiderTextureRect/EmpatiaPanel"]
 layout_mode = 0
@@ -219,7 +243,7 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_frvhc")
 theme_override_font_sizes/font_size = 225
-text = "-3"
+text = "-2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -238,7 +262,7 @@ offset_left = 345.0
 offset_right = 873.0
 offset_bottom = 512.0
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("10_83osw")
+texture = ExtResource("9_8dweh")
 
 [node name="ApoyoLabel" type="Label" parent="HBoxContainer/FrameLiderTextureRect/ApoyoPanel"]
 layout_mode = 0
@@ -250,7 +274,7 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_frvhc")
 theme_override_font_sizes/font_size = 225
-text = "-2"
+text = "-4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -348,7 +372,7 @@ offset_left = 345.0
 offset_right = 873.0
 offset_bottom = 512.0
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("8_jmelt")
+texture = ExtResource("9_8dweh")
 
 [node name="ComunicacionLabel" type="Label" parent="HBoxContainer/FrameMediadorTextureRect/ComunicacionPanel"]
 layout_mode = 0
@@ -391,7 +415,7 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_frvhc")
 theme_override_font_sizes/font_size = 225
-text = "-1"
+text = "-2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -422,7 +446,7 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_frvhc")
 theme_override_font_sizes/font_size = 225
-text = "-2"
+text = "-3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -487,7 +511,7 @@ offset_left = 345.0
 offset_right = 873.0
 offset_bottom = 512.0
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("9_8dweh")
+texture = ExtResource("8_jmelt")
 
 [node name="EmpatiaLabel" type="Label" parent="HBoxContainer/FrameEscuchaTextureRect/EmpatiaPanel"]
 layout_mode = 0
@@ -499,7 +523,7 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_frvhc")
 theme_override_font_sizes/font_size = 225
-text = "+4"
+text = "+3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -530,7 +554,7 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_frvhc")
 theme_override_font_sizes/font_size = 225
-text = "+3"
+text = "+2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -700,7 +724,7 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_frvhc")
 theme_override_font_sizes/font_size = 225
-text = "+3"
+text = "+2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -762,7 +786,7 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_frvhc")
 theme_override_font_sizes/font_size = 225
-text = "-1"
+text = "-3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -796,6 +820,45 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_q67dp")
 
+[node name="AcceptButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 22.0
+offset_right = 390.0
+offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 39
+theme_override_styles/focus = SubResource("StyleBoxFlat_1lp2p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pd17v")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c357w")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4faje")
+text = "Volver"
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1365.0
+offset_top = 8.0
+offset_right = 1911.0
+offset_bottom = 270.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7t5bt")
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 10.0
+offset_right = 531.0
+offset_bottom = 257.0
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 16
+text = "Líder: Un rol fuerte y decisivo, con habilidades claras para liderar e intervenir, pero menos emocionalmente conectado.
+Mediador: Enfocado en resolver conflictos y comprender emociones, con una aproximación lógica y empática.
+Escucha Activa: Especialista en apoyo emocional y comunicación, pero menos eficaz en conflictos o acciones directas.
+Solidario: Un rol de apoyo centrado en el bienestar de los demás, fuerte en apoyo y soporte emocional.
+
+Elige con cuidado. Esta decisión es crucial, ya que afecta tus habilidades en la partida. Confirma tu elección con un doble clic."
+horizontal_alignment = 1
+autowrap_mode = 3
+
 [connection signal="gui_input" from="HBoxContainer/FrameLiderTextureRect" to="HBoxContainer" method="_on_frame_lider_texture_rect_gui_input"]
 [connection signal="mouse_entered" from="HBoxContainer/FrameLiderTextureRect" to="HBoxContainer" method="_on_frame_lider_texture_rect_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/FrameLiderTextureRect" to="HBoxContainer" method="_on_frame_lider_texture_rect_mouse_exited"]
@@ -821,3 +884,4 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_q67dp")
 [connection signal="gui_input" from="HBoxContainer/FrameSolidarioTextureRect/SolidarioControl" to="HBoxContainer" method="_on_solidario_control_gui_input"]
 [connection signal="mouse_entered" from="HBoxContainer/FrameSolidarioTextureRect/SolidarioControl" to="HBoxContainer" method="_on_solidario_control_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/FrameSolidarioTextureRect/SolidarioControl" to="HBoxContainer" method="_on_solidario_control_mouse_exited"]
+[connection signal="pressed" from="AcceptButton" to="HBoxContainer" method="_on_accept_button_pressed"]

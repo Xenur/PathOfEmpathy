@@ -347,17 +347,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="IntervencionPanel" type="Panel" parent="UI/Control"]
+[node name="Trait1Panel" type="Panel" parent="UI/Control"]
 layout_mode = 0
 offset_left = 1596.0
-offset_top = 816.0
+offset_top = 751.0
 offset_right = 3086.0
-offset_bottom = 1116.0
+offset_bottom = 1051.0
 scale = Vector2(0.2, 0.2)
 tooltip_text = "Intervención"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
 
-[node name="IntervencionTextureRect" type="TextureRect" parent="UI/Control/IntervencionPanel"]
+[node name="Trait1TextureRect" type="TextureRect" parent="UI/Control/Trait1Panel"]
 layout_mode = 1
 offset_left = 345.0
 offset_right = 873.0
@@ -365,7 +365,7 @@ offset_bottom = 512.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("44_8l21x")
 
-[node name="IntervencionLabel" type="Label" parent="UI/Control/IntervencionPanel"]
+[node name="Trait1Label" type="Label" parent="UI/Control/Trait1Panel"]
 layout_mode = 0
 offset_left = 740.0
 offset_top = 5.0
@@ -379,17 +379,17 @@ text = "+4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ComunicacionPanel" type="Panel" parent="UI/Control"]
+[node name="Trait2Panel" type="Panel" parent="UI/Control"]
 layout_mode = 0
 offset_left = 1596.0
-offset_top = 881.0
+offset_top = 816.0
 offset_right = 3086.0
-offset_bottom = 1181.0
+offset_bottom = 1116.0
 scale = Vector2(0.2, 0.2)
 tooltip_text = "Comunicación"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
 
-[node name="ComunicacionTextureRect" type="TextureRect" parent="UI/Control/ComunicacionPanel"]
+[node name="Trait2TextureRect" type="TextureRect" parent="UI/Control/Trait2Panel"]
 layout_mode = 1
 offset_left = 345.0
 offset_right = 873.0
@@ -397,7 +397,7 @@ offset_bottom = 512.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("45_uvnxj")
 
-[node name="ComunicacionLabel" type="Label" parent="UI/Control/ComunicacionPanel"]
+[node name="Trait2Label" type="Label" parent="UI/Control/Trait2Panel"]
 layout_mode = 0
 offset_left = 740.0
 offset_top = 5.0
@@ -411,17 +411,17 @@ text = "+2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EmpatiaPanel" type="Panel" parent="UI/Control"]
+[node name="Trait3Panel" type="Panel" parent="UI/Control"]
 layout_mode = 0
 offset_left = 1596.0
-offset_top = 946.0
+offset_top = 881.0
 offset_right = 3086.0
-offset_bottom = 1246.0
+offset_bottom = 1181.0
 scale = Vector2(0.2, 0.2)
 tooltip_text = "Empatía"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
 
-[node name="EmpatiaTextureRect" type="TextureRect" parent="UI/Control/EmpatiaPanel"]
+[node name="Trait3TextureRect" type="TextureRect" parent="UI/Control/Trait3Panel"]
 layout_mode = 1
 offset_left = 345.0
 offset_right = 873.0
@@ -429,7 +429,7 @@ offset_bottom = 512.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("46_5kncj")
 
-[node name="EmpatiaLabel" type="Label" parent="UI/Control/EmpatiaPanel"]
+[node name="Trait3Label" type="Label" parent="UI/Control/Trait3Panel"]
 layout_mode = 0
 offset_left = 740.0
 offset_top = 5.0
@@ -443,7 +443,39 @@ text = "-3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ApoyoPanel" type="Panel" parent="UI/Control"]
+[node name="Trait4Panel" type="Panel" parent="UI/Control"]
+layout_mode = 0
+offset_left = 1596.0
+offset_top = 946.0
+offset_right = 3086.0
+offset_bottom = 1246.0
+scale = Vector2(0.2, 0.2)
+tooltip_text = "Apoyo Emocional"
+theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
+
+[node name="Trait4TextureRect" type="TextureRect" parent="UI/Control/Trait4Panel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("47_bgvx8")
+
+[node name="Trait4Label" type="Label" parent="UI/Control/Trait4Panel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 225
+text = "-2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Trait5Panel" type="Panel" parent="UI/Control"]
 layout_mode = 0
 offset_left = 1596.0
 offset_top = 1011.0
@@ -453,7 +485,7 @@ scale = Vector2(0.2, 0.2)
 tooltip_text = "Apoyo Emocional"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
 
-[node name="ApoyoTextureRect" type="TextureRect" parent="UI/Control/ApoyoPanel"]
+[node name="Trait5TextureRect" type="TextureRect" parent="UI/Control/Trait5Panel"]
 layout_mode = 1
 offset_left = 345.0
 offset_right = 873.0
@@ -461,7 +493,7 @@ offset_bottom = 512.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("47_bgvx8")
 
-[node name="ApoyoLabel" type="Label" parent="UI/Control/ApoyoPanel"]
+[node name="Trait5Label" type="Label" parent="UI/Control/Trait5Panel"]
 layout_mode = 0
 offset_left = 740.0
 offset_top = 5.0
@@ -1228,7 +1260,18 @@ offset_bottom = 2030.0
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("35_iq1e5")
 
+[node name="PlayerTextureRect" type="TextureRect" parent="UI/ScoreTokenPlayer/ShowScorePlayer"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 6537.0
+offset_bottom = 9506.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("38_qhx2a")
+stretch_mode = 6
+
 [node name="PlayerScorelabel" type="Label" parent="UI/ScoreTokenPlayer/ShowScorePlayer"]
+visible = false
 layout_mode = 0
 offset_left = 81.0
 offset_top = 1663.0
@@ -1267,6 +1310,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Line2D" type="Line2D" parent="UI/ScoreTokenPlayer/ShowScorePlayer"]
+visible = false
 position = Vector2(-400.8, 0)
 scale = Vector2(5.30806, 1)
 points = PackedVector2Array(338.08, 1668.75, 93.1696, 1668.75)
@@ -1574,16 +1618,6 @@ offset_bottom = 4971.71
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("35_733o0")
 stretch_mode = 2
-
-[node name="PlayerTextureRect" type="TextureRect" parent="UI/ScoreTokenPlayer"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = -33.0
-offset_right = 1039.0
-offset_bottom = 1218.0
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("38_qhx2a")
-stretch_mode = 6
 
 [node name="ScoreTokenIA" type="Control" parent="UI"]
 visible = false
@@ -2009,6 +2043,7 @@ grow_vertical = 2
 texture = ExtResource("38_a25bx")
 
 [node name="BuCardsTree" type="Tree" parent="UI/GameOver/GameResultTextureRect"]
+layout_mode = 0
 offset_left = 212.0
 offset_top = 600.0
 offset_right = 812.0

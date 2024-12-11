@@ -8,11 +8,3 @@ res://scenes/RegisterUser.tscn
 res://scenes/LoadGame.tscn
 res://scenes/StatisticsScreen.tscn
 res://scenes/ChooseRole.tscn
-res://scripts/game_manager.gd
-res://scripts/new_game.gd
-res://scripts/global_data.gd
-res://scenes/game_over.gd
-res://scripts/game.gd
-res://scripts/statistics_screen.gd
-res://scenes/chart_mode_ia.gd
-res://README.md

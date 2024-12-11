@@ -305,7 +305,7 @@ func calculate_player_statistics(data: Dictionary) -> Dictionary:
 			rol_mediador += 1
 		if partida["rol"] == "Solidario":
 			rol_solidario += 1
-		if partida["rol"] == "Escucha":
+		if partida["rol"] == "Escucha Activa":
 			rol_escucha += 1
 		
 		
@@ -652,3 +652,8 @@ func generate_feedback() -> String:
 
 	return feedback
 	
+
+
+func _on_accept_button_pressed():
+	await get_tree().create_timer(0.1).timeout
+	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
