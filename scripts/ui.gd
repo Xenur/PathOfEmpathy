@@ -201,9 +201,9 @@ func update_traits_based_on_role():
 		var stat_key = stat["key"]
 		var stat_value = stat["value"]
 		# Crear el tooltip dinámicamente
-		var tooltip_text = tooltips_map.get(stat_key, "Sin descripción disponible.")
+		var _tooltip_text = tooltips_map.get(stat_key, "Sin descripción disponible.")
 		# Asignar el tooltip al panel correspondiente
-		trait_node["panel"].tooltip_text = tooltip_text
+		trait_node["panel"].tooltip_text = _tooltip_text
 
 		# Seleccionar la textura correcta según la estadística
 		if textures_map.has(stat_key):

@@ -1,4 +1,10 @@
 # **Caminos de Empatía**
+14/12/2024
+v.0.3.0.4-alpha
+Arreglado no dar 0 puntos de empatía, el mínimo es 1.
+Arreglado media, ahora sale float.
+Release subida.
+
 11/12/2024
 v.0.3.0.3-alpha
 Estadísticas listas con el nuevo feedback (incluido puntos de empatía y gráfico).
