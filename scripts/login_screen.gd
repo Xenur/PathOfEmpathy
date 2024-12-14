@@ -180,6 +180,7 @@ func _on_quit_button_pressed():
 
 #Señal boton login presionada, ejecuta un sonido.
 func _on_login_button_pressed():
+	audio_stream_player.volume_db = -80
 	audio_stream_player.playing = true
 	
 

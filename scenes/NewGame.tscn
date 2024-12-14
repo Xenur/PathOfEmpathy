@@ -1,7 +1,7 @@
-[gd_scene load_steps=113 format=3 uid="uid://dq4v62olhary3"]
+[gd_scene load_steps=124 format=3 uid="uid://dq4v62olhary3"]
 
 [ext_resource type="Script" path="res://scripts/new_game.gd" id="1_eh8bj"]
-[ext_resource type="Texture2D" uid="uid://dukyjdb258r8x" path="res://assets/images/backgrounds/bg_12.webp" id="2_hikk8"]
+[ext_resource type="Texture2D" uid="uid://0ei5ks106f0x" path="res://assets/images/backgrounds/bg_2.png" id="2_2m7pv"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="2_q5ib0"]
 [ext_resource type="Script" path="res://scripts/re_card_1.gd" id="5_goa0y"]
 [ext_resource type="Texture2D" uid="uid://dyyblqjpcax5f" path="res://assets/images/cards/reverses/reverse_ai.png" id="6_p02oi"]
@@ -306,6 +306,34 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="Gradient" id="Gradient_4rhur"]
+offsets = PackedFloat32Array(0, 0.544218, 1)
+colors = PackedColorArray(0.994445, 0.805316, 1.54018e-06, 1, 0.997695, 0.336473, 6.39124e-07, 1, 1, 0.00392157, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j5mia"]
+gradient = SubResource("Gradient_4rhur")
+
+[sub_resource type="Curve" id="Curve_7kkuc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.230769), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hnimx"]
+curve = SubResource("Curve_7kkuc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ic1o"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 36.733
+initial_velocity_min = 120.0
+initial_velocity_max = 240.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_hnimx")
+color_ramp = SubResource("GradientTexture1D_j5mia")
+turbulence_enabled = true
+turbulence_noise_scale = 5.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76wj6"]
 bg_color = Color(0.0431373, 0.270588, 0.415686, 0.458824)
 corner_radius_top_left = 15
@@ -315,6 +343,37 @@ corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikwda"]
 bg_color = Color(0.0431373, 0.270588, 0.415686, 0.458824)
+
+[sub_resource type="Gradient" id="Gradient_s1key"]
+offsets = PackedFloat32Array(0, 0.252101, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0.44958, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k178s"]
+gradient = SubResource("Gradient_s1key")
+
+[sub_resource type="Curve" id="Curve_leds4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.263199), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mvn3w"]
+curve = SubResource("Curve_leds4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w02vi"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 5.323
+initial_velocity_min = 1.0
+initial_velocity_max = 75.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 7.4
+scale_curve = SubResource("CurveTexture_mvn3w")
+color_ramp = SubResource("GradientTexture1D_k178s")
+turbulence_enabled = true
+turbulence_noise_strength = 0.81
+turbulence_noise_scale = 2.416
+
+[sub_resource type="Environment" id="Environment_osqyk"]
 
 [node name="NewGame" type="Control"]
 layout_mode = 3
@@ -330,7 +389,7 @@ z_index = -1
 layout_mode = 1
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("2_hikk8")
+texture = ExtResource("2_2m7pv")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 1
@@ -347,17 +406,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="IntervencionPanel" type="Panel" parent="UI/Control"]
+[node name="Trait1Panel" type="Panel" parent="UI/Control"]
 layout_mode = 0
 offset_left = 1596.0
-offset_top = 816.0
+offset_top = 751.0
 offset_right = 3086.0
-offset_bottom = 1116.0
+offset_bottom = 1051.0
 scale = Vector2(0.2, 0.2)
 tooltip_text = "Intervención"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
 
-[node name="IntervencionTextureRect" type="TextureRect" parent="UI/Control/IntervencionPanel"]
+[node name="Trait1TextureRect" type="TextureRect" parent="UI/Control/Trait1Panel"]
 layout_mode = 1
 offset_left = 345.0
 offset_right = 873.0
@@ -365,7 +424,7 @@ offset_bottom = 512.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("44_8l21x")
 
-[node name="IntervencionLabel" type="Label" parent="UI/Control/IntervencionPanel"]
+[node name="Trait1Label" type="Label" parent="UI/Control/Trait1Panel"]
 layout_mode = 0
 offset_left = 740.0
 offset_top = 5.0
@@ -379,17 +438,17 @@ text = "+4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ComunicacionPanel" type="Panel" parent="UI/Control"]
+[node name="Trait2Panel" type="Panel" parent="UI/Control"]
 layout_mode = 0
 offset_left = 1596.0
-offset_top = 881.0
+offset_top = 816.0
 offset_right = 3086.0
-offset_bottom = 1181.0
+offset_bottom = 1116.0
 scale = Vector2(0.2, 0.2)
 tooltip_text = "Comunicación"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
 
-[node name="ComunicacionTextureRect" type="TextureRect" parent="UI/Control/ComunicacionPanel"]
+[node name="Trait2TextureRect" type="TextureRect" parent="UI/Control/Trait2Panel"]
 layout_mode = 1
 offset_left = 345.0
 offset_right = 873.0
@@ -397,7 +456,7 @@ offset_bottom = 512.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("45_uvnxj")
 
-[node name="ComunicacionLabel" type="Label" parent="UI/Control/ComunicacionPanel"]
+[node name="Trait2Label" type="Label" parent="UI/Control/Trait2Panel"]
 layout_mode = 0
 offset_left = 740.0
 offset_top = 5.0
@@ -411,17 +470,17 @@ text = "+2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EmpatiaPanel" type="Panel" parent="UI/Control"]
+[node name="Trait3Panel" type="Panel" parent="UI/Control"]
 layout_mode = 0
 offset_left = 1596.0
-offset_top = 946.0
+offset_top = 881.0
 offset_right = 3086.0
-offset_bottom = 1246.0
+offset_bottom = 1181.0
 scale = Vector2(0.2, 0.2)
 tooltip_text = "Empatía"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
 
-[node name="EmpatiaTextureRect" type="TextureRect" parent="UI/Control/EmpatiaPanel"]
+[node name="Trait3TextureRect" type="TextureRect" parent="UI/Control/Trait3Panel"]
 layout_mode = 1
 offset_left = 345.0
 offset_right = 873.0
@@ -429,7 +488,7 @@ offset_bottom = 512.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("46_5kncj")
 
-[node name="EmpatiaLabel" type="Label" parent="UI/Control/EmpatiaPanel"]
+[node name="Trait3Label" type="Label" parent="UI/Control/Trait3Panel"]
 layout_mode = 0
 offset_left = 740.0
 offset_top = 5.0
@@ -443,7 +502,39 @@ text = "-3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ApoyoPanel" type="Panel" parent="UI/Control"]
+[node name="Trait4Panel" type="Panel" parent="UI/Control"]
+layout_mode = 0
+offset_left = 1596.0
+offset_top = 946.0
+offset_right = 3086.0
+offset_bottom = 1246.0
+scale = Vector2(0.2, 0.2)
+tooltip_text = "Apoyo Emocional"
+theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
+
+[node name="Trait4TextureRect" type="TextureRect" parent="UI/Control/Trait4Panel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("47_bgvx8")
+
+[node name="Trait4Label" type="Label" parent="UI/Control/Trait4Panel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 225
+text = "-2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Trait5Panel" type="Panel" parent="UI/Control"]
 layout_mode = 0
 offset_left = 1596.0
 offset_top = 1011.0
@@ -453,7 +544,7 @@ scale = Vector2(0.2, 0.2)
 tooltip_text = "Apoyo Emocional"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
 
-[node name="ApoyoTextureRect" type="TextureRect" parent="UI/Control/ApoyoPanel"]
+[node name="Trait5TextureRect" type="TextureRect" parent="UI/Control/Trait5Panel"]
 layout_mode = 1
 offset_left = 345.0
 offset_right = 873.0
@@ -461,7 +552,7 @@ offset_bottom = 512.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("47_bgvx8")
 
-[node name="ApoyoLabel" type="Label" parent="UI/Control/ApoyoPanel"]
+[node name="Trait5Label" type="Label" parent="UI/Control/Trait5Panel"]
 layout_mode = 0
 offset_left = 740.0
 offset_top = 5.0
@@ -1228,7 +1319,18 @@ offset_bottom = 2030.0
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("35_iq1e5")
 
+[node name="PlayerTextureRect" type="TextureRect" parent="UI/ScoreTokenPlayer/ShowScorePlayer"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 6537.0
+offset_bottom = 9506.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("38_qhx2a")
+stretch_mode = 6
+
 [node name="PlayerScorelabel" type="Label" parent="UI/ScoreTokenPlayer/ShowScorePlayer"]
+visible = false
 layout_mode = 0
 offset_left = 81.0
 offset_top = 1663.0
@@ -1267,6 +1369,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Line2D" type="Line2D" parent="UI/ScoreTokenPlayer/ShowScorePlayer"]
+visible = false
 position = Vector2(-400.8, 0)
 scale = Vector2(5.30806, 1)
 points = PackedVector2Array(338.08, 1668.75, 93.1696, 1668.75)
@@ -1574,16 +1677,6 @@ offset_bottom = 4971.71
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("35_733o0")
 stretch_mode = 2
-
-[node name="PlayerTextureRect" type="TextureRect" parent="UI/ScoreTokenPlayer"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = -33.0
-offset_right = 1039.0
-offset_bottom = 1218.0
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("38_qhx2a")
-stretch_mode = 6
 
 [node name="ScoreTokenIA" type="Control" parent="UI"]
 visible = false
@@ -2009,6 +2102,7 @@ grow_vertical = 2
 texture = ExtResource("38_a25bx")
 
 [node name="BuCardsTree" type="Tree" parent="UI/GameOver/GameResultTextureRect"]
+layout_mode = 0
 offset_left = 212.0
 offset_top = 600.0
 offset_right = 812.0
@@ -2064,10 +2158,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -273.0
-offset_top = 100.0
-offset_right = 273.0
-offset_bottom = 416.0
+offset_left = -279.5
+offset_top = 90.0
+offset_right = 279.5
+offset_bottom = 406.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
@@ -2085,9 +2179,29 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -284.5
-offset_top = 175.0
+offset_top = 165.0
 offset_right = 284.5
-offset_bottom = 491.0
+offset_bottom = 481.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 50
+text = "Puntos Empatía Totales 5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PromedioPuntosTotalesLabel" type="Label" parent="UI/GameOver/GameResultTextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -284.5
+offset_top = 240.0
+offset_right = 284.5
+offset_bottom = 556.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
@@ -3391,6 +3505,84 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_bbh5u")
 text = "cancionesnn"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FlamesRE" type="Node2D" parent="UI"]
+z_index = 5
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="UI/FlamesRE"]
+position = Vector2(690, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="UI/FlamesRE"]
+position = Vector2(660, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="UI/FlamesRE"]
+position = Vector2(630, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="UI/FlamesRE"]
+position = Vector2(600, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="UI/FlamesRE"]
+position = Vector2(750, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="UI/FlamesRE"]
+position = Vector2(720, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="FlamesHS" type="Node2D" parent="UI"]
+z_index = 5
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="UI/FlamesHS"]
+position = Vector2(1260, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="UI/FlamesHS"]
+position = Vector2(1290, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="UI/FlamesHS"]
+position = Vector2(1170, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="UI/FlamesHS"]
+position = Vector2(1320, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="UI/FlamesHS"]
+position = Vector2(1230, 504)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="UI/FlamesHS"]
+position = Vector2(1201, 505)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2ic1o")
 
 [node name="ReadyButton" type="Button" parent="."]
 layout_mode = 2
@@ -4947,6 +5139,21 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("25_ldt3k")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Node2D"]
+position = Vector2(341, 661)
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_w02vi")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Node2D"]
+position = Vector2(1702, 643)
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_w02vi")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Node2D"]
+environment = SubResource("Environment_osqyk")
 
 [connection signal="pressed" from="UI/ReadyTextureButton" to="GameManager" method="_on_ready_texture_button_pressed"]
 [connection signal="pressed" from="UI/ReverseAnverseToggleButton" to="UI" method="_on_reverse_anverse_toggle_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://0cqe8e2vkmp2"]
+[gd_scene load_steps=15 format=3 uid="uid://0cqe8e2vkmp2"]
 
 [ext_resource type="Script" path="res://scripts/credits_screen.gd" id="1_t2e7a"]
 [ext_resource type="Animation" uid="uid://dwdqdas5epdkl" path="res://assets/animations/credits_scroll.res" id="2_i3n5c"]
@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://0ei5ks106f0x" path="res://assets/images/backgrounds/bg_2.png" id="3_jimqo"]
 [ext_resource type="AudioStream" uid="uid://d221dmqsad5h3" path="res://assets/audio/music/Sakura Beats at Midnight (1).mp3" id="5_40gtc"]
 [ext_resource type="FontFile" uid="uid://bceo6mdndisde" path="res://assets/fonts/Roboto-Bold.ttf" id="6_pk0vi"]
-
-[sub_resource type="Theme" id="Theme_kinoj"]
 
 [sub_resource type="Animation" id="Animation_n2ueq"]
 length = 0.001
@@ -30,6 +28,43 @@ _data = {
 "credits_scroll": ExtResource("2_i3n5c")
 }
 
+[sub_resource type="Gradient" id="Gradient_q4vw4"]
+offsets = PackedFloat32Array(0, 0.544218, 1)
+colors = PackedColorArray(0.994445, 0.805316, 1.54018e-06, 1, 0.997695, 0.336473, 6.39124e-07, 1, 1, 0.00392157, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a5fy4"]
+gradient = SubResource("Gradient_q4vw4")
+
+[sub_resource type="Curve" id="Curve_ieq4d"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.230769), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_buaye"]
+curve = SubResource("Curve_ieq4d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5xpup"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 2.872
+initial_velocity_min = 10.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_buaye")
+color_ramp = SubResource("GradientTexture1D_a5fy4")
+turbulence_enabled = true
+turbulence_noise_strength = 0.81
+turbulence_noise_scale = 2.71
+
+[sub_resource type="Environment" id="Environment_12sbu"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 4.0
+glow_strength = 1.36
+glow_blend_mode = 0
+glow_hdr_scale = 0.34
+
 [node name="CreditsScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -47,7 +82,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_kinoj")
 texture = ExtResource("3_jimqo")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -210,5 +244,30 @@ offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("6_pk0vi")
 theme_override_font_sizes/font_size = 19
 text = "Esc para salir"
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Node2D"]
+position = Vector2(341, 661)
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_5xpup")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Node2D"]
+position = Vector2(629, 995)
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_5xpup")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Node2D"]
+position = Vector2(1399, 1027)
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_5xpup")
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="Node2D"]
+position = Vector2(1700, 643)
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_5xpup")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Node2D"]
+environment = SubResource("Environment_12sbu")
 
 [connection signal="animation_finished" from="VBoxContainer/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

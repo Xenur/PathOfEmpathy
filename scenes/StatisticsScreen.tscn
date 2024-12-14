@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmyg2g0gima31"]
+[gd_scene load_steps=12 format=3 uid="uid://cmyg2g0gima31"]
 
 [ext_resource type="Script" path="res://scripts/statistics_screen.gd" id="1_h0gp4"]
 [ext_resource type="FontFile" uid="uid://bceo6mdndisde" path="res://assets/fonts/Roboto-Bold.ttf" id="2_l5hmj"]
@@ -14,6 +14,30 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54ohe"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ihwt"]
+bg_color = Color(0.0784314, 0.388235, 0.580392, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2th2y"]
+bg_color = Color(0.0784314, 0.388235, 0.580392, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdbkd"]
+bg_color = Color(0.0431373, 0.270588, 0.415686, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="StatisticsScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -25,10 +49,10 @@ script = ExtResource("1_h0gp4")
 
 [node name="EscapeLabel" type="Label" parent="."]
 layout_mode = 1
-offset_left = 1747.0
-offset_top = 1042.0
-offset_right = 1902.0
-offset_bottom = 1065.0
+offset_left = 1783.0
+offset_top = 1044.0
+offset_right = 1938.0
+offset_bottom = 1067.0
 theme_override_fonts/font = ExtResource("2_l5hmj")
 theme_override_font_sizes/font_size = 19
 text = "Esc para salir"
@@ -747,7 +771,7 @@ offset_right = 606.0
 offset_bottom = 40.0
 theme_override_fonts/font = ExtResource("4_bnrhr")
 theme_override_font_sizes/font_size = 25
-text = "ESTADÍSTICAS DIFICULTAD Y MODOS"
+text = "ESTADÍSTICAS ROLES Y DIFICULTAD"
 horizontal_alignment = 1
 
 [node name="ChartGeneral" type="Control" parent="."]
@@ -782,3 +806,19 @@ offset_right = 1880.0
 offset_bottom = 197.0
 theme_override_fonts/font = ExtResource("4_bnrhr")
 theme_override_font_sizes/font_size = 15
+
+[node name="AcceptButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 990.0
+offset_right = 374.0
+offset_bottom = 1064.0
+theme_override_fonts/font = ExtResource("4_bnrhr")
+theme_override_font_sizes/font_size = 39
+theme_override_styles/focus = SubResource("StyleBoxFlat_54ohe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6ihwt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2th2y")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wdbkd")
+text = "Volver"
+
+[connection signal="pressed" from="AcceptButton" to="." method="_on_accept_button_pressed"]

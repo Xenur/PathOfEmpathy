@@ -24,6 +24,16 @@ signal card_chosen_re(card_id)
 @onready var re_card_3 = $"."
 @onready var number_card_label = $NumberCardLabel
 @onready var beep_audio_stream_player = $"../../../UI/BeepAudioStreamPlayer"
+@onready var flames_re = $"../../../UI/FlamesRE"
+@onready var flames_hs = $"../../../UI/FlamesHS"
+
+@onready var gpu_particles_2d = $"../../../UI/FlamesRE/GPUParticles2D"
+@onready var gpu_particles_2d_2 = $"../../../UI/FlamesRE/GPUParticles2D2"
+@onready var gpu_particles_2d_3 = $"../../../UI/FlamesRE/GPUParticles2D3"
+@onready var gpu_particles_2d_4 = $"../../../UI/FlamesRE/GPUParticles2D4"
+@onready var gpu_particles_2d_5 = $"../../../UI/FlamesRE/GPUParticles2D5"
+@onready var gpu_particles_2d_6 = $"../../../UI/FlamesRE/GPUParticles2D6"
+
 
 # Define las constantes escalas de la carta
 const NORMAL_SCALE = Vector2(0.13, 0.13)
@@ -81,13 +91,27 @@ func move_to_target_position():
 
 	# Animación de escala hacia el destino
 	tween.tween_property(self, "scale", TARGET_SCALE, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-
+	await get_tree().create_timer(0.7).timeout
+	#flames_re.show()
+	gpu_particles_2d.emitting = true
+	gpu_particles_2d_2.emitting = true
+	gpu_particles_2d_3.emitting = true
+	gpu_particles_2d_4.emitting = true
+	gpu_particles_2d_5.emitting = true
+	gpu_particles_2d_6.emitting = true
 
 	GlobalData.current_card_in_target_positionRE = self
 	GlobalData.id_current_card_in_target_positionRE = number_card_label.text
 	emit_signal("card_chosen_re", number_card_label.text)
 
 func move_to_original_position():
+	#flames_re.hide()
+	gpu_particles_2d.emitting = false
+	gpu_particles_2d_2.emitting = false
+	gpu_particles_2d_3.emitting = false
+	gpu_particles_2d_4.emitting = false
+	gpu_particles_2d_5.emitting = false
+	gpu_particles_2d_6.emitting = false
 	is_moved = false
 	var tween = create_tween()
 	# Asegúrate de que la posición actual sea consistente con su estado inicial

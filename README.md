@@ -1,13 +1,19 @@
 # **Caminos de Empatía**
+14/12/2024
+v.0.3.0.4-alpha
+Arreglado no dar 0 puntos de empatía, el mínimo es 1.
+Arreglado media, ahora sale float.
+Release subida.
+
 11/12/2024
 v.0.3.0.3-alpha
 Estadísticas listas con el nuevo feedback (incluido puntos de empatía y gráfico).
 Listo pantallas finalización.
+Botón volver en seleccion rol
 **** PROXIMO ****
 Cheets en la obtención de tokens. +1 en el atributo que se defina segun el token
-Mostrar correctamente imagen con trait de los roles in-game
-Botón volver en seleccion rol
 *FALTARÁ EL TUTORIAL*
+
 
 10/12/2024
 -Arreglado las cartas de siguiente situción que al girarlas se mostraba la carta en curso.

@@ -26,31 +26,31 @@ extends HBoxContainer
 var roles = {
 	"Mediador": {
 		"resolucion_conflictos": 3,
-		"comunicacion": 2,
-		"apoyo_emocional": -1,
-		"intervencion": -2,
-		"empatia": 0
+		"comunicacion": 0,
+		"apoyo_emocional": -2,
+		"intervencion": -3,
+		"empatia": 2
 	},
 	"Escucha Activa": {
 		"resolucion_conflictos": -2,
-		"comunicacion": 0,
-		"apoyo_emocional": 3,
+		"comunicacion": 3,
+		"apoyo_emocional": 2,
 		"intervencion": -3,
-		"empatia": 4
+		"empatia": 0
 	},
 	"Líder": {
 		"resolucion_conflictos": 0,
 		"comunicacion": 2,
 		"apoyo_emocional": -2,
 		"intervencion": 4,
-		"empatia": -3
+		"empatia": -4
 	},
 	"Solidario": {
 		"resolucion_conflictos": -2,
-		"comunicacion": -1,
+		"comunicacion": -3,
 		"apoyo_emocional": 3,
 		"intervencion": 0,
-		"empatia": 3
+		"empatia": 2
 	}
 }
 
@@ -263,3 +263,8 @@ func _on_lider_control_gui_input(event):
 func _on_audio_stream_player_finished():
 	await get_tree().create_timer(0.1).timeout
 	get_tree().change_scene_to_file("res://scenes/LoadingGame.tscn")
+
+
+func _on_accept_button_pressed():
+	await get_tree().create_timer(0.1).timeout
+	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
