@@ -79,8 +79,8 @@ var current_state = GameState.PREPARE
 @onready var ready_texture_button = $"../UI/ReadyTextureButton"
 
 # Constantes para los tiempos de cuenta atrás
-const COUNTDOWN_TURN = 5 * 60  # En segundos (5 minutos) 
-const COUNTDOWN_GAME = 1 * 60  # En segundos (25 minutos)
+const COUNTDOWN_TURN = 1 * 60  # En segundos (5 minutos) 
+const COUNTDOWN_GAME = 1.5 * 60  # En segundos (25 minutos)
 
 # Variables de tiempo
 var countdown_turn = COUNTDOWN_TURN # Temporizador de turno
@@ -239,6 +239,7 @@ var countdown_sound_playing = false
 @onready var situaciones_aboradadas_label = $"../UI/GameOver/GameResultTextureRect/SituacionesAboradadasLabel"
 @onready var puntos_empatia_totales_label = $"../UI/GameOver/GameResultTextureRect/PuntosEmpatiaTotalesLabel"
 @onready var performance_mensaje_label = $"../UI/GameOver/GameResultTextureRect/PerformanceMensajeLabel"
+@onready var promedio_puntos_totales_label = $"../UI/GameOver/GameResultTextureRect/PromedioPuntosTotalesLabel"
 
 # Diccionario con las nuevas texturas para los tokens
 var token_textures: Dictionary = {
@@ -875,7 +876,11 @@ func calculate_stars(score: int, thresholds: Array) -> int:
 	for threshold in thresholds:
 		if score >= threshold:
 			stars += 1
+		# Asegurarse de que stars sea al menos 1
+	if stars == 0:
+		stars = 1
 	total_stars = total_stars+stars
+	GlobalData.total_stars = total_stars
 	GlobalData.stars = stars
 	return stars
 		
@@ -1264,7 +1269,8 @@ func game_over():
 	var performance_message = get_performance_message(average_stars)
 	print(performance_message)  # Muestra el mensaje correspondiente
 	situaciones_aboradadas_label.text = "Situaciones Abordadas " + str(GlobalData.current_game_data.size())
-	puntos_empatia_totales_label.text = "Promedio Puntos Empatía " + str(average_stars)
+	puntos_empatia_totales_label.text = "Puntos Empatía Totales " + str(GlobalData.total_stars)
+	promedio_puntos_totales_label.text = "Promedio Puntos Empatía " + str("%.2f" % average_stars)
 	performance_mensaje_label.text = performance_message
 	
 	
@@ -3800,11 +3806,12 @@ func _on_accept_button_pressed_over():
 #
 # Función para calcular el promedio de estrellas
 func calculate_average_stars() -> float:
-	var total_stars = 0
+	var total_stars:float = 0.00
 	var situations_array = GlobalData.current_game_data  # Obtenemos el array global
 	for situation in situations_array:
 		total_stars += situation["stars"]
-	return total_stars / situations_array.size() if situations_array.size() > 0 else 0
+	return (float(total_stars) / float(situations_array.size()))*1.0 if situations_array.size() > 0 else 0
+
 func get_performance_message(average_stars: float) -> String:
 	# Determinar el nivel de desempeño basado en el promedio de estrellas
 	var performance_level = 0
