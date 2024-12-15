@@ -1,7 +1,7 @@
 [gd_scene load_steps=124 format=3 uid="uid://dq4v62olhary3"]
 
 [ext_resource type="Script" path="res://scripts/new_game.gd" id="1_eh8bj"]
-[ext_resource type="Texture2D" uid="uid://0ei5ks106f0x" path="res://assets/images/backgrounds/bg_2.png" id="2_2m7pv"]
+[ext_resource type="Texture2D" uid="uid://bk6oojhaayb2d" path="res://assets/images/backgrounds/bg_6.webp" id="2_l3b2v"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="2_q5ib0"]
 [ext_resource type="Script" path="res://scripts/re_card_1.gd" id="5_goa0y"]
 [ext_resource type="Texture2D" uid="uid://dyyblqjpcax5f" path="res://assets/images/cards/reverses/reverse_ai.png" id="6_p02oi"]
@@ -363,10 +363,9 @@ particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 5.323
 initial_velocity_min = 1.0
-initial_velocity_max = 75.0
+initial_velocity_max = 50.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.0
-scale_max = 7.4
+scale_max = 3.0
 scale_curve = SubResource("CurveTexture_mvn3w")
 color_ramp = SubResource("GradientTexture1D_k178s")
 turbulence_enabled = true
@@ -389,7 +388,7 @@ z_index = -1
 layout_mode = 1
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("2_2m7pv")
+texture = ExtResource("2_l3b2v")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 1
@@ -3239,6 +3238,8 @@ texture = ExtResource("37_a0yc1")
 [node name="NewGameOptionWindow" type="Window" parent="UI"]
 process_mode = 3
 transparent_bg = true
+scaling_3d_scale = 0.25
+sdf_scale = 2
 initial_position = 1
 size = Vector2i(500, 280)
 visible = false
@@ -3502,7 +3503,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_bbh5u")
-text = "cancionesnn"
+text = "Has modificado el atributo Resolución de Conflictos en +1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -5143,12 +5144,22 @@ script = ExtResource("25_ldt3k")
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Node2D"]
-position = Vector2(341, 661)
-amount = 150
+position = Vector2(816, 688)
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_w02vi")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Node2D"]
-position = Vector2(1702, 643)
+position = Vector2(1054, 723)
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_w02vi")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Node2D"]
+position = Vector2(1024, 670)
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_w02vi")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Node2D"]
+position = Vector2(925, 643)
 amount = 150
 process_material = SubResource("ParticleProcessMaterial_w02vi")
 

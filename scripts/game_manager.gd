@@ -79,8 +79,8 @@ var current_state = GameState.PREPARE
 @onready var ready_texture_button = $"../UI/ReadyTextureButton"
 
 # Constantes para los tiempos de cuenta atrás
-const COUNTDOWN_TURN = 1 * 60  # En segundos (5 minutos) 
-const COUNTDOWN_GAME = 1.5 * 60  # En segundos (25 minutos)
+const COUNTDOWN_TURN = 5 * 60  # En segundos (5 minutos) 
+const COUNTDOWN_GAME = 25 * 60  # En segundos (25 minutos)
 
 # Variables de tiempo
 var countdown_turn = COUNTDOWN_TURN # Temporizador de turno
@@ -241,6 +241,7 @@ var countdown_sound_playing = false
 @onready var performance_mensaje_label = $"../UI/GameOver/GameResultTextureRect/PerformanceMensajeLabel"
 @onready var promedio_puntos_totales_label = $"../UI/GameOver/GameResultTextureRect/PromedioPuntosTotalesLabel"
 
+
 # Diccionario con las nuevas texturas para los tokens
 var token_textures: Dictionary = {
 	"exclusión_social": preload("res://assets/ui/tokens/token_exclusión_social.png"),
@@ -368,6 +369,14 @@ func _ready():
 			"ciberbullying": 0
 		}
 		GlobalData.token_combos_player = {
+			"verbal": 0,
+			"exclusión_social": 0,
+			"psicológico": 0,
+			"físico": 0,
+			"sexual": 0,
+			"ciberbullying": 0
+		}
+		GlobalData.previous_token_count = {
 			"verbal": 0,
 			"exclusión_social": 0,
 			"psicológico": 0,
@@ -525,7 +534,7 @@ func prepare_game():
 	display_card_hs(player_cards_hs[2], hs_card_3, GlobalData.showing_reverses)
 
 	# Actualizar la carta de bullying inicial
-	update_bullying_card()
+	#update_bullying_card()
 	#display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
 		
 	# Inicializar las cartas de la IA
@@ -692,7 +701,7 @@ func check_game_result():
 func adjust_player_score(player_score: float) -> float:
 	match GameConfig.ia_difficulty:
 		0:  # Dificultad Alumno
-			return player_score * 1.5
+			return player_score * 2.5
 		1:  # Dificultad Profesor
 			return player_score * 1.0  # Sin cambio
 		2:  # Dificultad Psicólogo
@@ -1016,7 +1025,7 @@ func check_and_award_tokens_ia(bullying_type: String, combo_count: int):
 func end_turn_actions():
 	#ready_button.disabled = true
 	#disable_card_interaction()
-	blur_overlay.visible = true
+	#blur_overlay.visible = true
 	
 	#end_turn_popup.visible = true
 	dialogue_texture_rect.visible = true
@@ -1848,6 +1857,44 @@ func reset_turn_state():
 	ia_selected_card_re = null
 	ia_selected_card_hs = null
 	GlobalData.stars = 0
+	update_player_stats()
+	ui.update_traits_based_on_role()
+	print("TOKLEN EARNED: ", GlobalData.token_earned_player)
+	
+var token_to_attribute = {
+	"verbal": "comunicacion",
+	"exclusión_social": "resolucion_de_conflictos",
+	"psicológico": "apoyo_emocional",
+	"físico": "intervencion",
+	"sexual": "empatia",
+	"ciberbullying": "comunicacion"
+}
+	
+func update_player_stats():
+	for token_type in GlobalData.token_earned_player.keys():
+		# Obtener los tokens actuales y previos
+		var current_tokens = GlobalData.token_earned_player[token_type]
+		var previous_tokens = GlobalData.previous_token_count.get(token_type, 0)
+
+		# Comparar si el número de tokens ha aumentado
+		if current_tokens > previous_tokens:
+			var increment_count = current_tokens - previous_tokens
+
+			# Obtener el atributo correspondiente al tipo de token
+			var attribute = token_to_attribute.get(token_type, null)
+			if attribute:
+				# Si el atributo no existe en player_stats, inicialízalo a 0
+				if not GlobalData.player_stats.has(attribute):
+					GlobalData.player_stats[attribute] = 0
+				
+				# Incrementar el atributo
+				GlobalData.player_stats[attribute] += increment_count
+
+			# Actualizar el estado previo de tokens
+			GlobalData.previous_token_count[token_type] = current_tokens
+
+	print("Player Stats Actualizados: ", GlobalData.player_stats)
+
 
 ###############################################################################
 ###############################################################################
@@ -1957,15 +2004,47 @@ func remove_selected_cards():
 	player_selected_card_hs = null
 	ia_selected_card_re = null
 	ia_selected_card_hs = null
+#
+## Función para actualizar la carta de bullying en cada turno
+#func update_bullying_card():
+	## Verificar si todavía quedan cartas en el mazo de bullying
+	#if deck_manager.deck_bu.size() > 0:
+		## Extraer la última carta del mazo y asignarla como la carta actual de bullying
+		#card_bullying = deck_manager.deck_bu.pop_back()
+		## Actualizar la interfaz para mostrar la nueva carta de bullying
+		##display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
+		## Verificar la siguiente carta sin sacarla del mazo
+		#var next_card_bullying = null
+		#if deck_manager.deck_bu.size() > 0:
+			#next_card_bullying = deck_manager.deck_bu.back()
+#
+		## Actualizar la interfaz para mostrar la nueva carta de bullying
+		#display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
+		#display_next_card_bu(next_card_bullying, bullying_card_next, GlobalData.showing_reverses)
+#
+		## Mostrar la próxima carta si existe
+		#if next_card_bullying:
+			#display_next_card_bu(next_card_bullying, bullying_card_next, GlobalData.showing_reverses)
+		#else:
+			## Si no hay próxima carta, limpia o maneja la interfaz
+			#bullying_card_next.hide()
+#
+		#print("Carta de bullying actualizada:", card_bullying.id_carta)
+		#if next_card_bullying:
+			#print("Siguiente carta de bullying:", next_card_bullying.id_carta)
+	#else:
+		## Si no hay cartas de bullying, finalizar el juego
+		#print("No quedan cartas de bullying. Terminando el juego.")
+		#GlobalData.game_over_time_or_bu = true
+		#change_state(GameState.GAME_OVER) # Cambia el estado del juego a "GAME_OVER"
 
-# Función para actualizar la carta de bullying en cada turno
 func update_bullying_card():
+	print("primera vez: ", deck_manager.deck_bu.size())
 	# Verificar si todavía quedan cartas en el mazo de bullying
 	if deck_manager.deck_bu.size() > 0:
 		# Extraer la última carta del mazo y asignarla como la carta actual de bullying
 		card_bullying = deck_manager.deck_bu.pop_back()
-		# Actualizar la interfaz para mostrar la nueva carta de bullying
-		#display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
+
 		# Verificar la siguiente carta sin sacarla del mazo
 		var next_card_bullying = null
 		if deck_manager.deck_bu.size() > 0:
@@ -1973,24 +2052,24 @@ func update_bullying_card():
 
 		# Actualizar la interfaz para mostrar la nueva carta de bullying
 		display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
-		display_next_card_bu(next_card_bullying, bullying_card_next, GlobalData.showing_reverses)
 
 		# Mostrar la próxima carta si existe
 		if next_card_bullying:
 			display_next_card_bu(next_card_bullying, bullying_card_next, GlobalData.showing_reverses)
 		else:
-			# Si no hay próxima carta, limpia o maneja la interfaz
-			bullying_card_next.hide()
-
+			# Si no hay próxima carta, muestra una carta vacía o limpia la interfaz
+			#bullying_card_next.texture = preload("res://path_to_empty_card_texture.png")  # Ruta a una carta vacía
+			bullying_card_next.hide()  # Asegurarse de que esté visible si se necesita
 		print("Carta de bullying actualizada:", card_bullying.id_carta)
 		if next_card_bullying:
 			print("Siguiente carta de bullying:", next_card_bullying.id_carta)
 	else:
 		# Si no hay cartas de bullying, finalizar el juego
 		print("No quedan cartas de bullying. Terminando el juego.")
+		#bullying_card_next.texture = preload("res://path_to_empty_card_texture.png")  # Ruta a una carta vacía
+		bullying_card_next.hide()  # Mostrar la carta vacía o realizar acciones necesarias
 		GlobalData.game_over_time_or_bu = true
-		change_state(GameState.GAME_OVER) # Cambia el estado del juego a "GAME_OVER"
-
+		change_state(GameState.GAME_OVER)  # Cambia el estado del juego a "GAME_OVER"
 
 ###############################################################################
 ###############################################################################
@@ -3907,3 +3986,23 @@ func get_performance_message(average_stars: float) -> String:
 		return selected_messages[randi() % selected_messages.size()]
 	else:
 		return "¡Sigue jugando y mejorando tu desempeño!"
+
+
+#Funcion para comprobar si el jugador ha jugado alguna partida.
+#Si no ha jugado ninguna partida se inicia el tutorial.
+#En caso contrario juega una partida normal.
+
+func has_played_before(id_jugador: int) -> bool:
+	# Cargar los datos guardados
+	var saved_data = load_saved_games_persistence()
+	
+	# Verificar si "partidas" existe y contiene datos
+	if not saved_data.has("partidas") or saved_data["partidas"].size() == 0:
+		return false  # No hay datos de partidas
+
+	# Verificar si el jugador tiene partidas registradas
+	for jugador_partidas in saved_data["partidas"]:
+		if jugador_partidas["id_jugador"] == id_jugador:
+			return true  # El jugador tiene al menos una partida registrada
+
+	return false  # No se encontró el id_jugador en las partidas

@@ -151,6 +151,14 @@ func get_average_data() -> Dictionary:
 #Roles
 var selected_role = ""  # Nombre del rol seleccionado
 var player_stats = {}   # Atributos del jugador según el rol
+var previous_token_count = {
+	"verbal": 0,
+	"exclusión_social": 0,
+	"psicológico": 0,
+	"físico": 0,
+	"sexual": 0,
+	"ciberbullying": 0
+}
 
 #stars
 var stars:int = 0

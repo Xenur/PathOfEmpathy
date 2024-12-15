@@ -1,0 +1,15 @@
+res://scenes/LoginScreen.tscn
+res://scripts/MainMenu.gdshader
+res://scripts/game_manager.gd
+res://scenes/NewGame.tscn
+res://scenes/MainMenu.tscn
+res://scenes/CreditsScreen.tscn
+res://scenes/LoadingGame.tscn
+res://scenes/RegisterUser.tscn
+res://scenes/LoadGame.tscn
+res://scenes/StatisticsScreen.tscn
+res://scenes/ChooseRole.tscn
+res://scripts/global_data.gd
+res://scripts/ui.gd
+res://README.md
+res://scripts/statistics_screen.gd

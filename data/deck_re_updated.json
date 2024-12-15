@@ -325,7 +325,7 @@
 	{
 		"idCarta": 20,
 		"Nombre": "Uso Responsable de Redes Sociales",
-		"Empatía": 1,
+		"Empatía": 6,
 		"Apoyo Emocional": 5,
 		"Intervención": 7,
 		"Descripción": "Fomentar el uso ético y seguro de las redes sociales, evitando el ciberbullying y promoviendo interacciones positivas.",
@@ -334,7 +334,7 @@
 			"Sexual": "Baja",
 			"Verbal": "Media",
 			"Físico": "Media",
-			"Ciberbullying": "Media",
+			"Ciberbullying": "Alta",
 			"Psicológico": "Media",
 			"Exclusión Social": "Media"
 		}

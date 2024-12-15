@@ -1,4 +1,10 @@
 # **Caminos de Empatía**
+15/12/2024
+Arreglado mostrar solo 49 cartas.
+Arreglado cheets en la obtención de tokens. Cambia los atributos cuando se generan los tokens
+
+
+
 14/12/2024
 v.0.3.0.4-alpha
 Arreglado no dar 0 puntos de empatía, el mínimo es 1.
