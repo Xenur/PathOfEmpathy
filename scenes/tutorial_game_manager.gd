@@ -77,6 +77,7 @@ var current_state = GameState.PREPARE
 @onready var bullying_card_next = $"../DeckManager/DeckBullying/BullyingCardNext"
 
 @onready var ready_texture_button = $"../UI/ReadyTextureButton"
+@onready var dialogue_label = $"../UI/DialogueLabel"
 
 # Constantes para los tiempos de cuenta atrás
 const COUNTDOWN_TURN = 5 * 60  # En segundos (5 minutos) 
@@ -241,8 +242,38 @@ var countdown_sound_playing = false
 @onready var performance_mensaje_label = $"../UI/GameOver/GameResultTextureRect/PerformanceMensajeLabel"
 @onready var promedio_puntos_totales_label = $"../UI/GameOver/GameResultTextureRect/PromedioPuntosTotalesLabel"
 @onready var tutorial_control = $"../UI/TutorialControl"
+@onready var tutorial_new_game = $".."
+@onready var hand_texture_rect = $"../UI/HandTextureRect"
+@onready var animation_player = $"../UI/AnimationPlayer"
 
 
+var tutorial_messages = []
+var tutorial_messages1 = [
+	"Bienvenidos a Caminos de Empatía",
+	"¡Vamos a practicar una partida juntos!",
+	"Tu objetivo es combatir situaciones de bullying...",
+	"...utilizando tus cartas de habilidades"
+]
+var tutorial_messages2 = [
+	"Esta es la situación de bullying actual.",
+	"Es el desafio que necesitas resolver",
+	"Lee cuidadosamente para poder elegir la mejor respuesta"
+	
+]
+var tutorial_messages3 = [
+	"Una vez que tengas claro el desafio deberás...",
+	"...elegir las cartas de Respuesta Empática...",
+	
+]
+var tutorial_messages4 = [
+	"...y las cartas de Habilidad Social.",
+	"Combinando ambas cartas podrás combatir el bullying",
+	
+]
+var tutorial_messages5 = [
+	"Es hora de elegir las cartas",
+		
+]
 # Diccionario con las nuevas texturas para los tokens
 var token_textures: Dictionary = {
 	"exclusión_social": preload("res://assets/ui/tokens/token_exclusión_social.png"),
@@ -508,16 +539,19 @@ func change_state(new_state):
 
 # Función para preparar el juego inicial
 func prepare_game():
-	print("Preparando el juego...")
+	disable_card_interaction()
+	dialogue_texture_rect.visible = false
 	
+	print("Preparando el juego...")
+
 	# Cargar y barajar las cartas iniciales al jugador y a la IA y crear listas
 	deck_manager.load_cards_bu_from_json()
 	deck_manager.load_cards_hs_from_json()
 	deck_manager.load_cards_re_from_json()
 
-	deck_manager.shuffle_deck_bu()
-	deck_manager.shuffle_deck_re()
-	deck_manager.shuffle_deck_hs()
+	#deck_manager.shuffle_deck_bu()
+	#deck_manager.shuffle_deck_re()
+	#deck_manager.shuffle_deck_hs()
 	
 	
 
@@ -556,10 +590,42 @@ func prepare_game():
 		deck_manager.deck_hs.pop_back() as CardsHS,
 		deck_manager.deck_hs.pop_back() as CardsHS
 	]
-	GlobalData.current_game_data.clear()
-	# Cambiar al estado de turno
+		# Cambiar al estado de turno
 	change_state(GameState.TURN)
+	GlobalData.current_game_data.clear()
+	hand_texture_rect.visible = false
+	if dialogue_label:
+		print("Nodo dialogue_label encontrado.")
+	else:
+		print("Error: Nodo dialogue_label no encontrado.")
+		
+	add_child(sound_player)
+	print("ESTAS EN TUTORIAL")
+	dialogue_label.visible = true
+	dialogue_label.text = ""  # Limpia cualquier texto previo
+	await show_messages(tutorial_messages1)
+	await get_tree().create_timer(2.0).timeout
+	hand_texture_rect.visible = true
+	dialogue_label.text = ""  # Limpia cualquier texto previo
+	animation_player.play("hand_bullying", 0, 0.5)
+	
+	await show_messages(tutorial_messages2)
+	
+	await get_tree().create_timer(3.0).timeout
+	hand_texture_rect.visible = true
+	dialogue_label.text = ""  # Limpia cualquier texto previo
+	animation_player.play("hand_re", 0, 0.2)
+	
+	await show_messages(tutorial_messages3)
+	await get_tree().create_timer(3.0).timeout
+	await show_messages(tutorial_messages4)
+	await get_tree().create_timer(3.0).timeout
+	hand_texture_rect.visible = false
+	await show_messages(tutorial_messages5)
+	await get_tree().create_timer(1.0).timeout
+	enable_card_interaction()
 
+	
 # Función para manejar el turno del jugador
 func start_turn():
 	dialogue_texture_rect.visible = false
@@ -4014,3 +4080,46 @@ func has_played_before(id_jugador: int) -> bool:
 			return true  # El jugador tiene al menos una partida registrada
 
 	return false  # No se encontró el id_jugador en las partidas
+
+
+
+# Velocidad de la máquina de escribir (segundos entre caracteres)
+var typewriter_speed = 0.03
+# Tiempo que el mensaje permanece visible antes de desaparecer (segundos)
+var message_display_time = 1.0
+# Índice del mensaje actual
+var current_message_index = 0
+# Nodo AudioStreamPlayer para reproducir el sonido
+@onready var sound_player = AudioStreamPlayer.new()
+var keypress_sound = preload("res://assets/audio/sfx/consonante_key.ogg")
+
+func show_messages(messages: Array) -> void:
+	for i in range(messages.size()):
+		# Mostrar el mensaje con el efecto de máquina de escribir
+		await type_text(messages[i])
+		# Esperar antes de pasar al siguiente mensaje, excepto en el último
+		if i < messages.size() - 1:
+			await get_tree().create_timer(2.0).timeout
+
+	print("Mensajes finalizados.")
+	# La última frase quedará en el Labelbel
+	
+# Efecto de máquina de escribir para el texto
+func type_text(text_to_type: String) -> void:
+	dialogue_label.text = ""  # Limpia el texto actual
+	for i in range(text_to_type.length()):
+		# Espera entre cada carácter
+		await get_tree().create_timer(typewriter_speed).timeout
+		# Agrega un carácter al texto visible
+		dialogue_label.text += text_to_type[i]
+		print("Texto actual:", dialogue_label.text)
+		# Reproduce el sonido
+		play_keypress_sound()
+
+
+# Reproducir el sonido de tecla
+func play_keypress_sound():
+
+	sound_player.volume_db = -10  # Reduce el volumen
+	sound_player.stream = keypress_sound  # Asigna el sonido
+	sound_player.play()  # Reproduce el sonido

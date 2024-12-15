@@ -1,12 +1,13 @@
+AnimationPlayer
+TextureRect
+Label
+Panel
+Control
 WorldEnvironment
 GPUParticles2D
 Node2D
-Label
-Panel
 Tree
 Button
-TextureRect
-Control
 AudioStreamPlayer
 CPUParticles2D
 HBoxContainer
