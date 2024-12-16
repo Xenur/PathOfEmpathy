@@ -245,14 +245,15 @@ var countdown_sound_playing = false
 @onready var tutorial_new_game = $".."
 @onready var hand_texture_rect = $"../UI/HandTextureRect"
 @onready var animation_player = $"../UI/AnimationPlayer"
+@onready var accept_button = $"../UI/DialogueTextureRect/AcceptButton"
+@onready var options_button = $"../UI/OptionsButton"
 
 
 var tutorial_messages = []
 var tutorial_messages1 = [
-	"Bienvenidos a Caminos de Empatía",
+	"Bienvenidos a Caminos de Empatía.",
 	"¡Vamos a practicar una partida juntos!",
-	"Tu objetivo es combatir situaciones de bullying...",
-	"...utilizando tus cartas de habilidades"
+	"Tu objetivo es combatir situaciones de bullying.",
 ]
 var tutorial_messages2 = [
 	"Esta es la situación de bullying actual.",
@@ -268,7 +269,7 @@ var tutorial_messages3 = [
 var tutorial_messages4 = [
 	"...y las cartas de Habilidad Social.",
 	"Combinando ambas cartas podrás combatir el bullying",
-	
+	#
 ]
 var tutorial_messages5 = [
 	"Es hora de elegir las cartas",
@@ -461,6 +462,13 @@ func _process(delta):
 		if player_chosen and ia_chosen:
 			emit_signal("ready_to_check_result")
 			change_state(GameState.CHECK_RESULT)
+	
+	if turn== 1:
+		if player_selected_card_hs != null and player_selected_card_re != null:
+			ready_button.disabled = false
+		else:
+			ready_button.disabled = true
+
 
 # Manejar la cuenta atrás del turno
 func handle_countdown(delta):
@@ -594,6 +602,8 @@ func prepare_game():
 	change_state(GameState.TURN)
 	GlobalData.current_game_data.clear()
 	hand_texture_rect.visible = false
+	options_button.disabled = true
+	
 	if dialogue_label:
 		print("Nodo dialogue_label encontrado.")
 	else:
@@ -601,46 +611,137 @@ func prepare_game():
 		
 	add_child(sound_player)
 	print("ESTAS EN TUTORIAL")
-	dialogue_label.visible = true
-	dialogue_label.text = ""  # Limpia cualquier texto previo
-	await show_messages(tutorial_messages1)
-	await get_tree().create_timer(2.0).timeout
-	hand_texture_rect.visible = true
-	dialogue_label.text = ""  # Limpia cualquier texto previo
-	animation_player.play("hand_bullying", 0, 0.5)
-	
-	await show_messages(tutorial_messages2)
-	
-	await get_tree().create_timer(3.0).timeout
-	hand_texture_rect.visible = true
-	dialogue_label.text = ""  # Limpia cualquier texto previo
-	animation_player.play("hand_re", 0, 0.2)
-	
-	await show_messages(tutorial_messages3)
-	await get_tree().create_timer(3.0).timeout
-	await show_messages(tutorial_messages4)
-	await get_tree().create_timer(3.0).timeout
-	hand_texture_rect.visible = false
-	await show_messages(tutorial_messages5)
-	await get_tree().create_timer(1.0).timeout
-	enable_card_interaction()
+	if turn == 1:
+		dialogue_label.visible = true
+		
+		dialogue_label.text = ""  # Limpia cualquier texto previo
+		await show_messages(tutorial_messages1)
+		await get_tree().create_timer(2.0).timeout
+		hand_texture_rect.visible = true
+		dialogue_label.text = ""  # Limpia cualquier texto previo
+		animation_player.play("hand_bullying", 0, 0.5)
+		
+		await show_messages(tutorial_messages2)
+		
+		await get_tree().create_timer(3.0).timeout
+		hand_texture_rect.visible = true
+		dialogue_label.text = ""  # Limpia cualquier texto previo
+		animation_player.play("hand_re", 0, 0.2)
+		
+		await show_messages(tutorial_messages3)
+		await get_tree().create_timer(3.0).timeout
+		await show_messages(tutorial_messages4)
+		await get_tree().create_timer(3.0).timeout
+		hand_texture_rect.visible = true
+
+		await get_tree().create_timer(2.0).timeout
+		var tutorial_messages6 = [
+			"Una vez que hayas elegido las cartas podrás confirmar.",
+			"Recuerda, doble clic para seleccionar las cartas."
+		]
+		enable_card_interaction()
+		hand_texture_rect.visible = true
+		animation_player.play("hand_listo", 0, 0.5)
+		await show_messages(tutorial_messages6)
+		#await get_tree().create_timer(1.0).timeout
+		
 
 	
 # Función para manejar el turno del jugador
 func start_turn():
-	dialogue_texture_rect.visible = false
-	
+
+
+	ready_button.disabled = false
 	duelo_label.text = "Situación " + str(turn)
 	total_label.text = str(total_stars)
 	update_token_textures()
 	print("Turno del jugador y la IA.")
-	# Reiniciar los estados del turno
+			
+		# Reiniciar los estados del turno
 	reset_turn_state()
 	# Actualizar la carta de bullying
 	update_bullying_card() 
-	# La IA selecciona automaticamente sus cartas 
-	#choose_ia_cards()
-	
+
+	dialogue_texture_rect.visible = false
+	if turn == 2:
+			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
+		options_button.disabled = true
+		ready_button.disabled = true
+		dialogue_texture_rect.visible = false
+		tutorial_messages = [
+			"Se recargan las manos de Respuesta Empática...",
+			"... y la de Habilidad Social",
+			"Y se presenta una nueva carta de Situación.",
+			"Te dejo que acabes la partida del tutorial.",
+		]
+		tutorial_messages2 = [
+			"Si quieres abandonar el tutorial, en Opciones...",
+			"...podrás hacerlo fácilmente",
+			"Para conocer más mecánicas del juego...",
+			"...visita el apartado de vídeos en el Menú Principal-->Opciones.",
+			"Allí encontrarás explicaciones detalladas de todas las mecánicas."
+		]
+		await show_messages(tutorial_messages)
+		await get_tree().create_timer(1.0).timeout
+		animation_player.play("hand_opciones", 0, 0.5)		
+		await show_messages(tutorial_messages2)
+		ready_button.disabled = false
+		options_button.disabled = false
+		await get_tree().create_timer(10.0).timeout
+		hand_texture_rect.visible = false
+		await get_tree().create_timer(2.0).timeout
+		dialogue_label.visible = false
+
+	if turn == 5:
+			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
+		dialogue_label.visible = true
+		options_button.disabled = true
+		ready_button.disabled = true
+		dialogue_texture_rect.visible = false
+		tutorial_messages = [
+			"¿Todavía estás aquí? Bien hecho",
+			"Si ganas 4 o más Puntos de Empatía ganarás Combos"
+		]
+		tutorial_messages2 = [
+			"Los combos servirán para conseguir Tokens",
+			"Cada Token cambia un atributo de Rol"
+			]
+		await show_messages(tutorial_messages)
+		await get_tree().create_timer(1.0).timeout
+		animation_player.play("hand_combo", 0, 0.5)		
+		await show_messages(tutorial_messages2)
+		ready_button.disabled = false
+		options_button.disabled = false
+		await get_tree().create_timer(10.0).timeout
+		hand_texture_rect.visible = false
+		await get_tree().create_timer(2.0).timeout
+		dialogue_label.visible = false
+
+	if turn == 6:
+			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
+		dialogue_label.visible = true
+		options_button.disabled = true
+		ready_button.disabled = true
+		dialogue_texture_rect.visible = false
+		tutorial_messages = [
+			"¿Todavía estás aquí? Bien hecho",
+			"Si ganas 4 o más Puntos de Empatía ganarás Combos"
+		]
+		tutorial_messages2 = [
+			"Los combos servirán para conseguir Tokens",
+			"Cada Token cambia un atributo de Rol"
+			]
+		await show_messages(tutorial_messages)
+		await get_tree().create_timer(1.0).timeout
+		animation_player.play("hand_combo", 0, 0.5)		
+		await show_messages(tutorial_messages2)
+		ready_button.disabled = false
+		options_button.disabled = false
+		await get_tree().create_timer(10.0).timeout
+		hand_texture_rect.visible = false
+		await get_tree().create_timer(2.0).timeout
+		dialogue_label.visible = false
+
 # Función para manejar el turno del jugador DEPRECATED
 func loading():
 	update_token_textures()
@@ -669,8 +770,8 @@ func choose_ia_cards():
 # Función para verificar el resultado del turno
 # Refactorización de la función `check_game_result` 22/11/2024
 func check_game_result():
-	dialogue_texture_rect.visible = true
-	# Actualiza la información del bullying en las etiquetas
+	
+
 	update_bullying_info()
 	
 	# Obtiene las cartas seleccionadas
@@ -766,8 +867,42 @@ func check_game_result():
 	print("Nueva tirada creada:", nueva_tirada)
 
 	nueva_partida.add_tirada(nueva_tirada)
-	save_game_persistence(nueva_partida)
-	add_card_to_current_game(player_bullying_card.nombre, stars)
+	#save_game_persistence(nueva_partida)
+	#add_card_to_current_game(player_bullying_card.nombre, stars)
+	if turn == 2:
+
+		accept_button.disabled = true
+		ready_button.disabled = true
+		dialogue_texture_rect.visible = true
+		options_button.disabled = true
+		hand_texture_rect.visible = true
+		animation_player.play("hand_dialogue", 0, 0.5)
+		await get_tree().create_timer(1.0).timeout
+		var tutorial_messages = [
+			"Aquí encontrarás el feedback de tu tirada",
+			"¡Recuerda que 5 Puntos de Empatía es Excelente!"
+		]
+		await show_messages(tutorial_messages)
+		await get_tree().create_timer(3.0).timeout
+		animation_player.play("hand_puntos", 0, 0.5)
+		tutorial_messages = [
+			"Aquí podrás ver todos tus Puntos de Empatía ganados"
+		]
+		await show_messages(tutorial_messages)
+		await get_tree().create_timer(3.0).timeout
+		
+		# Actualiza la información del bullying en las etiquetas
+		tutorial_messages = [
+			"Cuando hayas leído el feedback, clica en Aceptar"
+		]
+		await show_messages(tutorial_messages)
+		animation_player.play("hand_aceptar", 0, 0.5)
+		await get_tree().create_timer(3.0).timeout
+		accept_button.disabled = false
+		# Actualiza la información del bullying en las etiquetas
+		
+	
+	
 	
 	# Finalizar el turno
 	end_turn_actions()
@@ -1097,13 +1232,13 @@ func check_and_award_tokens_ia(bullying_type: String, combo_count: int):
 		
 # Acciones al final del turno
 func end_turn_actions():
-	#ready_button.disabled = true
-	#disable_card_interaction()
+	ready_button.disabled = true
+	disable_card_interaction()
 	#blur_overlay.visible = true
 	
 	#end_turn_popup.visible = true
 	dialogue_texture_rect.visible = true
-	
+
 	
 #Función para calcular la puntuación total de un jugador o la IA
 func calculate_score(bullying_card, re_card, hs_card) -> float:
@@ -2238,13 +2373,24 @@ func _on_continue_button_pressed():
 func _on_card_chosen_re(card_id):
 	# Actualizar la carta seleccionada tipo RE del jugador
 	player_selected_card_re = card_id
-	
+	var message =[
+		"Bien hecho, has elegido la carta de Respuesta Empática"
+	]
+	#await show_messages(message)
+	await get_tree().create_timer(3.0).timeout
+
 # Función para manejar la selección de cartas tipo HS por el jugador
 func _on_card_chosen_hs(card_id):
 	# Actualizar la carta seleccionada tipo HS del jugador
 	player_selected_card_hs = card_id
-		
-		
+	var message =[
+		"Bien hecho, has elegido la carta de Habilidad Social"
+	]
+	#await show_messages(message)
+	await get_tree().create_timer(3.0).timeout	
+
+
+
 ###############################################################################
 ###############################################################################
 #                              VISUALIZACIÓN                                  #
@@ -3881,6 +4027,7 @@ func load_saved_games() -> Dictionary:
 	
 
 func _on_accept_button_pressed():
+	dialogue_texture_rect.visible = false
 	line_1_dialogue_label.text = ""
 	line_2_dialogue_label.text = ""
 	line_3_dialogue_label.text = ""
@@ -3896,7 +4043,7 @@ func _on_accept_button_pressed():
 	#end_turn_popup.visible = false
 	enable_card_interaction()
 	dialogue_texture_rect.visible = false
-	
+	options_button.disabled = false
 	# Verifica si el juego debe terminar (tiempo finalizado o no hay más cartas en el mazo bu) o iniciar el siguiente turno
 	if countdown_game <= 0 or deck_manager.deck_bu.size() == 0:
 		GlobalData.game_over_time_or_bu = true
@@ -4084,7 +4231,7 @@ func has_played_before(id_jugador: int) -> bool:
 
 
 # Velocidad de la máquina de escribir (segundos entre caracteres)
-var typewriter_speed = 0.03
+var typewriter_speed = 0.01
 # Tiempo que el mensaje permanece visible antes de desaparecer (segundos)
 var message_display_time = 1.0
 # Índice del mensaje actual

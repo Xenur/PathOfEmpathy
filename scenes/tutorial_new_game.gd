@@ -166,7 +166,7 @@ func _ready():
 	beep_audio_stream_player.volume_db = volume_db
 	beep_countdown_audio_stream_player.volume_db = volume_db
 	audio_stream_token.volume_db = volume_db
-	start_playlist()
+	#start_playlist()
 func start_playlist():
 	# Baraja la lista de canciones para reproducirlas aleatoriamente
 	song_list.shuffle()
