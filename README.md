@@ -1,4 +1,12 @@
 # **Caminos de Empatía**
+17/12/2024
+Tutorial listo
+Cambios en los marcos de las cartas
+El tutorial salta cuando no se ha iniciado ninguna partida
+El tutorial puede ejecutarse desde dentro de opciones del menú principal.
+
+
+
 15/12/2024
 Arreglado mostrar solo 49 cartas.
 Arreglado cheets en la obtención de tokens. Cambia los atributos cuando se generan los tokens

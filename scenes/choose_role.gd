@@ -2,6 +2,8 @@ extends Control
 @onready var tutorial_label = $TutorialLabel
 @onready var dialogue_label = $DialogueLabel
 @onready var h_box_container = $HBoxContainer
+@onready var fade_rect: ColorRect = $ColorRect  # Asegúrate de que el nodo ColorRect exista
+@onready var accept_button = $AcceptButton
 
 # Velocidad de la máquina de escribir (segundos entre caracteres)
 var typewriter_speed = 0.03
@@ -25,9 +27,12 @@ var tutorial_messages = [
 var keypress_sound = preload("res://assets/audio/sfx/consonante_key.ogg")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	if !has_played_before(GlobalData.id):
-		
+	accept_button.disabled = true
+	fade_in_scene(1.5)  # Duración de 1.5 segundos
+	await get_tree().create_timer(2.0).timeout
+	if !has_played_before(GlobalData.id) or GameConfig.tutorial == false:
+		GameConfig.tutorial = true
+		dialogue_label.visible = true
 		# Configuración inicial
 		h_box_container.visible = false
 		h_box_container.modulate.a = 0  # Comienza invisible
@@ -47,13 +52,15 @@ func _ready():
 		enable_children_gui_events()
 		fade_in_hbox_container()
 		GlobalData.tutorial = true
+		accept_button.disabled = false
 	else:
-				# Configuración inicial
+		accept_button.disabled = false
 		h_box_container.visible = false
 		h_box_container.modulate.a = 0  # Comienza invisible
 		dialogue_label.visible = false
 		fade_in_hbox_container()
 		GlobalData.tutorial = false
+
 		
 
 
@@ -62,6 +69,7 @@ func _ready():
 #En caso contrario juega una partida normal.
 
 func has_played_before(id_jugador: int) -> bool:
+	
 	# Cargar los datos guardados
 	var saved_data = load_saved_games_persistence()
 	
@@ -163,3 +171,12 @@ func fade_in_hbox_container():
 	var tween = create_tween()
 	tween.tween_property(h_box_container, "modulate:a", 1, fade_duration)
 	print("HBoxContainer apareciendo poco a poco.")
+
+
+func fade_in_scene(duration: float = 1.5) -> void:
+		fade_rect.visible = true  # Asegúrate de que sea visible
+		fade_rect.modulate.a = 1.0  # Opacidad completa (negro sólido)
+		var tween = create_tween()  # Crea un Tween
+		tween.tween_property(fade_rect, "modulate:a", 0.0, duration)  # Anima a opacidad 0
+		await tween.finished
+		fade_rect.visible = false  # Oculta el ColorRect al final

@@ -1,4 +1,4 @@
-[gd_scene load_steps=137 format=3 uid="uid://b8feo6v1dqve0"]
+[gd_scene load_steps=143 format=3 uid="uid://b8feo6v1dqve0"]
 
 [ext_resource type="Script" path="res://scenes/tutorial_new_game.gd" id="1_yjbor"]
 [ext_resource type="Texture2D" uid="uid://bk6oojhaayb2d" path="res://assets/images/backgrounds/bg_6.webp" id="2_nwcrs"]
@@ -48,10 +48,11 @@
 [ext_resource type="FontFile" uid="uid://bo8csdsex1d3i" path="res://assets/fonts/AmaticSC-Bold.ttf" id="46_me410"]
 [ext_resource type="Script" path="res://scenes/new_game_option_window.gd" id="47_urt3p"]
 [ext_resource type="Texture2D" uid="uid://hjrgi7buqorw" path="res://assets/ui/icons/cuadro_dialogo.png" id="48_hohej"]
+[ext_resource type="Texture2D" uid="uid://d383x44e2g8qc" path="res://assets/ui/icons/lantern-removebg-preview.png" id="49_b41a2"]
 [ext_resource type="Script" path="res://scripts/deck_manager.gd" id="49_cmia1"]
-[ext_resource type="Texture2D" uid="uid://bxju8f8e5nidy" path="res://assets/ui/hand/mano-removebg-preview.png" id="49_ri0vk"]
 [ext_resource type="Texture2D" uid="uid://dky62xh2pa87a" path="res://assets/images/cards/re/1_RE.webp" id="50_2h6hr"]
 [ext_resource type="Script" path="res://scenes/hand_texture_rect.gd" id="50_iq64w"]
+[ext_resource type="Texture2D" uid="uid://cdiwm3u0vq56j" path="res://assets/ui/icons/degradado2.png" id="51_xnc3w"]
 [ext_resource type="Texture2D" uid="uid://dpdi8jch6q4je" path="res://assets/ui/icons/empathy_gradient_blue_red_20_4.png" id="51_yhgs6"]
 [ext_resource type="Texture2D" uid="uid://wbnpnr5yjdyq" path="res://assets/ui/icons/apoyo_emocional_gradient_blue_red_20_6.png" id="52_4syqr"]
 [ext_resource type="Texture2D" uid="uid://h5amphcnjm71" path="res://assets/ui/icons/intervención_gradient_blue_red_20_8.png" id="53_lbrfe"]
@@ -343,6 +344,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aiio7"]
+
 [sub_resource type="Animation" id="Animation_rpupy"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -367,18 +370,6 @@ tracks/1/keys = {
 "points": PackedFloat32Array(170, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HandTextureRect:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_rb1il"]
 resource_name = "hand_aceptar"
@@ -390,7 +381,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1161, -0.25, 0, 0.25, 0, 1200, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1278, -0.25, 0, 0.25, 0, 1355, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
@@ -401,13 +392,13 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-3, -0.25, 0, 0.25, 0, 369, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-40, -0.25, 0, 0.25, 0, 315, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="Animation" id="Animation_xv327"]
 resource_name = "hand_bullying"
-loop_mode = 1
+loop_mode = 2
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -416,7 +407,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(593.002, -0.25, 0, 0.25, 0, 684, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(693, -0.25, 0, 0.25, 0, 852, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
@@ -427,8 +418,34 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(170, -0.25, 0, 0.25, 0, 406, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(118, -0.25, 0, 0.25, 0, 404, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_pe4tv"]
+resource_name = "hand_combo"
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandTextureRect:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(187, -0.25, 0, 0.25, 0, 87.1506, -0.25, 0, 0.25, 0, 14, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandTextureRect:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(887, -0.25, 0, 0.25, 0, 888.102, -0.25, 0, 0.25, 0, 530, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
 }
 
 [sub_resource type="Animation" id="Animation_62fpi"]
@@ -441,7 +458,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1508, -0.25, 0, 0.25, 0, 1035, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1646, -0.25, 0, 0.25, 0, 1785, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
@@ -452,7 +469,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(495, -0.25, 0, 0.25, 0, 294, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(431, -0.25, 0, 0.25, 0, 161, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 
@@ -466,7 +483,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1241, -0.25, 0, 0.25, 0, 1508, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1486, -0.25, 0, 0.25, 0, 1646, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
@@ -477,7 +494,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(772, -0.25, 0, 0.25, 0, 495, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(720, -0.25, 0, 0.25, 0, 431, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 
@@ -491,7 +508,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1200, -0.25, 0, 0.25, 0, 1506, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(703, -0.25, 0, 0.25, 0, 1646, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
@@ -502,7 +519,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(369, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-9, -0.25, 0, 0.25, 0, -47, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 
@@ -516,7 +533,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1035, -0.25, 0, 0.25, 0, 1161, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1785, -0.25, 0, 0.25, 0, 1278, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
@@ -527,38 +544,12 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(294, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(161, -0.25, 0, 0.25, 0, -40, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="Animation" id="Animation_xfslp"]
 resource_name = "hand_re"
-length = 3.0
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HandTextureRect:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(684, -0.25, 0, 0.25, 0, 207, -0.25, 0, 0.25, 0, 817, -0.25, 0, 0.25, 0, 1241, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1, 2, 3)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HandTextureRect:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(406, -0.25, 0, 0.25, 0, 800, -0.25, 0, 0.25, 0, 789, -0.25, 0, 0.25, 0, 772, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1, 2, 3)
-}
-
-[sub_resource type="Animation" id="Animation_pe4tv"]
-resource_name = "hand_combo"
 length = 2.0
 tracks/0/type = "bezier"
 tracks/0/imported = false
@@ -567,9 +558,112 @@ tracks/0/path = NodePath("HandTextureRect:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(348, -0.25, 0, 0.25, 0, 917, -0.25, 0, 0.25, 0, 1486, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandTextureRect:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(731, -0.25, 0, 0.25, 0, 885.5, -0.25, 0, 0.25, 0, 720, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+
+[sub_resource type="Animation" id="Animation_50deo"]
+resource_name = "hand_traits"
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandTextureRect:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1539, -0.25, 0, 0.25, 0, 1689, -0.25, 0, 0.25, 0, 1827, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandTextureRect:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(570, -0.25, 0, 0.25, 0, 881, -0.25, 0, 0.25, 0, 620, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="Animation" id="Animation_0ewsl"]
+resource_name = "hand_reverso"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandTextureRect:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(925, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandTextureRect:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(566, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_b8om0"]
+resource_name = "hand_siguiente"
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandTextureRect:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(249, -0.25, 0, 0.25, 0, 417.893, -0.25, 0, 0.25, 0, 577, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandTextureRect:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(25, -0.25, 0, 0.25, 0, 332.502, -0.25, 0, 0.25, 0, 23, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="Animation" id="Animation_tlihl"]
+resource_name = "hand_tiempo"
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandTextureRect:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(24, -0.25, 0, 0.25, 0, 48, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1.96667)
+"points": PackedFloat32Array(200, -0.25, 0, 0.25, 0, 62, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -579,20 +673,34 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(955, -0.25, 0, 0.25, 0, 640, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1.96667)
+"points": PackedFloat32Array(2, -0.25, 0, 0.25, 0, 119, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HandTextureRect:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+
+[sub_resource type="Animation" id="Animation_pwka7"]
+resource_name = "hand_tiempo_tirada"
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandTextureRect:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1704, -0.25, 0, 0.25, 0, 1842, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandTextureRect:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(313, -0.25, 0, 0.25, 0, 436, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1udvt"]
@@ -605,7 +713,12 @@ _data = {
 "hand_listo": SubResource("Animation_gdrk1"),
 "hand_opciones": SubResource("Animation_vqa8k"),
 "hand_puntos": SubResource("Animation_64hlc"),
-"hand_re": SubResource("Animation_xfslp")
+"hand_re": SubResource("Animation_xfslp"),
+"hand_reverso": SubResource("Animation_0ewsl"),
+"hand_siguiente": SubResource("Animation_b8om0"),
+"hand_tiempo": SubResource("Animation_tlihl"),
+"hand_tiempo_tirada": SubResource("Animation_pwka7"),
+"hand_traits": SubResource("Animation_50deo")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76wj6"]
@@ -645,8 +758,6 @@ color_ramp = SubResource("GradientTexture1D_k178s")
 turbulence_enabled = true
 turbulence_noise_strength = 0.81
 turbulence_noise_scale = 2.416
-
-[sub_resource type="Environment" id="Environment_osqyk"]
 
 [node name="TutorialNewGame" type="Control"]
 layout_mode = 3
@@ -2492,9 +2603,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -450.0
-offset_top = 300.0
+offset_top = 330.0
 offset_right = 450.0
-offset_bottom = 616.0
+offset_bottom = 646.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
@@ -3767,6 +3878,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_gerkl")
 text = "Aceptar"
 
 [node name="SongsLabel" type="Label" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 22.0
 offset_top = 502.0
@@ -3786,7 +3898,7 @@ z_index = 20
 layout_mode = 0
 offset_left = 23.0
 offset_top = 384.0
-offset_right = 671.0
+offset_right = 736.0
 offset_bottom = 428.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -3902,15 +4014,24 @@ vertical_alignment = 1
 
 [node name="HandTextureRect" type="TextureRect" parent="UI"]
 z_index = 25
+material = SubResource("CanvasItemMaterial_aiio7")
 layout_mode = 0
 offset_left = 593.002
 offset_top = 170.0
-offset_right = 1093.0
-offset_bottom = 670.0
+offset_right = 745.002
+offset_bottom = 550.0
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("49_ri0vk")
-flip_h = true
+texture = ExtResource("49_b41a2")
 script = ExtResource("50_iq64w")
+
+[node name="PointLight2D" type="PointLight2D" parent="UI/HandTextureRect"]
+position = Vector2(76.9999, 219)
+scale = Vector2(1.58203, 1.45703)
+color = Color(1, 0.666667, 0.2, 1)
+energy = 3.27
+range_z_min = -100
+range_z_max = 100
+texture = ExtResource("51_xnc3w")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
 libraries = {
@@ -5494,9 +5615,6 @@ process_material = SubResource("ParticleProcessMaterial_w02vi")
 position = Vector2(925, 643)
 amount = 150
 process_material = SubResource("ParticleProcessMaterial_w02vi")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Node2D"]
-environment = SubResource("Environment_osqyk")
 
 [connection signal="pressed" from="UI/ReadyTextureButton" to="GameManager" method="_on_ready_texture_button_pressed"]
 [connection signal="pressed" from="UI/ReverseAnverseToggleButton" to="UI" method="_on_reverse_anverse_toggle_button_pressed"]
