@@ -1,8 +1,9 @@
+AnimationPlayer
+RichTextLabel
 Label
 ColorRect
 WorldEnvironment
 PointLight2D
-AnimationPlayer
 TextureRect
 Panel
 Control
@@ -11,4 +12,3 @@ Node2D
 Tree
 Button
 AudioStreamPlayer
-CPUParticles2D

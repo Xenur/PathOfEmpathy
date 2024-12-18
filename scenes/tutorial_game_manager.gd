@@ -559,9 +559,9 @@ func prepare_game():
 	deck_manager.load_cards_hs_from_json()
 	deck_manager.load_cards_re_from_json()
 
-	#deck_manager.shuffle_deck_bu()
-	#deck_manager.shuffle_deck_re()
-	#deck_manager.shuffle_deck_hs()
+	deck_manager.shuffle_deck_bu()
+	deck_manager.shuffle_deck_re()
+	deck_manager.shuffle_deck_hs()
 	
 	
 
@@ -589,17 +589,17 @@ func prepare_game():
 	#update_bullying_card()
 	#display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
 		
-	# Inicializar las cartas de la IA
-	ai_cards_re = [
-		deck_manager.deck_re.pop_back() as CardsRE,
-		deck_manager.deck_re.pop_back() as CardsRE,
-		deck_manager.deck_re.pop_back() as CardsRE
-	]
-	ai_cards_hs = [
-		deck_manager.deck_hs.pop_back() as CardsHS,
-		deck_manager.deck_hs.pop_back() as CardsHS,
-		deck_manager.deck_hs.pop_back() as CardsHS
-	]
+	## Inicializar las cartas de la IA
+	#ai_cards_re = [
+		#deck_manager.deck_re.pop_back() as CardsRE,
+		#deck_manager.deck_re.pop_back() as CardsRE,
+		#deck_manager.deck_re.pop_back() as CardsRE
+	#]
+	#ai_cards_hs = [
+		#deck_manager.deck_hs.pop_back() as CardsHS,
+		#deck_manager.deck_hs.pop_back() as CardsHS,
+		#deck_manager.deck_hs.pop_back() as CardsHS
+	#]
 		# Cambiar al estado de turno
 	change_state(GameState.TURN)
 	GlobalData.current_game_data.clear()
@@ -1600,7 +1600,7 @@ func game_over():
 	#var saved_data = load_saved_games()
 	populate_bu_cards_tree_from_array()
 	var average_stars = calculate_average_stars()
-	var performance_message = "Finalizaste el Tutorial. ¡Bien hecho!"
+	var performance_message = "Finalizaste el Tutorial."
 	print(performance_message)  # Muestra el mensaje correspondiente
 	situaciones_aboradadas_label.text = "Situaciones Abordadas " + str(GlobalData.current_game_data.size())
 	puntos_empatia_totales_label.text = "Puntos Empatía Totales " + str(GlobalData.total_stars)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=3 uid="uid://dq4v62olhary3"]
+[gd_scene load_steps=126 format=3 uid="uid://dq4v62olhary3"]
 
 [ext_resource type="Script" path="res://scripts/new_game.gd" id="1_eh8bj"]
 [ext_resource type="Texture2D" uid="uid://bk6oojhaayb2d" path="res://assets/images/backgrounds/bg_6.webp" id="2_l3b2v"]
@@ -298,6 +298,9 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adljq"]
+bg_color = Color(0.0431373, 0.270588, 0.415686, 0.807843)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbh5u"]
 bg_color = Color(0.6, 0.6, 0.6, 0.45098)
@@ -3382,7 +3385,6 @@ text = "Guardar partida"
 [node name="BeepAudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 
 [node name="SubtitlesControl" type="Control" parent="UI"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -3402,8 +3404,10 @@ layout_mode = 1
 offset_right = 1207.0
 offset_bottom = 60.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 33
+theme_override_styles/normal = SubResource("StyleBoxFlat_adljq")
 text = "\"¡Increíble! Has conseguido un token de comprensión sobre el bullying sexual.\""
 horizontal_alignment = 1
 vertical_alignment = 1

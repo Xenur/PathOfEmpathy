@@ -1,4 +1,14 @@
 # **Caminos de Empatía**
+18/12/2024
+0.4.0.1-beta
+Créditos listos
+Cambiados marcos de las cartas (ahora están sin el marco negro, más limpia la interfaz!)
+Añadidas más canciones a la playlist, con sus respectivos nombres.
+Falta algo más de eye candy
+Falta decidir si introducir más voces o no. ¿Cambiamos las voces a Nora con Vidnoz?
+
+
+
 17/12/2024
 Tutorial listo
 Cambios en los marcos de las cartas

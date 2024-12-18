@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://5delokxsx6s0"
+path="res://.godot/imported/Dread Nexus Awakens.mp3-aa240d0718ab4c6d0b0d0155ce8cba94.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Dread Nexus Awakens.mp3"
+dest_files=["res://.godot/imported/Dread Nexus Awakens.mp3-aa240d0718ab4c6d0b0d0155ce8cba94.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
