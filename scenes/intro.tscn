@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bprmph71nrpf7"]
+
+[ext_resource type="Script" path="res://scenes/intro.gd" id="1_4nic5"]
+[ext_resource type="VideoStream" path="res://assets/video/intro_path_of_empathy.ogv" id="2_nde7y"]
+[ext_resource type="FontFile" uid="uid://bceo6mdndisde" path="res://assets/fonts/Roboto-Bold.ttf" id="3_4hybs"]
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_4nic5")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("2_nde7y")
+autoplay = true
+
+[node name="EscapeLabel" type="Label" parent="."]
+z_index = 4
+offset_right = 155.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("3_4hybs")
+theme_override_font_sizes/font_size = 19
+text = "Esc para saltar..."
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
