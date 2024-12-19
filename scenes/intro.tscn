@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bprmph71nrpf7"]
 
 [ext_resource type="Script" path="res://scenes/intro.gd" id="1_4nic5"]
-[ext_resource type="VideoStream" path="res://assets/video/intro_path_of_empathy.ogv" id="2_nde7y"]
+[ext_resource type="VideoStream" path="res://assets/video/trailer_path_of_empathy_.ogv" id="2_rrexk"]
 [ext_resource type="FontFile" uid="uid://bceo6mdndisde" path="res://assets/fonts/Roboto-Bold.ttf" id="3_4hybs"]
 
 [node name="Intro" type="Node2D"]
@@ -10,8 +10,7 @@ script = ExtResource("1_4nic5")
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-stream = ExtResource("2_nde7y")
-autoplay = true
+stream = ExtResource("2_rrexk")
 
 [node name="EscapeLabel" type="Label" parent="."]
 z_index = 4

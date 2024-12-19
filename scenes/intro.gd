@@ -3,7 +3,11 @@ extends Node2D
 
 
 func _ready():
-	pass
+	await get_tree().create_timer(1.5).timeout
+	var volume_db = lerp(-80, 0, GameConfig.music_volume / 100.0)
+	video_stream_player.volume_db = volume_db
+	video_stream_player.play()
+	
 #Señal de tecla escape presionada
 func _unhandled_input(event):
 	if event is InputEventKey:

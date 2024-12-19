@@ -1,4 +1,8 @@
 # **Caminos de Empatía**
+19/12/2024
+0.4.0.2-beta
+Añadida introducción a las partidas para generar contexto y narrativa
+
 18/12/2024
 0.4.0.1-beta
 Créditos listos
