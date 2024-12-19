@@ -212,7 +212,8 @@ func play_beep_sound():
 # Señal boton estadísticas presionado
 func _on_statistics_button_pressed():
 	GameConfig.music_volume = music_slider.value
-	get_tree().change_scene_to_file("res://scenes/StatisticsScreen.tscn")
+	GameConfig.tutorial = false
+	get_tree().change_scene_to_file("res://scenes/ChooseRole.tscn")
 
 # Señal boton creditos presionado
 func _on_credits_button_pressed():

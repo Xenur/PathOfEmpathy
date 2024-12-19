@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d1s2vw6i3l8qe"
+path="res://.godot/imported/Void of Ascension.mp3-60222645c21fe4e6fbda46b6c7748086.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Void of Ascension.mp3"
+dest_files=["res://.godot/imported/Void of Ascension.mp3-60222645c21fe4e6fbda46b6c7748086.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -15,13 +15,36 @@ extends Control
 
 # Controlador de canciones
 var current_song_index = -1
+
 var song_list = [
-		"res://assets/audio/music/epic_orchestral_1.mp3", 
-		"res://assets/audio/music/epic_orchestral_2.mp3", 
-		"res://assets/audio/music/epic_orchestral_3.mp3", 
-		"res://assets/audio/music/epic_orchestral_4.mp3",
-		"res://assets/audio/music/epic_orchestral_5.mp3",
-		"res://assets/audio/music/epic_orchestral_6.mp3"
+	"res://assets/audio/music/Arcane Dominion Rising.mp3",
+	"res://assets/audio/music/Blade of Eternal War.mp3",
+	"res://assets/audio/music/Chaos Dominion Strikes.mp3",
+	"res://assets/audio/music/Crimson Battlefront Tactics.mp3",
+	"res://assets/audio/music/Cyber Warlord’s Legacy.mp3",
+	"res://assets/audio/music/Dread Nexus Awakens.mp3",
+	"res://assets/audio/music/Echo of Lost Blades.mp3",
+	"res://assets/audio/music/Echoes of Dread.mp3",
+	"res://assets/audio/music/Endless Front March.mp3",
+	"res://assets/audio/music/Eternal Shadow March.mp3",
+	"res://assets/audio/music/Harbinger’s Eternal Call.mp3",
+	"res://assets/audio/music/Infernal Accord Broken.mp3",
+	"res://assets/audio/music/Lament of Steel Chains.mp3",
+	"res://assets/audio/music/Machina’s Wrath Unbound.mp3",
+	"res://assets/audio/music/Neon Specter’s Gambit.mp3",
+	"res://assets/audio/music/Obsidian Circuit Breaker.mp3",
+	"res://assets/audio/music/Phantom War Cry.mp3",
+	"res://assets/audio/music/Pulse of War.mp3",
+	"res://assets/audio/music/Ruins of Shattered Fate.mp3",
+	"res://assets/audio/music/Shadows of Eternal War.mp3",
+	"res://assets/audio/music/Specter’s Shadow Edge.mp3",
+	"res://assets/audio/music/Strategic Chaos Reign.mp3",
+	"res://assets/audio/music/Tactical Rift Surge.mp3",
+	"res://assets/audio/music/Titan’s Crimson Gambit.mp3",
+	"res://assets/audio/music/Veil of Tactical Chaos.mp3",
+	"res://assets/audio/music/Void of Ascension.mp3",
+	"res://assets/audio/music/Whispers of Dominion.mp3",
+	"res://assets/audio/music/Wraith’s Midnight Siege.mp3",
 ]
 
 #Variables para manejar el tiempo y la interpolación
@@ -29,6 +52,7 @@ var song_list = [
 var fade_duration = 1.0  # Duración del desvanecimiento en segundos
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("ESTAS EN NEW_GAME")
 	# Agregar y configurar el temporizador
 	add_child(fade_timer)
 	fade_timer.one_shot = true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dv5nns03pprla"
+path="res://.godot/imported/Endless Front March.mp3-0829dbd4a43d6eb544ff6d6f28d28828.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Endless Front March.mp3"
+dest_files=["res://.godot/imported/Endless Front March.mp3-0829dbd4a43d6eb544ff6d6f28d28828.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

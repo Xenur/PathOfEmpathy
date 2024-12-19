@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bni2yp3jmdtwq"
+path="res://.godot/imported/Cyber Warlord’s Legacy.mp3-2a341152b35cc35b1534883c834bf283.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Cyber Warlord’s Legacy.mp3"
+dest_files=["res://.godot/imported/Cyber Warlord’s Legacy.mp3-2a341152b35cc35b1534883c834bf283.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

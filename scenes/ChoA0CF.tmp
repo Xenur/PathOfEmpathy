@@ -1,0 +1,930 @@
+[gd_scene load_steps=31 format=3 uid="uid://51vjvhm3tabm"]
+
+[ext_resource type="Script" path="res://scenes/choose_role.gd" id="1_a4ut5"]
+[ext_resource type="Texture2D" uid="uid://do3aiifcnlh4i" path="res://assets/images/backgrounds/bg_9.webp" id="1_hev0c"]
+[ext_resource type="Shader" path="res://scripts/MainMenu.gdshader" id="2_lgp3m"]
+[ext_resource type="FontFile" uid="uid://dvxsg8fyqxya6" path="res://assets/fonts/Roboto-Medium.ttf" id="3_frvhc"]
+[ext_resource type="FontFile" uid="uid://bo8csdsex1d3i" path="res://assets/fonts/AmaticSC-Bold.ttf" id="3_yhlko"]
+[ext_resource type="Script" path="res://scenes/choosecontainer.gd" id="4_0a1vj"]
+[ext_resource type="Texture2D" uid="uid://d2bs1h72o1rn1" path="res://assets/images/frames/frame_white_role.png" id="4_fmtn0"]
+[ext_resource type="Texture2D" uid="uid://bytked7435tqc" path="res://assets/images/cards/roles/lider.webp" id="5_libwy"]
+[ext_resource type="Texture2D" uid="uid://blaf5505ocxqy" path="res://assets/ui/icons/intervención.png" id="6_70fjv"]
+[ext_resource type="Texture2D" uid="uid://bt5nhw8rgeow6" path="res://assets/images/frames/frame_green_role.png" id="6_b8y87"]
+[ext_resource type="Texture2D" uid="uid://d11ji6m08sjl1" path="res://assets/images/cards/roles/mediador.webp" id="7_5ncu3"]
+[ext_resource type="Texture2D" uid="uid://dd4o6u2vgmf7c" path="res://assets/images/frames/frame_gold_role.png" id="8_dnuer"]
+[ext_resource type="Texture2D" uid="uid://dux6uxrudyog2" path="res://assets/ui/icons/comunicacion.png" id="8_jmelt"]
+[ext_resource type="Texture2D" uid="uid://opi4i0tkqmrf" path="res://assets/ui/icons/empathy.png" id="9_8dweh"]
+[ext_resource type="Texture2D" uid="uid://cljd5ris0p8hv" path="res://assets/images/cards/roles/escucha.webp" id="9_g86re"]
+[ext_resource type="Texture2D" uid="uid://cdbwe65a23jq4" path="res://assets/ui/icons/apoyo_emocional.png" id="10_83osw"]
+[ext_resource type="Texture2D" uid="uid://dj8ryhbe3bqp7" path="res://assets/images/frames/frame_blue_role.png" id="10_qfpih"]
+[ext_resource type="Texture2D" uid="uid://c2y2o3qd3ue1u" path="res://assets/images/cards/roles/soporte_solidario.webp" id="11_elx2u"]
+[ext_resource type="Texture2D" uid="uid://cgfnn8jc2kv3l" path="res://assets/ui/icons/resolución_de_conflictos.png" id="13_7y7p5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cg3h3"]
+shader = ExtResource("2_lgp3m")
+shader_parameter/blur_size = 6.364
+shader_parameter/darkness_factor = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5s5rv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7acmt"]
+bg_color = Color(0.427451, 0.384314, 0.32549, 0.792157)
+corner_radius_top_left = 70
+corner_radius_top_right = 70
+corner_radius_bottom_right = 70
+corner_radius_bottom_left = 70
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hl2oi"]
+bg_color = Color(0.6, 0.6, 0.6, 0.662745)
+corner_radius_top_left = 68
+corner_radius_top_right = 68
+corner_radius_bottom_right = 68
+corner_radius_bottom_left = 68
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q67dp"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lp2p"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pd17v"]
+bg_color = Color(0.0784314, 0.388235, 0.580392, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c357w"]
+bg_color = Color(0.0784314, 0.388235, 0.580392, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4faje"]
+bg_color = Color(0.0431373, 0.270588, 0.415686, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7t5bt"]
+bg_color = Color(0.0431373, 0.270588, 0.415686, 0.619608)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkeod"]
+bg_color = Color(0.6, 0.6, 0.6, 0.45098)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="ChooseRole" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a4ut5")
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_hev0c")
+
+[node name="Overlay" type="Control" parent="BackgroundTextureRect"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BlurOverlay" type="ColorRect" parent="BackgroundTextureRect/Overlay"]
+material = SubResource("ShaderMaterial_cg3h3")
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.294118)
+
+[node name="ChooseRoleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -371.5
+offset_top = 50.0
+offset_right = 371.5
+offset_bottom = 208.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_yhlko")
+theme_override_font_sizes/font_size = 125
+text = "ELIGE TU ROL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TutorialLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.0
+offset_top = -10.0
+offset_right = 92.0
+offset_bottom = 86.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_yhlko")
+theme_override_font_sizes/font_size = 75
+text = "TUTORIAL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 102.0
+offset_top = 388.0
+offset_right = 8872.0
+offset_bottom = 2464.0
+scale = Vector2(0.2, 0.2)
+alignment = 1
+script = ExtResource("4_0a1vj")
+
+[node name="FrameLiderTextureRect" type="TextureRect" parent="HBoxContainer"]
+material = SubResource("CanvasItemMaterial_5s5rv")
+layout_mode = 2
+size_flags_horizontal = 6
+mouse_default_cursor_shape = 2
+texture = ExtResource("4_fmtn0")
+
+[node name="LiderControl" type="Control" parent="HBoxContainer/FrameLiderTextureRect"]
+anchors_preset = 0
+offset_left = 68.0
+offset_top = 204.0
+offset_right = 1420.0
+offset_bottom = 1820.0
+
+[node name="BackGroundLiderTextureRect" type="TextureRect" parent="HBoxContainer/FrameLiderTextureRect/LiderControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_libwy")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="IntervencionPanel" type="Panel" parent="HBoxContainer/FrameLiderTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2115.0
+offset_right = 1495.0
+offset_bottom = 2415.0
+tooltip_text = "Intervención"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="IntervencionTextureRect" type="TextureRect" parent="HBoxContainer/FrameLiderTextureRect/IntervencionPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_70fjv")
+
+[node name="IntervencionLabel" type="Label" parent="HBoxContainer/FrameLiderTextureRect/IntervencionPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "+4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ComunicacionPanel" type="Panel" parent="HBoxContainer/FrameLiderTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2425.0
+offset_right = 1495.0
+offset_bottom = 2725.0
+tooltip_text = "Comunicación"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="ComunicacionTextureRect" type="TextureRect" parent="HBoxContainer/FrameLiderTextureRect/ComunicacionPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("8_jmelt")
+
+[node name="ComunicacionLabel" type="Label" parent="HBoxContainer/FrameLiderTextureRect/ComunicacionPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "+2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmpatiaPanel" type="Panel" parent="HBoxContainer/FrameLiderTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2735.0
+offset_right = 1495.0
+offset_bottom = 3035.0
+tooltip_text = "Empatía"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="EmpatiaTextureRect" type="TextureRect" parent="HBoxContainer/FrameLiderTextureRect/EmpatiaPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("10_83osw")
+
+[node name="EmpatiaLabel" type="Label" parent="HBoxContainer/FrameLiderTextureRect/EmpatiaPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "-2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ApoyoPanel" type="Panel" parent="HBoxContainer/FrameLiderTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3050.0
+offset_right = 1495.0
+offset_bottom = 3350.0
+tooltip_text = "Apoyo Emocional"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="ApoyoTextureRect" type="TextureRect" parent="HBoxContainer/FrameLiderTextureRect/ApoyoPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_8dweh")
+
+[node name="ApoyoLabel" type="Label" parent="HBoxContainer/FrameLiderTextureRect/ApoyoPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "-4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HBoxContainer/FrameLiderTextureRect"]
+
+[node name="Label" type="Label" parent="HBoxContainer/FrameLiderTextureRect"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 70.0
+offset_right = 1415.0
+offset_bottom = 195.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 100
+text = "LÍDER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelLider" type="Panel" parent="HBoxContainer/FrameLiderTextureRect"]
+visible = false
+z_index = 3
+layout_mode = 0
+offset_left = -5.0
+offset_right = 1495.0
+offset_bottom = 3355.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hl2oi")
+
+[node name="FrameMediadorTextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("6_b8y87")
+
+[node name="MediadorControl" type="Control" parent="HBoxContainer/FrameMediadorTextureRect"]
+anchors_preset = 0
+offset_left = 68.0
+offset_top = 204.0
+offset_right = 1420.0
+offset_bottom = 1820.0
+
+[node name="BackGroundMediadorTextureRect" type="TextureRect" parent="HBoxContainer/FrameMediadorTextureRect/MediadorControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_5ncu3")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="ResolucionPanel" type="Panel" parent="HBoxContainer/FrameMediadorTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2115.0
+offset_right = 1495.0
+offset_bottom = 2415.0
+tooltip_text = "Resolución de Conflictos"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="ResolucionTextureRect" type="TextureRect" parent="HBoxContainer/FrameMediadorTextureRect/ResolucionPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 864.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("13_7y7p5")
+
+[node name="ResolucionLabel" type="Label" parent="HBoxContainer/FrameMediadorTextureRect/ResolucionPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "+3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ComunicacionPanel" type="Panel" parent="HBoxContainer/FrameMediadorTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2425.0
+offset_right = 1495.0
+offset_bottom = 2725.0
+tooltip_text = "Comunicación"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="ComunicacionTextureRect" type="TextureRect" parent="HBoxContainer/FrameMediadorTextureRect/ComunicacionPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_8dweh")
+
+[node name="ComunicacionLabel" type="Label" parent="HBoxContainer/FrameMediadorTextureRect/ComunicacionPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "+2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ApoyoPanel" type="Panel" parent="HBoxContainer/FrameMediadorTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2735.0
+offset_right = 1495.0
+offset_bottom = 3035.0
+tooltip_text = "Apoyo Emocional"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="ApoyoTextureRect" type="TextureRect" parent="HBoxContainer/FrameMediadorTextureRect/ApoyoPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("10_83osw")
+
+[node name="ApoyoLabel" type="Label" parent="HBoxContainer/FrameMediadorTextureRect/ApoyoPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "-2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntervencionPanel" type="Panel" parent="HBoxContainer/FrameMediadorTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3050.0
+offset_right = 1495.0
+offset_bottom = 3350.0
+tooltip_text = "Intervención"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="IntervencionTextureRect" type="TextureRect" parent="HBoxContainer/FrameMediadorTextureRect/IntervencionPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_70fjv")
+
+[node name="IntervencionLabel" type="Label" parent="HBoxContainer/FrameMediadorTextureRect/IntervencionPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "-3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/FrameMediadorTextureRect"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 70.0
+offset_right = 1415.0
+offset_bottom = 195.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 100
+text = "MEDIADOR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelMediador" type="Panel" parent="HBoxContainer/FrameMediadorTextureRect"]
+visible = false
+z_index = 3
+layout_mode = 0
+offset_left = -5.0
+offset_right = 1495.0
+offset_bottom = 3355.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hl2oi")
+
+[node name="FrameEscuchaTextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("8_dnuer")
+
+[node name="EscuchaControl" type="Control" parent="HBoxContainer/FrameEscuchaTextureRect"]
+anchors_preset = 0
+offset_left = 68.0
+offset_top = 204.0
+offset_right = 1420.0
+offset_bottom = 1820.0
+
+[node name="BackGroundEscuchaTextureRect" type="TextureRect" parent="HBoxContainer/FrameEscuchaTextureRect/EscuchaControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_g86re")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="EmpatiaPanel" type="Panel" parent="HBoxContainer/FrameEscuchaTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2115.0
+offset_right = 1495.0
+offset_bottom = 2415.0
+tooltip_text = "Empatía"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="EmpatiaTextureRect" type="TextureRect" parent="HBoxContainer/FrameEscuchaTextureRect/EmpatiaPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("8_jmelt")
+
+[node name="EmpatiaLabel" type="Label" parent="HBoxContainer/FrameEscuchaTextureRect/EmpatiaPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "+3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ApoyoPanel" type="Panel" parent="HBoxContainer/FrameEscuchaTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2425.0
+offset_right = 1495.0
+offset_bottom = 2725.0
+tooltip_text = "Apoyo Emocinal"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="ApoyoTextureRect" type="TextureRect" parent="HBoxContainer/FrameEscuchaTextureRect/ApoyoPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("10_83osw")
+
+[node name="ApoyoLabel" type="Label" parent="HBoxContainer/FrameEscuchaTextureRect/ApoyoPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "+2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResolucionPanel" type="Panel" parent="HBoxContainer/FrameEscuchaTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2735.0
+offset_right = 1495.0
+offset_bottom = 3035.0
+tooltip_text = "Resolución de Conflictos"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="ResolucionTextureRect" type="TextureRect" parent="HBoxContainer/FrameEscuchaTextureRect/ResolucionPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("13_7y7p5")
+
+[node name="ResolucionLabel" type="Label" parent="HBoxContainer/FrameEscuchaTextureRect/ResolucionPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "-2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntervencionPanel" type="Panel" parent="HBoxContainer/FrameEscuchaTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3050.0
+offset_right = 1495.0
+offset_bottom = 3350.0
+tooltip_text = "Intervención"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="IntervencionTextureRect" type="TextureRect" parent="HBoxContainer/FrameEscuchaTextureRect/IntervencionPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_70fjv")
+
+[node name="IntervencionLabel" type="Label" parent="HBoxContainer/FrameEscuchaTextureRect/IntervencionPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "-3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/FrameEscuchaTextureRect"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 70.0
+offset_right = 1415.0
+offset_bottom = 195.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 100
+text = "ESCUCHA ACTIVA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelEscucha" type="Panel" parent="HBoxContainer/FrameEscuchaTextureRect"]
+visible = false
+z_index = 3
+layout_mode = 0
+offset_left = -5.0
+offset_right = 1495.0
+offset_bottom = 3355.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hl2oi")
+
+[node name="FrameSolidarioTextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("10_qfpih")
+
+[node name="SolidarioControl" type="Control" parent="HBoxContainer/FrameSolidarioTextureRect"]
+anchors_preset = 0
+offset_left = 68.0
+offset_top = 204.0
+offset_right = 1420.0
+offset_bottom = 1820.0
+
+[node name="BackGroundSolidarioTextureRect" type="TextureRect" parent="HBoxContainer/FrameSolidarioTextureRect/SolidarioControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_elx2u")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="ApoyoPanel" type="Panel" parent="HBoxContainer/FrameSolidarioTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2115.0
+offset_right = 1495.0
+offset_bottom = 2415.0
+tooltip_text = "Apoyo Emocional"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="ApoyoTextureRect" type="TextureRect" parent="HBoxContainer/FrameSolidarioTextureRect/ApoyoPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("10_83osw")
+
+[node name="ApoyoLabel" type="Label" parent="HBoxContainer/FrameSolidarioTextureRect/ApoyoPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "+3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmpatiaPanel" type="Panel" parent="HBoxContainer/FrameSolidarioTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2425.0
+offset_right = 1495.0
+offset_bottom = 2725.0
+tooltip_text = "Empatía"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="EmpatiaTextureRect" type="TextureRect" parent="HBoxContainer/FrameSolidarioTextureRect/EmpatiaPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_8dweh")
+
+[node name="EmpatiaLabel" type="Label" parent="HBoxContainer/FrameSolidarioTextureRect/EmpatiaPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "+2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResolucionPanel" type="Panel" parent="HBoxContainer/FrameSolidarioTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2735.0
+offset_right = 1495.0
+offset_bottom = 3035.0
+tooltip_text = "Resolución de Conflictos"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="ResolucionTextureRect" type="TextureRect" parent="HBoxContainer/FrameSolidarioTextureRect/ResolucionPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("13_7y7p5")
+
+[node name="ResolucionLabel" type="Label" parent="HBoxContainer/FrameSolidarioTextureRect/ResolucionPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "-2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ComunicacionPanel" type="Panel" parent="HBoxContainer/FrameSolidarioTextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3050.0
+offset_right = 1495.0
+offset_bottom = 3350.0
+tooltip_text = "Comunicación"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7acmt")
+
+[node name="ComunicacionTextureRect" type="TextureRect" parent="HBoxContainer/FrameSolidarioTextureRect/ComunicacionPanel"]
+layout_mode = 1
+offset_left = 345.0
+offset_right = 873.0
+offset_bottom = 512.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("8_jmelt")
+
+[node name="ComunicacionLabel" type="Label" parent="HBoxContainer/FrameSolidarioTextureRect/ComunicacionPanel"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 5.0
+offset_right = 1195.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 225
+text = "-3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/FrameSolidarioTextureRect"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 70.0
+offset_right = 1415.0
+offset_bottom = 195.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 100
+text = "SOPORTE SOLIDARIO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelSolidario" type="Panel" parent="HBoxContainer/FrameSolidarioTextureRect"]
+visible = false
+z_index = 3
+layout_mode = 0
+offset_left = -5.0
+offset_right = 1495.0
+offset_bottom = 3355.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hl2oi")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_q67dp")
+
+[node name="AcceptButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 22.0
+offset_right = 390.0
+offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 39
+theme_override_styles/focus = SubResource("StyleBoxFlat_1lp2p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pd17v")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c357w")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4faje")
+text = "Volver"
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1365.0
+offset_top = 8.0
+offset_right = 1911.0
+offset_bottom = 270.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7t5bt")
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 10.0
+offset_right = 531.0
+offset_bottom = 257.0
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 16
+text = "Líder: Un rol fuerte y decisivo, con habilidades claras para liderar e intervenir, pero menos emocionalmente conectado.
+Mediador: Enfocado en resolver conflictos y comprender emociones, con una aproximación lógica y empática.
+Escucha Activa: Especialista en apoyo emocional y comunicación, pero menos eficaz en conflictos o acciones directas.
+Solidario: Un rol de apoyo centrado en el bienestar de los demás, fuerte en apoyo y soporte emocional.
+
+Elige con cuidado. Esta decisión es crucial, ya que afecta tus habilidades en la partida. Confirma tu elección con un doble clic."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="DialogueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 250.0
+offset_right = 1336.0
+offset_bottom = 294.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_rkeod")
+text = "Has modificado el atributo Resolución de Conflictos en +1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="HBoxContainer/FrameLiderTextureRect" to="HBoxContainer" method="_on_frame_lider_texture_rect_gui_input"]
+[connection signal="mouse_entered" from="HBoxContainer/FrameLiderTextureRect" to="HBoxContainer" method="_on_frame_lider_texture_rect_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/FrameLiderTextureRect" to="HBoxContainer" method="_on_frame_lider_texture_rect_mouse_exited"]
+[connection signal="gui_input" from="HBoxContainer/FrameLiderTextureRect/LiderControl" to="HBoxContainer" method="_on_lider_control_gui_input"]
+[connection signal="mouse_entered" from="HBoxContainer/FrameLiderTextureRect/LiderControl" to="HBoxContainer" method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/FrameLiderTextureRect/LiderControl" to="HBoxContainer" method="_on_control_mouse_exited"]
+[connection signal="finished" from="HBoxContainer/FrameLiderTextureRect/AudioStreamPlayer" to="HBoxContainer" method="_on_audio_stream_player_finished"]
+[connection signal="gui_input" from="HBoxContainer/FrameMediadorTextureRect" to="HBoxContainer" method="_on_frame_mediador_texture_rect_gui_input"]
+[connection signal="mouse_entered" from="HBoxContainer/FrameMediadorTextureRect" to="HBoxContainer" method="_on_frame_mediador_texture_rect_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/FrameMediadorTextureRect" to="HBoxContainer" method="_on_frame_mediador_texture_rect_mouse_exited"]
+[connection signal="gui_input" from="HBoxContainer/FrameMediadorTextureRect/MediadorControl" to="HBoxContainer" method="_on_mediador_control_gui_input"]
+[connection signal="mouse_entered" from="HBoxContainer/FrameMediadorTextureRect/MediadorControl" to="HBoxContainer" method="_on_mediador_control_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/FrameMediadorTextureRect/MediadorControl" to="HBoxContainer" method="_on_mediador_control_mouse_exited"]
+[connection signal="gui_input" from="HBoxContainer/FrameEscuchaTextureRect" to="HBoxContainer" method="_on_frame_escucha_texture_rect_gui_input"]
+[connection signal="mouse_entered" from="HBoxContainer/FrameEscuchaTextureRect" to="HBoxContainer" method="_on_frame_escucha_texture_rect_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/FrameEscuchaTextureRect" to="HBoxContainer" method="_on_frame_escucha_texture_rect_mouse_exited"]
+[connection signal="gui_input" from="HBoxContainer/FrameEscuchaTextureRect/EscuchaControl" to="HBoxContainer" method="_on_escucha_control_gui_input"]
+[connection signal="mouse_entered" from="HBoxContainer/FrameEscuchaTextureRect/EscuchaControl" to="HBoxContainer" method="_on_escucha_control_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/FrameEscuchaTextureRect/EscuchaControl" to="HBoxContainer" method="_on_escucha_control_mouse_exited"]
+[connection signal="gui_input" from="HBoxContainer/FrameSolidarioTextureRect" to="HBoxContainer" method="_on_frame_solidario_texture_rect_gui_input"]
+[connection signal="mouse_entered" from="HBoxContainer/FrameSolidarioTextureRect" to="HBoxContainer" method="_on_frame_solidario_texture_rect_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/FrameSolidarioTextureRect" to="HBoxContainer" method="_on_frame_solidario_texture_rect_mouse_exited"]
+[connection signal="gui_input" from="HBoxContainer/FrameSolidarioTextureRect/SolidarioControl" to="HBoxContainer" method="_on_solidario_control_gui_input"]
+[connection signal="mouse_entered" from="HBoxContainer/FrameSolidarioTextureRect/SolidarioControl" to="HBoxContainer" method="_on_solidario_control_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/FrameSolidarioTextureRect/SolidarioControl" to="HBoxContainer" method="_on_solidario_control_mouse_exited"]
+[connection signal="pressed" from="AcceptButton" to="HBoxContainer" method="_on_accept_button_pressed"]

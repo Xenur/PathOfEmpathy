@@ -61,6 +61,7 @@ extends Control
 @onready var average_mediador_player_label = $VBoxContainer/DateHBoxContainer23/AverageMediadorPlayerLabel
 @onready var average_solidario_player_label = $VBoxContainer/DateHBoxContainer24/AverageSolidarioPlayerLabel
 @onready var average_escucha_player_label = $VBoxContainer/DateHBoxContainer25/AverageEscuchaPlayerLabel
+@onready var label = $Label
 
 
 # Variable para almacenar la fuente personalizada
@@ -102,21 +103,26 @@ func _ready():
 	tirada_statistics = calculate_tirada_statistics(saved_data)
 	token_statistics = calculate_negative_metrics(saved_data)
 	general_statistics = calculate_general_statistics(saved_data)
-	# Generar feedback
-	var feedback = generate_feedback()
-	feedback_label.text = feedback  # Mostrar el feedback en pantalla (en un Label o RichTextLabel)
-	print(feedback)  # También imprimirlo en la consola
-	
+
+
 	if saved_data:
+		
 		# Filtrar datos del usuario actual
 		var user_data = filter_user_data(GlobalData.id, saved_data)
 		if user_data["partidas"].size() == 0:
 			print("No data found for player ID:", GlobalData.id)
+			label.visible = true
 			return
-
+		# Generar feedback
+		var feedback = generate_feedback()
+		feedback_label.text = feedback  # Mostrar el feedback en pantalla (en un Label o RichTextLabel)
+		print(feedback)  # También imprimirlo en la consola
+		
 		# Calcular estadísticas generales
 		print("\n--- General Statistics for Player ---")
 		var general_stats = calculate_general_statistics(user_data)
+		
+
 		total_games_player_label.text = str(general_stats["total_games"])
 		GlobalData.total_games = (general_stats["total_games"])
 		abandoned_games_player_label.text = str(general_stats["abandoned_games"])
@@ -182,32 +188,32 @@ func _ready():
 			print(key, ": ", advanced_metrics[key])
 
 
-	# Calculamos las métricas negativas
-	var negative_metrics = calculate_negative_metrics(saved_data)
-	# Guardar los datos en el Singleton
-	GlobalData.set_token_data(negative_metrics["token_analysis"])
+		# Calculamos las métricas negativas
+		var negative_metrics = calculate_negative_metrics(saved_data)
+		# Guardar los datos en el Singleton
+		GlobalData.set_token_data(negative_metrics["token_analysis"])
 
-	# Acceder a `token_analysis` y mostrar en consola
-	var total_tokens = 0
-	print("\n--- Token Analysis ---")
-	for token_type in negative_metrics["token_analysis"]:
-		total_tokens += negative_metrics["token_analysis"][token_type]
-	token_analysis_player_label.text = str(total_tokens)
-	token_ciberbullying_player_label.text = str(negative_metrics["token_analysis"]["ciberbullying"])
-	token_exclusion_player_label.text = str(negative_metrics["token_analysis"]["exclusión_social"])
-	token_fisico_player_label.text = str(negative_metrics["token_analysis"]["físico"])
-	token_psicologico_player_label.text = str(negative_metrics["token_analysis"]["psicológico"])
-	token_sexual_player_label.text = str(negative_metrics["token_analysis"]["sexual"])
-	token_verbal_player_label.text = str(negative_metrics["token_analysis"]["verbal"])
-	# Acceder a `tokens_per_game` y mostrar en consola
-	print("\n--- Tokens per Game ---")
-	for i in range(negative_metrics["tokens_per_game"].size()):
-		print("Game", i + 1, "tokens:", negative_metrics["tokens_per_game"][i])
-	
-	# Acceder a `bullying_card_frequency` y mostrar en consola
-	print("\n--- Bullying Card Frequency ---")
-	for card in negative_metrics["bullying_card_frequency"]:
-		print(card, ": ", negative_metrics["bullying_card_frequency"][card])
+		# Acceder a `token_analysis` y mostrar en consola
+		var total_tokens = 0
+		print("\n--- Token Analysis ---")
+		for token_type in negative_metrics["token_analysis"]:
+			total_tokens += negative_metrics["token_analysis"][token_type]
+		token_analysis_player_label.text = str(total_tokens)
+		token_ciberbullying_player_label.text = str(negative_metrics["token_analysis"]["ciberbullying"])
+		token_exclusion_player_label.text = str(negative_metrics["token_analysis"]["exclusión_social"])
+		token_fisico_player_label.text = str(negative_metrics["token_analysis"]["físico"])
+		token_psicologico_player_label.text = str(negative_metrics["token_analysis"]["psicológico"])
+		token_sexual_player_label.text = str(negative_metrics["token_analysis"]["sexual"])
+		token_verbal_player_label.text = str(negative_metrics["token_analysis"]["verbal"])
+		# Acceder a `tokens_per_game` y mostrar en consola
+		print("\n--- Tokens per Game ---")
+		for i in range(negative_metrics["tokens_per_game"].size()):
+			print("Game", i + 1, "tokens:", negative_metrics["tokens_per_game"][i])
+		
+		# Acceder a `bullying_card_frequency` y mostrar en consola
+		print("\n--- Bullying Card Frequency ---")
+		for card in negative_metrics["bullying_card_frequency"]:
+			print(card, ": ", negative_metrics["bullying_card_frequency"][card])
 
 # Función para convertir segundos a formato mm:ss 
 func format_time(seconds: int) -> String: 

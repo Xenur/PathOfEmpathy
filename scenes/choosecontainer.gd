@@ -19,6 +19,8 @@ extends HBoxContainer
 @onready var panel_solidario = $FrameSolidarioTextureRect/PanelSolidario
 @onready var panel_mediador = $FrameMediadorTextureRect/PanelMediador
 @onready var panel = $"../Panel"
+@onready var dialogue_label = $"../DialogueLabel"
+@onready var h_box_container = $"."
 
 @onready var audio_stream_player = $FrameLiderTextureRect/AudioStreamPlayer
 #Declaracion Diccionario roles para guardar los roles y sus estadisticas
@@ -54,7 +56,13 @@ var roles = {
 	}
 }
 
-
+#Mensajes asociados a cada rol
+var role_messages = {
+	"Líder": "Has elegido tener rol de Líder",
+	"Escucha Activa": "Has elegido tener rol de Escucha Activa",
+	"Mediador": "Has elegido tener rol de Mediador",
+	"Solidario": "Has elegido tenre rol de Soporte Solidario"
+}
 
 func _ready():
 # Carga el volumen del juego
@@ -63,6 +71,7 @@ func _ready():
 	#Posiciones y tamaño de las ventanas modales
 
 func _sfx(sound_sfx: String):
+	
 	var role_name: String
 	if sound_sfx == "res://assets/audio/sfx/mediador.ogg":
 		role_name = "Mediador"
@@ -77,7 +86,7 @@ func _sfx(sound_sfx: String):
 		GlobalData.player_stats = roles[role_name]
 		print("Rol seleccionado: %s" % GlobalData.selected_role)
 		print("Atributos: %s" % GlobalData.player_stats)
-	
+	select_role(role_name)
 	panel.show()
 	# Configura el volumen
 	var volume_db = lerp(-80, 0, GameConfig.sfx_volume / 100.0)
@@ -268,3 +277,15 @@ func _on_audio_stream_player_finished():
 func _on_accept_button_pressed():
 	await get_tree().create_timer(0.1).timeout
 	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+
+# Función que se llama al seleccionar un rol
+func select_role(role: String):
+	# Obtener el mensaje correspondiente al rol
+	if role_messages.has(role):
+		h_box_container.mouse_filter = MOUSE_FILTER_IGNORE
+		dialogue_label.text = role_messages[role]
+	else:
+		dialogue_label.text = "Has elegido un rol desconocido. ¡Prepárate para el desafío!"
+
+	# Aquí puedes agregar lógica para guardar el rol seleccionado
+	# GlobalData.selected_role = role

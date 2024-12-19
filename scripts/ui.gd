@@ -24,6 +24,7 @@ extends Control
 @onready var ia_texture_rect = $ScoreTokenIA/IATextureRect
 
 @onready var game_over = $GameOver
+@onready var new_game = $".."
 
 
 
@@ -45,13 +46,11 @@ extends Control
 
 @onready var trait_5_texture_rect = $Control/Trait5Panel/Trait5TextureRect
 @onready var trait_5_label = $Control/Trait5Panel/Trait5Label
+@onready var fade_timer = Timer.new()  # Crea un temporizador
+var fade_duration = 1.0  # Duración del desvanecimiento en segundos
+@onready var songs_label = $SongsLabel
 
 
-"res://assets/ui/icons/apoyo_emocional.png"
-"res://assets/ui/icons/comunicacion.png"
-"res://assets/ui/icons/empathy.png"
-"res://assets/ui/icons/intervención.png"
-"res://assets/ui/icons/resolución_de_conflictos.png"
 
 
 # Definimos la señal personalizada
@@ -67,7 +66,10 @@ var showing_reverses = false  # Indica si las cartas están mostrando el reverso
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+		# Agregar y configurar el temporizador
+	add_child(fade_timer)
+	fade_timer.one_shot = true
+	fade_timer.connect("timeout", Callable(self, "_on_fade_timer_timeout"))
 	match GameConfig.ia_difficulty:
 		0:
 			dificultad_label.text = "Alumno"
@@ -147,8 +149,9 @@ func update_button_text():
 		reverse_anverse_toggle_button.text = "Girar Carta"  # Cambia el texto a "Reverso"texto a "Reverso"
 		showing_reverses = false
 
+## Mantén un diccionario para registrar los valores anteriores de player_stats
+var previous_player_stats = {}
 
-		
 func update_traits_based_on_role():
 	# Verificar que el rol seleccionado y las estadísticas existen
 	var selected_role = GlobalData.selected_role
@@ -157,6 +160,10 @@ func update_traits_based_on_role():
 	if not selected_role or not player_stats:
 		print("Error: Rol seleccionado o estadísticas no disponibles.")
 		return
+
+	# Si previous_player_stats está vacío, inicializarlo con los valores actuales
+	if previous_player_stats.size() == 0:
+		previous_player_stats = player_stats.duplicate()
 
 	# Mapeo de texturas asociadas a cada estadística
 	var textures_map = {
@@ -171,12 +178,11 @@ func update_traits_based_on_role():
 	var stats_with_keys = []
 	for key in player_stats.keys():
 		var value = player_stats.get(key, 0)
-		#if value != 0:  # Solo incluir estadísticas con valor distinto de 0
 		stats_with_keys.append({ "key": key, "value": value })
 
-		# Ordenar estadísticas de mayor a menor
 	# Ordenar estadísticas de mayor a menor
 	stats_with_keys.sort_custom(func(a, b): return a["value"] > b["value"])
+
 	# Diccionario con descripciones para los tooltips
 	var tooltips_map = {
 		"resolucion_conflictos": "Habilidad para resolver conflictos de manera efectiva.",
@@ -185,13 +191,14 @@ func update_traits_based_on_role():
 		"intervencion": "Capacidad para intervenir en situaciones críticas.",
 		"empatia": "Habilidad para ponerse en el lugar de los demás y entender sus emociones."
 	}
+
 	# Nodos de los traits (etiquetas y texturas)
 	var traits = [
-		{ "texture_rect": trait_1_texture_rect, "label": trait_1_label,"panel": trait_1_panel},
-		{ "texture_rect": trait_2_texture_rect, "label": trait_2_label,"panel": trait_2_panel },
-		{ "texture_rect": trait_3_texture_rect, "label": trait_3_label,"panel": trait_3_panel },
-		{ "texture_rect": trait_4_texture_rect, "label": trait_4_label,"panel": trait_4_panel },
-		{ "texture_rect": trait_5_texture_rect, "label": trait_5_label,"panel": trait_5_panel }
+		{ "texture_rect": trait_1_texture_rect, "label": trait_1_label, "panel": trait_1_panel },
+		{ "texture_rect": trait_2_texture_rect, "label": trait_2_label, "panel": trait_2_panel },
+		{ "texture_rect": trait_3_texture_rect, "label": trait_3_label, "panel": trait_3_panel },
+		{ "texture_rect": trait_4_texture_rect, "label": trait_4_label, "panel": trait_4_panel },
+		{ "texture_rect": trait_5_texture_rect, "label": trait_5_label, "panel": trait_5_panel }
 	]
 
 	# Actualizar las imágenes y estadísticas de los traits
@@ -200,9 +207,9 @@ func update_traits_based_on_role():
 		var trait_node = traits[i]
 		var stat_key = stat["key"]
 		var stat_value = stat["value"]
+
 		# Crear el tooltip dinámicamente
 		var _tooltip_text = tooltips_map.get(stat_key, "Sin descripción disponible.")
-		# Asignar el tooltip al panel correspondiente
 		trait_node["panel"].tooltip_text = _tooltip_text
 
 		# Seleccionar la textura correcta según la estadística
@@ -213,15 +220,46 @@ func update_traits_based_on_role():
 		var formatted_value = ("+" + str(stat_value)) if stat_value > 0 else str(stat_value)
 
 		# Actualizar el texto
-		trait_node["label"].text = formatted_value
+		var label_node = trait_node["label"]
+		label_node.text = formatted_value
+		var stats_display_map = {
+			"resolucion_conflictos": "Resolución de Conflictos",
+			"comunicacion": "Comunicación",
+			"apoyo_emocional": "Apoyo Emocional",
+			"intervencion": "Intervención",
+			"empatia": "Empatía"
+		}
+		# Comprobar si el valor ha cambiado
+		if previous_player_stats.has(stat_key) and previous_player_stats[stat_key] != stat_value:
+			# Verificar si el stat_key tiene una representación amigable
+			if stats_display_map.has(stat_key):
+				var display_text = stats_display_map[stat_key]
+				songs_label.text = "Has modificado el atributo %s en +1" %(display_text)
+			else:
+				songs_label.text = "Has modificado un atributo desconocido."
+			songs_label.visible = true
+			songs_label.modulate = Color(1, 1, 1, 1)  # Reinicia la visibilidad del label
+
+		# Inicia el temporizador para que el texto se desvanezca
+		fade_timer.start(5.0)
+		
 
 	# Ocultar nodos no utilizados si hay menos estadísticas que traits disponibles
 	for j in range(stats_with_keys.size(), traits.size()):
 		traits[j]["texture_rect"].visible = false
 		traits[j]["label"].visible = false
 
+	# Actualizar previous_player_stats con los valores actuales
+	previous_player_stats = player_stats.duplicate()
+
 	print("Traits actualizados para el rol:", selected_role)
 
-# Método para ordenar de mayor a menor
-func _sort_stats_descending(a, b):
-	return b["value"] - a["value"]
+func _on_fade_timer_timeout():
+	# Desvanece el texto usando interpolación
+	var tween = create_tween()
+	tween.tween_property(songs_label, "modulate", Color(1, 1, 1, 0), fade_duration)
+	tween.connect("finished", Callable(self, "_on_fade_complete"))
+
+func _on_fade_complete():
+	# Oculta el label al finalizar el desvanecimiento
+	songs_label.visible = false

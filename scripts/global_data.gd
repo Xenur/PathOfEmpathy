@@ -12,9 +12,9 @@
 extends Node
 
 # Variables del usuario
-var user = "Carlos"
+var user = "Isa1"
 var id
-var password = "Fireblade25*"
+var password = "12345678"
 var created_at = {
 			"day": 9,
 			"dst": false,
@@ -151,6 +151,14 @@ func get_average_data() -> Dictionary:
 #Roles
 var selected_role = ""  # Nombre del rol seleccionado
 var player_stats = {}   # Atributos del jugador según el rol
+var previous_token_count = {
+	"verbal": 0,
+	"exclusión_social": 0,
+	"psicológico": 0,
+	"físico": 0,
+	"sexual": 0,
+	"ciberbullying": 0
+}
 
 #stars
 var stars:int = 0
@@ -158,3 +166,5 @@ var total_stars:int = 0
 var total_games: int = 0
 
 var current_game_data = []  # Array para almacenar cartas y estrellas durante el juego
+
+var tutorial = false
