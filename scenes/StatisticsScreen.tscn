@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmyg2g0gima31"]
+[gd_scene load_steps=13 format=3 uid="uid://cmyg2g0gima31"]
 
 [ext_resource type="Script" path="res://scripts/statistics_screen.gd" id="1_h0gp4"]
 [ext_resource type="FontFile" uid="uid://bceo6mdndisde" path="res://assets/fonts/Roboto-Bold.ttf" id="2_l5hmj"]
@@ -37,6 +37,13 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5doq"]
+bg_color = Color(0.0431373, 0.270588, 0.415686, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="StatisticsScreen" type="Control"]
 layout_mode = 3
@@ -820,5 +827,21 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_6ihwt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2th2y")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wdbkd")
 text = "Volver"
+
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 2.0
+offset_top = 205.0
+offset_right = 1925.0
+offset_bottom = 974.0
+theme_override_fonts/font = ExtResource("4_bnrhr")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_m5doq")
+text = "NO HAY ESTADÍSTICAS PARA MOSTRAR POR QUE NO HAS INICIADO NINGUNA PARTIDA."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [connection signal="pressed" from="AcceptButton" to="." method="_on_accept_button_pressed"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://66hydsq1pnhv"
+path="res://.godot/imported/Shadows of Eternal War.mp3-c85267d614a19c3a4e465d0072f43e83.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Shadows of Eternal War.mp3"
+dest_files=["res://.godot/imported/Shadows of Eternal War.mp3-c85267d614a19c3a4e465d0072f43e83.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

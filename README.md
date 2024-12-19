@@ -1,4 +1,32 @@
 # **Caminos de Empatía**
+19/12/2024
+0.4.0.2-beta
+Añadida introducción a las partidas para generar contexto y narrativa
+
+18/12/2024
+0.4.0.1-beta
+Créditos listos
+Cambiados marcos de las cartas (ahora están sin el marco negro, más limpia la interfaz!)
+Añadidas más canciones a la playlist, con sus respectivos nombres.
+Falta algo más de eye candy
+Falta decidir si introducir más voces o no. ¿Cambiamos las voces a Nora con Vidnoz?
+
+
+
+17/12/2024
+Tutorial listo
+Cambios en los marcos de las cartas
+El tutorial salta cuando no se ha iniciado ninguna partida
+El tutorial puede ejecutarse desde dentro de opciones del menú principal.
+
+
+
+15/12/2024
+Arreglado mostrar solo 49 cartas.
+Arreglado cheets en la obtención de tokens. Cambia los atributos cuando se generan los tokens
+
+
+
 14/12/2024
 v.0.3.0.4-alpha
 Arreglado no dar 0 puntos de empatía, el mínimo es 1.

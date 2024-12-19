@@ -538,14 +538,13 @@ theme_override_font_sizes/font_size = 18
 theme_override_styles/focus = SubResource("StyleBoxFlat_63l8y")
 text = "Créditos"
 
-[node name="StatisticsButton" type="Button" parent="Overlay/OptionWindow/VBoxContainer/CreditsHBoxContainer"]
-visible = false
+[node name="TutorialButton" type="Button" parent="Overlay/OptionWindow/VBoxContainer/CreditsHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_dav8f")
 theme_override_font_sizes/font_size = 18
 theme_override_styles/focus = SubResource("StyleBoxFlat_w4bko")
-text = "Estadísticas"
+text = "Tutorial"
 
 [node name="HSeparator2" type="HSeparator" parent="Overlay/OptionWindow/VBoxContainer"]
 layout_mode = 2
@@ -617,7 +616,7 @@ stream = ExtResource("11_1oieo")
 [connection signal="mouse_entered" from="Overlay/ModeSelectionWindow/VBoxContainer/HBoxContainer/BgCardStrategyTextureButton" to="Overlay/ModeSelectionWindow/VBoxContainer/HBoxContainer/BgCardStrategyTextureButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="Overlay/ModeSelectionWindow/VBoxContainer/HBoxContainer/BgCardStrategyTextureButton" to="." method="_on_bg_card_strategy_texture_button_pressed"]
 [connection signal="pressed" from="Overlay/OptionWindow/VBoxContainer/CreditsHBoxContainer/CreditsButton" to="Overlay/OptionWindow" method="_on_credits_button_pressed"]
-[connection signal="pressed" from="Overlay/OptionWindow/VBoxContainer/CreditsHBoxContainer/StatisticsButton" to="Overlay/OptionWindow" method="_on_statistics_button_pressed"]
+[connection signal="pressed" from="Overlay/OptionWindow/VBoxContainer/CreditsHBoxContainer/TutorialButton" to="Overlay/OptionWindow" method="_on_statistics_button_pressed"]
 [connection signal="mouse_entered" from="Overlay/OptionWindow/VBoxContainer/HBoxContainer4/SaveOptionButton" to="." method="_on_save_option_button_mouse_entered"]
 [connection signal="pressed" from="Overlay/OptionWindow/VBoxContainer/HBoxContainer4/SaveOptionButton" to="Overlay/OptionWindow" method="_on_save_option_button_pressed"]
 [connection signal="mouse_entered" from="Overlay/OptionWindow/VBoxContainer/HBoxContainer4/CancelOptionButton" to="." method="_on_cancel_option_button_mouse_entered"]

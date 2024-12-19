@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://gaotsw0vnede"
+path="res://.godot/imported/Infernal Accord Broken.mp3-334758409d0d2edafb3c46a9e85207b0.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Infernal Accord Broken.mp3"
+dest_files=["res://.godot/imported/Infernal Accord Broken.mp3-334758409d0d2edafb3c46a9e85207b0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

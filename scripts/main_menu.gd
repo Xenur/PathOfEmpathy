@@ -171,11 +171,12 @@ func _on_quit_button_pressed():
 	
 # Señal de boton nueva partida presionada
 func _on_new_game_button_pressed():
-	# Mostrar el desenfoque en el fondo
-	blur_overlay.visible = true
-	# Mostrar el panel de selección de modo	
-	mode_selection_window.show()
-
+	## Mostrar el desenfoque en el fondo
+	#blur_overlay.visible = true
+	## Mostrar el panel de selección de modo	
+	#mode_selection_window.show()
+	#await get_tree().create_timer(1.5).timeout
+	get_tree().change_scene_to_file("res://scenes/intro.tscn")
 # Función para cerrar la ventana modo selección
 func close_mode_selection_window():
 	# Ocultar la ventana y el desenfoque del fondo

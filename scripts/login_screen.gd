@@ -154,7 +154,7 @@ func login():
 			print(GlobalData.id)
 			print(GlobalData.created_at.year)
 			#Espera 2.5 segundos a cargar la siguiente escena
-			await get_tree().create_timer(2.5).timeout
+			await get_tree().create_timer(0.5).timeout
 			get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 			return
 			

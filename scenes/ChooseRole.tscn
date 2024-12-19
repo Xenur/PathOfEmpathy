@@ -1,5 +1,6 @@
-[gd_scene load_steps=29 format=3 uid="uid://51vjvhm3tabm"]
+[gd_scene load_steps=31 format=3 uid="uid://51vjvhm3tabm"]
 
+[ext_resource type="Script" path="res://scenes/choose_role.gd" id="1_a4ut5"]
 [ext_resource type="Texture2D" uid="uid://do3aiifcnlh4i" path="res://assets/images/backgrounds/bg_9.webp" id="1_hev0c"]
 [ext_resource type="Shader" path="res://scripts/MainMenu.gdshader" id="2_lgp3m"]
 [ext_resource type="FontFile" uid="uid://dvxsg8fyqxya6" path="res://assets/fonts/Roboto-Medium.ttf" id="3_frvhc"]
@@ -74,6 +75,13 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkeod"]
+bg_color = Color(0.0431373, 0.270588, 0.415686, 0.807843)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="ChooseRole" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -81,6 +89,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_a4ut5")
 
 [node name="BackgroundTextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -118,7 +127,27 @@ text = "ELIGE TU ROL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TutorialLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.0
+offset_top = -10.0
+offset_right = 92.0
+offset_bottom = 86.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_yhlko")
+theme_override_font_sizes/font_size = 75
+text = "TUTORIAL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 102.0
 offset_top = 388.0
@@ -857,6 +886,32 @@ Solidario: Un rol de apoyo centrado en el bienestar de los demás, fuerte en apo
 Elige con cuidado. Esta decisión es crucial, ya que afecta tus habilidades en la partida. Confirma tu elección con un doble clic."
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="DialogueLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 584.0
+offset_top = 250.0
+offset_right = 1336.0
+offset_bottom = 294.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frvhc")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_rkeod")
+text = "Has modificado el atributo Resolución de Conflictos en +1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [connection signal="gui_input" from="HBoxContainer/FrameLiderTextureRect" to="HBoxContainer" method="_on_frame_lider_texture_rect_gui_input"]
 [connection signal="mouse_entered" from="HBoxContainer/FrameLiderTextureRect" to="HBoxContainer" method="_on_frame_lider_texture_rect_mouse_entered"]

@@ -30,5 +30,8 @@ func _on_animation_finished(anim_name: String):
 		# Espera 1 segundo antes de cambiar la escena
 		await get_tree().create_timer(2.0).timeout
 		
-		# Cambia a la escena principal del juego
-		get_tree().change_scene_to_file("res://scenes/NewGame.tscn")
+		if GlobalData.tutorial == true:
+			# Cambia a la escena principal del juego
+			get_tree().change_scene_to_file("res://scenes/Tutorial.tscn")
+		else:
+			get_tree().change_scene_to_file("res://scenes/NewGame.tscn")

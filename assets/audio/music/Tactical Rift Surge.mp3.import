@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c6xid4n3mb06l"
+path="res://.godot/imported/Tactical Rift Surge.mp3-c8f8c69d78818eb3a0fd4bab641f9d09.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Tactical Rift Surge.mp3"
+dest_files=["res://.godot/imported/Tactical Rift Surge.mp3-c8f8c69d78818eb3a0fd4bab641f9d09.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

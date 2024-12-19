@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c6x07nxe887fd"
+path="res://.godot/imported/Chaos Dominion Strikes.mp3-d898479032af68c532be50283da9d69f.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Chaos Dominion Strikes.mp3"
+dest_files=["res://.godot/imported/Chaos Dominion Strikes.mp3-d898479032af68c532be50283da9d69f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://defu5xcsbgiuv"
+path="res://.godot/imported/Veil of Tactical Chaos.mp3-dc41011965c68937eead205e795f2d95.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Veil of Tactical Chaos.mp3"
+dest_files=["res://.godot/imported/Veil of Tactical Chaos.mp3-dc41011965c68937eead205e795f2d95.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
