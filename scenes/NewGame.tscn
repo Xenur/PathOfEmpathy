@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=3 uid="uid://dq4v62olhary3"]
+[gd_scene load_steps=133 format=3 uid="uid://dq4v62olhary3"]
 
 [ext_resource type="Script" path="res://scripts/new_game.gd" id="1_eh8bj"]
 [ext_resource type="Texture2D" uid="uid://bk6oojhaayb2d" path="res://assets/images/backgrounds/bg_6.webp" id="2_l3b2v"]
@@ -345,6 +345,31 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="Animation" id="Animation_5q54o"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="Animation" id="Animation_eo0hn"]
 resource_name = "heartbeat_token"
 length = 0.7
@@ -371,35 +396,111 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5, 0.7)
 }
 
-[sub_resource type="Animation" id="Animation_5q54o"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g3uj0"]
+_data = {
+"RESET": SubResource("Animation_5q54o"),
+"heartbeat_token": SubResource("Animation_eo0hn")
+}
+
+[sub_resource type="Animation" id="Animation_hthlw"]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale:x")
+tracks/0/path = NodePath("../DeckManager/DeckBullying/BullyingCard:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(343, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale:y")
+tracks/1/path = NodePath("../DeckManager/DeckBullying/BullyingCard:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(53, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../DeckManager/DeckBullying/BullyingCard:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.15, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../DeckManager/DeckBullying/BullyingCard:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.15, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g3uj0"]
+[sub_resource type="Animation" id="Animation_1l85d"]
+resource_name = "new_bullying"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DeckManager/DeckBullying/BullyingCard:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(343, -0.25, 0, 0.25, 0, 772, -0.25, 0, 0.25, 0, 772, -0.25, 0, 0.25, 0, 772, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.23333, 1.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DeckManager/DeckBullying/BullyingCard:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(53, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.23333, 1.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../DeckManager/DeckBullying/BullyingCard:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.15, -0.25, 0, 0.25, 0, 0.25, -0.25, 0, 0.25, 0, 0.3, -0.25, 0, 0.25, 0, 0.25, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.23333, 1.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../DeckManager/DeckBullying/BullyingCard:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.15, -0.25, 0, 0.25, 0, 0.25, -0.25, 0, 0.25, 0, 0.3, -0.25, 0, 0.25, 0, 0.25, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.23333, 1.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3jwb0"]
 _data = {
-"RESET": SubResource("Animation_5q54o"),
-"heartbeat_token": SubResource("Animation_eo0hn")
+"RESET": SubResource("Animation_hthlw"),
+"new_bullying": SubResource("Animation_1l85d")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76wj6"]
@@ -3694,6 +3795,11 @@ libraries = {
 "": SubResource("AnimationLibrary_g3uj0")
 }
 
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_3jwb0")
+}
+
 [node name="ReadyButton" type="Button" parent="."]
 layout_mode = 2
 anchor_left = 1.0
@@ -3726,12 +3832,13 @@ script = ExtResource("27_ybia5")
 anchors_preset = 0
 
 [node name="BullyingCard" type="Control" parent="DeckManager/DeckBullying"]
+z_index = 3
 anchors_preset = 0
-offset_left = 772.0
-offset_top = 50.0
-offset_right = 2272.0
-offset_bottom = 2150.0
-scale = Vector2(0.25, 0.25)
+offset_left = 343.0
+offset_top = 53.0
+offset_right = 1843.0
+offset_bottom = 2153.0
+scale = Vector2(0.15, 0.15)
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckBullying/BullyingCard"]
 z_index = 1

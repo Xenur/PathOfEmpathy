@@ -252,6 +252,8 @@ var countdown_sound_playing = false
 @onready var sprite_2d = $"../UI/TokensNode2D/Sprite2D"
 @onready var animation_player_token = $"../UI/TokensNode2D/AnimationPlayerToken"
 
+@onready var animation_player_2 = $"../UI/AnimationPlayer2"
+
 
 var tutorial_messages = []
 var tutorial_messages1 = [
@@ -606,6 +608,7 @@ func prepare_game():
 	#]
 		# Cambiar al estado de turno
 	change_state(GameState.TURN)
+	animation_player_2.play("new_bullying", 0, 1,3)
 	GlobalData.current_game_data.clear()
 	hand_texture_rect.visible = false
 	options_button.disabled = true
@@ -667,7 +670,10 @@ func start_turn():
 	reset_turn_state()
 	# Actualizar la carta de bullying
 	update_bullying_card() 
-
+	disable_card_interaction()
+	animation_player_2.play("new_bullying", 0, 1)
+	await get_tree().create_timer(1.5).timeout
+	enable_card_interaction()
 	dialogue_texture_rect.visible = false
 	
 	if turn == 2 and dialogue_check == true:
@@ -3209,6 +3215,7 @@ func _on_continue_options_button_pressed():
 
 
 func _on_abort_button_pressed():
+	dialogue_texture_rect.visible = false
 	play_beep_sound("res://assets/audio/sfx/click.ogg")
 	GlobalData.game_over_abort = true
 	change_state(GameState.GAME_OVER)
@@ -3492,7 +3499,7 @@ func call_heartbeat_scene(token_type: String):
 		tokens_node_2d.visible = true
 		sprite_2d.texture = load(token_textures[token_type])
 		animation_player_token.play("heartbeat_token", 0, 0.5)
-		await get_tree().create_timer(1.5).timeout
+		await get_tree().create_timer(2).timeout
 		fade_out_node(tokens_node_2d, 4)
 		enable_card_interaction()
 		
@@ -4173,23 +4180,30 @@ func load_saved_games() -> Dictionary:
 	
 
 func _on_accept_button_pressed():
-	dialogue_texture_rect.visible = false
-	line_1_dialogue_label.text = ""
-	line_2_dialogue_label.text = ""
-	line_3_dialogue_label.text = ""
-	line_4_dialogue_label.text = ""
-	line_5_dialogue_label.text = ""
+	fade_out_node(dialogue_texture_rect, 1)
+	#dialogue_texture_rect.visible = false
+
+	
+	
 	
 	play_beep_sound("res://assets/audio/sfx/click.ogg")
 	print("Iniciando el siguiente turno.")
+	await get_tree().create_timer(1 ).timeout
 	#Ocultar el modal y permitir interacción nuevamente
 	ready_texture_button.disabled = false
 	ready_texture_button.release_focus()  
 	blur_overlay.visible = false
 	#end_turn_popup.visible = false
 	enable_card_interaction()
-	dialogue_texture_rect.visible = false
+	#fade_out_node(dialogue_texture_rect, 1)
+	#dialogue_texture_rect.visible = false
 	options_button.disabled = false
+	
+	line_1_dialogue_label.text = ""
+	line_2_dialogue_label.text = ""
+	line_3_dialogue_label.text = ""
+	line_4_dialogue_label.text = ""
+	line_5_dialogue_label.text = ""
 	# Verifica si el juego debe terminar (tiempo finalizado o no hay más cartas en el mazo bu) o iniciar el siguiente turno
 	if countdown_game <= 0 or deck_manager.deck_bu.size() == 0:
 		GlobalData.game_over_time_or_bu = true
