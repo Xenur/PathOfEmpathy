@@ -248,6 +248,10 @@ var countdown_sound_playing = false
 @onready var accept_button = $"../UI/DialogueTextureRect/AcceptButton"
 @onready var options_button = $"../UI/OptionsButton"
 
+@onready var tokens_node_2d = $"../UI/TokensNode2D"
+@onready var sprite_2d = $"../UI/TokensNode2D/Sprite2D"
+@onready var animation_player_token = $"../UI/TokensNode2D/AnimationPlayerToken"
+
 
 var tutorial_messages = []
 var tutorial_messages1 = [
@@ -3391,6 +3395,7 @@ func update_token_textures():
 				# Verificar si el número de tokens ha aumentado
 				var current_count_ia = GlobalData.token_earned_ia[bullying_type]
 				if current_count_ia > last_token_count_ia[bullying_type]:  # Si hay un nuevo token
+					call_heartbeat_scene(bullying_type)
 					#play_token_audio(normalize_bullying_type(bullying_type))
 					last_token_count_ia[bullying_type] = current_count_ia  # Actualizar el conteo
 
@@ -3445,7 +3450,7 @@ func play_token_audio(token_type: String):
 			var random_index = randi() % sfx_list.size()  # Selecciona aleatoriamente
 			var selected_sfx_path = sfx_list[random_index]  # Ruta al archivo de sonido
 			var selected_sfx = load(selected_sfx_path)
-
+			call_heartbeat_scene(token_type)
 			# Reproducir el archivo de audio
 			#var audio_player = $"../UI/AudioStreamToken"  # Asegúrate de tener un nodo AudioStreamPlayer en tu escena
 			audio_stream_token.stream = selected_sfx
@@ -3457,7 +3462,9 @@ func play_token_audio(token_type: String):
 			if token_sfx_messages.has(selected_sfx_path):
 				var message = token_sfx_messages[selected_sfx_path]  # Mensaje correspondiente al audio
 				display_message(message)  # Mostrar el mensaje	
-				
+
+
+
 func display_message(message: String):
 	if subtitles_control and subtitles_label:
 		subtitles_label.text = message  # Mostrar el mensaje en el Label
@@ -3468,6 +3475,29 @@ func _on_audio_stream_token_finished():
 	if subtitles_label:
 		subtitles_control.visible = false
 
+func call_heartbeat_scene(token_type: String):
+	# Diccionario para asociar parámetros con rutas de imágenes
+	var token_textures = {
+		"ciberbullying": "res://assets/ui/tokens/token_ciberbullying.png",
+		"exclusión_social": "res://assets/ui/tokens/token_exclusión_social.png",
+		"físico": "res://assets/ui/tokens/token_físico.png",
+		"psicológico": "res://assets/ui/tokens/token_psicologico.png",
+		"sexual": "res://assets/ui/tokens/token_sexual.png",
+		"verbal": "res://assets/ui/tokens/token_verbal.png"
+	}
+
+	# Cambiar la textura del Sprite2D según el parámetro
+	if token_type in token_textures:
+		disable_card_interaction()
+		tokens_node_2d.visible = true
+		sprite_2d.texture = load(token_textures[token_type])
+		animation_player_token.play("heartbeat_token", 0, 0.5)
+		await get_tree().create_timer(1.5).timeout
+		fade_out_node(tokens_node_2d, 4)
+		enable_card_interaction()
+		
+	else:
+		print("Token no encontrado: ", token_type)
 
 func update_token_textures_game_over():
 	# Referencia a los nodos de los tokens del jugador

@@ -1,4 +1,8 @@
 # **Caminos de Empatía**
+20/12/2024
+Añadidas animaciones al conseguir Tokens para que sea mas visual
+
+
 19/12/2024
 0.4.0.2-beta
 Añadida introducción a las partidas para generar contexto y narrativa

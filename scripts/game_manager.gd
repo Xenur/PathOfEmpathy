@@ -241,6 +241,9 @@ var countdown_sound_playing = false
 @onready var performance_mensaje_label = $"../UI/GameOver/GameResultTextureRect/PerformanceMensajeLabel"
 @onready var promedio_puntos_totales_label = $"../UI/GameOver/GameResultTextureRect/PromedioPuntosTotalesLabel"
 @onready var tutorial_control = $"../UI/TutorialControl"
+@onready var tokens_node_2d = $"../UI/TokensNode2D"
+@onready var sprite_2d = $"../UI/TokensNode2D/Sprite2D"
+@onready var animation_player_token = $"../UI/TokensNode2D/AnimationPlayerToken"
 
 
 # Diccionario con las nuevas texturas para los tokens
@@ -3044,6 +3047,7 @@ func update_token_textures():
 				# Verificar si el número de tokens ha aumentado
 				var current_count = GlobalData.token_earned_player[bullying_type]
 				if current_count > last_token_count[bullying_type]:  # Si hay un nuevo token
+					call_heartbeat_scene(bullying_type)
 					play_token_audio(normalize_bullying_type(bullying_type))
 					last_token_count[bullying_type] = current_count  # Actualizar el conteo
 	# Iterar sobre los tipos de bullying ia
@@ -3117,7 +3121,7 @@ func play_token_audio(token_type: String):
 			var random_index = randi() % sfx_list.size()  # Selecciona aleatoriamente
 			var selected_sfx_path = sfx_list[random_index]  # Ruta al archivo de sonido
 			var selected_sfx = load(selected_sfx_path)
-
+			call_heartbeat_scene(token_type)
 			# Reproducir el archivo de audio
 			#var audio_player = $"../UI/AudioStreamToken"  # Asegúrate de tener un nodo AudioStreamPlayer en tu escena
 			audio_stream_token.stream = selected_sfx
@@ -3139,6 +3143,39 @@ func display_message(message: String):
 func _on_audio_stream_token_finished():
 	if subtitles_label:
 		subtitles_control.visible = false
+
+
+func call_heartbeat_scene(token_type: String):
+	# Diccionario para asociar parámetros con rutas de imágenes
+	var token_textures = {
+		"ciberbullying": "res://assets/ui/tokens/token_ciberbullying.png",
+		"exclusión_social": "res://assets/ui/tokens/token_exclusión_social.png",
+		"físico": "res://assets/ui/tokens/token_físico.png",
+		"psicológico": "res://assets/ui/tokens/token_psicologico.png",
+		"sexual": "res://assets/ui/tokens/token_sexual.png",
+		"verbal": "res://assets/ui/tokens/token_verbal.png"
+	}
+
+	# Cambiar la textura del Sprite2D según el parámetro
+	if token_type in token_textures:
+		disable_card_interaction()
+		tokens_node_2d.visible = true
+		sprite_2d.texture = load(token_textures[token_type])
+		animation_player_token.play("heartbeat_token", 0, 0.5)
+		await get_tree().create_timer(1.5).timeout
+		fade_out_node(tokens_node_2d, 4)
+		enable_card_interaction()
+		
+	else:
+		print("Token no encontrado: ", token_type)
+		
+func fade_out_node(node: CanvasItem, duration: float = 1.0):
+	var tween = create_tween()
+	tween.tween_property(node, "modulate:a", 0.0, duration)  # Desvanecer a opacidad 0
+	await tween.finished
+	node.visible = false  # Ocultar el nodo al final del fade
+	node.modulate.a = 1.0  # Restaurar opacidad para futuros usos
+
 
 
 func update_token_textures_game_over():
