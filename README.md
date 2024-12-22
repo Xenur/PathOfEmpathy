@@ -1,4 +1,7 @@
 # **Caminos de Empatía**
+22/12/2024
+Arreglado animacion Tokens
+
 20/12/2024
 Añadidas animaciones al conseguir Tokens para que sea mas visual
 Arreglado disabled boton opciones al mostrar el feedback

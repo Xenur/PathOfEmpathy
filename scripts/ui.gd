@@ -218,10 +218,12 @@ func update_traits_based_on_role():
 
 		# Formatear el valor con signo
 		var formatted_value = ("+" + str(stat_value)) if stat_value > 0 else str(stat_value)
-
+		
 		# Actualizar el texto
 		var label_node = trait_node["label"]
 		label_node.text = formatted_value
+		
+
 		var stats_display_map = {
 			"resolucion_conflictos": "Resolución de Conflictos",
 			"comunicacion": "Comunicación",

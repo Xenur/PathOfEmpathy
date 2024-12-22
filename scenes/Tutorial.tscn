@@ -1,4 +1,4 @@
-[gd_scene load_steps=150 format=3 uid="uid://b8feo6v1dqve0"]
+[gd_scene load_steps=147 format=3 uid="uid://b8feo6v1dqve0"]
 
 [ext_resource type="Script" path="res://scenes/tutorial_new_game.gd" id="1_yjbor"]
 [ext_resource type="Texture2D" uid="uid://bk6oojhaayb2d" path="res://assets/images/backgrounds/bg_6.webp" id="2_nwcrs"]
@@ -720,63 +720,6 @@ _data = {
 "hand_tiempo": SubResource("Animation_tlihl"),
 "hand_tiempo_tirada": SubResource("Animation_pwka7"),
 "hand_traits": SubResource("Animation_50deo")
-}
-
-[sub_resource type="Animation" id="Animation_5q54o"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="Animation" id="Animation_eo0hn"]
-resource_name = "heartbeat_token"
-length = 0.7
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 0.7)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 0.7)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g3uj0"]
-_data = {
-"RESET": SubResource("Animation_5q54o"),
-"heartbeat_token": SubResource("Animation_eo0hn")
 }
 
 [sub_resource type="Animation" id="Animation_hthlw"]
@@ -4205,11 +4148,6 @@ z_index = 8
 position = Vector2(959, 510)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("52_pniom")
-
-[node name="AnimationPlayerToken" type="AnimationPlayer" parent="UI/TokensNode2D"]
-libraries = {
-"": SubResource("AnimationLibrary_g3uj0")
-}
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="UI"]
 libraries = {

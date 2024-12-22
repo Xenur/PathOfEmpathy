@@ -369,10 +369,32 @@ tracks/1/keys = {
 "points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(966, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(490, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_eo0hn"]
 resource_name = "heartbeat_token"
-length = 0.7
+length = 3.0
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -380,9 +402,9 @@ tracks/0/path = NodePath("Sprite2D:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 0.7)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0.7, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0.7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 0.7, 1.13333, 1.5, 2, 2.3, 2.6, 3)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -391,9 +413,31 @@ tracks/1/path = NodePath("Sprite2D:scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 0.7)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0.7, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0.7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 0.7, 1.13333, 1.5, 2, 2.3, 2.6, 3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(966, -0.25, 0, 0.25, 0, 966, -0.25, 0, 0.25, 0, 1743, -0.25, 0, 0.25, 0, 1743, -0.25, 0, 0.25, 0, 1743, -0.25, 0, 0.25, 0, 1743, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 1.13333, 2, 2.3, 2.6, 3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(490, -0.25, 0, 0.25, 0, 490, -0.25, 0, 0.25, 0, 910, -0.25, 0, 0.25, 0, 910, -0.25, 0, 0.25, 0, 910, -0.25, 0, 0.25, 0, 910, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 1.13333, 2, 2.3, 2.6, 3)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g3uj0"]
@@ -598,8 +642,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 295.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 225
 text = "+4"
@@ -630,8 +674,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 300.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 225
 text = "+2"
@@ -662,8 +706,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 300.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 225
 text = "-3"
@@ -694,8 +738,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 300.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 225
 text = "-2"
@@ -726,8 +770,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 300.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 225
 text = "-2"
@@ -3664,11 +3708,12 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_gerkl")
 text = "Aceptar"
 
 [node name="SongsLabel" type="Label" parent="UI"]
+z_index = 12
 layout_mode = 0
-offset_left = 22.0
-offset_top = 502.0
-offset_right = 506.0
-offset_bottom = 546.0
+offset_left = 24.0
+offset_top = 429.0
+offset_right = 672.0
+offset_bottom = 473.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
@@ -3785,8 +3830,8 @@ vertical_alignment = 1
 visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/TokensNode2D"]
-z_index = 8
-position = Vector2(959, 510)
+z_index = 28
+position = Vector2(966, 490)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("49_6wr8f")
 

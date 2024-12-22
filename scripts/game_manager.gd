@@ -720,7 +720,7 @@ func check_game_result():
 func adjust_player_score(player_score: float) -> float:
 	match GameConfig.ia_difficulty:
 		0:  # Dificultad Alumno
-			return player_score * 2.5
+			return player_score * 5
 		1:  # Dificultad Profesor
 			return player_score * 1.0  # Sin cambio
 		2:  # Dificultad Psicólogo
@@ -3170,8 +3170,8 @@ func call_heartbeat_scene(token_type: String):
 		disable_card_interaction()
 		tokens_node_2d.visible = true
 		sprite_2d.texture = load(token_textures[token_type])
-		animation_player_token.play("heartbeat_token", 0, 0.5)
-		await get_tree().create_timer(2).timeout
+		animation_player_token.play("heartbeat_token", 0, 0.4)
+		await get_tree().create_timer(5).timeout
 		fade_out_node(tokens_node_2d, 4)
 		enable_card_interaction()
 		

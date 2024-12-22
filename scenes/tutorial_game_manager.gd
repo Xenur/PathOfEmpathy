@@ -1035,7 +1035,7 @@ func check_game_result():
 func adjust_player_score(player_score: float) -> float:
 	match GameConfig.ia_difficulty:
 		0:  # Dificultad Alumno
-			return player_score * 2.5
+			return player_score * 10
 		1:  # Dificultad Profesor
 			return player_score * 1.0  # Sin cambio
 		2:  # Dificultad Psicólogo
@@ -3457,7 +3457,7 @@ func play_token_audio(token_type: String):
 			var random_index = randi() % sfx_list.size()  # Selecciona aleatoriamente
 			var selected_sfx_path = sfx_list[random_index]  # Ruta al archivo de sonido
 			var selected_sfx = load(selected_sfx_path)
-			call_heartbeat_scene(token_type)
+			#call_heartbeat_scene(token_type)
 			# Reproducir el archivo de audio
 			#var audio_player = $"../UI/AudioStreamToken"  # Asegúrate de tener un nodo AudioStreamPlayer en tu escena
 			audio_stream_token.stream = selected_sfx
@@ -3499,7 +3499,7 @@ func call_heartbeat_scene(token_type: String):
 		tokens_node_2d.visible = true
 		sprite_2d.texture = load(token_textures[token_type])
 		animation_player_token.play("heartbeat_token", 0, 0.5)
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(5).timeout
 		fade_out_node(tokens_node_2d, 4)
 		enable_card_interaction()
 		
