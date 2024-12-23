@@ -1,4 +1,5 @@
 AnimationPlayer
+GPUParticles2D
 Sprite2D
 Node2D
 TextureRect
@@ -10,5 +11,4 @@ ColorRect
 WorldEnvironment
 PointLight2D
 Panel
-GPUParticles2D
 Tree

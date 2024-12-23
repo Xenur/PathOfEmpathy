@@ -1,4 +1,10 @@
 # **Caminos de Empatía**
+23/12/2024
+Añadida animación Puntos de Empatía
+Añadida animación Particulas en Carta Situació de Bullying
+Arreglado bug trait token exclusión social
+
+
 22/12/2024
 Arreglado animacion Tokens
 

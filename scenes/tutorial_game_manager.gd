@@ -253,6 +253,8 @@ var countdown_sound_playing = false
 @onready var animation_player_token = $"../UI/TokensNode2D/AnimationPlayerToken"
 
 @onready var animation_player_2 = $"../UI/AnimationPlayer2"
+@onready var total_animation_player = $"../DeckManager/TotalLabel/TotalAnimationPlayer"
+@onready var explosion = $"../Node2D/Explosion"
 
 
 var tutorial_messages = []
@@ -677,18 +679,19 @@ func start_turn():
 	dialogue_texture_rect.visible = false
 	
 	if turn == 2 and dialogue_check == true:
+		disable_card_interaction()
 			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		options_button.disabled = true
 		ready_button.disabled = true
 		dialogue_texture_rect.visible = false
 		tutorial_messages = [
-			"Nueva carta de Situación de Bullying",
+			"Nueva Situación de Bullying",
 		]
 		tutorial_messages2 = [
-			"Si quieres abandonar el tutorial, en Opciones...",
-			"...podrás hacerlo fácilmente",
-			"Sigamos aprendiendo",
+			"Para abandonar el tutorial, en Opciones...",
+			"...podrás hacerlo fácilmente.",
+			"Sigamos aprendiendo.",
 			"Vuelve a elegir tus cartas"
 		]
 		await get_tree().create_timer(0.5).timeout
@@ -701,10 +704,12 @@ func start_turn():
 		await get_tree().create_timer(1.0).timeout
 		fade_out_node(hand_texture_rect, 1.0)
 		fade_out_node(dialogue_label, 1.0)
+		enable_card_interaction()
 		#hand_texture_rect.visible = false
 		#dialogue_label.visible = false
 
 	if turn == 3:
+		disable_card_interaction()
 			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		hand_texture_rect.visible = true
@@ -729,10 +734,12 @@ func start_turn():
 		await get_tree().create_timer(5.0).timeout
 		fade_out_node(hand_texture_rect, 1.0)
 		fade_out_node(dialogue_label, 1.0)
+		enable_card_interaction()
 		#hand_texture_rect.visible = false
 		#dialogue_label.visible = false
 
 	if turn == 4:
+		disable_card_interaction()
 			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		hand_texture_rect.visible = true
@@ -756,10 +763,12 @@ func start_turn():
 		await get_tree().create_timer(5.0).timeout
 		fade_out_node(hand_texture_rect, 1.0)
 		fade_out_node(dialogue_label, 1.0)
+		enable_card_interaction()
 		#hand_texture_rect.visible = false
 		#dialogue_label.visible = false
 
 	if turn == 5:
+		disable_card_interaction()
 			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		hand_texture_rect.visible = true
@@ -783,10 +792,12 @@ func start_turn():
 		await get_tree().create_timer(5.0).timeout
 		fade_out_node(hand_texture_rect, 1.0)
 		fade_out_node(dialogue_label, 1.0)
+		enable_card_interaction()
 		#hand_texture_rect.visible = false
 		#dialogue_label.visible = false
 		
 	if turn == 6:
+		disable_card_interaction()
 			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		hand_texture_rect.visible = true
@@ -795,10 +806,10 @@ func start_turn():
 		ready_button.disabled = true
 		dialogue_texture_rect.visible = false
 		tutorial_messages = [
-			"Este es el tiempo de la partida"
+			"Este es el tiempo de la partida",
+			"Y el nivel de dificultad elegido"
 		]
 		tutorial_messages2 = [
-			"Y el nivel de dificultad elegido",
 			"Puedes cambiarlo en Opciones en el Menú Principal"
 		]
 		animation_player.play("hand_tiempo", 0, 0.5)	
@@ -811,10 +822,12 @@ func start_turn():
 		await get_tree().create_timer(5.0).timeout
 		fade_out_node(hand_texture_rect, 1.0)
 		fade_out_node(dialogue_label, 1.0)
+		enable_card_interaction()
 		#hand_texture_rect.visible = false
 		#dialogue_label.visible = false
 		
 	if turn == 7:
+		disable_card_interaction()
 			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		hand_texture_rect.visible = true
@@ -838,21 +851,23 @@ func start_turn():
 		await get_tree().create_timer(5.0).timeout
 		fade_out_node(hand_texture_rect, 1.0)
 		fade_out_node(dialogue_label, 1.0)
+		enable_card_interaction()
+		
 		#hand_texture_rect.visible = false
 		#dialogue_label.visible = false	
 	if turn == 8:
 			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
 		dialogue_label.text = ""  # Limpia cualquier texto previo
-		hand_texture_rect.visible = true
+		#hand_texture_rect.visible = true
 		dialogue_label.visible = true
 		options_button.disabled = true
 		ready_button.disabled = true
 		dialogue_texture_rect.visible = false
 		tutorial_messages = [
-			"Hasta aquí el tutorial"
+			"Hasta aquí el tutorial."
 		]
 		tutorial_messages2 = [
-			"¡Sigue adelante!",
+			"¡Sigue adelante!"
 		]
 		await get_tree().create_timer(0.5).timeout
 		await show_messages(tutorial_messages)
@@ -861,8 +876,9 @@ func start_turn():
 		ready_button.disabled = false
 		options_button.disabled = false
 		await get_tree().create_timer(5.0).timeout
-		fade_out_node(hand_texture_rect, 1.0)
+		#fade_out_node(hand_texture_rect, 1.0)
 		fade_out_node(dialogue_label, 1.0)
+		enable_card_interaction()
 		#hand_texture_rect.visible = false
 		#dialogue_label.visible = false	
 # Función para manejar el turno del jugador DEPRECATED
@@ -2198,7 +2214,7 @@ func reset_turn_state():
 	
 var token_to_attribute = {
 	"verbal": "comunicacion",
-	"exclusión_social": "resolucion_de_conflictos",
+	"exclusión_social": "resolucion_conflictos",
 	"psicológico": "apoyo_emocional",
 	"físico": "intervencion",
 	"sexual": "empatia",
@@ -2446,7 +2462,7 @@ func _on_ready_texture_button_pressed():
 func _on_ready_button_pressed():
 	
 	
-	
+	explosion.emitting = true
 	play_beep_sound("res://assets/audio/sfx/traimory-whoosh-hit-the-box-cinematic-trailer-sound-effects-193411.ogg")
 	if (player_selected_card_re == null or player_selected_card_hs == null):
 		# Si el jugador no seleccionó cartas, asignarlas automáticamente
@@ -4180,6 +4196,8 @@ func load_saved_games() -> Dictionary:
 	
 
 func _on_accept_button_pressed():
+	explosion.emitting = false
+	total_animation_player.play("heart_total",0,1)
 	fade_out_node(dialogue_texture_rect, 1)
 	#dialogue_texture_rect.visible = false
 

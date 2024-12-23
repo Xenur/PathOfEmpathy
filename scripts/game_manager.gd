@@ -245,6 +245,8 @@ var countdown_sound_playing = false
 @onready var sprite_2d = $"../UI/TokensNode2D/Sprite2D"
 @onready var animation_player_token = $"../UI/TokensNode2D/AnimationPlayerToken"
 @onready var animation_player_2 = $"../UI/AnimationPlayer2"
+@onready var explosion = $"../Node2D/Explosion"
+@onready var total_animation_player = $"../DeckManager/TotalLabel/TotalAnimationPlayer"
 
 
 
@@ -611,7 +613,10 @@ func choose_ia_cards():
 # Función para verificar el resultado del turno
 # Refactorización de la función `check_game_result` 22/11/2024
 func check_game_result():
-	dialogue_texture_rect.visible = true
+	
+	#dialogue_texture_rect.visible = true
+	fade_in_node(dialogue_texture_rect, 1)
+	
 	options_button.disabled = true
 	# Actualiza la información del bullying en las etiquetas
 	update_bullying_info()
@@ -1882,7 +1887,7 @@ func reset_turn_state():
 	
 var token_to_attribute = {
 	"verbal": "comunicacion",
-	"exclusión_social": "resolucion_de_conflictos",
+	"exclusión_social": "resolucion_conflictos",
 	"psicológico": "apoyo_emocional",
 	"físico": "intervencion",
 	"sexual": "empatia",
@@ -2129,6 +2134,7 @@ func _on_ready_texture_button_pressed():
 # Función para manejar el evento del botón "aceptar"
 func _on_ready_button_pressed():
 	
+	explosion.emitting = true
 	
 	
 	play_beep_sound("res://assets/audio/sfx/traimory-whoosh-hit-the-box-cinematic-trailer-sound-effects-193411.ogg")
@@ -3184,7 +3190,13 @@ func fade_out_node(node: CanvasItem, duration: float = 1.0):
 	await tween.finished
 	node.visible = false  # Ocultar el nodo al final del fade
 	node.modulate.a = 1.0  # Restaurar opacidad para futuros usos
-
+	
+func fade_in_node(node: CanvasItem, duration: float = 1.0):
+	var tween = create_tween()
+	node.visible = true  # Asegurarse de que el nodo sea visible al iniciar el fade
+	node.modulate.a = 0.0  # Establecer opacidad inicial a 0
+	tween.tween_property(node, "modulate:a", 1.0, duration)  # Incrementar la opacidad a 1
+	await tween.finished
 
 
 func update_token_textures_game_over():
@@ -3863,6 +3875,8 @@ func load_saved_games() -> Dictionary:
 
 
 func _on_accept_button_pressed():
+	explosion.emitting = false
+	total_animation_player.play("heart_total", 0, 1)
 	fade_out_node(dialogue_texture_rect, 1)
 	#dialogue_texture_rect.visible = false
 	play_beep_sound("res://assets/audio/sfx/click.ogg")
