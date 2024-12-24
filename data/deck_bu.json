@@ -4,14 +4,14 @@
 		"nombre": "Intimidación en el recreo",
 		"tipo": "Físico",
 		"descripcion": "Un grupo de estudiantes rodea a otra en el patio, lanzándole insultos y molestándola, mientras los demás se quedan mirando sin hacer nada para ayudar.",
-		"thresholds": [200, 400, 600, 800, 1000]
+		"thresholds": [200, 400, 600, 800, 950]
 	},
 	{
 		"id": 2,
 		"nombre": "Rumores maliciosos en línea",
 		"tipo": "Ciberbullying",
 		"descripcion": "Se inventan y comparten rumores sobre una estudiante en redes Sociales, arruinando su reputación y haciéndola sentir fatal.",
-		"thresholds": [250, 450, 650, 850, 1000]
+		"thresholds": [250, 450, 650, 850, 950]
 	},
 	{
 		"id": 3,
@@ -39,14 +39,14 @@
 		"nombre": "Mensajes de texto amenazantes",
 		"tipo": "Ciberbullying",
 		"descripcion": "Un estudiante recibe mensajes anónimos con amenazas y comentarios súper desagradables, que lo hacen sentir inseguro.",
-		"thresholds": [300, 500, 700, 850, 1000]
+		"thresholds": [300, 500, 700, 850, 950]
 	},
 	{
 		"id": 7,
 		"nombre": "Publicaciones humillantes en RRSS",
 		"tipo": "Ciberbullying",
 		"descripcion": "Se suben fotos o videos embarazosos de una estudiante a redes Sociales sin su permiso, dejándola súper avergonzada.",
-		"thresholds": [250, 450, 600, 850, 1000]
+		"thresholds": [250, 450, 600, 850, 950]
 	},
 	{
 		"id": 8,
@@ -67,7 +67,7 @@
 		"nombre": "Presión para realizar actos inseguros", 
 		"tipo": "Psicológico",
 		"descripcion": "Algunos compañeros le insisten a una estudiante para que haga cosas peligrosas o que no son apropiadas, y se burlan si no lo hace.",
-		"thresholds": [200, 400, 600, 800, 1000]
+		"thresholds": [200, 400, 600, 800, 950]
 	},
 	{
 		"id": 11,
@@ -81,7 +81,7 @@
 		"nombre": "Burlas por expresión de género",
 		"tipo": "Sexual",
 		"descripcion": "Un estudiante enfrenta comentarios negativos y constantes burlas por cómo expresa su género o por su identidad.",
-		"thresholds": [300, 500, 700, 850, 1000]
+		"thresholds": [300, 500, 700, 850, 950]
 	},
 	{
 		"id": 13,
@@ -95,7 +95,7 @@
 		"nombre": "Marginación en actividades deportivas",
 		"tipo": "Exclusión Social",
 		"descripcion": "Un estudiante es excluido o ridiculizado por su desempeño en deportes, haciéndolo sentir menos capaz y con ganas de desaparecer.",
-		"thresholds": [250, 450, 650, 800, 1000]
+		"thresholds": [250, 450, 650, 800, 950]
 	},
 	{
 		"id": 15,
@@ -123,7 +123,7 @@
 		"nombre": "Falsas acusaciones a profesores",
 		"tipo": "Psicológico",
 		"descripcion": "Un estudiante es acusado falsamente de hacer cosas inapropiadas con los profes, afectando su reputación y su relación con los demás.",
-		"thresholds": [250, 450, 650, 850, 1000]
+		"thresholds": [250, 450, 650, 850, 950]
 	},
 	{
 		"id": 19,
@@ -137,7 +137,7 @@
 		"nombre": "Burlas por origen étnico o cultural",
 		"tipo": "Verbal",
 		"descripcion": "Un estudiante sufre discriminación y burlas por su origen étnico, nacionalidad o cultura, haciéndolo sentir fuera de lugar.",
-		"thresholds": [250, 450, 650, 850, 1000]
+		"thresholds": [250, 450, 650, 850, 950]
 	},
 	{
 		"id": 21,
@@ -151,21 +151,21 @@
 		"nombre": "Desprecio por orientación sexual",
 		"tipo": "Sexual",
 		"descripcion": "Comentarios y actitudes negativas hacia un estudiante por su orientación sexual, creando un ambiente hostil y muy incómodo.",
-		"thresholds": [300, 500, 700, 850, 1000]
+		"thresholds": [300, 500, 700, 850, 950]
 	},
 	{
 		"id": 23,
-		"nombre": "Intimidación por status socioeconómico",
+		"nombre": "Intimidación por status económico",
 		"tipo": "Físico",
 		"descripcion": "Burlas y exclusión hacia una estudiante basadas en su situación económica, ya sea por tener más o menos recursos.",
-		"thresholds": [250, 450, 650, 850, 1000]
+		"thresholds": [250, 450, 650, 850, 950]
 	},
 	{
 		"id": 24,
 		"nombre": "Humillación por discapacidades",
 		"tipo": "Psicológico",
 		"descripcion": "Estudiantes con discapacidades son objeto de burlas y discriminación, afectando su autoestima y haciéndolos sentir menos.",
-		"thresholds": [300, 500, 700, 850, 1000]
+		"thresholds": [300, 500, 700, 850, 950]
 	},
 	{
 		"id": 25,
@@ -190,10 +190,10 @@
 	},
 	{
 		"id": 28,
-		"nombre": "Hostigamiento en Redes Sociales",
+		"nombre": "Acoso en Redes Sociales",
 		"tipo": "Ciberbullying",
 		"descripcion": "Un estudiante sufre acoso y comentarios negativos constantes en sus perfiles de redes Sociales, que no lo dejan en paz.",
-		"thresholds": [300, 500, 700, 850, 1000]
+		"thresholds": [300, 500, 700, 850, 950]
 	},
 	{
 		"id": 29,
@@ -207,14 +207,14 @@
 		"nombre": "Ciberacoso por identidad digital",
 		"tipo": "Ciberbullying",
 		"descripcion": "Acoso en línea dirigido hacia la identidad digital y la forma en que una estudiante se muestra en redes, sin descanso.",
-		"thresholds": [250, 450, 650, 850, 1000]
+		"thresholds": [250, 450, 650, 850, 950]
 	},
 	{
 		"id": 31,
 		"nombre": "Amenazas por resistirse a un desafío",
 		"tipo": "Psicológico",
 		"descripcion": "Un estudiante es coaccionado para participar en retos peligrosos o humillantes, con amenazas si se niega a hacerlo.",
-		"thresholds": [300, 500, 700, 850, 1000]
+		"thresholds": [300, 500, 700, 850, 950]
 	},
 	{
 		"id": 32,
@@ -268,7 +268,7 @@
 	},
 	{
 		"id": 39,
-		"nombre": "Hostigamiento en vestuarios",
+		"nombre": "Acoso en vestuarios",
 		"tipo": "Físico",
 		"descripcion": "Una estudiante sufre acoso físico o verbal en los vestuarios, un lugar que debería ser seguro para todos.",
 		"thresholds": [200, 400, 600, 750, 950]
@@ -278,7 +278,7 @@
 		"nombre": "Presión para consumir sustancias",
 		"tipo": "Físico",
 		"descripcion": "Se presiona a un estudiante para que consuma alcohol, drogas o tabaco, aunque no quiera hacerlo.",
-		"thresholds": [250, 450, 650, 850, 1000]
+		"thresholds": [250, 450, 650, 850, 950]
 	},
 	{
 		"id": 41,
@@ -306,7 +306,7 @@
 		"nombre": "Campañas de desprestigio en línea",
 		"tipo": "Ciberbullying",
 		"descripcion": "Se organizan campañas en redes Sociales para dañar la imagen y el bienestar emocional de un estudiante, generando mucho estrés.",
-		"thresholds": [300, 500, 700, 850, 1000]
+		"thresholds": [300, 500, 700, 850, 950]
 	},
 	{
 		"id": 45,
@@ -320,7 +320,7 @@
 		"nombre": "Acoso por estudiar en academias",
 		"tipo": "Psicológico",
 		"descripcion": "Burlas y comentarios negativos hacia estudiantes que trabajan o asisten a clases extra fuera de la escuela.",
-		"thresholds": [250, 450, 650, 850, 1000]
+		"thresholds": [250, 450, 650, 850, 950]
 	},
 	{
 		"id": 47,
@@ -334,7 +334,7 @@
 		"nombre": "Amenazas por no participar en bromas",
 		"tipo": "Psicológico",
 		"descripcion": "Una estudiante es presionada y amenazada para que participe en bromas pesadas, aunque no quiera.",
-		"thresholds": [300, 500, 700, 850, 1000]
+		"thresholds": [300, 500, 700, 850, 950]
 	},
 	{
 		"id": 49,
@@ -345,7 +345,7 @@
 	},
 	{
 		"id": 50,
-		"nombre": "Hostigamiento por enfermedades crónicas",
+		"nombre": "Acoso por enfermedades crónicas",
 		"tipo": "Físico",
 		"descripcion": "Un estudiante con enfermedades crónicas es acosado y ridiculizado por su condición médica, haciéndolo sentir peor.",
 		"thresholds": [200, 400, 600, 750, 950]

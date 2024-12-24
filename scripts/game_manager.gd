@@ -3152,12 +3152,14 @@ func play_token_audio(token_type: String):
 func display_message(message: String):
 	if subtitles_control and subtitles_label:
 		subtitles_label.text = message  # Mostrar el mensaje en el Label
-		subtitles_control.visible = true  # Hacer visible el control que contiene el subtítulo
+		fade_in_node(subtitles_control, 2)
+		#subtitles_control.visible = true  # Hacer visible el control que contiene el subtítulo
 
 
 func _on_audio_stream_token_finished():
 	if subtitles_label:
-		subtitles_control.visible = false
+		fade_out_node(subtitles_control, 1)
+		#subtitles_control.visible = false
 
 
 func call_heartbeat_scene(token_type: String):

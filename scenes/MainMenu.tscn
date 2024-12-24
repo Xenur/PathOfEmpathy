@@ -428,7 +428,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="OptionWindow" type="Window" parent="Overlay"]
-position = Vector2i(710, 500)
+position = Vector2i(675, 94)
 size = Vector2i(500, 500)
 visible = false
 transient = true
@@ -490,6 +490,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Overlay/OptionWindow/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
