@@ -588,15 +588,15 @@ func generate_feedback() -> String:
 		feedback += "¡Buen trabajo! Lograste %.2f tokens de promedio, lo cual indica que estás maximizando tus recursos.\n" % average_tokens
 	#
 	#
-	# Modos de juego
-	var average_strategy = player_statistics["average_strategy"]
-	var average_intuition = player_statistics["average_intuition"]
-	if average_strategy > average_intuition:
-		feedback += "Prefieres el modo de Estrategia. Esto muestra que disfrutas planificar tus movimientos cuidadosamente.\n"
-	elif average_intuition > average_strategy:
-		feedback += "Prefieres el modo de Intuición. Esto indica que disfrutas jugar rápido y confiar en las estadísticas.\n"
-	else:
-		feedback += "Tienes un balance entre los modos de juego. Esto es excelente para adaptarte a diferentes desafíos.\n"
+	## Modos de juego
+	#var average_strategy = player_statistics["average_strategy"]
+	#var average_intuition = player_statistics["average_intuition"]
+	#if average_strategy > average_intuition:
+		#feedback += "Prefieres el modo de Estrategia. Esto muestra que disfrutas planificar tus movimientos cuidadosamente.\n"
+	#elif average_intuition > average_strategy:
+		#feedback += "Prefieres el modo de Intuición. Esto indica que disfrutas jugar rápido y confiar en las estadísticas.\n"
+	#else:
+		#feedback += "Tienes un balance entre los modos de juego. Esto es excelente para adaptarte a diferentes desafíos.\n"
 
 
 	# Obtener los promedios de los niveles de dificultad

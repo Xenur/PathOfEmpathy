@@ -225,6 +225,7 @@ theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
 [node name="DateHBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="AverageIntuitionLabel" type="Label" parent="VBoxContainer/DateHBoxContainer5"]
@@ -242,6 +243,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="DateHBoxContainer8" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="AverageStrategyLabel" type="Label" parent="VBoxContainer/DateHBoxContainer8"]

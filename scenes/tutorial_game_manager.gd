@@ -248,6 +248,14 @@ var countdown_sound_playing = false
 @onready var accept_button = $"../UI/DialogueTextureRect/AcceptButton"
 @onready var options_button = $"../UI/OptionsButton"
 
+@onready var tokens_node_2d = $"../UI/TokensNode2D"
+@onready var sprite_2d = $"../UI/TokensNode2D/Sprite2D"
+@onready var animation_player_token = $"../UI/TokensNode2D/AnimationPlayerToken"
+
+@onready var animation_player_2 = $"../UI/AnimationPlayer2"
+@onready var total_animation_player = $"../DeckManager/TotalLabel/TotalAnimationPlayer"
+@onready var explosion = $"../Node2D/Explosion"
+
 
 var tutorial_messages = []
 var tutorial_messages1 = [
@@ -602,6 +610,7 @@ func prepare_game():
 	#]
 		# Cambiar al estado de turno
 	change_state(GameState.TURN)
+	animation_player_2.play("new_bullying", 0, 1,3)
 	GlobalData.current_game_data.clear()
 	hand_texture_rect.visible = false
 	options_button.disabled = true
@@ -663,22 +672,26 @@ func start_turn():
 	reset_turn_state()
 	# Actualizar la carta de bullying
 	update_bullying_card() 
-
+	disable_card_interaction()
+	animation_player_2.play("new_bullying", 0, 1)
+	await get_tree().create_timer(1.5).timeout
+	enable_card_interaction()
 	dialogue_texture_rect.visible = false
 	
 	if turn == 2 and dialogue_check == true:
+		disable_card_interaction()
 			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		options_button.disabled = true
 		ready_button.disabled = true
 		dialogue_texture_rect.visible = false
 		tutorial_messages = [
-			"Nueva carta de Situación de Bullying",
+			"Nueva Situación de Bullying",
 		]
 		tutorial_messages2 = [
-			"Si quieres abandonar el tutorial, en Opciones...",
-			"...podrás hacerlo fácilmente",
-			"Sigamos aprendiendo",
+			"Para abandonar el tutorial, en Opciones...",
+			"...podrás hacerlo fácilmente.",
+			"Sigamos aprendiendo.",
 			"Vuelve a elegir tus cartas"
 		]
 		await get_tree().create_timer(0.5).timeout
@@ -691,10 +704,12 @@ func start_turn():
 		await get_tree().create_timer(1.0).timeout
 		fade_out_node(hand_texture_rect, 1.0)
 		fade_out_node(dialogue_label, 1.0)
+		enable_card_interaction()
 		#hand_texture_rect.visible = false
 		#dialogue_label.visible = false
 
 	if turn == 3:
+		disable_card_interaction()
 			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		hand_texture_rect.visible = true
@@ -719,10 +734,12 @@ func start_turn():
 		await get_tree().create_timer(5.0).timeout
 		fade_out_node(hand_texture_rect, 1.0)
 		fade_out_node(dialogue_label, 1.0)
+		enable_card_interaction()
 		#hand_texture_rect.visible = false
 		#dialogue_label.visible = false
 
 	if turn == 4:
+		disable_card_interaction()
 			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		hand_texture_rect.visible = true
@@ -746,10 +763,12 @@ func start_turn():
 		await get_tree().create_timer(5.0).timeout
 		fade_out_node(hand_texture_rect, 1.0)
 		fade_out_node(dialogue_label, 1.0)
+		enable_card_interaction()
 		#hand_texture_rect.visible = false
 		#dialogue_label.visible = false
 
 	if turn == 5:
+		disable_card_interaction()
 			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		hand_texture_rect.visible = true
@@ -773,10 +792,12 @@ func start_turn():
 		await get_tree().create_timer(5.0).timeout
 		fade_out_node(hand_texture_rect, 1.0)
 		fade_out_node(dialogue_label, 1.0)
+		enable_card_interaction()
 		#hand_texture_rect.visible = false
 		#dialogue_label.visible = false
 		
 	if turn == 6:
+		disable_card_interaction()
 			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		hand_texture_rect.visible = true
@@ -785,10 +806,10 @@ func start_turn():
 		ready_button.disabled = true
 		dialogue_texture_rect.visible = false
 		tutorial_messages = [
-			"Este es el tiempo de la partida"
+			"Este es el tiempo de la partida",
+			"Y el nivel de dificultad elegido"
 		]
 		tutorial_messages2 = [
-			"Y el nivel de dificultad elegido",
 			"Puedes cambiarlo en Opciones en el Menú Principal"
 		]
 		animation_player.play("hand_tiempo", 0, 0.5)	
@@ -801,10 +822,12 @@ func start_turn():
 		await get_tree().create_timer(5.0).timeout
 		fade_out_node(hand_texture_rect, 1.0)
 		fade_out_node(dialogue_label, 1.0)
+		enable_card_interaction()
 		#hand_texture_rect.visible = false
 		#dialogue_label.visible = false
 		
 	if turn == 7:
+		disable_card_interaction()
 			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		hand_texture_rect.visible = true
@@ -828,21 +851,23 @@ func start_turn():
 		await get_tree().create_timer(5.0).timeout
 		fade_out_node(hand_texture_rect, 1.0)
 		fade_out_node(dialogue_label, 1.0)
+		enable_card_interaction()
+		
 		#hand_texture_rect.visible = false
 		#dialogue_label.visible = false	
 	if turn == 8:
 			#añado estos dos true para que no puedan clicar hasta acabar de mostrar el comentario
 		dialogue_label.text = ""  # Limpia cualquier texto previo
-		hand_texture_rect.visible = true
+		#hand_texture_rect.visible = true
 		dialogue_label.visible = true
 		options_button.disabled = true
 		ready_button.disabled = true
 		dialogue_texture_rect.visible = false
 		tutorial_messages = [
-			"Hasta aquí el tutorial"
+			"Hasta aquí el tutorial."
 		]
 		tutorial_messages2 = [
-			"¡Sigue adelante!",
+			"¡Sigue adelante!"
 		]
 		await get_tree().create_timer(0.5).timeout
 		await show_messages(tutorial_messages)
@@ -851,8 +876,9 @@ func start_turn():
 		ready_button.disabled = false
 		options_button.disabled = false
 		await get_tree().create_timer(5.0).timeout
-		fade_out_node(hand_texture_rect, 1.0)
+		#fade_out_node(hand_texture_rect, 1.0)
 		fade_out_node(dialogue_label, 1.0)
+		enable_card_interaction()
 		#hand_texture_rect.visible = false
 		#dialogue_label.visible = false	
 # Función para manejar el turno del jugador DEPRECATED
@@ -1025,7 +1051,7 @@ func check_game_result():
 func adjust_player_score(player_score: float) -> float:
 	match GameConfig.ia_difficulty:
 		0:  # Dificultad Alumno
-			return player_score * 2.5
+			return player_score * 10
 		1:  # Dificultad Profesor
 			return player_score * 1.0  # Sin cambio
 		2:  # Dificultad Psicólogo
@@ -2188,7 +2214,7 @@ func reset_turn_state():
 	
 var token_to_attribute = {
 	"verbal": "comunicacion",
-	"exclusión_social": "resolucion_de_conflictos",
+	"exclusión_social": "resolucion_conflictos",
 	"psicológico": "apoyo_emocional",
 	"físico": "intervencion",
 	"sexual": "empatia",
@@ -2436,7 +2462,7 @@ func _on_ready_texture_button_pressed():
 func _on_ready_button_pressed():
 	
 	
-	
+	explosion.emitting = true
 	play_beep_sound("res://assets/audio/sfx/traimory-whoosh-hit-the-box-cinematic-trailer-sound-effects-193411.ogg")
 	if (player_selected_card_re == null or player_selected_card_hs == null):
 		# Si el jugador no seleccionó cartas, asignarlas automáticamente
@@ -3205,6 +3231,7 @@ func _on_continue_options_button_pressed():
 
 
 func _on_abort_button_pressed():
+	dialogue_texture_rect.visible = false
 	play_beep_sound("res://assets/audio/sfx/click.ogg")
 	GlobalData.game_over_abort = true
 	change_state(GameState.GAME_OVER)
@@ -3391,6 +3418,7 @@ func update_token_textures():
 				# Verificar si el número de tokens ha aumentado
 				var current_count_ia = GlobalData.token_earned_ia[bullying_type]
 				if current_count_ia > last_token_count_ia[bullying_type]:  # Si hay un nuevo token
+					call_heartbeat_scene(bullying_type)
 					#play_token_audio(normalize_bullying_type(bullying_type))
 					last_token_count_ia[bullying_type] = current_count_ia  # Actualizar el conteo
 
@@ -3445,7 +3473,7 @@ func play_token_audio(token_type: String):
 			var random_index = randi() % sfx_list.size()  # Selecciona aleatoriamente
 			var selected_sfx_path = sfx_list[random_index]  # Ruta al archivo de sonido
 			var selected_sfx = load(selected_sfx_path)
-
+			#call_heartbeat_scene(token_type)
 			# Reproducir el archivo de audio
 			#var audio_player = $"../UI/AudioStreamToken"  # Asegúrate de tener un nodo AudioStreamPlayer en tu escena
 			audio_stream_token.stream = selected_sfx
@@ -3457,7 +3485,9 @@ func play_token_audio(token_type: String):
 			if token_sfx_messages.has(selected_sfx_path):
 				var message = token_sfx_messages[selected_sfx_path]  # Mensaje correspondiente al audio
 				display_message(message)  # Mostrar el mensaje	
-				
+
+
+
 func display_message(message: String):
 	if subtitles_control and subtitles_label:
 		subtitles_label.text = message  # Mostrar el mensaje en el Label
@@ -3468,6 +3498,29 @@ func _on_audio_stream_token_finished():
 	if subtitles_label:
 		subtitles_control.visible = false
 
+func call_heartbeat_scene(token_type: String):
+	# Diccionario para asociar parámetros con rutas de imágenes
+	var token_textures = {
+		"ciberbullying": "res://assets/ui/tokens/token_ciberbullying.png",
+		"exclusión_social": "res://assets/ui/tokens/token_exclusión_social.png",
+		"físico": "res://assets/ui/tokens/token_físico.png",
+		"psicológico": "res://assets/ui/tokens/token_psicologico.png",
+		"sexual": "res://assets/ui/tokens/token_sexual.png",
+		"verbal": "res://assets/ui/tokens/token_verbal.png"
+	}
+
+	# Cambiar la textura del Sprite2D según el parámetro
+	if token_type in token_textures:
+		disable_card_interaction()
+		tokens_node_2d.visible = true
+		sprite_2d.texture = load(token_textures[token_type])
+		animation_player_token.play("heartbeat_token", 0, 0.5)
+		await get_tree().create_timer(5).timeout
+		fade_out_node(tokens_node_2d, 4)
+		enable_card_interaction()
+		
+	else:
+		print("Token no encontrado: ", token_type)
 
 func update_token_textures_game_over():
 	# Referencia a los nodos de los tokens del jugador
@@ -4143,23 +4196,32 @@ func load_saved_games() -> Dictionary:
 	
 
 func _on_accept_button_pressed():
-	dialogue_texture_rect.visible = false
-	line_1_dialogue_label.text = ""
-	line_2_dialogue_label.text = ""
-	line_3_dialogue_label.text = ""
-	line_4_dialogue_label.text = ""
-	line_5_dialogue_label.text = ""
+	explosion.emitting = false
+	total_animation_player.play("heart_total",0,1)
+	fade_out_node(dialogue_texture_rect, 1)
+	#dialogue_texture_rect.visible = false
+
+	
+	
 	
 	play_beep_sound("res://assets/audio/sfx/click.ogg")
 	print("Iniciando el siguiente turno.")
+	await get_tree().create_timer(1 ).timeout
 	#Ocultar el modal y permitir interacción nuevamente
 	ready_texture_button.disabled = false
 	ready_texture_button.release_focus()  
 	blur_overlay.visible = false
 	#end_turn_popup.visible = false
 	enable_card_interaction()
-	dialogue_texture_rect.visible = false
+	#fade_out_node(dialogue_texture_rect, 1)
+	#dialogue_texture_rect.visible = false
 	options_button.disabled = false
+	
+	line_1_dialogue_label.text = ""
+	line_2_dialogue_label.text = ""
+	line_3_dialogue_label.text = ""
+	line_4_dialogue_label.text = ""
+	line_5_dialogue_label.text = ""
 	# Verifica si el juego debe terminar (tiempo finalizado o no hay más cartas en el mazo bu) o iniciar el siguiente turno
 	if countdown_game <= 0 or deck_manager.deck_bu.size() == 0:
 		GlobalData.game_over_time_or_bu = true
