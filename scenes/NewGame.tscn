@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=3 uid="uid://dq4v62olhary3"]
+[gd_scene load_steps=141 format=3 uid="uid://dq4v62olhary3"]
 
 [ext_resource type="Script" path="res://scripts/new_game.gd" id="1_eh8bj"]
 [ext_resource type="Texture2D" uid="uid://bk6oojhaayb2d" path="res://assets/images/backgrounds/bg_6.webp" id="2_l3b2v"]
@@ -67,6 +67,7 @@
 [ext_resource type="Texture2D" uid="uid://opi4i0tkqmrf" path="res://assets/ui/icons/empathy.png" id="46_5kncj"]
 [ext_resource type="Texture2D" uid="uid://cdbwe65a23jq4" path="res://assets/ui/icons/apoyo_emocional.png" id="47_bgvx8"]
 [ext_resource type="Texture2D" uid="uid://hjrgi7buqorw" path="res://assets/ui/icons/cuadro_dialogo.png" id="48_eb3v4"]
+[ext_resource type="Texture2D" uid="uid://chxua1x0n4lx3" path="res://assets/ui/tokens/token_verbal.png" id="49_6wr8f"]
 [ext_resource type="Texture2D" uid="uid://dpdi8jch6q4je" path="res://assets/ui/icons/empathy_gradient_blue_red_20_4.png" id="49_p55k3"]
 [ext_resource type="Texture2D" uid="uid://wbnpnr5yjdyq" path="res://assets/ui/icons/apoyo_emocional_gradient_blue_red_20_6.png" id="50_m81ou"]
 [ext_resource type="Script" path="res://scripts/ic_card.gd" id="50_qhjjh"]
@@ -344,6 +345,208 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="Animation" id="Animation_5q54o"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(966, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(490, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_eo0hn"]
+resource_name = "heartbeat_token"
+length = 3.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0.7, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0.7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 0.7, 1.13333, 1.5, 2, 2.3, 2.6, 3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0.7, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0.7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 0.7, 1.13333, 1.5, 2, 2.3, 2.6, 3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(966, -0.25, 0, 0.25, 0, 966, -0.25, 0, 0.25, 0, 1743, -0.25, 0, 0.25, 0, 1743, -0.25, 0, 0.25, 0, 1743, -0.25, 0, 0.25, 0, 1743, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 1.13333, 2, 2.3, 2.6, 3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(490, -0.25, 0, 0.25, 0, 490, -0.25, 0, 0.25, 0, 910, -0.25, 0, 0.25, 0, 910, -0.25, 0, 0.25, 0, 910, -0.25, 0, 0.25, 0, 910, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 1.13333, 2, 2.3, 2.6, 3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g3uj0"]
+_data = {
+"RESET": SubResource("Animation_5q54o"),
+"heartbeat_token": SubResource("Animation_eo0hn")
+}
+
+[sub_resource type="Animation" id="Animation_hthlw"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DeckManager/DeckBullying/BullyingCard:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(343, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DeckManager/DeckBullying/BullyingCard:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(53, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../DeckManager/DeckBullying/BullyingCard:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.15, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../DeckManager/DeckBullying/BullyingCard:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.15, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_1l85d"]
+resource_name = "new_bullying"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DeckManager/DeckBullying/BullyingCard:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(343, -0.25, 0, 0.25, 0, 772, -0.25, 0, 0.25, 0, 772, -0.25, 0, 0.25, 0, 772, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.23333, 1.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DeckManager/DeckBullying/BullyingCard:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(53, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.23333, 1.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../DeckManager/DeckBullying/BullyingCard:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.15, -0.25, 0, 0.25, 0, 0.25, -0.25, 0, 0.25, 0, 0.3, -0.25, 0, 0.25, 0, 0.25, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.23333, 1.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../DeckManager/DeckBullying/BullyingCard:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.15, -0.25, 0, 0.25, 0, 0.25, -0.25, 0, 0.25, 0, 0.3, -0.25, 0, 0.25, 0, 0.25, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.23333, 1.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3jwb0"]
+_data = {
+"RESET": SubResource("Animation_hthlw"),
+"new_bullying": SubResource("Animation_1l85d")
+}
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76wj6"]
 bg_color = Color(0.0431373, 0.270588, 0.415686, 0.458824)
 corner_radius_top_left = 15
@@ -353,6 +556,85 @@ corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikwda"]
 bg_color = Color(0.0431373, 0.270588, 0.415686, 0.458824)
+
+[sub_resource type="Animation" id="Animation_vgj12"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EmpathyTextureRect:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(512, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EmpathyTextureRect:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(512, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_eyrh5"]
+resource_name = "heart_total"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3.03333, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3.03333, 4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rb3rc"]
+_data = {
+"RESET": SubResource("Animation_vgj12"),
+"heart_total": SubResource("Animation_eyrh5")
+}
 
 [sub_resource type="Gradient" id="Gradient_s1key"]
 offsets = PackedFloat32Array(0, 0.252101, 1)
@@ -383,6 +665,36 @@ turbulence_noise_strength = 0.81
 turbulence_noise_scale = 2.416
 
 [sub_resource type="Environment" id="Environment_osqyk"]
+glow_enabled = true
+glow_intensity = 4.5
+glow_strength = 1.15
+glow_blend_mode = 0
+glow_hdr_scale = 0.8
+
+[sub_resource type="Gradient" id="Gradient_7rbvq"]
+offsets = PackedFloat32Array(0.00840336, 0.52521, 1)
+colors = PackedColorArray(1, 0.862745, 0, 1, 1, 0.291741, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_omgw4"]
+gradient = SubResource("Gradient_7rbvq")
+
+[sub_resource type="Curve" id="Curve_hyp67"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.253106), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tpqt0"]
+curve = SubResource("Curve_hyp67")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7xt6b"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 40.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, 49, 0)
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_tpqt0")
+color_ramp = SubResource("GradientTexture1D_omgw4")
+turbulence_noise_strength = 0.0
 
 [node name="NewGame" type="Control"]
 layout_mode = 3
@@ -439,8 +751,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 295.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 225
 text = "+4"
@@ -471,8 +783,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 300.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 225
 text = "+2"
@@ -503,8 +815,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 300.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 225
 text = "-3"
@@ -535,8 +847,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 300.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 225
 text = "-2"
@@ -567,8 +879,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 300.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 225
 text = "-2"
@@ -1390,6 +1702,7 @@ offset_left = 1031.25
 offset_top = 1887.5
 offset_right = 1518.25
 offset_bottom = 2113.5
+tooltip_text = "Combos Totales"
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 180
@@ -3505,11 +3818,12 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_gerkl")
 text = "Aceptar"
 
 [node name="SongsLabel" type="Label" parent="UI"]
+z_index = 12
 layout_mode = 0
-offset_left = 22.0
-offset_top = 502.0
-offset_right = 506.0
-offset_bottom = 546.0
+offset_left = 24.0
+offset_top = 429.0
+offset_right = 672.0
+offset_bottom = 473.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
@@ -3622,6 +3936,25 @@ text = "TUTORIAL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TokensNode2D" type="Node2D" parent="UI"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/TokensNode2D"]
+z_index = 28
+position = Vector2(966, 490)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("49_6wr8f")
+
+[node name="AnimationPlayerToken" type="AnimationPlayer" parent="UI/TokensNode2D"]
+libraries = {
+"": SubResource("AnimationLibrary_g3uj0")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_3jwb0")
+}
+
 [node name="ReadyButton" type="Button" parent="."]
 layout_mode = 2
 anchor_left = 1.0
@@ -3654,12 +3987,13 @@ script = ExtResource("27_ybia5")
 anchors_preset = 0
 
 [node name="BullyingCard" type="Control" parent="DeckManager/DeckBullying"]
+z_index = 3
 anchors_preset = 0
-offset_left = 772.0
-offset_top = 50.0
-offset_right = 2272.0
-offset_bottom = 2150.0
-scale = Vector2(0.25, 0.25)
+offset_left = 343.0
+offset_top = 53.0
+offset_right = 1843.0
+offset_bottom = 2153.0
+scale = Vector2(0.15, 0.15)
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckBullying/BullyingCard"]
 z_index = 1
@@ -5172,6 +5506,12 @@ theme_override_font_sizes/font_size = 35
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TotalAnimationPlayer" type="AnimationPlayer" parent="DeckManager/TotalLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_rb3rc")
+}
+movie_quit_on_finish = true
+
 [node name="GameManager" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
@@ -5202,6 +5542,16 @@ process_material = SubResource("ParticleProcessMaterial_w02vi")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Node2D"]
 environment = SubResource("Environment_osqyk")
+
+[node name="Explosion" type="GPUParticles2D" parent="Node2D"]
+z_index = 19
+position = Vector2(961, 320)
+emitting = false
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_7xt6b")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.75
 
 [connection signal="pressed" from="UI/ReadyTextureButton" to="GameManager" method="_on_ready_texture_button_pressed"]
 [connection signal="pressed" from="UI/ReverseAnverseToggleButton" to="UI" method="_on_reverse_anverse_toggle_button_pressed"]

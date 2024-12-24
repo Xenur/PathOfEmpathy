@@ -1,4 +1,18 @@
 # **Caminos de Empatía**
+23/12/2024
+Añadida animación Puntos de Empatía
+Añadida animación Particulas en Carta Situació de Bullying
+Arreglado bug trait token exclusión social
+
+
+22/12/2024
+Arreglado animacion Tokens
+
+20/12/2024
+Añadidas animaciones al conseguir Tokens para que sea mas visual
+Arreglado disabled boton opciones al mostrar el feedback
+
+
 19/12/2024
 0.4.0.2-beta
 Añadida introducción a las partidas para generar contexto y narrativa

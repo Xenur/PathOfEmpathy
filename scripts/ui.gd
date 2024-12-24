@@ -66,6 +66,7 @@ var showing_reverses = false  # Indica si las cartas están mostrando el reverso
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("exclu: ", GlobalData.player_stats)
 		# Agregar y configurar el temporizador
 	add_child(fade_timer)
 	fade_timer.one_shot = true
@@ -164,7 +165,7 @@ func update_traits_based_on_role():
 	# Si previous_player_stats está vacío, inicializarlo con los valores actuales
 	if previous_player_stats.size() == 0:
 		previous_player_stats = player_stats.duplicate()
-
+	print ("exclu: previos_playuer_Stats", previous_player_stats)
 	# Mapeo de texturas asociadas a cada estadística
 	var textures_map = {
 		"resolucion_conflictos": "res://assets/ui/icons/resolución_de_conflictos.png",
@@ -218,10 +219,12 @@ func update_traits_based_on_role():
 
 		# Formatear el valor con signo
 		var formatted_value = ("+" + str(stat_value)) if stat_value > 0 else str(stat_value)
-
+		
 		# Actualizar el texto
 		var label_node = trait_node["label"]
 		label_node.text = formatted_value
+		
+
 		var stats_display_map = {
 			"resolucion_conflictos": "Resolución de Conflictos",
 			"comunicacion": "Comunicación",
@@ -235,6 +238,8 @@ func update_traits_based_on_role():
 			if stats_display_map.has(stat_key):
 				var display_text = stats_display_map[stat_key]
 				songs_label.text = "Has modificado el atributo %s en +1" %(display_text)
+				print("exclu: ", stat_key)
+				print("exclu: ", display_text)
 			else:
 				songs_label.text = "Has modificado un atributo desconocido."
 			songs_label.visible = true

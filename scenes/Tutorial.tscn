@@ -1,4 +1,4 @@
-[gd_scene load_steps=143 format=3 uid="uid://b8feo6v1dqve0"]
+[gd_scene load_steps=155 format=3 uid="uid://b8feo6v1dqve0"]
 
 [ext_resource type="Script" path="res://scenes/tutorial_new_game.gd" id="1_yjbor"]
 [ext_resource type="Texture2D" uid="uid://bk6oojhaayb2d" path="res://assets/images/backgrounds/bg_6.webp" id="2_nwcrs"]
@@ -55,6 +55,7 @@
 [ext_resource type="Texture2D" uid="uid://cdiwm3u0vq56j" path="res://assets/ui/icons/degradado2.png" id="51_xnc3w"]
 [ext_resource type="Texture2D" uid="uid://dpdi8jch6q4je" path="res://assets/ui/icons/empathy_gradient_blue_red_20_4.png" id="51_yhgs6"]
 [ext_resource type="Texture2D" uid="uid://wbnpnr5yjdyq" path="res://assets/ui/icons/apoyo_emocional_gradient_blue_red_20_6.png" id="52_4syqr"]
+[ext_resource type="Texture2D" uid="uid://chxua1x0n4lx3" path="res://assets/ui/tokens/token_verbal.png" id="52_pniom"]
 [ext_resource type="Texture2D" uid="uid://h5amphcnjm71" path="res://assets/ui/icons/intervención_gradient_blue_red_20_8.png" id="53_lbrfe"]
 [ext_resource type="Texture2D" uid="uid://0dbtgq37xr1x" path="res://assets/ui/icons/comunicacion_gradient_blue_red_20_3.png" id="54_upiwp"]
 [ext_resource type="Texture2D" uid="uid://bitq56chkqbw6" path="res://assets/ui/icons/resolución_de_conflictos_gradient_blue_red_20_9.png" id="55_ejlkf"]
@@ -721,6 +722,107 @@ _data = {
 "hand_traits": SubResource("Animation_50deo")
 }
 
+[sub_resource type="Animation" id="Animation_hthlw"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DeckManager/DeckBullying/BullyingCard:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(343, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DeckManager/DeckBullying/BullyingCard:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(53, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../DeckManager/DeckBullying/BullyingCard:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.15, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../DeckManager/DeckBullying/BullyingCard:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.15, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_1l85d"]
+resource_name = "new_bullying"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DeckManager/DeckBullying/BullyingCard:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(343, -0.25, 0, 0.25, 0, 772, -0.25, 0, 0.25, 0, 772, -0.25, 0, 0.25, 0, 772, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.23333, 1.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DeckManager/DeckBullying/BullyingCard:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(53, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.23333, 1.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../DeckManager/DeckBullying/BullyingCard:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.15, -0.25, 0, 0.25, 0, 0.25, -0.25, 0, 0.25, 0, 0.3, -0.25, 0, 0.25, 0, 0.25, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.23333, 1.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../DeckManager/DeckBullying/BullyingCard:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.15, -0.25, 0, 0.25, 0, 0.25, -0.25, 0, 0.25, 0, 0.3, -0.25, 0, 0.25, 0, 0.25, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.23333, 1.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3jwb0"]
+_data = {
+"RESET": SubResource("Animation_hthlw"),
+"new_bullying": SubResource("Animation_1l85d")
+}
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76wj6"]
 bg_color = Color(0.0431373, 0.270588, 0.415686, 0.458824)
 corner_radius_top_left = 15
@@ -730,6 +832,85 @@ corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikwda"]
 bg_color = Color(0.0431373, 0.270588, 0.415686, 0.458824)
+
+[sub_resource type="Animation" id="Animation_vgj12"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EmpathyTextureRect:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(512, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EmpathyTextureRect:size:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(512, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_eyrh5"]
+resource_name = "heart_total"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3.03333, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3.03333, 4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rb3rc"]
+_data = {
+"RESET": SubResource("Animation_vgj12"),
+"heart_total": SubResource("Animation_eyrh5")
+}
 
 [sub_resource type="Gradient" id="Gradient_s1key"]
 offsets = PackedFloat32Array(0, 0.252101, 1)
@@ -758,6 +939,31 @@ color_ramp = SubResource("GradientTexture1D_k178s")
 turbulence_enabled = true
 turbulence_noise_strength = 0.81
 turbulence_noise_scale = 2.416
+
+[sub_resource type="Gradient" id="Gradient_q6b3k"]
+offsets = PackedFloat32Array(0.00840336, 0.52521, 1)
+colors = PackedColorArray(1, 0.862745, 0, 1, 1, 0.291741, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uig60"]
+gradient = SubResource("Gradient_q6b3k")
+
+[sub_resource type="Curve" id="Curve_v2be6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.253106), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8t4ot"]
+curve = SubResource("Curve_v2be6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ilk86"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 40.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, 49, 0)
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_8t4ot")
+color_ramp = SubResource("GradientTexture1D_uig60")
+turbulence_noise_strength = 0.0
 
 [node name="TutorialNewGame" type="Control"]
 layout_mode = 3
@@ -814,8 +1020,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 295.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_qv4b3")
 theme_override_font_sizes/font_size = 225
 text = "+4"
@@ -846,8 +1052,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 300.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_qv4b3")
 theme_override_font_sizes/font_size = 225
 text = "+2"
@@ -878,8 +1084,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 300.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_qv4b3")
 theme_override_font_sizes/font_size = 225
 text = "-3"
@@ -910,8 +1116,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 300.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_qv4b3")
 theme_override_font_sizes/font_size = 225
 text = "-2"
@@ -942,8 +1148,8 @@ offset_left = 740.0
 offset_top = 5.0
 offset_right = 1195.0
 offset_bottom = 300.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_qv4b3")
 theme_override_font_sizes/font_size = 225
 text = "-2"
@@ -1765,6 +1971,7 @@ offset_left = 1031.25
 offset_top = 1887.5
 offset_right = 1518.25
 offset_bottom = 2113.5
+tooltip_text = "Combos Totales"
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_qv4b3")
 theme_override_font_sizes/font_size = 180
@@ -4038,6 +4245,20 @@ libraries = {
 "": SubResource("AnimationLibrary_1udvt")
 }
 
+[node name="TokensNode2D" type="Node2D" parent="UI"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/TokensNode2D"]
+z_index = 8
+position = Vector2(959, 510)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("52_pniom")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_3jwb0")
+}
+
 [node name="ReadyButton" type="Button" parent="."]
 layout_mode = 2
 anchor_left = 1.0
@@ -4070,12 +4291,13 @@ script = ExtResource("49_cmia1")
 anchors_preset = 0
 
 [node name="BullyingCard" type="Control" parent="DeckManager/DeckBullying"]
+z_index = 3
 anchors_preset = 0
-offset_left = 772.0
-offset_top = 50.0
-offset_right = 2272.0
-offset_bottom = 2150.0
-scale = Vector2(0.25, 0.25)
+offset_left = 343.0
+offset_top = 53.0
+offset_right = 1843.0
+offset_bottom = 2153.0
+scale = Vector2(0.15, 0.15)
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckBullying/BullyingCard"]
 z_index = 1
@@ -5588,6 +5810,12 @@ theme_override_font_sizes/font_size = 35
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TotalAnimationPlayer" type="AnimationPlayer" parent="DeckManager/TotalLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_rb3rc")
+}
+movie_quit_on_finish = true
+
 [node name="GameManager" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
@@ -5615,6 +5843,16 @@ process_material = SubResource("ParticleProcessMaterial_w02vi")
 position = Vector2(925, 643)
 amount = 150
 process_material = SubResource("ParticleProcessMaterial_w02vi")
+
+[node name="Explosion" type="GPUParticles2D" parent="Node2D"]
+z_index = 19
+position = Vector2(961, 320)
+emitting = false
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_ilk86")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.75
 
 [connection signal="pressed" from="UI/ReadyTextureButton" to="GameManager" method="_on_ready_texture_button_pressed"]
 [connection signal="pressed" from="UI/ReverseAnverseToggleButton" to="UI" method="_on_reverse_anverse_toggle_button_pressed"]
