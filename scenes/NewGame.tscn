@@ -1,4 +1,4 @@
-[gd_scene load_steps=141 format=3 uid="uid://dq4v62olhary3"]
+[gd_scene load_steps=142 format=3 uid="uid://dq4v62olhary3"]
 
 [ext_resource type="Script" path="res://scripts/new_game.gd" id="1_eh8bj"]
 [ext_resource type="Texture2D" uid="uid://bk6oojhaayb2d" path="res://assets/images/backgrounds/bg_6.webp" id="2_l3b2v"]
@@ -69,6 +69,7 @@
 [ext_resource type="Texture2D" uid="uid://hjrgi7buqorw" path="res://assets/ui/icons/cuadro_dialogo.png" id="48_eb3v4"]
 [ext_resource type="Texture2D" uid="uid://chxua1x0n4lx3" path="res://assets/ui/tokens/token_verbal.png" id="49_6wr8f"]
 [ext_resource type="Texture2D" uid="uid://dpdi8jch6q4je" path="res://assets/ui/icons/empathy_gradient_blue_red_20_4.png" id="49_p55k3"]
+[ext_resource type="Texture2D" uid="uid://8xuqf3o2a6l" path="res://assets/ui/textures/frame_glow.png" id="50_0oiag"]
 [ext_resource type="Texture2D" uid="uid://wbnpnr5yjdyq" path="res://assets/ui/icons/apoyo_emocional_gradient_blue_red_20_6.png" id="50_m81ou"]
 [ext_resource type="Script" path="res://scripts/ic_card.gd" id="50_qhjjh"]
 [ext_resource type="Texture2D" uid="uid://h5amphcnjm71" path="res://assets/ui/icons/intervención_gradient_blue_red_20_8.png" id="51_je1lb"]
@@ -3730,9 +3731,9 @@ vertical_alignment = 1
 z_index = 16
 layout_mode = 0
 offset_left = 1191.0
-offset_top = 155.0
+offset_top = 85.0
 offset_right = 2378.0
-offset_bottom = 572.0
+offset_bottom = 502.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("48_eb3v4")
 expand_mode = 5
@@ -3955,6 +3956,20 @@ libraries = {
 "": SubResource("AnimationLibrary_3jwb0")
 }
 
+[node name="FrameGlowRE" type="Sprite2D" parent="UI"]
+visible = false
+z_index = 8
+position = Vector2(603.325, 592)
+scale = Vector2(0.218656, 0.164)
+texture = ExtResource("50_0oiag")
+
+[node name="FrameGlowHS" type="Sprite2D" parent="UI"]
+visible = false
+z_index = 8
+position = Vector2(1317.32, 592)
+scale = Vector2(0.218656, 0.164)
+texture = ExtResource("50_0oiag")
+
 [node name="ReadyButton" type="Button" parent="."]
 layout_mode = 2
 anchor_left = 1.0
@@ -4124,6 +4139,13 @@ offset_bottom = 956.0
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("53_dmsja")
 stretch_mode = 2
+
+[node name="FrameGlowRE" type="Sprite2D" parent="DeckManager/DeckBullying/BullyingCard"]
+modulate = Color(0, 0, 97.298, 0.438)
+z_index = 1
+position = Vector2(750, 1010)
+scale = Vector2(1.09393, 0.841333)
+texture = ExtResource("50_0oiag")
 
 [node name="BullyingCardNext" type="Control" parent="DeckManager/DeckBullying"]
 layout_mode = 3
@@ -5477,6 +5499,7 @@ offset_top = 12.0
 offset_right = 1544.0
 offset_bottom = 75.0
 tooltip_text = "Puntos de Empatía"
+mouse_filter = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
@@ -5512,6 +5535,11 @@ libraries = {
 "": SubResource("AnimationLibrary_rb3rc")
 }
 movie_quit_on_finish = true
+
+[node name="Sprite2D" type="Sprite2D" parent="DeckManager/TotalLabel"]
+position = Vector2(93.5001, 31.5)
+scale = Vector2(0.142709, 0.027)
+texture = ExtResource("50_0oiag")
 
 [node name="GameManager" type="Control" parent="."]
 anchors_preset = 0

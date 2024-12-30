@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=3 uid="uid://b8feo6v1dqve0"]
+[gd_scene load_steps=157 format=3 uid="uid://b8feo6v1dqve0"]
 
 [ext_resource type="Script" path="res://scenes/tutorial_new_game.gd" id="1_yjbor"]
 [ext_resource type="Texture2D" uid="uid://bk6oojhaayb2d" path="res://assets/images/backgrounds/bg_6.webp" id="2_nwcrs"]
@@ -56,6 +56,7 @@
 [ext_resource type="Texture2D" uid="uid://dpdi8jch6q4je" path="res://assets/ui/icons/empathy_gradient_blue_red_20_4.png" id="51_yhgs6"]
 [ext_resource type="Texture2D" uid="uid://wbnpnr5yjdyq" path="res://assets/ui/icons/apoyo_emocional_gradient_blue_red_20_6.png" id="52_4syqr"]
 [ext_resource type="Texture2D" uid="uid://chxua1x0n4lx3" path="res://assets/ui/tokens/token_verbal.png" id="52_pniom"]
+[ext_resource type="Texture2D" uid="uid://8xuqf3o2a6l" path="res://assets/ui/textures/frame_glow.png" id="53_6473k"]
 [ext_resource type="Texture2D" uid="uid://h5amphcnjm71" path="res://assets/ui/icons/intervención_gradient_blue_red_20_8.png" id="53_lbrfe"]
 [ext_resource type="Texture2D" uid="uid://0dbtgq37xr1x" path="res://assets/ui/icons/comunicacion_gradient_blue_red_20_3.png" id="54_upiwp"]
 [ext_resource type="Texture2D" uid="uid://bitq56chkqbw6" path="res://assets/ui/icons/resolución_de_conflictos_gradient_blue_red_20_9.png" id="55_ejlkf"]
@@ -822,6 +823,9 @@ _data = {
 "RESET": SubResource("Animation_hthlw"),
 "new_bullying": SubResource("Animation_1l85d")
 }
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_putei"]
+load_path = "res://.godot/imported/frame_glow.png-b3e7ca0cd792c03d07b2e1b51e5e028d.ctex"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76wj6"]
 bg_color = Color(0.0431373, 0.270588, 0.415686, 0.458824)
@@ -3997,9 +4001,9 @@ vertical_alignment = 1
 z_index = 16
 layout_mode = 0
 offset_left = 1191.0
-offset_top = 155.0
+offset_top = 85.0
 offset_right = 2378.0
-offset_bottom = 572.0
+offset_bottom = 502.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("48_hohej")
 expand_mode = 5
@@ -4022,7 +4026,7 @@ layout_mode = 0
 offset_left = 74.9998
 offset_top = 100.667
 offset_right = 967.0
-offset_bottom = 136.666
+offset_bottom = 136.667
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_qv4b3")
@@ -4104,9 +4108,9 @@ vertical_alignment = 1
 z_index = 20
 layout_mode = 0
 offset_left = 23.0
-offset_top = 384.0
+offset_top = 354.0
 offset_right = 736.0
-offset_bottom = 428.0
+offset_bottom = 398.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_qv4b3")
@@ -4195,6 +4199,7 @@ amount = 150
 process_material = SubResource("ParticleProcessMaterial_2ic1o")
 
 [node name="TutorialControl" type="Control" parent="UI"]
+z_index = 5
 anchors_preset = 0
 offset_left = 21.0
 offset_top = 141.0
@@ -4208,6 +4213,7 @@ offset_bottom = 61.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_gue8v")
 
 [node name="TutorialLabel" type="Label" parent="UI/TutorialControl/Panel"]
+z_index = 30
 layout_mode = 0
 offset_right = 175.0
 offset_bottom = 61.0
@@ -4258,6 +4264,26 @@ texture = ExtResource("52_pniom")
 libraries = {
 "": SubResource("AnimationLibrary_3jwb0")
 }
+
+[node name="FrameGlow" type="Sprite2D" parent="UI"]
+visible = false
+position = Vector2(682, 609)
+scale = Vector2(1, 1.24487)
+texture = SubResource("CompressedTexture2D_putei")
+
+[node name="FrameGlowRE" type="Sprite2D" parent="UI"]
+visible = false
+z_index = 8
+position = Vector2(603.325, 592)
+scale = Vector2(0.218656, 0.164)
+texture = ExtResource("53_6473k")
+
+[node name="FrameGlowHS" type="Sprite2D" parent="UI"]
+visible = false
+z_index = 8
+position = Vector2(1317.32, 592)
+scale = Vector2(0.218656, 0.164)
+texture = ExtResource("53_6473k")
 
 [node name="ReadyButton" type="Button" parent="."]
 layout_mode = 2
@@ -4428,6 +4454,13 @@ offset_bottom = 956.0
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("55_ejlkf")
 stretch_mode = 2
+
+[node name="FrameGlowRE" type="Sprite2D" parent="DeckManager/DeckBullying/BullyingCard"]
+modulate = Color(0, 0, 97.298, 0.438)
+z_index = 1
+position = Vector2(750, 1010)
+scale = Vector2(1.09393, 0.841333)
+texture = ExtResource("53_6473k")
 
 [node name="BullyingCardNext" type="Control" parent="DeckManager/DeckBullying"]
 layout_mode = 3
@@ -5781,6 +5814,7 @@ offset_top = 12.0
 offset_right = 1544.0
 offset_bottom = 75.0
 tooltip_text = "Puntos de Empatía"
+mouse_filter = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_qv4b3")
@@ -5816,6 +5850,11 @@ libraries = {
 "": SubResource("AnimationLibrary_rb3rc")
 }
 movie_quit_on_finish = true
+
+[node name="Sprite2D" type="Sprite2D" parent="DeckManager/TotalLabel"]
+position = Vector2(93.5001, 31.5)
+scale = Vector2(0.142709, 0.027)
+texture = ExtResource("53_6473k")
 
 [node name="GameManager" type="Control" parent="."]
 anchors_preset = 0

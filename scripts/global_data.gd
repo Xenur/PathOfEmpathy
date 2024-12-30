@@ -168,3 +168,5 @@ var total_games: int = 0
 var current_game_data = []  # Array para almacenar cartas y estrellas durante el juego
 
 var tutorial = false
+
+var token = false

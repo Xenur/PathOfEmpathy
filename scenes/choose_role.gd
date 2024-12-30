@@ -15,7 +15,7 @@ var current_message_index = 0
 var tutorial_messages = [
 	"Bienvenido al tutorial. Aprende cómo jugar paso a paso.",
 	"¡Vamos a practicar una partida juntos!",
-	"Primero deberas eligir el rol con el que deseas jugar. ",
+	"Primero deberás eligir el rol con el que deseas jugar. ",
 	"Tu elección afecta directemente los atributos de las cartas.",
 	"Ahora elige el rol que más se adapte a ti."
 ]

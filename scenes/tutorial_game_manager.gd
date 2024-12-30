@@ -257,6 +257,7 @@ var countdown_sound_playing = false
 @onready var explosion = $"../Node2D/Explosion"
 
 
+
 var tutorial_messages = []
 var tutorial_messages1 = [
 	"Bienvenidos a Caminos de Empatía.",
@@ -380,10 +381,10 @@ func _ready():
 	print("HA JUGADO ALGUNA VEZ? ", has_played_before(GlobalData.id))
 	tutorial = has_played_before(GlobalData.id)
 	disable_card_interaction()
-	if tutorial:
-		tutorial_control.visible = false
-	else:
-		tutorial_control.visible = true
+	#if tutorial or !GameConfig.tutorial:
+		#tutorial_control.visible = false
+	#else:
+		#tutorial_control.visible = true
 	turn = 1
 	duelo_label.text = "Situación " + str(turn)
 	randomize()
@@ -680,9 +681,17 @@ func start_turn():
 	update_bullying_card() 
 	disable_card_interaction()
 	animation_player_2.play("new_bullying", 0, 1)
-	await get_tree().create_timer(1.5).timeout
+	#await get_tree().create_timer(1.5).timeout
+	if GlobalData.token:
+		await get_tree().create_timer(10).timeout
+		enable_card_interaction()
+	else:
+		await get_tree().create_timer(2).timeout
+		enable_card_interaction()
+	GlobalData.token = false
 	#enable_card_interaction()
-	dialogue_texture_rect.visible = false
+	fade_out_node(dialogue_texture_rect,1)
+	#dialogue_texture_rect.visible = false
 	
 	if turn == 2 and dialogue_check == true:
 		disable_card_interaction()
@@ -951,6 +960,11 @@ func check_game_result():
 	# Actualizar las puntuaciones totales y el combo
 	#update_total_scores(player_score, ia_score)
 	update_combo(player_score, valid_combination)
+	await get_tree().create_timer(1.75).timeout
+	play_random_sound(GlobalData.stars)
+	await get_tree().create_timer(0).timeout
+	accept_button.disabled = false
+	
 	#update_combo_ia(ia_score, valid_combination_ia)
 	# Incrementar el turno
 	turn += 1
@@ -1019,7 +1033,8 @@ func check_game_result():
 
 		accept_button.disabled = true
 		ready_button.disabled = true
-		dialogue_texture_rect.visible = true
+		fade_in_node(dialogue_texture_rect,1)
+		#dialogue_texture_rect.visible = true
 		options_button.disabled = true
 		hand_texture_rect.visible = true
 		animation_player.play("hand_dialogue", 0, 0.5)
@@ -1057,7 +1072,7 @@ func check_game_result():
 func adjust_player_score(player_score: float) -> float:
 	match GameConfig.ia_difficulty:
 		0:  # Dificultad Alumno
-			return player_score * 2
+			return player_score * 1.5
 		1:  # Dificultad Profesor
 			return player_score * 1.0  # Sin cambio
 		2:  # Dificultad Psicólogo
@@ -1384,8 +1399,8 @@ func end_turn_actions():
 	#blur_overlay.visible = true
 	
 	#end_turn_popup.visible = true
-	dialogue_texture_rect.visible = true
-
+	#dialogue_texture_rect.visible = true
+	fade_in_node(dialogue_texture_rect, 1)
 	
 #Función para calcular la puntuación total de un jugador o la IA
 func calculate_score(bullying_card, re_card, hs_card) -> float:
@@ -3472,6 +3487,7 @@ var token_sfx_messages: Dictionary = {
 	"res://assets/audio/sfx/exclusión_social_2.ogg": "¡Increíble! Has desbloqueado un token por abordar la exclusión social."
 }
 func play_token_audio(token_type: String):
+	GlobalData.token = true
 	print("suena audio")
 	if token_sfx.has(token_type):
 		var sfx_list = token_sfx[token_type]
@@ -4462,3 +4478,49 @@ func fade_out_node(node: CanvasItem, duration: float = 1.0):
 	await tween.finished
 	node.visible = false  # Ocultar el nodo al final del fade
 	node.modulate.a = 1.0  # Restaurar opacidad para futuros usos
+
+func fade_in_node(node: CanvasItem, duration: float = 1.0):
+	var tween = create_tween()
+	node.visible = true  # Asegurarse de que el nodo sea visible al iniciar el fade
+	node.modulate.a = 0.0  # Establecer opacidad inicial a 0
+	tween.tween_property(node, "modulate:a", 1.0, duration)  # Incrementar la opacidad a 1
+	await tween.finished
+
+# Función para reproducir un sonido aleatorio
+func play_random_sound(star: int):
+	# Diccionario para los sonidos agrupados por "star"
+	var sounds = {
+		1: [
+			"res://assets/audio/sfx/un_punto_1.ogg",
+			"res://assets/audio/sfx/un_punto_2.ogg",
+			"res://assets/audio/sfx/un_punto_3.ogg"
+		],
+		2: [
+			"res://assets/audio/sfx/dos_puntos_1.ogg",
+			"res://assets/audio/sfx/dos_puntos_2.ogg",
+			"res://assets/audio/sfx/dos_puntos_3.ogg"
+		],
+		3: [
+			"res://assets/audio/sfx/tres_puntos_1.ogg",
+			"res://assets/audio/sfx/tres_puntos_2.ogg",
+			"res://assets/audio/sfx/tres_puntos_3.ogg"
+		],
+		4: [
+			"res://assets/audio/sfx/cuatro_puntos_1.ogg",
+			"res://assets/audio/sfx/cuatro_puntos_2.ogg",
+			"res://assets/audio/sfx/cuatro_puntos_3.ogg"
+		],
+		5: [
+			"res://assets/audio/sfx/cinco_puntos_1.ogg",
+			"res://assets/audio/sfx/cinco_puntos_2.ogg",
+			"res://assets/audio/sfx/cinco_puntos_3.ogg"
+		]
+	}
+	if star in sounds:
+		# Selecciona un sonido aleatorio de la lista correspondiente
+		var star_sounds = sounds[star]
+		var random_sound = star_sounds[randi() % star_sounds.size()]
+		# Llama a tu función para reproducir el sonido
+		play_beep_sound(random_sound)
+	else:
+		print("Valor de 'star' no válido:", star)

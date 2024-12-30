@@ -1,4 +1,15 @@
 # **Caminos de Empatía**
+30/12/2024
+Quitada partículas al seleccionar las cartas
+Añadido marcos glow a las cartas de RE y HS cuando son seleccionadas, el tamaño también se ha aumentado
+Añadido marco glow a la carta de situacion de bullying
+Añadido marco glow a los puntos de empatía
+Añadidos mensajes cuando se consiguen puntos de Empatía.
+Añadido lag de 5 segundos cuando se vuelve a mostrar la carta de situacion de bullying para que los
+jugadores no elijan las cartas directamente sin leer las cartas de situación.
+Añadido lag de 9 segundos cuando sale un token para que no se puedan elegir las cartas de RE y HS
+mientras se está mostrando la animación del Token
+
 23/12/2024
 Añadida animación Puntos de Empatía
 Añadida animación Particulas en Carta Situació de Bullying
