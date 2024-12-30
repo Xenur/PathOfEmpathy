@@ -12,9 +12,9 @@
 extends Node
 
 # Variables del usuario
-var user = "Isa1"
+var user = ""
 var id
-var password = "12345678"
+var password = ""
 var created_at = {
 			"day": 9,
 			"dst": false,

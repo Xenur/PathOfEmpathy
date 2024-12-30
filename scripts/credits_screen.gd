@@ -70,6 +70,7 @@ func _rich():
 	   
 	[center][color=white][b]Arte y Diseño Gráfico[/b][/color][/center]
 	[center][color=#bfbfbf]Ilustraciones generadas con DALL·E de OpenAI[/color][/center]
+	[center][color=#bfbfbf]Animaciones generadas con Runway Gen-3 Alpha[/color][/center]
 	[center][color=#bfbfbf]"Marcos" por cardconjurer.com - descargado de cardconjurer.com[/color][/center]
 	[center][color=white]Iconos[/color][/center]
 	[center][color=#bfbfbf]"Icono Comunicación" por Vectors Market - descargado de flaticon.es[/color][/center]	

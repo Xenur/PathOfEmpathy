@@ -250,7 +250,7 @@ var countdown_sound_playing = false
 
 @onready var tokens_node_2d = $"../UI/TokensNode2D"
 @onready var sprite_2d = $"../UI/TokensNode2D/Sprite2D"
-@onready var animation_player_token = $"../UI/TokensNode2D/AnimationPlayerToken"
+#@onready var animation_player_token = $"../UI/TokensNode2D/AnimationPlayerToken"
 
 @onready var animation_player_2 = $"../UI/AnimationPlayer2"
 @onready var total_animation_player = $"../DeckManager/TotalLabel/TotalAnimationPlayer"
@@ -379,6 +379,7 @@ func _ready():
 	nueva_partida = Game.new(GlobalData.user, GlobalData.id, GameConfig.game_mode, GameConfig.ia_difficulty)
 	print("HA JUGADO ALGUNA VEZ? ", has_played_before(GlobalData.id))
 	tutorial = has_played_before(GlobalData.id)
+	disable_card_interaction()
 	if tutorial:
 		tutorial_control.visible = false
 	else:
@@ -433,14 +434,16 @@ func _ready():
 			"ciberbullying": 0
 		}
 	update_token_textures()
+	disable_card_interaction()
 	# Configurar el volumen del sonido
 	var volume_db = lerp(-80, 0, GameConfig.sfx_volume / 100.0)
 	beep_countdown_audio_stream_player.volume_db = volume_db
 	beep_audio_stream_player.volume_db = volume_db
 	audio_stream_token.volume_db = volume_db
 	# Cambia el estado inicial a "PREPARE"
+	disable_card_interaction()
 	change_state(GameState.PREPARE)
-	
+	disable_card_interaction()
 	# Temporizador para sincronización regular del estado del juego
 	
 	sync_timer.set_wait_time(1.0) 
@@ -592,7 +595,7 @@ func prepare_game():
 	display_card_hs(player_cards_hs[0], hs_card_1, GlobalData.showing_reverses)
 	display_card_hs(player_cards_hs[1], hs_card_2, GlobalData.showing_reverses)
 	display_card_hs(player_cards_hs[2], hs_card_3, GlobalData.showing_reverses)
-
+	disable_card_interaction()
 	# Actualizar la carta de bullying inicial
 	#update_bullying_card()
 	#display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
@@ -622,26 +625,29 @@ func prepare_game():
 		
 	add_child(sound_player)
 	print("ESTAS EN TUTORIAL")
+	disable_card_interaction()
 	if turn == 1:
 		dialogue_label.visible = true
-		
+		disable_card_interaction()
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		await show_messages(tutorial_messages1)
 		await get_tree().create_timer(2.0).timeout
 		hand_texture_rect.visible = true
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		animation_player.play("hand_bullying", 0, 0.5)
-		
+		disable_card_interaction()
 		await show_messages(tutorial_messages2)
-		
+		disable_card_interaction()
 		await get_tree().create_timer(1.0).timeout
 		hand_texture_rect.visible = true
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		animation_player.play("hand_re", 0, 0.2)
-		
+		disable_card_interaction()
 		await show_messages(tutorial_messages3)
+		disable_card_interaction()
 		await get_tree().create_timer(3.0).timeout
 		await show_messages(tutorial_messages4)
+		disable_card_interaction()
 		await get_tree().create_timer(2.0).timeout
 		hand_texture_rect.visible = true
 
@@ -650,10 +656,11 @@ func prepare_game():
 			"Una vez que hayas elegido las cartas podrás confirmar.",
 			"Recuerda, doble clic para seleccionar las cartas."
 		]
-		enable_card_interaction()
+		
 		hand_texture_rect.visible = true
 		animation_player.play("hand_listo", 0, 0.5)
 		await show_messages(tutorial_messages6)
+		enable_card_interaction()
 		#await get_tree().create_timer(1.0).timeout
 		
 
@@ -666,7 +673,6 @@ func start_turn():
 	duelo_label.text = "Situación " + str(turn)
 	total_label.text = str(total_stars)
 	update_token_textures()
-	print("Turno del jugador y la IA.")
 			
 		# Reiniciar los estados del turno
 	reset_turn_state()
@@ -675,7 +681,7 @@ func start_turn():
 	disable_card_interaction()
 	animation_player_2.play("new_bullying", 0, 1)
 	await get_tree().create_timer(1.5).timeout
-	enable_card_interaction()
+	#enable_card_interaction()
 	dialogue_texture_rect.visible = false
 	
 	if turn == 2 and dialogue_check == true:
@@ -1051,7 +1057,7 @@ func check_game_result():
 func adjust_player_score(player_score: float) -> float:
 	match GameConfig.ia_difficulty:
 		0:  # Dificultad Alumno
-			return player_score * 10
+			return player_score * 2
 		1:  # Dificultad Profesor
 			return player_score * 1.0  # Sin cambio
 		2:  # Dificultad Psicólogo
@@ -3514,7 +3520,7 @@ func call_heartbeat_scene(token_type: String):
 		disable_card_interaction()
 		tokens_node_2d.visible = true
 		sprite_2d.texture = load(token_textures[token_type])
-		animation_player_token.play("heartbeat_token", 0, 0.5)
+		#animation_player_token.play("heartbeat_token", 0, 0.5)
 		await get_tree().create_timer(5).timeout
 		fade_out_node(tokens_node_2d, 4)
 		enable_card_interaction()
