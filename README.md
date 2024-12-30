@@ -1,5 +1,9 @@
 # **Caminos de Empatía**
 30/12/2024
+Modificado el tamaño de las cartas presentadas. Pasan de 0.13 a 0.14. Se ven mejor sin tener que utilizar el zoom
+Se eliminan los marcos negros de las cartas
+
+30/12/2024
 Quitada partículas al seleccionar las cartas
 Añadido marcos glow a las cartas de RE y HS cuando son seleccionadas, el tamaño también se ha aumentado
 Añadido marco glow a la carta de situacion de bullying

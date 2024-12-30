@@ -35,7 +35,7 @@ signal card_chosen_hs(card_id)
 @onready var re_card_1 = $"."
 @onready var number_card_label = $NumberCardLabel
 # Define las constantes escalas de la carta
-const NORMAL_SCALE = Vector2(0.13, 0.13)
+const NORMAL_SCALE = Vector2(0.14, 0.14)
 const HOVER_SCALE = Vector2(0.27, 0.27)
 const TARGET_SCALE = Vector2(0.2, 0.2)
 # Variables para guardar la posicion original de la carta
@@ -44,7 +44,7 @@ var _position = position
 var original_z_index = 0  
 # Define la posición a la que se moverá la carta
 const TARGET_POSITION = Vector2(1167, 390)  
-const ORIGINAL_POSITION = Vector2(1165.1, 804)
+const ORIGINAL_POSITION = Vector2(1165.1, 799)
 # Bandera para verificar si la carta ha sido movida
 var is_moved = false  
 

@@ -1054,7 +1054,7 @@ func check_game_result():
 		
 		# Actualiza la información del bullying en las etiquetas
 		tutorial_messages = [
-			"Cuando hayas leído el feedback, clica en Aceptar"
+			"Cuando hayas leído el feedback, clic en Siguiente situación"
 		]
 		await show_messages(tutorial_messages)
 		animation_player.play("hand_aceptar", 0, 0.5)

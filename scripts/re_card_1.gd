@@ -38,7 +38,7 @@ signal ready_to_check_result()
 @onready var number_card_label = $NumberCardLabel
 
 # Define las constantes escalas de la carta
-const NORMAL_SCALE = Vector2(0.13, 0.13)
+const NORMAL_SCALE = Vector2(0.14, 0.14)
 const HOVER_SCALE = Vector2(0.27, 0.27)
 const TARGET_SCALE = Vector2(0.2, 0.2)
 
@@ -48,7 +48,7 @@ var original_z_index = 0  # Variable para almacenar el z_index original
 
 # Define la posición a la que se moverá la carta
 const TARGET_POSITION = Vector2(453, 390)   
-const ORIGINAL_POSITION = Vector2(354.7, 804)
+const ORIGINAL_POSITION = Vector2(354.7, 799)
 
 # Centro de la pantalla para el golpe
 @export var center_position = Vector2(960, 540) 

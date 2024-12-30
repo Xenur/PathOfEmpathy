@@ -1417,6 +1417,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="EmptyFrame1" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1432,6 +1433,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("26_xmiw3")
 
 [node name="EmptyFrame2" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1447,6 +1449,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("26_xmiw3")
 
 [node name="EmptyFrame3" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1462,6 +1465,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("26_xmiw3")
 
 [node name="EmptyFrame4" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1477,6 +1481,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("26_xmiw3")
 
 [node name="EmptyFrame5" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1492,6 +1497,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("26_xmiw3")
 
 [node name="EmptyFrame6" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -3816,7 +3822,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_27bwm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8eyt8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2vcrx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gerkl")
-text = "Aceptar"
+text = "Siguiente situación"
 
 [node name="SongsLabel" type="Label" parent="UI"]
 z_index = 12
@@ -4292,10 +4298,10 @@ anchors_preset = 0
 [node name="RECard1" type="Control" parent="DeckManager/DeckPlayer"]
 anchors_preset = 0
 offset_left = 354.7
-offset_top = 804.0
+offset_top = 799.0
 offset_right = 1854.7
-offset_bottom = 2904.0
-scale = Vector2(0.13, 0.13)
+offset_bottom = 2899.0
+scale = Vector2(0.14, 0.14)
 script = ExtResource("5_goa0y")
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckPlayer/RECard1"]
@@ -4445,10 +4451,10 @@ stretch_mode = 2
 [node name="RECard2" type="Control" parent="DeckManager/DeckPlayer"]
 anchors_preset = 0
 offset_left = 557.3
-offset_top = 804.0
+offset_top = 799.0
 offset_right = 2057.3
-offset_bottom = 2904.0
-scale = Vector2(0.13, 0.13)
+offset_bottom = 2899.0
+scale = Vector2(0.14, 0.14)
 script = ExtResource("9_0kxbr")
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckPlayer/RECard2"]
@@ -4597,11 +4603,11 @@ stretch_mode = 2
 
 [node name="RECard3" type="Control" parent="DeckManager/DeckPlayer"]
 anchors_preset = 0
-offset_left = 759.9
-offset_top = 804.0
-offset_right = 2259.9
-offset_bottom = 2904.0
-scale = Vector2(0.13, 0.13)
+offset_left = 759.0
+offset_top = 799.0
+offset_right = 2259.0
+offset_bottom = 2899.0
+scale = Vector2(0.14, 0.14)
 script = ExtResource("10_38pgf")
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckPlayer/RECard3"]
@@ -4751,10 +4757,10 @@ stretch_mode = 2
 [node name="HSCard1" type="Control" parent="DeckManager/DeckPlayer"]
 anchors_preset = 0
 offset_left = 962.5
-offset_top = 804.0
+offset_top = 799.0
 offset_right = 2462.5
-offset_bottom = 2904.0
-scale = Vector2(0.13, 0.13)
+offset_bottom = 2899.0
+scale = Vector2(0.14, 0.14)
 script = ExtResource("11_l50vo")
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckPlayer/HSCard1"]
@@ -4892,10 +4898,10 @@ stretch_mode = 2
 [node name="HSCard2" type="Control" parent="DeckManager/DeckPlayer"]
 anchors_preset = 0
 offset_left = 1165.1
-offset_top = 804.0
+offset_top = 799.0
 offset_right = 2665.1
-offset_bottom = 2904.0
-scale = Vector2(0.13, 0.13)
+offset_bottom = 2899.0
+scale = Vector2(0.14, 0.14)
 script = ExtResource("12_yyw1s")
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckPlayer/HSCard2"]
@@ -5032,11 +5038,11 @@ stretch_mode = 2
 
 [node name="HSCard3" type="Control" parent="DeckManager/DeckPlayer"]
 anchors_preset = 0
-offset_left = 1367.7
-offset_top = 804.0
-offset_right = 2867.7
-offset_bottom = 2904.0
-scale = Vector2(0.13, 0.13)
+offset_left = 1367.0
+offset_top = 799.0
+offset_right = 2867.0
+offset_bottom = 2899.0
+scale = Vector2(0.14, 0.14)
 script = ExtResource("13_1vdtq")
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckPlayer/HSCard3"]

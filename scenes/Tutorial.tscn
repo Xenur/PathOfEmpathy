@@ -1689,6 +1689,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="EmptyFrame1" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1704,6 +1705,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("18_8rqp0")
 
 [node name="EmptyFrame2" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1719,6 +1721,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("18_8rqp0")
 
 [node name="EmptyFrame3" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1734,6 +1737,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("18_8rqp0")
 
 [node name="EmptyFrame4" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1749,6 +1753,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("18_8rqp0")
 
 [node name="EmptyFrame5" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1764,6 +1769,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("18_8rqp0")
 
 [node name="EmptyFrame6" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -4086,7 +4092,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_27bwm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8eyt8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2vcrx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gerkl")
-text = "Aceptar"
+text = "Siguiente situación"
 
 [node name="SongsLabel" type="Label" parent="UI"]
 visible = false
