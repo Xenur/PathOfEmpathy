@@ -10,7 +10,7 @@
 		"id": 2,
 		"nombre": "Rumores maliciosos en línea",
 		"tipo": "Ciberbullying",
-		"descripcion": "Se inventan y comparten rumores sobre una estudiante en redes Sociales, arruinando su reputación y haciéndola sentir fatal.",
+		"descripcion": "Se inventan y comparten rumores sobre una estudiante en redes sociales, arruinando su reputación y haciéndole sentir fatal.",
 		"thresholds": [250, 450, 650, 850, 950]
 	},
 	{

@@ -186,11 +186,11 @@ func update_traits_based_on_role():
 
 	# Diccionario con descripciones para los tooltips
 	var tooltips_map = {
-		"resolucion_conflictos": "Habilidad para resolver conflictos de manera efectiva.",
-		"comunicacion": "Capacidad para transmitir ideas y emociones claramente.",
-		"apoyo_emocional": "Habilidad para brindar soporte emocional a otros.",
-		"intervencion": "Capacidad para intervenir en situaciones críticas.",
-		"empatia": "Habilidad para ponerse en el lugar de los demás y entender sus emociones."
+		"resolucion_conflictos": "Resolución de Conflictos. Habilidad para resolver conflictos de manera efectiva.",
+		"comunicacion": "Comunicación. Capacidad para transmitir ideas y emociones claramente.",
+		"apoyo_emocional": "Apoyo Emocional. Habilidad para brindar soporte emocional a otros.",
+		"intervencion": "Intervención. Capacidad para intervenir en situaciones críticas.",
+		"empatia": "Empatía. Habilidad para ponerse en el lugar de los demás y entender sus emociones."
 	}
 
 	# Nodos de los traits (etiquetas y texturas)
@@ -211,7 +211,11 @@ func update_traits_based_on_role():
 
 		# Crear el tooltip dinámicamente
 		var _tooltip_text = tooltips_map.get(stat_key, "Sin descripción disponible.")
-		trait_node["panel"].tooltip_text = _tooltip_text
+		#GlobalData.show_tooltips = false
+		if GlobalData.show_tooltips:
+			trait_node["panel"].tooltip_text = _tooltip_text
+		else: 
+			trait_node["panel"].tooltip_text = ""
 
 		# Seleccionar la textura correcta según la estadística
 		if textures_map.has(stat_key):

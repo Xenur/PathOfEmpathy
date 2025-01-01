@@ -170,3 +170,6 @@ var current_game_data = []  # Array para almacenar cartas y estrellas durante el
 var tutorial = false
 
 var token = false
+
+
+var show_tooltips:bool = false

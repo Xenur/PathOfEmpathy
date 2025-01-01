@@ -137,7 +137,7 @@ func move_to_original_position():
 
 # Función para reproducir el sonido
 func play_beep_sound():
-	var audio_stream = load("res://assets/audio/sfx/seleccionar_carta.ogg")
+	var audio_stream = load("res://assets/audio/sfx/traimory-braam-aggressive-tech-blast-cinematic-trailer-sound-effects-161150.mp3")
 	beep_audio_stream_player.stream = audio_stream
 	if beep_audio_stream_player.playing:
 		beep_audio_stream_player.stop()

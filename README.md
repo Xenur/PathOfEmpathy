@@ -1,4 +1,10 @@
 # **Caminos de Empatía**
+01/01/2025
+Modifica el recap. Añadido los combos totales y label Situaciones Abordadas
+Añadido checkbox en opciones in-game para controlar la visualización de las ayudas textuales. Se puede elegir si verlas o no. En el tutorial no está añadido para dar mas ayudas al jugador.
+Añadido sonido al seleccionar las cartas. Antes el sonido era sutil y no daba mayor feedback, ahora es majestuoso.
+
+
 30/12/2024
 Modificado el tamaño de las cartas presentadas. Pasan de 0.13 a 0.14. Se ven mejor sin tener que utilizar el zoom
 Se eliminan los marcos negros de las cartas

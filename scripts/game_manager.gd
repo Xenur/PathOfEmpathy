@@ -240,6 +240,8 @@ var countdown_sound_playing = false
 @onready var puntos_empatia_totales_label = $"../UI/GameOver/GameResultTextureRect/PuntosEmpatiaTotalesLabel"
 @onready var performance_mensaje_label = $"../UI/GameOver/GameResultTextureRect/PerformanceMensajeLabel"
 @onready var promedio_puntos_totales_label = $"../UI/GameOver/GameResultTextureRect/PromedioPuntosTotalesLabel"
+@onready var combos_totales_label = $"../UI/GameOver/GameResultTextureRect/Combos TotalesLabel"
+
 @onready var tutorial_control = $"../UI/TutorialControl"
 @onready var tokens_node_2d = $"../UI/TokensNode2D"
 @onready var sprite_2d = $"../UI/TokensNode2D/Sprite2D"
@@ -467,6 +469,8 @@ func handle_countdown(delta):
 		play_beep_sound("res://assets/audio/sfx/traimory-whoosh-hit-the-box-cinematic-trailer-sound-effects-193411.ogg")
 		if new_game_option_window.visible == true:
 			new_game_option_window.visible = false
+		disable_card_interaction()
+		ready_button.disabled = true
 		# Mover al siguiente estado
 		change_state(GameState.CHECK_RESULT)
 	# Actualizar el contador global de 20 minutos
@@ -726,7 +730,8 @@ func check_game_result():
 	nueva_partida.add_tirada(nueva_tirada)
 	save_game_persistence(nueva_partida)
 	add_card_to_current_game(player_bullying_card.nombre, stars)
-	
+	disable_card_interaction()
+	ready_button.disabled = true
 	# Finalizar el turno
 	end_turn_actions()
 
@@ -966,10 +971,10 @@ func generate_feedback(player_score, stars: int, player_re_card, player_hs_card,
 	if stars >= 4:
 		feedback.append("¡Lo has hecho muy bien! Tu estrategia fue excelente y demostró un gran manejo de la situación.")
 	elif stars >= 2:
-		feedback.append("Buen trabajo, pero podrías mejorar. Algunos atributos estuvieron por debajo de lo necesario como ")
+		feedback.append("Buen trabajo, pero podrías mejorar. Algunos atributos estuvieron por debajo de lo necesario como")
 		feedback.append(", ".join(missing_attributes.slice(0, 2)))  # Muestra hasta 2 atributos faltantes
 	else:
-		feedback.append("Fue un intento difícil. Deberías haber tenido en cuenta más ")
+		feedback.append("Fue un intento difícil. Deberías haber tenido en cuenta más")
 		feedback.append(", ".join(missing_attributes.slice(0, 3)))  # Muestra hasta 3 atributos faltantes
 
 	return " ".join(feedback)
@@ -1314,6 +1319,7 @@ func game_over():
 	situaciones_aboradadas_label.text = "Situaciones Abordadas " + str(GlobalData.current_game_data.size())
 	puntos_empatia_totales_label.text = "Puntos Empatía Totales " + str(GlobalData.total_stars)
 	promedio_puntos_totales_label.text = "Promedio Puntos Empatía " + str("%.2f" % average_stars)
+	combos_totales_label.text = "Combos Totales " + str(GlobalData.combo_player)
 	performance_mensaje_label.text = performance_message
 	
 	
@@ -4056,9 +4062,9 @@ func get_performance_message(average_stars: float) -> String:
 	# Mensajes según el nivel de desempeño y dificultad
 	var messages = {
 		0: {
-			0: ["¡Ánimo! Incluso en nivel fácil, puedes mejorar. ¡No te rindas!",
-				"El camino al éxito comienza con un primer paso. ¡Sigue intentándolo!",
-				"Es normal tropezar al inicio. Practica y pronto dominarás el juego."],
+			0: ["¡Ánimo! Incluso en nivel fácil, puedes mejorar.",
+				"El camino al éxito comienza con un primer paso.",
+				"Es normal tropezar al inicio. Practica más"],
 			1: ["¡No te preocupes! Este nivel puede ser desafiante al principio.",
 				"La práctica te ayudará a superar estos desafíos. ¡Adelante!",
 				"Un inicio difícil, pero no imposible. Ajusta tu estrategia."],

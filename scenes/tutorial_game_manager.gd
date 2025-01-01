@@ -241,6 +241,8 @@ var countdown_sound_playing = false
 @onready var puntos_empatia_totales_label = $"../UI/GameOver/GameResultTextureRect/PuntosEmpatiaTotalesLabel"
 @onready var performance_mensaje_label = $"../UI/GameOver/GameResultTextureRect/PerformanceMensajeLabel"
 @onready var promedio_puntos_totales_label = $"../UI/GameOver/GameResultTextureRect/PromedioPuntosTotalesLabel"
+@onready var combos_totales_label = $"../UI/GameOver/GameResultTextureRect/Combos TotalesLabel"
+
 @onready var tutorial_control = $"../UI/TutorialControl"
 @onready var tutorial_new_game = $".."
 @onready var hand_texture_rect = $"../UI/HandTextureRect"
@@ -511,6 +513,8 @@ func handle_countdown(delta):
 		if new_game_option_window.visible == true:
 			new_game_option_window.visible = false
 		# Mover al siguiente estado
+		disable_card_interaction()
+		ready_button.disabled = true
 		change_state(GameState.CHECK_RESULT)
 	# Actualizar el contador global de 20 minutos
 
@@ -1065,7 +1069,8 @@ func check_game_result():
 		
 	
 	
-	
+	disable_card_interaction()
+	ready_button.disabled = true
 	# Finalizar el turno
 	end_turn_actions()
 
@@ -1652,6 +1657,7 @@ func game_over():
 	situaciones_aboradadas_label.text = "Situaciones Abordadas " + str(GlobalData.current_game_data.size())
 	puntos_empatia_totales_label.text = "Puntos Empatía Totales " + str(GlobalData.total_stars)
 	promedio_puntos_totales_label.text = "Promedio Puntos Empatía " + str("%.2f" % average_stars)
+	combos_totales_label.text = "Combos Totales " + str(GlobalData.combo_player)
 	performance_mensaje_label.text = performance_message
 	
 	
@@ -4331,12 +4337,13 @@ func get_performance_message(average_stars: float) -> String:
 	# Determinar el nivel de dificultad (0 = Bajo, 1 = Medio, 2 = Duro)
 	var difficulty_level = GameConfig.ia_difficulty  # Nivel de dificultad desde la variable global
 
+	
 	# Mensajes según el nivel de desempeño y dificultad
 	var messages = {
 		0: {
-			0: ["¡Ánimo! Incluso en nivel fácil, puedes mejorar. ¡No te rindas!",
-				"El camino al éxito comienza con un primer paso. ¡Sigue intentándolo!",
-				"Es normal tropezar al inicio. Practica y pronto dominarás el juego."],
+			0: ["¡Ánimo! Incluso en nivel fácil, puedes mejorar.",
+				"El camino al éxito comienza con un primer paso.",
+				"Es normal tropezar al inicio. Practica más"],
 			1: ["¡No te preocupes! Este nivel puede ser desafiante al principio.",
 				"La práctica te ayudará a superar estos desafíos. ¡Adelante!",
 				"Un inicio difícil, pero no imposible. Ajusta tu estrategia."],
