@@ -257,6 +257,8 @@ var countdown_sound_playing = false
 @onready var animation_player_2 = $"../UI/AnimationPlayer2"
 @onready var total_animation_player = $"../DeckManager/TotalLabel/TotalAnimationPlayer"
 @onready var explosion = $"../Node2D/Explosion"
+@onready var dialogue_label_2 = $"../UI/DialogueLabel2"
+@onready var dialogue_label_3 = $"../UI/DialogueLabel3"
 
 
 
@@ -274,11 +276,13 @@ var tutorial_messages2 = [
 ]
 var tutorial_messages3 = [
 	"Una vez que tengas claro el desafio deberás...",
-	"...elegir las cartas de Respuesta Empática...",
+	"...elegir las cartas de Respuesta Empática",
+	"Necesarias para resolver conflictos con Empatía."
 	
 ]
 var tutorial_messages4 = [
 	"...y las cartas de Habilidad Social.",
+	"Te ayudarán a enfrentar situaciones con confianza.",
 	"Combinando ambas cartas podrás combatir el bullying",
 	#
 ]
@@ -646,14 +650,17 @@ func prepare_game():
 		await get_tree().create_timer(1.0).timeout
 		hand_texture_rect.visible = true
 		dialogue_label.text = ""  # Limpia cualquier texto previo
-		animation_player.play("hand_re", 0, 0.2)
+		animation_player.play("hand_re", 0, 0.35)
 		disable_card_interaction()
+		fade_in_node(dialogue_label_2, 3)
+		fade_in_node(dialogue_label_3, 3)
 		await show_messages(tutorial_messages3)
 		disable_card_interaction()
 		await get_tree().create_timer(3.0).timeout
 		await show_messages(tutorial_messages4)
 		disable_card_interaction()
 		await get_tree().create_timer(2.0).timeout
+
 		hand_texture_rect.visible = true
 
 		await get_tree().create_timer(1.0).timeout
@@ -665,6 +672,8 @@ func prepare_game():
 		hand_texture_rect.visible = true
 		animation_player.play("hand_listo", 0, 0.5)
 		await show_messages(tutorial_messages6)
+		fade_out_node(dialogue_label_2, 3)
+		fade_out_node(dialogue_label_3, 3)
 		enable_card_interaction()
 		#await get_tree().create_timer(1.0).timeout
 		
@@ -1077,7 +1086,7 @@ func check_game_result():
 func adjust_player_score(player_score: float) -> float:
 	match GameConfig.ia_difficulty:
 		0:  # Dificultad Alumno
-			return player_score * 1.5
+			return player_score * 1.3
 		1:  # Dificultad Profesor
 			return player_score * 1.0  # Sin cambio
 		2:  # Dificultad Psicólogo

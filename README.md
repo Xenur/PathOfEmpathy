@@ -1,4 +1,10 @@
 # **Caminos de Empatía**
+02/01/2025
+Modifica el multiplicador de alumno para mejorar la jugabilidad.
+Modificado el turno 1 del tutorial al mostrar las cartas de RE y HS. Ahora hay más explicación y sale un label mostrando cuales son las cartas RE y HS
+
+
+
 01/01/2025
 Modifica el recap. Añadido los combos totales y label Situaciones Abordadas
 Añadido checkbox en opciones in-game para controlar la visualización de las ayudas textuales. Se puede elegir si verlas o no. En el tutorial no está añadido para dar mas ayudas al jugador.
