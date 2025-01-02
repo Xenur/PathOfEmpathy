@@ -1,6 +1,10 @@
-res://scenes/Tutorial.tscn
+res://scenes/RegisterUser.tscn
 res://scripts/MainMenu.gdshader
-res://scenes/tutorial_game_manager.gd
+res://scripts/global_data.gd
+res://scripts/register_user.gd
+res://scenes/LoginScreen.tscn
+res://scripts/login_screen.gd
+res://scenes/Tutorial.tscn
 res://scenes/NewGame.tscn
 res://scenes/ChooseRole.tscn
 res://scenes/LoadingGame.tscn
@@ -8,9 +12,8 @@ res://scenes/CreditsScreen.tscn
 res://scenes/MainMenu.tscn
 res://scenes/StatisticsScreen.tscn
 res://scenes/LoadGame.tscn
-res://scenes/LoginScreen.tscn
-res://scenes/RegisterUser.tscn
 res://scenes/intro.tscn
 res://scenes/Tokens.tscn
 res://scripts/game_manager.gd
+res://scripts/credits_screen.gd
 res://README.md

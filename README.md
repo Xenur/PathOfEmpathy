@@ -1,5 +1,9 @@
 # **Caminos de Empatía**
 02/01/2025
+Encriptado el archivo users.json
+
+
+02/01/2025
 Modifica el multiplicador de alumno para mejorar la jugabilidad.
 Modificado el turno 1 del tutorial al mostrar las cartas de RE y HS. Ahora hay más explicación y sale un label mostrando cuales son las cartas RE y HS
 

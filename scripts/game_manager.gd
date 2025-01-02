@@ -591,7 +591,7 @@ func start_turn():
 		await get_tree().create_timer(10).timeout
 		enable_card_interaction()
 	else:
-		await get_tree().create_timer(5).timeout
+		await get_tree().create_timer(2).timeout
 		enable_card_interaction()
 	GlobalData.token = false
 	

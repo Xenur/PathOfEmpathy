@@ -173,3 +173,5 @@ var token = false
 
 
 var show_tooltips:bool = false
+
+const ENCRYPTION_PASSWORD = "yP@Q2D47Hg4V%YVBCWqH$K"
