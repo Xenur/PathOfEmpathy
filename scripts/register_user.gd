@@ -59,7 +59,8 @@ func _ready():
 
 # Función para cargar usuarios desde el archivo JSON
 func load_users():
-	var file = FileAccess.open(USER_DATA_FILE, FileAccess.READ)
+	var file = FileAccess.open_encrypted_with_pass(USER_DATA_FILE, FileAccess.ModeFlags.READ, GlobalData.ENCRYPTION_PASSWORD)
+	#var file = FileAccess.open(USER_DATA_FILE, FileAccess.READ)
 	if file:
 		var data = file.get_as_text()
 		
@@ -185,7 +186,8 @@ func get_next_id() -> int:
 
 # Función para guardar los usuarios en el archivo JSON
 func save_users():
-	var file = FileAccess.open(USER_DATA_FILE, FileAccess.WRITE)
+	var file = FileAccess.open_encrypted_with_pass(USER_DATA_FILE, FileAccess.ModeFlags.WRITE, GlobalData.ENCRYPTION_PASSWORD)
+	#var file = FileAccess.open(USER_DATA_FILE, FileAccess.WRITE)
 	if file:
 		var json_string = JSON.stringify(users, "\t") #\t formateamos el json
 		if json_string == null:

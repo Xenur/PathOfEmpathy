@@ -1,4 +1,35 @@
 # **Caminos de Empatía**
+02/01/2025
+Encriptado el archivo users.json
+
+
+02/01/2025
+Modifica el multiplicador de alumno para mejorar la jugabilidad.
+Modificado el turno 1 del tutorial al mostrar las cartas de RE y HS. Ahora hay más explicación y sale un label mostrando cuales son las cartas RE y HS
+
+
+
+01/01/2025
+Modifica el recap. Añadido los combos totales y label Situaciones Abordadas
+Añadido checkbox en opciones in-game para controlar la visualización de las ayudas textuales. Se puede elegir si verlas o no. En el tutorial no está añadido para dar mas ayudas al jugador.
+Añadido sonido al seleccionar las cartas. Antes el sonido era sutil y no daba mayor feedback, ahora es majestuoso.
+
+
+30/12/2024
+Modificado el tamaño de las cartas presentadas. Pasan de 0.13 a 0.14. Se ven mejor sin tener que utilizar el zoom
+Se eliminan los marcos negros de las cartas
+
+30/12/2024
+Quitada partículas al seleccionar las cartas
+Añadido marcos glow a las cartas de RE y HS cuando son seleccionadas, el tamaño también se ha aumentado
+Añadido marco glow a la carta de situacion de bullying
+Añadido marco glow a los puntos de empatía
+Añadidos mensajes cuando se consiguen puntos de Empatía.
+Añadido lag de 5 segundos cuando se vuelve a mostrar la carta de situacion de bullying para que los
+jugadores no elijan las cartas directamente sin leer las cartas de situación.
+Añadido lag de 9 segundos cuando sale un token para que no se puedan elegir las cartas de RE y HS
+mientras se está mostrando la animación del Token
+
 23/12/2024
 Añadida animación Puntos de Empatía
 Añadida animación Particulas en Carta Situació de Bullying

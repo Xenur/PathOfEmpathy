@@ -39,8 +39,20 @@ extends Window
 
 @onready var new_game_option_window = $"."
 
+@onready var check_button = $VBoxContainer/HBoxContainer4/CheckButton
+@onready var countdown_turn = $"../CountdownTurn/Panel"
 
+@onready var dificultad = $"../Dificultad/Panel"
+@onready var countdown_total = $"../CountdownTotal/Panel"
+@onready var total_label = $"../../DeckManager/TotalLabel"
 
+@onready var combo_label = $"../ScoreTokenPlayer/ShowScorePlayer/ComboLabel"
+@onready var exclusion_social_token = $"../ScoreTokenPlayer/ExclusionSocialToken"
+@onready var fisico_token = $"../ScoreTokenPlayer/FisicoToken"
+@onready var psicologico_token = $"../ScoreTokenPlayer/PsicologicoToken"
+@onready var sexual_token = $"../ScoreTokenPlayer/SexualToken"
+@onready var verbal_token = $"../ScoreTokenPlayer/VerbalToken"
+@onready var ciberbullying_token = $"../ScoreTokenPlayer/CiberbullyingToken"
 
 
 const DEFAULT_CONFIG = {
@@ -83,6 +95,9 @@ func _ready():
 	# Conectar las señales de los sliders y OptionButton
 	music_slider.value_changed.connect(_on_music_volume_changed)
 	sfx_slider.value_changed.connect(_on_sfx_volume_changed)
+	
+	## Inicializa el estado del CheckButton según la variable global
+	#check_button.pressed = GlobalData.show_tooltips
 
 # Funciones para manejar los cambios en las opciones
 func _on_music_volume_changed(value):
@@ -157,7 +172,7 @@ func _on_cancel_option_button_pressed():
 	GameConfig.ia_difficulty = DEFAULT_CONFIG["ia_difficulty"]
 	music_slider.value = GameConfig.music_volume
 	sfx_slider.value = GameConfig.sfx_volume
-
+	
 	blur_overlay.visible = false
 
 # Señal boton estadísticas presionado
@@ -185,3 +200,33 @@ func play_beep_sound(audio_file: String):
 	#if beep_audio_stream_player.playing:
 		#beep_audio_stream_player.stop()
 	beep_audio_stream_player.play()
+
+
+func _on_check_button_toggled(toogled_on):
+	# Actualiza GlobalData.show_tooltips según el estado del botón
+	GlobalData.show_tooltips = toogled_on
+	print("Tooltips activados: ", GlobalData.show_tooltips)
+	if toogled_on == false:
+		dificultad.tooltip_text = ""
+		countdown_total.tooltip_text = ""
+		total_label.tooltip_text = ""
+		countdown_turn.tooltip_text = ""
+		combo_label.tooltip_text = ""
+		exclusion_social_token.tooltip_text = ""
+		fisico_token.tooltip_text = ""
+		psicologico_token.tooltip_text = ""
+		sexual_token.tooltip_text = ""
+		verbal_token.tooltip_text = ""
+		ciberbullying_token.tooltip_text = ""
+	elif toogled_on == true:
+		dificultad.tooltip_text = "Dificultad"
+		countdown_total.tooltip_text = "Tiempo Restante de la Partida"
+		total_label.tooltip_text = "Puntos Empatía"
+		countdown_turn.tooltip_text = "Tiempo Restante del Turno"
+		combo_label.tooltip_text = "Combos Totales"
+		exclusion_social_token.tooltip_text = "Token Exclusión Social"
+		fisico_token.tooltip_text = "Token Físico"
+		psicologico_token.tooltip_text = "Token Psicológico"
+		sexual_token.tooltip_text = "Token Sexual"
+		verbal_token.tooltip_text = "Token Verbal"
+		ciberbullying_token.tooltip_text = "Token Ciberbullying"

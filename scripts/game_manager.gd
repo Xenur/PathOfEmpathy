@@ -240,6 +240,8 @@ var countdown_sound_playing = false
 @onready var puntos_empatia_totales_label = $"../UI/GameOver/GameResultTextureRect/PuntosEmpatiaTotalesLabel"
 @onready var performance_mensaje_label = $"../UI/GameOver/GameResultTextureRect/PerformanceMensajeLabel"
 @onready var promedio_puntos_totales_label = $"../UI/GameOver/GameResultTextureRect/PromedioPuntosTotalesLabel"
+@onready var combos_totales_label = $"../UI/GameOver/GameResultTextureRect/Combos TotalesLabel"
+
 @onready var tutorial_control = $"../UI/TutorialControl"
 @onready var tokens_node_2d = $"../UI/TokensNode2D"
 @onready var sprite_2d = $"../UI/TokensNode2D/Sprite2D"
@@ -248,6 +250,7 @@ var countdown_sound_playing = false
 @onready var explosion = $"../Node2D/Explosion"
 @onready var total_animation_player = $"../DeckManager/TotalLabel/TotalAnimationPlayer"
 
+@onready var accept_button = $"../UI/DialogueTextureRect/AcceptButton"
 
 
 
@@ -466,6 +469,8 @@ func handle_countdown(delta):
 		play_beep_sound("res://assets/audio/sfx/traimory-whoosh-hit-the-box-cinematic-trailer-sound-effects-193411.ogg")
 		if new_game_option_window.visible == true:
 			new_game_option_window.visible = false
+		disable_card_interaction()
+		ready_button.disabled = true
 		# Mover al siguiente estado
 		change_state(GameState.CHECK_RESULT)
 	# Actualizar el contador global de 20 minutos
@@ -582,8 +587,13 @@ func start_turn():
 	update_bullying_card() 
 	disable_card_interaction()
 	animation_player_2.play("new_bullying", 0, 1)
-	await get_tree().create_timer(1.5).timeout
-	enable_card_interaction()
+	if GlobalData.token:
+		await get_tree().create_timer(10).timeout
+		enable_card_interaction()
+	else:
+		await get_tree().create_timer(2).timeout
+		enable_card_interaction()
+	GlobalData.token = false
 	
 # Función para manejar el turno del jugador DEPRECATED
 func loading():
@@ -616,7 +626,7 @@ func check_game_result():
 	
 	#dialogue_texture_rect.visible = true
 	fade_in_node(dialogue_texture_rect, 1)
-	
+	accept_button.disabled = true
 	options_button.disabled = true
 	# Actualiza la información del bullying en las etiquetas
 	update_bullying_info()
@@ -653,6 +663,10 @@ func check_game_result():
 	# Actualizar las puntuaciones totales y el combo
 	#update_total_scores(player_score, ia_score)
 	update_combo(player_score, valid_combination)
+	await get_tree().create_timer(1.75).timeout
+	play_random_sound(GlobalData.stars)
+	await get_tree().create_timer(2).timeout
+	accept_button.disabled = false
 	#update_combo_ia(ia_score, valid_combination_ia)
 	# Incrementar el turno
 	turn += 1
@@ -716,7 +730,8 @@ func check_game_result():
 	nueva_partida.add_tirada(nueva_tirada)
 	save_game_persistence(nueva_partida)
 	add_card_to_current_game(player_bullying_card.nombre, stars)
-	
+	disable_card_interaction()
+	ready_button.disabled = true
 	# Finalizar el turno
 	end_turn_actions()
 
@@ -725,7 +740,7 @@ func check_game_result():
 func adjust_player_score(player_score: float) -> float:
 	match GameConfig.ia_difficulty:
 		0:  # Dificultad Alumno
-			return player_score * 5
+			return player_score * 1.3
 		1:  # Dificultad Profesor
 			return player_score * 1.0  # Sin cambio
 		2:  # Dificultad Psicólogo
@@ -956,10 +971,10 @@ func generate_feedback(player_score, stars: int, player_re_card, player_hs_card,
 	if stars >= 4:
 		feedback.append("¡Lo has hecho muy bien! Tu estrategia fue excelente y demostró un gran manejo de la situación.")
 	elif stars >= 2:
-		feedback.append("Buen trabajo, pero podrías mejorar. Algunos atributos estuvieron por debajo de lo necesario como ")
+		feedback.append("Buen trabajo, pero podrías mejorar. Algunos atributos estuvieron por debajo de lo necesario como")
 		feedback.append(", ".join(missing_attributes.slice(0, 2)))  # Muestra hasta 2 atributos faltantes
 	else:
-		feedback.append("Fue un intento difícil. Deberías haber tenido en cuenta más ")
+		feedback.append("Fue un intento difícil. Deberías haber tenido en cuenta más")
 		feedback.append(", ".join(missing_attributes.slice(0, 3)))  # Muestra hasta 3 atributos faltantes
 
 	return " ".join(feedback)
@@ -1304,6 +1319,7 @@ func game_over():
 	situaciones_aboradadas_label.text = "Situaciones Abordadas " + str(GlobalData.current_game_data.size())
 	puntos_empatia_totales_label.text = "Puntos Empatía Totales " + str(GlobalData.total_stars)
 	promedio_puntos_totales_label.text = "Promedio Puntos Empatía " + str("%.2f" % average_stars)
+	combos_totales_label.text = "Combos Totales " + str(GlobalData.combo_player)
 	performance_mensaje_label.text = performance_message
 	
 	
@@ -2135,9 +2151,12 @@ func _on_ready_texture_button_pressed():
 func _on_ready_button_pressed():
 	
 	explosion.emitting = true
-	
+
 	
 	play_beep_sound("res://assets/audio/sfx/traimory-whoosh-hit-the-box-cinematic-trailer-sound-effects-193411.ogg")
+	print("Sonidillo:", GlobalData.stars)
+	
+
 	if (player_selected_card_re == null or player_selected_card_hs == null):
 		# Si el jugador no seleccionó cartas, asignarlas automáticamente
 		auto_select_player_cards()
@@ -2899,6 +2918,9 @@ func _on_abort_button_pressed():
 	GlobalData.game_over_abort = true
 	change_state(GameState.GAME_OVER)
 
+
+
+
 	# Función para reproducir el sonido
 func play_beep_sound(audio_file: String):
 	print("sonido: ", audio_file)
@@ -2911,6 +2933,46 @@ func play_beep_sound(audio_file: String):
 		#beep_audio_stream_player.stop()
 	beep_audio_stream_player.play()
 
+
+
+# Función para reproducir un sonido aleatorio
+func play_random_sound(star: int):
+	# Diccionario para los sonidos agrupados por "star"
+	var sounds = {
+		1: [
+			"res://assets/audio/sfx/un_punto_1.ogg",
+			"res://assets/audio/sfx/un_punto_2.ogg",
+			"res://assets/audio/sfx/un_punto_3.ogg"
+		],
+		2: [
+			"res://assets/audio/sfx/dos_puntos_1.ogg",
+			"res://assets/audio/sfx/dos_puntos_2.ogg",
+			"res://assets/audio/sfx/dos_puntos_3.ogg"
+		],
+		3: [
+			"res://assets/audio/sfx/tres_puntos_1.ogg",
+			"res://assets/audio/sfx/tres_puntos_2.ogg",
+			"res://assets/audio/sfx/tres_puntos_3.ogg"
+		],
+		4: [
+			"res://assets/audio/sfx/cuatro_puntos_1.ogg",
+			"res://assets/audio/sfx/cuatro_puntos_2.ogg",
+			"res://assets/audio/sfx/cuatro_puntos_3.ogg"
+		],
+		5: [
+			"res://assets/audio/sfx/cinco_puntos_1.ogg",
+			"res://assets/audio/sfx/cinco_puntos_2.ogg",
+			"res://assets/audio/sfx/cinco_puntos_3.ogg"
+		]
+	}
+	if star in sounds:
+		# Selecciona un sonido aleatorio de la lista correspondiente
+		var star_sounds = sounds[star]
+		var random_sound = star_sounds[randi() % star_sounds.size()]
+		# Llama a tu función para reproducir el sonido
+		play_beep_sound(random_sound)
+	else:
+		print("Valor de 'star' no válido:", star)
 
 # Diccionario para rastrear la cantidad de tokens previamente obtenidos
 var last_token_count: Dictionary = {
@@ -3063,6 +3125,7 @@ func update_token_textures():
 				var current_count = GlobalData.token_earned_player[bullying_type]
 				if current_count > last_token_count[bullying_type]:  # Si hay un nuevo token
 					#call_heartbeat_scene(bullying_type)
+		
 					play_token_audio(normalize_bullying_type(bullying_type))
 					last_token_count[bullying_type] = current_count  # Actualizar el conteo
 	# Iterar sobre los tipos de bullying ia
@@ -3129,6 +3192,9 @@ var token_sfx_messages: Dictionary = {
 	"res://assets/audio/sfx/exclusión_social_2.ogg": "¡Increíble! Has desbloqueado un token por abordar la exclusión social."
 }
 func play_token_audio(token_type: String):
+	disable_card_interaction()
+	GlobalData.token = true
+	
 	print("suena audio")
 	if token_sfx.has(token_type):
 		var sfx_list = token_sfx[token_type]
@@ -3153,14 +3219,19 @@ func display_message(message: String):
 	if subtitles_control and subtitles_label:
 		subtitles_label.text = message  # Mostrar el mensaje en el Label
 		fade_in_node(subtitles_control, 2)
+		await get_tree().create_timer(5).timeout
+		
 		#subtitles_control.visible = true  # Hacer visible el control que contiene el subtítulo
+		disable_card_interaction()
+		
 
 
 func _on_audio_stream_token_finished():
 	if subtitles_label:
 		fade_out_node(subtitles_control, 1)
 		#subtitles_control.visible = false
-
+		enable_card_interaction()
+		ready_button.disabled = false
 
 func call_heartbeat_scene(token_type: String):
 	# Diccionario para asociar parámetros con rutas de imágenes
@@ -3877,6 +3948,7 @@ func load_saved_games() -> Dictionary:
 
 
 func _on_accept_button_pressed():
+	print("sonidillo estrella: ", GlobalData.stars)
 	explosion.emitting = false
 	total_animation_player.play("heart_total", 0, 1)
 	fade_out_node(dialogue_texture_rect, 1)
@@ -3889,7 +3961,7 @@ func _on_accept_button_pressed():
 	ready_texture_button.release_focus()  
 	blur_overlay.visible = false
 	#end_turn_popup.visible = false
-	enable_card_interaction()
+	#enable_card_interaction()
 	#fade_out_node(dialogue_texture_rect, 1)
 	#dialogue_texture_rect.visible = false
 	options_button.disabled = false
@@ -3990,9 +4062,9 @@ func get_performance_message(average_stars: float) -> String:
 	# Mensajes según el nivel de desempeño y dificultad
 	var messages = {
 		0: {
-			0: ["¡Ánimo! Incluso en nivel fácil, puedes mejorar. ¡No te rindas!",
-				"El camino al éxito comienza con un primer paso. ¡Sigue intentándolo!",
-				"Es normal tropezar al inicio. Practica y pronto dominarás el juego."],
+			0: ["¡Ánimo! Incluso en nivel fácil, puedes mejorar.",
+				"El camino al éxito comienza con un primer paso.",
+				"Es normal tropezar al inicio. Practica más"],
 			1: ["¡No te preocupes! Este nivel puede ser desafiante al principio.",
 				"La práctica te ayudará a superar estos desafíos. ¡Adelante!",
 				"Un inicio difícil, pero no imposible. Ajusta tu estrategia."],

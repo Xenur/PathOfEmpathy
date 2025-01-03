@@ -66,10 +66,10 @@ func _rich():
 		
 	[center][color=white][b]Escritura y Narrativa[/b][/color][/center]
 	[center][color=#bfbfbf]Carlos Alcaraz Benítez[/color][/center]
-	[center][color=#bfbfbf]Cristina Rodríguez[/color][/center]
 	   
 	[center][color=white][b]Arte y Diseño Gráfico[/b][/color][/center]
 	[center][color=#bfbfbf]Ilustraciones generadas con DALL·E de OpenAI[/color][/center]
+	[center][color=#bfbfbf]Animaciones generadas con Runway Gen-3 Alpha[/color][/center]
 	[center][color=#bfbfbf]"Marcos" por cardconjurer.com - descargado de cardconjurer.com[/color][/center]
 	[center][color=white]Iconos[/color][/center]
 	[center][color=#bfbfbf]"Icono Comunicación" por Vectors Market - descargado de flaticon.es[/color][/center]	
@@ -80,12 +80,12 @@ func _rich():
 	
 	[center][color=white][b]Música y Sonido[/b][/color][/center]
 	[center][color=#bfbfbf]"Música" generada con Suno AI[/color][/center]			
-	[center][color=#bfbfbf]"Beep cuenta atrás" por Thompson Man - descargado de freesound.org[/color][/center]			
+	[center][color=#bfbfbf]"Beep cuenta atrás" por Thompson Man - descargado de freesound.org[/color][/center]	
+	[center][color=#bfbfbf]"Braam aggressive tech blast" por Submority - descargado de freesound.org[/color][/center]	
 	[center][color=#bfbfbf]"Click" - descargado de freesound.org[/color][/center]			
 	[center][color=#bfbfbf]"Clic menú" por Leszek Szary - descargado de freesound.org[/color][/center]			
 	[center][color=#bfbfbf]"Hit low" por Submority - descargado de pixabay.com[/color][/center]			
 	[center][color=#bfbfbf]"Mega horn" por Submority - descargado de freesound.org[/color][/center]			
-	[center][color=#bfbfbf]"Seleccionar carta" - descargado de freesound.org[/color][/center]			
 	[center][color=#bfbfbf]"Voces" generadas con Vidnoz[/color][/center]
 	[center][color=#bfbfbf]"Whoosh hit" por Submority - descargado de pixabay.com[/color][/center]
 	
@@ -95,12 +95,13 @@ func _rich():
 	
 	[center][color=white][b]Herramientas y recursos[/b][/color][/center]
 	[center][color=#bfbfbf]Audacity[/color][/center]
+	[center][color=#bfbfbf]DALL·E[/color][/center]
 	[center][color=#bfbfbf]GIMP[/color][/center]
 	[center][color=#bfbfbf]Godot 4.3[/color][/center]
 	[center][color=#bfbfbf]Jira[/color][/center]
-	[center][color=#bfbfbf]remove.vg[/color][/center]
-	
-	
+	[center][color=#bfbfbf]remove.bg[/color][/center]
+	[center][color=#bfbfbf]Runway Gen-3 Alpha[/color][/center]
+	[center][color=#bfbfbf]Shotcut[/color][/center]
 	
 	
 	
@@ -114,10 +115,6 @@ func _rich():
 	[center][color=#bfbfbf]indispensable. Además, su disposición para probar el juego y proporcionar[/color][/center]
 	[center][color=#bfbfbf]un feedback constructivo ha contribuido significativamente a perfeccionar[/color][/center]
 	[center][color=#bfbfbf]tanto la jugabilidad como la experiencia final.[/color][/center]
-	[center][color=#bfbfbf]Asimismo, quiero agradecer a Cristina Rodríguez por su apoyo en la creación[/color][/center]
-	[center][color=#bfbfbf]de la parte psicológica del proyecto. Su asesoramiento ha sido esencial para[/color][/center]
-	[center][color=#bfbfbf]integrar aspectos emocionales y educativos clave, logrando un enfoque más [/color][/center]
-	[center][color=#bfbfbf]completo y enriquecedor en el videojuego.[/color][/center]
 	[center][color=#bfbfbf]Mi gratitud también para Guillermo, mi tutor, por guiarme a lo largo de todo[/color][/center]
 	[center][color=#bfbfbf]el proceso. Su feedback constante, sus ideas para mejorar y su insistencia[/color][/center]
 	[center][color=#bfbfbf]en que iterara sobre el proyecto me permitieron alcanzar un mayor nivel de[/color][/center]
@@ -128,6 +125,8 @@ func _rich():
 	[center][color=#bfbfbf]de este proyecto; a mi mujer Isa, por su paciencia infinita y su apoyo[/color][/center]
 	[center][color=#bfbfbf]incondicional; y a mis padres Tomas y Petry, por estar siempre ahí,[/color][/center]
 	[center][color=#bfbfbf]escuchando y alentándome cada día. Gracias por ser mi motor y mi mayor fuente de fuerza.[/color][/center]
+	
+	
 	
 	
 	

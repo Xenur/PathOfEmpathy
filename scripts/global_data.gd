@@ -12,9 +12,9 @@
 extends Node
 
 # Variables del usuario
-var user = "Isa1"
+var user = ""
 var id
-var password = "12345678"
+var password = ""
 var created_at = {
 			"day": 9,
 			"dst": false,
@@ -168,3 +168,10 @@ var total_games: int = 0
 var current_game_data = []  # Array para almacenar cartas y estrellas durante el juego
 
 var tutorial = false
+
+var token = false
+
+
+var show_tooltips:bool = false
+
+const ENCRYPTION_PASSWORD = "yP@Q2D47Hg4V%YVBCWqH$K"

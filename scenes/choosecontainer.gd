@@ -61,7 +61,7 @@ var role_messages = {
 	"Líder": "Has elegido tener rol de Líder",
 	"Escucha Activa": "Has elegido tener rol de Escucha Activa",
 	"Mediador": "Has elegido tener rol de Mediador",
-	"Solidario": "Has elegido tenre rol de Soporte Solidario"
+	"Solidario": "Has elegido tener rol de Soporte Solidario"
 }
 
 func _ready():

@@ -10,7 +10,7 @@
 		"id": 2,
 		"nombre": "Rumores maliciosos en línea",
 		"tipo": "Ciberbullying",
-		"descripcion": "Se inventan y comparten rumores sobre una estudiante en redes Sociales, arruinando su reputación y haciéndola sentir fatal.",
+		"descripcion": "Se inventan y comparten rumores sobre una estudiante en redes sociales, arruinando su reputación y haciéndole sentir fatal.",
 		"thresholds": [250, 450, 650, 850, 950]
 	},
 	{
@@ -296,7 +296,7 @@
 	},
 	{
 		"id": 43,
-		"nombre": "Desprecio por falta de habilidades deportivas",
+		"nombre": "Desprecio por falta habilidades",
 		"tipo": "Verbal",
 		"descripcion": "Se excluye y critica a una estudiante por no tener talento o interés en los deportes, haciéndola sentir fuera de lugar.",
 		"thresholds": [200, 400, 600, 750, 950]
