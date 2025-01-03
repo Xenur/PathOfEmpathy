@@ -1,4 +1,4 @@
-[gd_scene load_steps=141 format=3 uid="uid://dq4v62olhary3"]
+[gd_scene load_steps=142 format=3 uid="uid://dq4v62olhary3"]
 
 [ext_resource type="Script" path="res://scripts/new_game.gd" id="1_eh8bj"]
 [ext_resource type="Texture2D" uid="uid://bk6oojhaayb2d" path="res://assets/images/backgrounds/bg_6.webp" id="2_l3b2v"]
@@ -69,6 +69,7 @@
 [ext_resource type="Texture2D" uid="uid://hjrgi7buqorw" path="res://assets/ui/icons/cuadro_dialogo.png" id="48_eb3v4"]
 [ext_resource type="Texture2D" uid="uid://chxua1x0n4lx3" path="res://assets/ui/tokens/token_verbal.png" id="49_6wr8f"]
 [ext_resource type="Texture2D" uid="uid://dpdi8jch6q4je" path="res://assets/ui/icons/empathy_gradient_blue_red_20_4.png" id="49_p55k3"]
+[ext_resource type="Texture2D" uid="uid://8xuqf3o2a6l" path="res://assets/ui/textures/frame_glow.png" id="50_0oiag"]
 [ext_resource type="Texture2D" uid="uid://wbnpnr5yjdyq" path="res://assets/ui/icons/apoyo_emocional_gradient_blue_red_20_6.png" id="50_m81ou"]
 [ext_resource type="Script" path="res://scripts/ic_card.gd" id="50_qhjjh"]
 [ext_resource type="Texture2D" uid="uid://h5amphcnjm71" path="res://assets/ui/icons/intervención_gradient_blue_red_20_8.png" id="51_je1lb"]
@@ -734,7 +735,6 @@ offset_top = 751.0
 offset_right = 3086.0
 offset_bottom = 1051.0
 scale = Vector2(0.2, 0.2)
-tooltip_text = "Intervención"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
 
 [node name="Trait1TextureRect" type="TextureRect" parent="UI/Control/Trait1Panel"]
@@ -766,7 +766,6 @@ offset_top = 816.0
 offset_right = 3086.0
 offset_bottom = 1116.0
 scale = Vector2(0.2, 0.2)
-tooltip_text = "Comunicación"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
 
 [node name="Trait2TextureRect" type="TextureRect" parent="UI/Control/Trait2Panel"]
@@ -798,7 +797,6 @@ offset_top = 881.0
 offset_right = 3086.0
 offset_bottom = 1181.0
 scale = Vector2(0.2, 0.2)
-tooltip_text = "Empatía"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
 
 [node name="Trait3TextureRect" type="TextureRect" parent="UI/Control/Trait3Panel"]
@@ -830,7 +828,6 @@ offset_top = 946.0
 offset_right = 3086.0
 offset_bottom = 1246.0
 scale = Vector2(0.2, 0.2)
-tooltip_text = "Apoyo Emocional"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
 
 [node name="Trait4TextureRect" type="TextureRect" parent="UI/Control/Trait4Panel"]
@@ -862,7 +859,6 @@ offset_top = 1011.0
 offset_right = 3086.0
 offset_bottom = 1311.0
 scale = Vector2(0.2, 0.2)
-tooltip_text = "Apoyo Emocional"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5i3kt")
 
 [node name="Trait5TextureRect" type="TextureRect" parent="UI/Control/Trait5Panel"]
@@ -966,7 +962,6 @@ offset_left = 5.0
 offset_top = 1.0
 offset_right = 180.0
 offset_bottom = 62.0
-tooltip_text = "Tiempo restante de la partida"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5ax13")
 
 [node name="Countdown20MinutesLabel" type="Label" parent="UI/CountdownTotal/Panel"]
@@ -1003,7 +998,6 @@ offset_left = 5.0
 offset_top = 1.0
 offset_right = 180.0
 offset_bottom = 43.0
-tooltip_text = "Tiempo restante de la partida"
 theme_override_styles/panel = SubResource("StyleBoxFlat_5ax13")
 
 [node name="DificultadLabel" type="Label" parent="UI/Dificultad/Panel"]
@@ -1019,7 +1013,6 @@ offset_right = 87.5
 offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
-tooltip_text = "Dificultad"
 mouse_filter = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -1042,7 +1035,6 @@ offset_left = 1764.0
 offset_top = 210.0
 offset_right = 1844.0
 offset_bottom = 290.0
-tooltip_text = "Tiempo restante del turno"
 theme_override_styles/panel = SubResource("StyleBoxFlat_a6q4h")
 
 [node name="Countdown30SecondsLabel" type="Label" parent="UI/CountdownTurn/Panel"]
@@ -1416,6 +1408,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="EmptyFrame1" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1431,6 +1424,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("26_xmiw3")
 
 [node name="EmptyFrame2" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1446,6 +1440,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("26_xmiw3")
 
 [node name="EmptyFrame3" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1461,6 +1456,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("26_xmiw3")
 
 [node name="EmptyFrame4" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1476,6 +1472,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("26_xmiw3")
 
 [node name="EmptyFrame5" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1491,6 +1488,7 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("26_xmiw3")
 
 [node name="EmptyFrame6" type="Control" parent="UI/EmptyFrames"]
+visible = false
 anchors_preset = 0
 offset_left = -213.0
 offset_top = 13.0
@@ -1719,7 +1717,6 @@ offset_top = 259.0
 offset_right = 416.0
 offset_bottom = 759.0
 scale = Vector2(0.14, 0.14)
-tooltip_text = "Token Exclusión Social"
 texture = ExtResource("40_hppje")
 script = ExtResource("36_1rugo")
 
@@ -1767,7 +1764,6 @@ offset_top = 52.0005
 offset_right = 416.0
 offset_bottom = 552.001
 scale = Vector2(0.14, 0.14)
-tooltip_text = "Token Físico"
 texture = ExtResource("41_xbhwa")
 script = ExtResource("36_1rugo")
 
@@ -1815,7 +1811,6 @@ offset_top = 122.0
 offset_right = 416.0
 offset_bottom = 622.0
 scale = Vector2(0.14, 0.14)
-tooltip_text = "Token Psicológico"
 texture = ExtResource("42_fpm0a")
 script = ExtResource("36_1rugo")
 
@@ -1863,7 +1858,6 @@ offset_top = 190.0
 offset_right = 416.0
 offset_bottom = 690.0
 scale = Vector2(0.14, 0.14)
-tooltip_text = "Token Sexual"
 texture = ExtResource("43_jtpoo")
 script = ExtResource("36_1rugo")
 
@@ -1911,7 +1905,6 @@ offset_top = -90.0
 offset_right = 416.0
 offset_bottom = 410.0
 scale = Vector2(0.14, 0.14)
-tooltip_text = "Token Verbal"
 texture = ExtResource("44_f5h2d")
 script = ExtResource("36_1rugo")
 
@@ -1959,7 +1952,6 @@ offset_top = -20.0
 offset_right = 416.0
 offset_bottom = 480.0
 scale = Vector2(0.14, 0.14)
-tooltip_text = "Token Ciberbullying"
 texture = ExtResource("45_87ql6")
 script = ExtResource("36_1rugo")
 
@@ -2531,11 +2523,32 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 50
-text = "Puntos Empatía Totales 5"
+text = "Promedio Empatía Totales 5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PerformanceMensajeLabel" type="Label" parent="UI/GameOver/GameResultTextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -450.0
+offset_top = 350.0
+offset_right = 450.0
+offset_bottom = 666.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 31
+text = "Tu habilidad y estrategia brillaron en este nivel. ¡Felicidades!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Combos TotalesLabel" type="Label" parent="UI/GameOver/GameResultTextureRect"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -2551,7 +2564,28 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("7_tilu5")
 theme_override_font_sizes/font_size = 31
-text = "\"Tu habilidad y estrategia brillaron en esta partida. ¡Felicidades!\""
+text = "Combos Totales 52"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SituacionesLabel" type="Label" parent="UI/GameOver/GameResultTextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -450.0
+offset_top = 425.0
+offset_right = 450.0
+offset_bottom = 741.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 31
+text = "Situaciones Abordadas"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -3626,6 +3660,21 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
+[node name="HBoxContainer4" type="HBoxContainer" parent="UI/NewGameOptionWindow/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="UI/NewGameOptionWindow/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("7_tilu5")
+theme_override_font_sizes/font_size = 18
+text = "Ayuda Contextual"
+
+[node name="CheckButton" type="CheckButton" parent="UI/NewGameOptionWindow/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 6
+
 [node name="HSeparator2" type="HSeparator" parent="UI/NewGameOptionWindow/VBoxContainer"]
 layout_mode = 2
 
@@ -3730,9 +3779,9 @@ vertical_alignment = 1
 z_index = 16
 layout_mode = 0
 offset_left = 1191.0
-offset_top = 155.0
+offset_top = 85.0
 offset_right = 2378.0
-offset_bottom = 572.0
+offset_bottom = 502.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("48_eb3v4")
 expand_mode = 5
@@ -3815,7 +3864,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_27bwm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8eyt8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2vcrx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gerkl")
-text = "Aceptar"
+text = "Siguiente situación"
 
 [node name="SongsLabel" type="Label" parent="UI"]
 z_index = 12
@@ -3954,6 +4003,20 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_3jwb0")
 }
+
+[node name="FrameGlowRE" type="Sprite2D" parent="UI"]
+visible = false
+z_index = 8
+position = Vector2(603.325, 592)
+scale = Vector2(0.218656, 0.164)
+texture = ExtResource("50_0oiag")
+
+[node name="FrameGlowHS" type="Sprite2D" parent="UI"]
+visible = false
+z_index = 8
+position = Vector2(1317.32, 592)
+scale = Vector2(0.218656, 0.164)
+texture = ExtResource("50_0oiag")
 
 [node name="ReadyButton" type="Button" parent="."]
 layout_mode = 2
@@ -4125,6 +4188,13 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("53_dmsja")
 stretch_mode = 2
 
+[node name="FrameGlowRE" type="Sprite2D" parent="DeckManager/DeckBullying/BullyingCard"]
+modulate = Color(0, 0, 97.298, 0.438)
+z_index = 1
+position = Vector2(750, 1010)
+scale = Vector2(1.09393, 0.841333)
+texture = ExtResource("50_0oiag")
+
 [node name="BullyingCardNext" type="Control" parent="DeckManager/DeckBullying"]
 layout_mode = 3
 anchors_preset = 0
@@ -4270,10 +4340,10 @@ anchors_preset = 0
 [node name="RECard1" type="Control" parent="DeckManager/DeckPlayer"]
 anchors_preset = 0
 offset_left = 354.7
-offset_top = 804.0
+offset_top = 799.0
 offset_right = 1854.7
-offset_bottom = 2904.0
-scale = Vector2(0.13, 0.13)
+offset_bottom = 2899.0
+scale = Vector2(0.14, 0.14)
 script = ExtResource("5_goa0y")
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckPlayer/RECard1"]
@@ -4423,10 +4493,10 @@ stretch_mode = 2
 [node name="RECard2" type="Control" parent="DeckManager/DeckPlayer"]
 anchors_preset = 0
 offset_left = 557.3
-offset_top = 804.0
+offset_top = 799.0
 offset_right = 2057.3
-offset_bottom = 2904.0
-scale = Vector2(0.13, 0.13)
+offset_bottom = 2899.0
+scale = Vector2(0.14, 0.14)
 script = ExtResource("9_0kxbr")
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckPlayer/RECard2"]
@@ -4575,11 +4645,11 @@ stretch_mode = 2
 
 [node name="RECard3" type="Control" parent="DeckManager/DeckPlayer"]
 anchors_preset = 0
-offset_left = 759.9
-offset_top = 804.0
-offset_right = 2259.9
-offset_bottom = 2904.0
-scale = Vector2(0.13, 0.13)
+offset_left = 759.0
+offset_top = 799.0
+offset_right = 2259.0
+offset_bottom = 2899.0
+scale = Vector2(0.14, 0.14)
 script = ExtResource("10_38pgf")
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckPlayer/RECard3"]
@@ -4729,10 +4799,10 @@ stretch_mode = 2
 [node name="HSCard1" type="Control" parent="DeckManager/DeckPlayer"]
 anchors_preset = 0
 offset_left = 962.5
-offset_top = 804.0
+offset_top = 799.0
 offset_right = 2462.5
-offset_bottom = 2904.0
-scale = Vector2(0.13, 0.13)
+offset_bottom = 2899.0
+scale = Vector2(0.14, 0.14)
 script = ExtResource("11_l50vo")
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckPlayer/HSCard1"]
@@ -4870,10 +4940,10 @@ stretch_mode = 2
 [node name="HSCard2" type="Control" parent="DeckManager/DeckPlayer"]
 anchors_preset = 0
 offset_left = 1165.1
-offset_top = 804.0
+offset_top = 799.0
 offset_right = 2665.1
-offset_bottom = 2904.0
-scale = Vector2(0.13, 0.13)
+offset_bottom = 2899.0
+scale = Vector2(0.14, 0.14)
 script = ExtResource("12_yyw1s")
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckPlayer/HSCard2"]
@@ -5010,11 +5080,11 @@ stretch_mode = 2
 
 [node name="HSCard3" type="Control" parent="DeckManager/DeckPlayer"]
 anchors_preset = 0
-offset_left = 1367.7
-offset_top = 804.0
-offset_right = 2867.7
-offset_bottom = 2904.0
-scale = Vector2(0.13, 0.13)
+offset_left = 1367.0
+offset_top = 799.0
+offset_right = 2867.0
+offset_bottom = 2899.0
+scale = Vector2(0.14, 0.14)
 script = ExtResource("13_1vdtq")
 
 [node name="CardFrame" type="TextureRect" parent="DeckManager/DeckPlayer/HSCard3"]
@@ -5476,6 +5546,7 @@ offset_left = 1355.0
 offset_top = 12.0
 offset_right = 1544.0
 offset_bottom = 75.0
+mouse_filter = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_tilu5")
@@ -5511,6 +5582,11 @@ libraries = {
 "": SubResource("AnimationLibrary_rb3rc")
 }
 movie_quit_on_finish = true
+
+[node name="Sprite2D" type="Sprite2D" parent="DeckManager/TotalLabel"]
+position = Vector2(93.5001, 31.5)
+scale = Vector2(0.142709, 0.027)
+texture = ExtResource("50_0oiag")
 
 [node name="GameManager" type="Control" parent="."]
 anchors_preset = 0
@@ -5559,6 +5635,7 @@ explosiveness = 0.75
 [connection signal="pressed" from="UI/OptionsButton" to="GameManager" method="_on_options_button_pressed"]
 [connection signal="gui_input" from="UI/GameOver/GameResultTextureRect" to="UI/GameOver" method="_on_defeat_texture_rect_gui_input"]
 [connection signal="pressed" from="UI/GameOver/GameResultTextureRect/AcceptButton" to="GameManager" method="_on_accept_button_pressed_over"]
+[connection signal="toggled" from="UI/NewGameOptionWindow/VBoxContainer/HBoxContainer4/CheckButton" to="UI/NewGameOptionWindow" method="_on_check_button_toggled"]
 [connection signal="pressed" from="UI/NewGameOptionWindow/VBoxContainer/HBoxContainer3/ContinueButton" to="GameManager" method="_on_continue_options_button_pressed"]
 [connection signal="pressed" from="UI/NewGameOptionWindow/VBoxContainer/HBoxContainer3/AbortButton" to="GameManager" method="_on_abort_button_pressed"]
 [connection signal="pressed" from="UI/NewGameOptionWindow/VBoxContainer/HBoxContainer3/SaveButton" to="GameManager" method="_on_save_button_pressed"]

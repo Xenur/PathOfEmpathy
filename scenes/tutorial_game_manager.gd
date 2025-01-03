@@ -241,6 +241,8 @@ var countdown_sound_playing = false
 @onready var puntos_empatia_totales_label = $"../UI/GameOver/GameResultTextureRect/PuntosEmpatiaTotalesLabel"
 @onready var performance_mensaje_label = $"../UI/GameOver/GameResultTextureRect/PerformanceMensajeLabel"
 @onready var promedio_puntos_totales_label = $"../UI/GameOver/GameResultTextureRect/PromedioPuntosTotalesLabel"
+@onready var combos_totales_label = $"../UI/GameOver/GameResultTextureRect/Combos TotalesLabel"
+
 @onready var tutorial_control = $"../UI/TutorialControl"
 @onready var tutorial_new_game = $".."
 @onready var hand_texture_rect = $"../UI/HandTextureRect"
@@ -250,11 +252,14 @@ var countdown_sound_playing = false
 
 @onready var tokens_node_2d = $"../UI/TokensNode2D"
 @onready var sprite_2d = $"../UI/TokensNode2D/Sprite2D"
-@onready var animation_player_token = $"../UI/TokensNode2D/AnimationPlayerToken"
+#@onready var animation_player_token = $"../UI/TokensNode2D/AnimationPlayerToken"
 
 @onready var animation_player_2 = $"../UI/AnimationPlayer2"
 @onready var total_animation_player = $"../DeckManager/TotalLabel/TotalAnimationPlayer"
 @onready var explosion = $"../Node2D/Explosion"
+@onready var dialogue_label_2 = $"../UI/DialogueLabel2"
+@onready var dialogue_label_3 = $"../UI/DialogueLabel3"
+
 
 
 var tutorial_messages = []
@@ -271,11 +276,13 @@ var tutorial_messages2 = [
 ]
 var tutorial_messages3 = [
 	"Una vez que tengas claro el desafio deberás...",
-	"...elegir las cartas de Respuesta Empática...",
+	"...elegir las cartas de Respuesta Empática",
+	"Necesarias para resolver conflictos con Empatía."
 	
 ]
 var tutorial_messages4 = [
 	"...y las cartas de Habilidad Social.",
+	"Te ayudarán a enfrentar situaciones con confianza.",
 	"Combinando ambas cartas podrás combatir el bullying",
 	#
 ]
@@ -379,10 +386,11 @@ func _ready():
 	nueva_partida = Game.new(GlobalData.user, GlobalData.id, GameConfig.game_mode, GameConfig.ia_difficulty)
 	print("HA JUGADO ALGUNA VEZ? ", has_played_before(GlobalData.id))
 	tutorial = has_played_before(GlobalData.id)
-	if tutorial:
-		tutorial_control.visible = false
-	else:
-		tutorial_control.visible = true
+	disable_card_interaction()
+	#if tutorial or !GameConfig.tutorial:
+		#tutorial_control.visible = false
+	#else:
+		#tutorial_control.visible = true
 	turn = 1
 	duelo_label.text = "Situación " + str(turn)
 	randomize()
@@ -433,14 +441,16 @@ func _ready():
 			"ciberbullying": 0
 		}
 	update_token_textures()
+	disable_card_interaction()
 	# Configurar el volumen del sonido
 	var volume_db = lerp(-80, 0, GameConfig.sfx_volume / 100.0)
 	beep_countdown_audio_stream_player.volume_db = volume_db
 	beep_audio_stream_player.volume_db = volume_db
 	audio_stream_token.volume_db = volume_db
 	# Cambia el estado inicial a "PREPARE"
+	disable_card_interaction()
 	change_state(GameState.PREPARE)
-	
+	disable_card_interaction()
 	# Temporizador para sincronización regular del estado del juego
 	
 	sync_timer.set_wait_time(1.0) 
@@ -507,6 +517,8 @@ func handle_countdown(delta):
 		if new_game_option_window.visible == true:
 			new_game_option_window.visible = false
 		# Mover al siguiente estado
+		disable_card_interaction()
+		ready_button.disabled = true
 		change_state(GameState.CHECK_RESULT)
 	# Actualizar el contador global de 20 minutos
 
@@ -592,7 +604,7 @@ func prepare_game():
 	display_card_hs(player_cards_hs[0], hs_card_1, GlobalData.showing_reverses)
 	display_card_hs(player_cards_hs[1], hs_card_2, GlobalData.showing_reverses)
 	display_card_hs(player_cards_hs[2], hs_card_3, GlobalData.showing_reverses)
-
+	disable_card_interaction()
 	# Actualizar la carta de bullying inicial
 	#update_bullying_card()
 	#display_card_bu(card_bullying, bullying_card, GlobalData.showing_reverses)
@@ -622,27 +634,33 @@ func prepare_game():
 		
 	add_child(sound_player)
 	print("ESTAS EN TUTORIAL")
+	disable_card_interaction()
 	if turn == 1:
 		dialogue_label.visible = true
-		
+		disable_card_interaction()
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		await show_messages(tutorial_messages1)
 		await get_tree().create_timer(2.0).timeout
 		hand_texture_rect.visible = true
 		dialogue_label.text = ""  # Limpia cualquier texto previo
 		animation_player.play("hand_bullying", 0, 0.5)
-		
+		disable_card_interaction()
 		await show_messages(tutorial_messages2)
-		
+		disable_card_interaction()
 		await get_tree().create_timer(1.0).timeout
 		hand_texture_rect.visible = true
 		dialogue_label.text = ""  # Limpia cualquier texto previo
-		animation_player.play("hand_re", 0, 0.2)
-		
+		animation_player.play("hand_re", 0, 0.35)
+		disable_card_interaction()
+		fade_in_node(dialogue_label_2, 3)
+		fade_in_node(dialogue_label_3, 3)
 		await show_messages(tutorial_messages3)
+		disable_card_interaction()
 		await get_tree().create_timer(3.0).timeout
 		await show_messages(tutorial_messages4)
+		disable_card_interaction()
 		await get_tree().create_timer(2.0).timeout
+
 		hand_texture_rect.visible = true
 
 		await get_tree().create_timer(1.0).timeout
@@ -650,10 +668,13 @@ func prepare_game():
 			"Una vez que hayas elegido las cartas podrás confirmar.",
 			"Recuerda, doble clic para seleccionar las cartas."
 		]
-		enable_card_interaction()
+		
 		hand_texture_rect.visible = true
 		animation_player.play("hand_listo", 0, 0.5)
 		await show_messages(tutorial_messages6)
+		fade_out_node(dialogue_label_2, 3)
+		fade_out_node(dialogue_label_3, 3)
+		enable_card_interaction()
 		#await get_tree().create_timer(1.0).timeout
 		
 
@@ -666,7 +687,6 @@ func start_turn():
 	duelo_label.text = "Situación " + str(turn)
 	total_label.text = str(total_stars)
 	update_token_textures()
-	print("Turno del jugador y la IA.")
 			
 		# Reiniciar los estados del turno
 	reset_turn_state()
@@ -674,9 +694,17 @@ func start_turn():
 	update_bullying_card() 
 	disable_card_interaction()
 	animation_player_2.play("new_bullying", 0, 1)
-	await get_tree().create_timer(1.5).timeout
-	enable_card_interaction()
-	dialogue_texture_rect.visible = false
+	#await get_tree().create_timer(1.5).timeout
+	if GlobalData.token:
+		await get_tree().create_timer(10).timeout
+		enable_card_interaction()
+	else:
+		await get_tree().create_timer(2).timeout
+		enable_card_interaction()
+	GlobalData.token = false
+	#enable_card_interaction()
+	fade_out_node(dialogue_texture_rect,1)
+	#dialogue_texture_rect.visible = false
 	
 	if turn == 2 and dialogue_check == true:
 		disable_card_interaction()
@@ -945,6 +973,11 @@ func check_game_result():
 	# Actualizar las puntuaciones totales y el combo
 	#update_total_scores(player_score, ia_score)
 	update_combo(player_score, valid_combination)
+	await get_tree().create_timer(1.75).timeout
+	play_random_sound(GlobalData.stars)
+	await get_tree().create_timer(0).timeout
+	accept_button.disabled = false
+	
 	#update_combo_ia(ia_score, valid_combination_ia)
 	# Incrementar el turno
 	turn += 1
@@ -1013,7 +1046,8 @@ func check_game_result():
 
 		accept_button.disabled = true
 		ready_button.disabled = true
-		dialogue_texture_rect.visible = true
+		fade_in_node(dialogue_texture_rect,1)
+		#dialogue_texture_rect.visible = true
 		options_button.disabled = true
 		hand_texture_rect.visible = true
 		animation_player.play("hand_dialogue", 0, 0.5)
@@ -1033,7 +1067,7 @@ func check_game_result():
 		
 		# Actualiza la información del bullying en las etiquetas
 		tutorial_messages = [
-			"Cuando hayas leído el feedback, clica en Aceptar"
+			"Cuando hayas leído el feedback, clic en Siguiente situación"
 		]
 		await show_messages(tutorial_messages)
 		animation_player.play("hand_aceptar", 0, 0.5)
@@ -1044,14 +1078,15 @@ func check_game_result():
 		
 	
 	
-	
+	disable_card_interaction()
+	ready_button.disabled = true
 	# Finalizar el turno
 	end_turn_actions()
 
 func adjust_player_score(player_score: float) -> float:
 	match GameConfig.ia_difficulty:
 		0:  # Dificultad Alumno
-			return player_score * 10
+			return player_score * 1.3
 		1:  # Dificultad Profesor
 			return player_score * 1.0  # Sin cambio
 		2:  # Dificultad Psicólogo
@@ -1378,8 +1413,8 @@ func end_turn_actions():
 	#blur_overlay.visible = true
 	
 	#end_turn_popup.visible = true
-	dialogue_texture_rect.visible = true
-
+	#dialogue_texture_rect.visible = true
+	fade_in_node(dialogue_texture_rect, 1)
 	
 #Función para calcular la puntuación total de un jugador o la IA
 func calculate_score(bullying_card, re_card, hs_card) -> float:
@@ -1631,6 +1666,7 @@ func game_over():
 	situaciones_aboradadas_label.text = "Situaciones Abordadas " + str(GlobalData.current_game_data.size())
 	puntos_empatia_totales_label.text = "Puntos Empatía Totales " + str(GlobalData.total_stars)
 	promedio_puntos_totales_label.text = "Promedio Puntos Empatía " + str("%.2f" % average_stars)
+	combos_totales_label.text = "Combos Totales " + str(GlobalData.combo_player)
 	performance_mensaje_label.text = performance_message
 	
 	
@@ -3466,6 +3502,7 @@ var token_sfx_messages: Dictionary = {
 	"res://assets/audio/sfx/exclusión_social_2.ogg": "¡Increíble! Has desbloqueado un token por abordar la exclusión social."
 }
 func play_token_audio(token_type: String):
+	GlobalData.token = true
 	print("suena audio")
 	if token_sfx.has(token_type):
 		var sfx_list = token_sfx[token_type]
@@ -3514,7 +3551,7 @@ func call_heartbeat_scene(token_type: String):
 		disable_card_interaction()
 		tokens_node_2d.visible = true
 		sprite_2d.texture = load(token_textures[token_type])
-		animation_player_token.play("heartbeat_token", 0, 0.5)
+		#animation_player_token.play("heartbeat_token", 0, 0.5)
 		await get_tree().create_timer(5).timeout
 		fade_out_node(tokens_node_2d, 4)
 		enable_card_interaction()
@@ -4309,12 +4346,13 @@ func get_performance_message(average_stars: float) -> String:
 	# Determinar el nivel de dificultad (0 = Bajo, 1 = Medio, 2 = Duro)
 	var difficulty_level = GameConfig.ia_difficulty  # Nivel de dificultad desde la variable global
 
+	
 	# Mensajes según el nivel de desempeño y dificultad
 	var messages = {
 		0: {
-			0: ["¡Ánimo! Incluso en nivel fácil, puedes mejorar. ¡No te rindas!",
-				"El camino al éxito comienza con un primer paso. ¡Sigue intentándolo!",
-				"Es normal tropezar al inicio. Practica y pronto dominarás el juego."],
+			0: ["¡Ánimo! Incluso en nivel fácil, puedes mejorar.",
+				"El camino al éxito comienza con un primer paso.",
+				"Es normal tropezar al inicio. Practica más"],
 			1: ["¡No te preocupes! Este nivel puede ser desafiante al principio.",
 				"La práctica te ayudará a superar estos desafíos. ¡Adelante!",
 				"Un inicio difícil, pero no imposible. Ajusta tu estrategia."],
@@ -4456,3 +4494,49 @@ func fade_out_node(node: CanvasItem, duration: float = 1.0):
 	await tween.finished
 	node.visible = false  # Ocultar el nodo al final del fade
 	node.modulate.a = 1.0  # Restaurar opacidad para futuros usos
+
+func fade_in_node(node: CanvasItem, duration: float = 1.0):
+	var tween = create_tween()
+	node.visible = true  # Asegurarse de que el nodo sea visible al iniciar el fade
+	node.modulate.a = 0.0  # Establecer opacidad inicial a 0
+	tween.tween_property(node, "modulate:a", 1.0, duration)  # Incrementar la opacidad a 1
+	await tween.finished
+
+# Función para reproducir un sonido aleatorio
+func play_random_sound(star: int):
+	# Diccionario para los sonidos agrupados por "star"
+	var sounds = {
+		1: [
+			"res://assets/audio/sfx/un_punto_1.ogg",
+			"res://assets/audio/sfx/un_punto_2.ogg",
+			"res://assets/audio/sfx/un_punto_3.ogg"
+		],
+		2: [
+			"res://assets/audio/sfx/dos_puntos_1.ogg",
+			"res://assets/audio/sfx/dos_puntos_2.ogg",
+			"res://assets/audio/sfx/dos_puntos_3.ogg"
+		],
+		3: [
+			"res://assets/audio/sfx/tres_puntos_1.ogg",
+			"res://assets/audio/sfx/tres_puntos_2.ogg",
+			"res://assets/audio/sfx/tres_puntos_3.ogg"
+		],
+		4: [
+			"res://assets/audio/sfx/cuatro_puntos_1.ogg",
+			"res://assets/audio/sfx/cuatro_puntos_2.ogg",
+			"res://assets/audio/sfx/cuatro_puntos_3.ogg"
+		],
+		5: [
+			"res://assets/audio/sfx/cinco_puntos_1.ogg",
+			"res://assets/audio/sfx/cinco_puntos_2.ogg",
+			"res://assets/audio/sfx/cinco_puntos_3.ogg"
+		]
+	}
+	if star in sounds:
+		# Selecciona un sonido aleatorio de la lista correspondiente
+		var star_sounds = sounds[star]
+		var random_sound = star_sounds[randi() % star_sounds.size()]
+		# Llama a tu función para reproducir el sonido
+		play_beep_sound(random_sound)
+	else:
+		print("Valor de 'star' no válido:", star)

@@ -54,6 +54,9 @@ var iadifficulty_selected = 0
 
 # Cargar configuración juego al iniciar
 func _ready():
+	if !FileAccess.file_exists(CONFIG_FILE):
+		create_game_config()
+		
 	load_config()  # Primero carga la configuración
 	
 	# Configura los sliders con valores iniciales
@@ -161,6 +164,19 @@ func save_config():
 		
 		file.close()
 		#print("Configuración guardada en user://game_config.cfg")
+# Función para guardar la configuración en un archivo
+func create_game_config():
+	var file = FileAccess.open(CONFIG_FILE, FileAccess.WRITE)
+	if file:
+		#file.store_line(str(music_player.volume_db))  # Guardar el volumen de música en la primera línea
+		file.store_line(str(87))  # Guardar el volumen de música en la primera línea
+		file.store_line(str(87))        # Guardar el volumen de SFX correctamente
+		file.store_line(str(0))  # Guardar el índice seleccionado del antialiasing
+		#file.store_line(str(GameConfig.ia_difficulty)) # Guardar el índice seleccionado de la dificultad de la ia
+		file.store_line(str(0)) # Guardar el índice seleccionado de la dificultad de la ia
+		
+		file.close()
+		#print("Configuración guardada en user://game_config.cfg")
 
 # Función para cargar la configuración desde un archivo con solo 4 líneas
 func load_config():
@@ -213,7 +229,7 @@ func play_beep_sound():
 func _on_statistics_button_pressed():
 	GameConfig.music_volume = music_slider.value
 	GameConfig.tutorial = false
-	get_tree().change_scene_to_file("res://scenes/ChooseRole.tscn")
+	get_tree().change_scene_to_file("res://scenes/intro.tscn")
 
 # Señal boton creditos presionado
 func _on_credits_button_pressed():

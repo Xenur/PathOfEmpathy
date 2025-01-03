@@ -20,10 +20,12 @@ func _ready():
 	# Cambia automáticamente a la próxima escena cuando la animación termina
 	loading_animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
 	
+
+
 func _on_animation_finished(anim_name: String):
 	if anim_name == "loading":
 		# Muestra el mensaje "Prepárate"
-		loading_label.text = "Prepárate"
+		loading_label.text = " Prepárate"
 		loading_label.visible = true
 		go_audio_stream_player.play()
 		

@@ -112,7 +112,8 @@ func load_last_texture_index():
 
 # Función para cargar usuarios desde el archivo JSON
 func load_users():
-	var file = FileAccess.open(USER_DATA_FILE, FileAccess.READ)
+	var file = FileAccess.open_encrypted_with_pass(USER_DATA_FILE, FileAccess.ModeFlags.READ, GlobalData.ENCRYPTION_PASSWORD)
+	#var file = FileAccess.open(USER_DATA_FILE, FileAccess.READ)
 	if file:
 		var data = file.get_as_text()
 		if data != "":

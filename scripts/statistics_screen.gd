@@ -99,14 +99,14 @@ func _ready():
 
 	
 	var saved_data = load_saved_games()
-	player_statistics = calculate_player_statistics(saved_data)
-	tirada_statistics = calculate_tirada_statistics(saved_data)
-	token_statistics = calculate_negative_metrics(saved_data)
-	general_statistics = calculate_general_statistics(saved_data)
 
 
 	if saved_data:
-		
+		player_statistics = calculate_player_statistics(saved_data)
+		tirada_statistics = calculate_tirada_statistics(saved_data)
+		token_statistics = calculate_negative_metrics(saved_data)
+		general_statistics = calculate_general_statistics(saved_data)
+
 		# Filtrar datos del usuario actual
 		var user_data = filter_user_data(GlobalData.id, saved_data)
 		if user_data["partidas"].size() == 0:

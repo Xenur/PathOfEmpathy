@@ -28,22 +28,23 @@ signal card_chosen_hs(card_id)
 @onready var gpu_particles_2d_4 = $"../../../UI/FlamesHS/GPUParticles2D4"
 @onready var gpu_particles_2d_5 = $"../../../UI/FlamesHS/GPUParticles2D5"
 @onready var gpu_particles_2d_6 = $"../../../UI/FlamesHS/GPUParticles2D6"
+@onready var frame_glow_hs = $"../../../UI/FrameGlowHS"
 
 
 # Referencias a los nodos de la escena
 @onready var re_card_1 = $"."
 @onready var number_card_label = $NumberCardLabel
 # Define las constantes escalas de la carta
-const NORMAL_SCALE = Vector2(0.13, 0.13)
+const NORMAL_SCALE = Vector2(0.14, 0.14)
 const HOVER_SCALE = Vector2(0.27, 0.27)
-const TARGET_SCALE = Vector2(0.1, 0.1)
+const TARGET_SCALE = Vector2(0.2, 0.2)
 # Variables para guardar la posicion original de la carta
 var _position = position
 # Variable para almacenar el z_index original
 var original_z_index = 0  
 # Define la posición a la que se moverá la carta
-const TARGET_POSITION = Vector2(1167, 494)  
-const ORIGINAL_POSITION = Vector2(1165.1, 804)
+const TARGET_POSITION = Vector2(1167, 390)  
+const ORIGINAL_POSITION = Vector2(1165.1, 799)
 # Bandera para verificar si la carta ha sido movida
 var is_moved = false  
 
@@ -92,27 +93,29 @@ func move_to_target_position():
 	# Animación de escala hacia el destino
 	tween.tween_property(self, "scale", TARGET_SCALE, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	await get_tree().create_timer(0.7).timeout
+	fade_in_node(frame_glow_hs, 0.5)
 	#flames_hs.show()
-	gpu_particles_2d.emitting = true
-	gpu_particles_2d_2.emitting = true
-	gpu_particles_2d_3.emitting = true
-	gpu_particles_2d_4.emitting = true
-	gpu_particles_2d_5.emitting = true
-	gpu_particles_2d_6.emitting = true
+	#gpu_particles_2d.emitting = true
+	#gpu_particles_2d_2.emitting = true
+	#gpu_particles_2d_3.emitting = true
+	#gpu_particles_2d_4.emitting = true
+	#gpu_particles_2d_5.emitting = true
+	#gpu_particles_2d_6.emitting = true
 
 	GlobalData.current_card_in_target_positionHS = self
 	GlobalData.id_current_card_in_target_positionHS = number_card_label.text
 	emit_signal("card_chosen_hs", number_card_label.text)
 
 func move_to_original_position():
-	gpu_particles_2d.emitting = false
-	gpu_particles_2d_2.emitting = false
-	gpu_particles_2d_3.emitting = false
-	gpu_particles_2d_4.emitting = false
-	gpu_particles_2d_5.emitting = false
-	gpu_particles_2d_6.emitting = false
+	#gpu_particles_2d.emitting = false
+	#gpu_particles_2d_2.emitting = false
+	#gpu_particles_2d_3.emitting = false
+	#gpu_particles_2d_4.emitting = false
+	#gpu_particles_2d_5.emitting = false
+	#gpu_particles_2d_6.emitting = false
 	#flames_hs.hide()
 	is_moved = false
+	fade_out_node(frame_glow_hs, 0.5)
 	var tween = create_tween()
 	# Asegúrate de que la posición actual sea consistente con su estado inicial
 	self.position = position  # Sincroniza con la posición actual si hubo algún cambio previo
@@ -133,8 +136,22 @@ func move_to_original_position():
 
 # Función para reproducir el sonido
 func play_beep_sound():
-	var audio_stream = load("res://assets/audio/sfx/seleccionar_carta.ogg")
+	var audio_stream = load("res://assets/audio/sfx/traimory-braam-aggressive-tech-blast-cinematic-trailer-sound-effects-161150.mp3")
 	beep_audio_stream_player.stream = audio_stream
 	if beep_audio_stream_player.playing:
 		beep_audio_stream_player.stop()
 	beep_audio_stream_player.play()
+	
+func fade_out_node(node: CanvasItem, duration: float = 0.5):
+	var tween = create_tween()
+	tween.tween_property(node, "modulate:a", 0.0, duration)  # Desvanecer a opacidad 0
+	await tween.finished
+	node.visible = false  # Ocultar el nodo al final del fade
+	node.modulate.a = 1.0  # Restaurar opacidad para futuros usos
+	
+func fade_in_node(node: CanvasItem, duration: float = 0.5):
+	var tween = create_tween()
+	node.visible = true  # Asegurarse de que el nodo sea visible al iniciar el fade
+	node.modulate.a = 0.0  # Establecer opacidad inicial a 0
+	tween.tween_property(node, "modulate:a", 1.0, duration)  # Incrementar la opacidad a 1
+	await tween.finished
